@@ -1,61 +1,39 @@
 //
-//  top60.m
+//  TagsTab.m
 //  Chatty
 //
-//  Created by Omar Thanawalla on 4/3/12.
+//  Created by Gabriel Hernandez on 4/20/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "top60.h"
-#import "conversationTop60.h"
-#import "Login.h"
+#import "TagsTab.h"
 
+@implementation TagsTab
 
-
-@implementation top60
-
-@synthesize people;
-@synthesize conversations;
+@synthesize mySearch, myFollowers, currentView;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
+        self.currentView = 0;
     }
     return self;
 }
 
-- (void)didReceiveMemoryWarning
-{
-    // Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
-    
-    // Release any cached data, images, etc that aren't in use.
-}
-
-#pragma mark - View lifecycle
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.title = @"Top 60";
-    //
-//    people = [[NSMutableArray alloc] initWithObjects:@"Ashimi, Jeddy, Nazish", @"Saleem, Shahneel, Omar", @"Danish, Miranda, Camille",@"Diviya, Saumiya, Ashimi", @"Kassam, Shanil, Shiraz, Kiran, Surge, Salim, Arman", nil];
-//    conversations = [[NSMutableArray alloc] initWithObjects:@"Nazish: Dude I'm going to India", @"Omar: What did drake say when he was sitting on a mexican?", @"Danish: I look good", @"Diviya: I baked you a cupcake guys :)", @"Kassam: Our revenues are through the roof", nil];
     
+    self.mySearch = [[Search alloc] initWithStyle:UITableViewStylePlain];
+    self.myFollowers = [[Followers alloc] initWithStyle:UITableViewStylePlain];
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    
-    
-//    push in login on top of this view
-        [self performSegueWithIdentifier:@"loggedIn" sender:self];
-
-    
 }
 
 - (void)viewDidUnload
@@ -65,29 +43,8 @@
     // e.g. self.myOutlet = nil;
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-}
-
-- (void)viewDidDisappear:(BOOL)animated
-{
-    [super viewDidDisappear:animated];
-}
-
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
@@ -102,19 +59,32 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return 5;
+    if (self.currentView == 0) {
+        return [self.mySearch.name count];
+    } else {
+        return [self.myFollowers.name count];
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
-    ConversationCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[ConversationCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     
     // Configure the cell...
+    if (self.currentView == 0) {
+        
+        cell.textLabel.text = [mySearch.name objectAtIndex:indexPath.row];
+        cell.detailTextLabel.text = [mySearch.tag objectAtIndex:indexPath.row];
+        cell.imageView.image = [UIImage imageNamed:@"second.png"];
+    } else {
+        cell.textLabel.text = [myFollowers.name objectAtIndex:indexPath.row];
+        cell.detailTextLabel.text = [myFollowers.tag objectAtIndex:indexPath.row];
+    }
     
     return cell;
 }
@@ -158,26 +128,29 @@
 }
 */
 
-
-
-
-
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    [self performSegueWithIdentifier:@"ShowConversation" sender:self];
-
+    // Navigation logic may go here. Create and push another view controller.
+    /*
+     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
+     // ...
+     // Pass the selected object to the new view controller.
+     [self.navigationController pushViewController:detailViewController animated:YES];
+     */
 }
 
-
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+- (IBAction)changeView:(id)sender
 {
-    UITableViewCell *cell = [self tableView:tableView cellForRowAtIndexPath:indexPath];
-    NSLog(@"%i", cell.detailTextLabel.numberOfLines);
-    return 100;
+    if([sender selectedSegmentIndex] == 1)
+    {
+        //hang on
+        self.currentView = 1;
+        [self.tableView reloadData]; 
+    } else {
+        self.currentView = 0;
+        [self.tableView reloadData]; 
+    }
 }
-
-
 @end

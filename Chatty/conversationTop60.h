@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "MessageCell.h"
 @interface conversationTop60 : UITableViewController
 
 @property (nonatomic, strong) NSMutableArray *people;

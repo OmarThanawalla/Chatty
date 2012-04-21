@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0807A9BA15424A3800B72B3E /* MessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0807A9B915424A3800B72B3E /* MessageCell.m */; };
+		0807A9BE154250D000B72B3E /* UserFollowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0807A9BD154250D000B72B3E /* UserFollowCell.m */; };
+		083A8B191541EA070078989E /* Search.m in Sources */ = {isa = PBXBuildFile; fileRef = 083A8B181541EA070078989E /* Search.m */; };
+		083A8B1D1541EA140078989E /* Followers.m in Sources */ = {isa = PBXBuildFile; fileRef = 083A8B1C1541EA140078989E /* Followers.m */; };
+		083A8B231541EA8A0078989E /* TagsTab.m in Sources */ = {isa = PBXBuildFile; fileRef = 083A8B221541EA8A0078989E /* TagsTab.m */; };
+		083A8B29154210EA0078989E /* ConversationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 083A8B28154210E90078989E /* ConversationCell.m */; };
 		A736D045152BBA620049AB22 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A736D044152BBA620049AB22 /* UIKit.framework */; };
 		A736D047152BBA620049AB22 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A736D046152BBA620049AB22 /* Foundation.framework */; };
 		A736D049152BBA620049AB22 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A736D048152BBA620049AB22 /* CoreGraphics.framework */; };
@@ -20,7 +26,6 @@
 		A736D066152BBA620049AB22 /* second@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A736D065152BBA620049AB22 /* second@2x.png */; };
 		A736D06E152BBD670049AB22 /* top60.m in Sources */ = {isa = PBXBuildFile; fileRef = A736D06D152BBD670049AB22 /* top60.m */; };
 		A736D071152BBD7B0049AB22 /* top150.m in Sources */ = {isa = PBXBuildFile; fileRef = A736D070152BBD7B0049AB22 /* top150.m */; };
-		A736D074152BC08D0049AB22 /* searchForContacts.m in Sources */ = {isa = PBXBuildFile; fileRef = A736D073152BC08D0049AB22 /* searchForContacts.m */; };
 		A736D077152BFE8A0049AB22 /* conversationTop60.m in Sources */ = {isa = PBXBuildFile; fileRef = A736D076152BFE8A0049AB22 /* conversationTop60.m */; };
 		A736D07A1533859C0049AB22 /* composeMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = A736D0791533859B0049AB22 /* composeMessage.m */; };
 		A7E5997F153614D8009633DC /* Login.m in Sources */ = {isa = PBXBuildFile; fileRef = A7E5997E153614D8009633DC /* Login.m */; };
@@ -31,6 +36,18 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0807A9B815424A3800B72B3E /* MessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageCell.h; sourceTree = "<group>"; };
+		0807A9B915424A3800B72B3E /* MessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageCell.m; sourceTree = "<group>"; };
+		0807A9BC154250D000B72B3E /* UserFollowCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserFollowCell.h; sourceTree = "<group>"; };
+		0807A9BD154250D000B72B3E /* UserFollowCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserFollowCell.m; sourceTree = "<group>"; };
+		083A8B171541EA070078989E /* Search.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Search.h; sourceTree = "<group>"; };
+		083A8B181541EA070078989E /* Search.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Search.m; sourceTree = "<group>"; };
+		083A8B1B1541EA140078989E /* Followers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Followers.h; sourceTree = "<group>"; };
+		083A8B1C1541EA140078989E /* Followers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Followers.m; sourceTree = "<group>"; };
+		083A8B211541EA8A0078989E /* TagsTab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TagsTab.h; path = ../TagsTab.h; sourceTree = "<group>"; };
+		083A8B221541EA8A0078989E /* TagsTab.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TagsTab.m; path = ../TagsTab.m; sourceTree = "<group>"; };
+		083A8B27154210E90078989E /* ConversationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConversationCell.h; sourceTree = "<group>"; };
+		083A8B28154210E90078989E /* ConversationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConversationCell.m; sourceTree = "<group>"; };
 		A736D040152BBA620049AB22 /* Chatty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chatty.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A736D044152BBA620049AB22 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		A736D046152BBA620049AB22 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -50,8 +67,6 @@
 		A736D06D152BBD670049AB22 /* top60.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = top60.m; sourceTree = "<group>"; };
 		A736D06F152BBD7B0049AB22 /* top150.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = top150.h; sourceTree = "<group>"; };
 		A736D070152BBD7B0049AB22 /* top150.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = top150.m; sourceTree = "<group>"; };
-		A736D072152BC08D0049AB22 /* searchForContacts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = searchForContacts.h; sourceTree = "<group>"; };
-		A736D073152BC08D0049AB22 /* searchForContacts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = searchForContacts.m; sourceTree = "<group>"; };
 		A736D075152BFE8A0049AB22 /* conversationTop60.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = conversationTop60.h; sourceTree = "<group>"; };
 		A736D076152BFE8A0049AB22 /* conversationTop60.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = conversationTop60.m; sourceTree = "<group>"; };
 		A736D0781533859B0049AB22 /* composeMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = composeMessage.h; sourceTree = "<group>"; };
@@ -82,6 +97,80 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0807A9BF154254BB00B72B3E /* top60 */ = {
+			isa = PBXGroup;
+			children = (
+				A736D06C152BBD670049AB22 /* top60.h */,
+				A736D06D152BBD670049AB22 /* top60.m */,
+				083A8B27154210E90078989E /* ConversationCell.h */,
+				083A8B28154210E90078989E /* ConversationCell.m */,
+				A736D075152BFE8A0049AB22 /* conversationTop60.h */,
+				A736D076152BFE8A0049AB22 /* conversationTop60.m */,
+				0807A9B815424A3800B72B3E /* MessageCell.h */,
+				0807A9B915424A3800B72B3E /* MessageCell.m */,
+			);
+			name = top60;
+			sourceTree = "<group>";
+		};
+		0807A9C0154254EE00B72B3E /* TagsTab */ = {
+			isa = PBXGroup;
+			children = (
+				083A8B211541EA8A0078989E /* TagsTab.h */,
+				083A8B221541EA8A0078989E /* TagsTab.m */,
+				083A8B171541EA070078989E /* Search.h */,
+				083A8B181541EA070078989E /* Search.m */,
+				083A8B1B1541EA140078989E /* Followers.h */,
+				083A8B1C1541EA140078989E /* Followers.m */,
+				0807A9BC154250D000B72B3E /* UserFollowCell.h */,
+				0807A9BD154250D000B72B3E /* UserFollowCell.m */,
+			);
+			name = TagsTab;
+			sourceTree = "<group>";
+		};
+		0807A9C11542552600B72B3E /* MeTab */ = {
+			isa = PBXGroup;
+			children = (
+				A7E5998C153A5E13009633DC /* MeTab.h */,
+				A7E5998D153A5E13009633DC /* MeTab.m */,
+				A7E59986153A3D3A009633DC /* MyConversation.h */,
+				A7E59987153A3D3B009633DC /* MyConversation.m */,
+				A7E59989153A3F8B009633DC /* MyProfile.h */,
+				A7E5998A153A3F8B009633DC /* MyProfile.m */,
+			);
+			name = MeTab;
+			sourceTree = "<group>";
+		};
+		0807A9C21542554400B72B3E /* top150 */ = {
+			isa = PBXGroup;
+			children = (
+				A736D06F152BBD7B0049AB22 /* top150.h */,
+				A736D070152BBD7B0049AB22 /* top150.m */,
+			);
+			name = top150;
+			sourceTree = "<group>";
+		};
+		083A8B2415420C9E0078989E /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				A736D05C152BBA620049AB22 /* first.png */,
+				A736D05E152BBA620049AB22 /* first@2x.png */,
+				A736D063152BBA620049AB22 /* second.png */,
+				A736D065152BBA620049AB22 /* second@2x.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
+		083A8B2515420CCC0078989E /* tabs */ = {
+			isa = PBXGroup;
+			children = (
+				0807A9BF154254BB00B72B3E /* top60 */,
+				0807A9C21542554400B72B3E /* top150 */,
+				0807A9C0154254EE00B72B3E /* TagsTab */,
+				0807A9C11542552600B72B3E /* MeTab */,
+			);
+			name = tabs;
+			sourceTree = "<group>";
+		};
 		A736D035152BBA620049AB22 = {
 			isa = PBXGroup;
 			children = (
@@ -114,32 +203,16 @@
 			children = (
 				A736D053152BBA620049AB22 /* BIDAppDelegate.h */,
 				A736D054152BBA620049AB22 /* BIDAppDelegate.m */,
-				A736D05C152BBA620049AB22 /* first.png */,
-				A736D05E152BBA620049AB22 /* first@2x.png */,
 				A736D056152BBA620049AB22 /* MainStoryboard.storyboard */,
-				A7E59986153A3D3A009633DC /* MyConversation.h */,
-				A7E59987153A3D3B009633DC /* MyConversation.m */,
-				A7E59989153A3F8B009633DC /* MyProfile.h */,
-				A7E5998A153A3F8B009633DC /* MyProfile.m */,
-				A7E5998C153A5E13009633DC /* MeTab.h */,
-				A7E5998D153A5E13009633DC /* MeTab.m */,
-				A7E5998315362CBC009633DC /* Registered.h */,
-				A7E5998415362CBC009633DC /* Registered.m */,
 				A7E5997D153614D8009633DC /* Login.h */,
 				A7E5997E153614D8009633DC /* Login.m */,
-				A736D072152BC08D0049AB22 /* searchForContacts.h */,
-				A736D073152BC08D0049AB22 /* searchForContacts.m */,
-				A736D063152BBA620049AB22 /* second.png */,
-				A736D065152BBA620049AB22 /* second@2x.png */,
-				A736D04B152BBA620049AB22 /* Supporting Files */,
-				A736D06F152BBD7B0049AB22 /* top150.h */,
-				A736D070152BBD7B0049AB22 /* top150.m */,
-				A736D06C152BBD670049AB22 /* top60.h */,
-				A736D06D152BBD670049AB22 /* top60.m */,
-				A736D075152BFE8A0049AB22 /* conversationTop60.h */,
-				A736D076152BFE8A0049AB22 /* conversationTop60.m */,
+				A7E5998315362CBC009633DC /* Registered.h */,
+				A7E5998415362CBC009633DC /* Registered.m */,
 				A736D0781533859B0049AB22 /* composeMessage.h */,
 				A736D0791533859B0049AB22 /* composeMessage.m */,
+				083A8B2515420CCC0078989E /* tabs */,
+				083A8B2415420C9E0078989E /* Images */,
+				A736D04B152BBA620049AB22 /* Supporting Files */,
 			);
 			path = Chatty;
 			sourceTree = "<group>";
@@ -225,7 +298,6 @@
 				A736D055152BBA620049AB22 /* BIDAppDelegate.m in Sources */,
 				A736D06E152BBD670049AB22 /* top60.m in Sources */,
 				A736D071152BBD7B0049AB22 /* top150.m in Sources */,
-				A736D074152BC08D0049AB22 /* searchForContacts.m in Sources */,
 				A736D077152BFE8A0049AB22 /* conversationTop60.m in Sources */,
 				A736D07A1533859C0049AB22 /* composeMessage.m in Sources */,
 				A7E5997F153614D8009633DC /* Login.m in Sources */,
@@ -233,6 +305,12 @@
 				A7E59988153A3D3B009633DC /* MyConversation.m in Sources */,
 				A7E5998B153A3F8B009633DC /* MyProfile.m in Sources */,
 				A7E5998E153A5E13009633DC /* MeTab.m in Sources */,
+				083A8B191541EA070078989E /* Search.m in Sources */,
+				083A8B1D1541EA140078989E /* Followers.m in Sources */,
+				083A8B231541EA8A0078989E /* TagsTab.m in Sources */,
+				083A8B29154210EA0078989E /* ConversationCell.m in Sources */,
+				0807A9BA15424A3800B72B3E /* MessageCell.m in Sources */,
+				0807A9BE154250D000B72B3E /* UserFollowCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,11 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ConversationCell.h"
 
-@interface top60 : UITableViewController
+@interface top60 : UITableViewController 
 
 @property (nonatomic, strong) NSMutableArray *people;
 @property (nonatomic,strong) NSMutableArray *conversations;
+
 
 
 @end
