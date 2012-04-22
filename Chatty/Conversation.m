@@ -1,27 +1,24 @@
 //
-//  top60.m
+//  conversationTop60.m
 //  Chatty
 //
 //  Created by Omar Thanawalla on 4/3/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "top60.h"
-#import "conversationTop60.h"
-#import "Login.h"
+#import "Conversation.h"
 
 
-
-@implementation top60
-
+@implementation Conversation
 @synthesize people;
-@synthesize conversations;
+@synthesize conversation, state;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
+        
     }
     return self;
 }
@@ -39,23 +36,19 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.title = @"Top 60";
-    //
-//    people = [[NSMutableArray alloc] initWithObjects:@"Ashimi, Jeddy, Nazish", @"Saleem, Shahneel, Omar", @"Danish, Miranda, Camille",@"Diviya, Saumiya, Ashimi", @"Kassam, Shanil, Shiraz, Kiran, Surge, Salim, Arman", nil];
-//    conversations = [[NSMutableArray alloc] initWithObjects:@"Nazish: Dude I'm going to India", @"Omar: What did drake say when he was sitting on a mexican?", @"Danish: I look good", @"Diviya: I baked you a cupcake guys :)", @"Kassam: Our revenues are through the roof", nil];
+    conversation = [[NSMutableArray alloc] initWithObjects:@"Omar: Hi",@"Shahneel: What up",@"Saleem: HI im are dumb", nil];
     
+//    
+//    NSMutableArray * convo2 = [[NSMutableArray alloc] initWithObjects:@"Kathy: Hi",@"Shahneel: What up",@"Saleem: Yall are dumb", nil];
+//    NSMutableArray * convo3 = [[NSMutableArray alloc] initWithObjects:@"Jean: Hi",@"Shahneel: What up",@"Doris: Yall are dumb", nil];
+//    people = [[NSMutableArray alloc] initWithObjects:@"Omar",@"Shahneel",@"Saleem", nil];
+//    conversation = [[NSMutableArray alloc] initWithObjects:@"What did drake say when he was sitting on a mexican?",@"I'm on Jose?", @"I'm on JJ Barea?", nil];
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    
-    
-//    push in login on top of this view
-        [self performSegueWithIdentifier:@"loggedIn" sender:self];
-
-    
 }
 
 - (void)viewDidUnload
@@ -102,19 +95,28 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return 5;
+    return 2;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
     
-    ConversationCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    MessageCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[ConversationCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+        cell = [[MessageCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     
     // Configure the cell...
+    if (state == 0) {
+        cell.detailTextLabel.text = [conversation objectAtIndex:0]; 
+            } 
+    else if (state == 1) {
+        cell.detailTextLabel.text = [conversation objectAtIndex:1];
+                    }
+    else{
+    cell.detailTextLabel.text = [conversation objectAtIndex:2];
+    }
     
     return cell;
 }
@@ -158,25 +160,22 @@
 }
 */
 
-
-
-
-
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    [self performSegueWithIdentifier:@"ShowConversation" sender:self];
-
+    // Navigation logic may go here. Create and push another view controller.
+    /*
+     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
+     // ...
+     // Pass the selected object to the new view controller.
+     [self.navigationController pushViewController:detailViewController animated:YES];
+     */
 }
 
-
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [self tableView:tableView cellForRowAtIndexPath:indexPath];
-    NSLog(@"%i", cell.detailTextLabel.numberOfLines);
-    return 100;
+    return 75;
 }
 
 

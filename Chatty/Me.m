@@ -1,32 +1,44 @@
 //
-//  Followers.m
+//  top150.m
 //  Chatty
 //
-//  Created by Gabriel Hernandez on 4/20/12.
+//  Created by Omar Thanawalla on 4/3/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "Followers.h"
+#import "Me.h"
+#import "Conversation.h"
 
-@implementation Followers
 
-@synthesize name, tag, profilePic;
+@implementation Me
+
+@synthesize people, conversations;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
-        self.name = [[NSMutableArray alloc] initWithObjects:@"Henry", @"Paul", @"Payton Manning", @"Tim Duncan", nil];
-        self.tag = [[NSMutableArray alloc] initWithObjects:@"@HenMen", @"@Paullie", @"@Broncos18", @"@MrFundemental",nil];
     }
-    
     return self;
 }
+
+- (void)didReceiveMemoryWarning
+{
+    // Releases the view if it doesn't have a superview.
+    [super didReceiveMemoryWarning];
+    
+    // Release any cached data, images, etc that aren't in use.
+}
+
+#pragma mark - View lifecycle
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    people = [[NSMutableArray alloc] initWithObjects:@"Gabe, Riche, Nazish", @"Mom, Dad, Samir", @"Mitra, Miranda", @"Diviya, Joe, Lisa", nil];
+    conversations = [[NSMutableArray alloc] initWithObjects:@"Nazish: Dude I'm going to India", @"Omar: What did drake say when he was sitting on a mexican?", @"Danish: I look good", @"Diviya: I baked you a cupcake guys :)", nil];
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -42,8 +54,29 @@
     // e.g. self.myOutlet = nil;
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+}
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
+    // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
@@ -58,20 +91,21 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return [self.name count];
+    return [people count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     
     // Configure the cell...
-    
+    cell.textLabel.text = [people objectAtIndex:indexPath.row];
+    cell.detailTextLabel.text = [conversations objectAtIndex:indexPath.row];
     return cell;
 }
 
@@ -118,6 +152,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
+    [self performSegueWithIdentifier:@"ShowMyConversation" sender:self];
+    
     // Navigation logic may go here. Create and push another view controller.
     /*
      <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
@@ -125,6 +162,13 @@
      // Pass the selected object to the new view controller.
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"ShowMyConversation"]) {
+        Conversation *myTop60 = [segue destinationViewController];
+        myTop60.state = 1;
+    }
 }
 
 @end

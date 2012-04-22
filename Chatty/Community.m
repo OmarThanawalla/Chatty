@@ -1,19 +1,23 @@
 //
-//  MeTab.m
+//  top60.m
 //  Chatty
 //
-//  Created by Omar Thanawalla on 4/14/12.
+//  Created by Omar Thanawalla on 4/3/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "MeTab.h"
-#import "MyProfile.h"
-#import "MyConversation.h"
+#import "Community.h"
+#import "Conversation.h"
+#import "Login.h"
+#import "AllCell.h"
 
 
-@implementation MeTab
 
-@synthesize convos, currentView, profiles;
+@implementation Community
+
+@synthesize people;
+@synthesize conversations;
+@synthesize currentView;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -21,7 +25,6 @@
     if (self) {
         // Custom initialization
         self.currentView = 0;
-    
     }
     return self;
 }
@@ -39,15 +42,22 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    //
+//    people = [[NSMutableArray alloc] initWithObjects:@"Ashimi, Jeddy, Nazish", @"Saleem, Shahneel, Omar", @"Danish, Miranda, Camille",@"Diviya, Saumiya, Ashimi", @"Kassam, Shanil, Shiraz, Kiran, Surge, Salim, Arman", nil];
+//    conversations = [[NSMutableArray alloc] initWithObjects:@"Nazish: Dude I'm going to India", @"Omar: What did drake say when he was sitting on a mexican?", @"Danish: I look good", @"Diviya: I baked you a cupcake guys :)", @"Kassam: Our revenues are through the roof", nil];
     
-    self.convos = [[MyConversation alloc] initWithStyle:UITableViewStylePlain];
-    self.profiles = [[MyProfile alloc] initWithStyle:UITableViewStylePlain];
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    
+//    push in login on top of this view
+       // [self performSegueWithIdentifier:@"loggedIn" sender:self];
+
+    
 }
 
 - (void)viewDidUnload
@@ -94,34 +104,30 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    if (self.currentView == 0) {
-        return [self.convos.people count];
-    } else {
-        return [self.profiles.name count];
-    }
-    
+    return 5;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if(currentView == 0){
+    
+    ConversationCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+        cell = [[ConversationCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
-    
-    // Configure the cell...
-    if (self.currentView == 0) {
-        cell.textLabel.text = [convos.people objectAtIndex:indexPath.row];
-        cell.detailTextLabel.text = [convos.conversation objectAtIndex:indexPath.row];
-    } else {
-        cell.textLabel.text = [profiles.name objectAtIndex:indexPath.row];
-        cell.detailTextLabel.text = [profiles.tag objectAtIndex:indexPath.row];
-    }
-    
-    
     return cell;
+    }
+    
+    else { 
+        AllCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (cell == nil) {
+            cell = [[AllCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+        }
+        
+        return cell;
+    }
 }
 
 /*
@@ -163,49 +169,55 @@
 }
 */
 
+
+
+
+
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
+    
+    
+    
+    [self performSegueWithIdentifier:@"ShowCommunityConversation" sender:self];
+
 }
 
-- (IBAction)toggleView:(id)sender {
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"ShowCommunityConversation"]) {
+        Conversation *myTop60 = [segue destinationViewController];
+        if(currentView == 0)
+        {
+        myTop60.state = 0;
+        }
+        if(currentView == 1)
+        {
+            myTop60.state = 2;
+        }
+    }
+}
+
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     
+    return 85;
+}
+
+
+- (IBAction)toggleView:(UISegmentedControl *)sender {
     if([sender selectedSegmentIndex] == 1)
     {
         //hang on
-        NSLog(@"this method was called");
         self.currentView = 1;
         [self.tableView reloadData]; 
+        NSLog(@"current view set to 1");
     } else {
         self.currentView = 0;
         [self.tableView reloadData]; 
+        NSLog(@"current view set to 0");
     }
-    
-//    switch ([sender selectedSegmentIndex]) {
-//        case 0:
-//            
-//            break;
-//            
-//        case 1:
-//            NSLog(@"this is a profile");
-//            break;
-//            
-//        default:
-//            break;
-//    }
-    
-}
 
-- (IBAction)refreshTable:(id)sender {
-    [self.tableView reloadData];
-    NSLog(@"THis just refreshed");
 }
 @end

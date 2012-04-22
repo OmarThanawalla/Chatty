@@ -1,5 +1,5 @@
 //
-//  conversationTop60.h
+//  top150.h
 //  Chatty
 //
 //  Created by Omar Thanawalla on 4/3/12.
@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MessageCell.h"
-@interface conversationTop60 : UITableViewController
+
+@interface Me : UITableViewController
 
 @property (nonatomic, strong) NSMutableArray *people;
-@property (nonatomic, strong) NSMutableArray *conversation;
+@property (nonatomic,strong) NSMutableArray *conversations;
 
 @end

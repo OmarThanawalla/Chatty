@@ -1,23 +1,24 @@
 //
-//  conversationTop60.m
+//  Profile.m
 //  Chatty
 //
-//  Created by Omar Thanawalla on 4/3/12.
+//  Created by Omar Thanawalla on 4/14/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "conversationTop60.h"
+#import "Profile.h"
 
+@implementation Profile
 
-@implementation conversationTop60
-@synthesize people;
-@synthesize conversation;
+@synthesize currentView, name, tag;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
+        self.currentView = 0;
+    
     }
     return self;
 }
@@ -35,8 +36,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    people = [[NSMutableArray alloc] initWithObjects:@"Omar",@"Shahneel",@"Saleem", nil];
-    conversation = [[NSMutableArray alloc] initWithObjects:@"What did drake say when he was sitting on a mexican?",@"I'm on Jose?", @"I'm on JJ Barea?", nil];
+    name = [[NSMutableArray alloc] initWithObjects:@"Omar", @"Kathy Lee", @"Britney Spears",@"Kobe Bryant",@"Tony Parker",@"Bill Gates", nil];
+    tag = [[NSMutableArray alloc] initWithObjects:@"OT", @"KathyL", @"BritneySpears",@"Kobe",@"TParker",@"BGates", nil];
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -83,29 +84,54 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    return 1;
+    if (self.currentView == 0) {
+        return 2;
+    } else {
+        return 1;
+    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return 2;
+    if (self.currentView == 0) {
+        return 3;
+    } else {
+        return [name count];
+    }
+    
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
+    //static NSString *CellIdentifier = @"Cell";
     
-    MessageCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[MessageCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+    if (self.currentView == 0) {
+        
+        static NSString *CellIdentifier = @"CellProfile";
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (cell == nil) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+        }
+        cell.textLabel.text = [name objectAtIndex:indexPath.row];
+        cell.detailTextLabel.text = [tag objectAtIndex:indexPath.row];
+        return cell;
+        
+    } 
+    else{
+        static NSString *CellIdentifier = @"CellFav";
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (cell == nil) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+            
+        }
+        cell.textLabel.text = [name objectAtIndex:indexPath.row];
+        cell.detailTextLabel.text = [tag objectAtIndex:indexPath.row];
+        return cell;
     }
     
-    // Configure the cell...
-    
-    
-    
-    return cell;
+
+
 }
 
 /*
@@ -160,10 +186,16 @@
      */
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return 100;
+- (IBAction)toggleView:(id)sender {
+    
+    if([sender selectedSegmentIndex] == 1)
+    {
+        self.currentView = 1;
+        [self.tableView reloadData]; 
+    } else {
+        self.currentView = 0;
+        [self.tableView reloadData]; 
+    }
 }
-
 
 @end

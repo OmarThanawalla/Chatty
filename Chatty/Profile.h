@@ -7,16 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MyProfile.h"
-#import "MyConversation.h"
 
-@interface MeTab : UITableViewController
+@interface Profile : UITableViewController
 
-@property (nonatomic, strong) MyConversation *convos;
 @property (nonatomic, assign) int currentView;
-@property (nonatomic, strong) MyProfile *profiles;
+@property (nonatomic, strong) NSMutableArray * name;
+@property (nonatomic, strong) NSMutableArray * tag;
 
 - (IBAction)toggleView:(id)sender;
-- (IBAction)refreshTable:(id)sender;
+
 
 @end

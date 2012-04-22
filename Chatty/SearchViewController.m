@@ -1,23 +1,25 @@
 //
-//  TagsTab.m
+//  SearchViewController.m
 //  Chatty
 //
-//  Created by Gabriel Hernandez on 4/20/12.
+//  Created by Gabriel Hernandez on 4/21/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "TagsTab.h"
+#import "SearchViewController.h"
+#import "SearchCell.h"
 
-@implementation TagsTab
+@interface SearchViewController ()
 
-@synthesize mySearch, myFollowers, currentView;
+@end
+
+@implementation SearchViewController
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
-        self.currentView = 0;
     }
     return self;
 }
@@ -25,9 +27,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    self.mySearch = [[Search alloc] initWithStyle:UITableViewStylePlain];
-    self.myFollowers = [[Followers alloc] initWithStyle:UITableViewStylePlain];
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -52,41 +51,30 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
+#warning Potentially incomplete method implementation.
     // Return the number of sections.
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    if (self.currentView == 0) {
-        return [self.mySearch.name count];
-    } else {
-        return [self.myFollowers.name count];
-    }
+    return 3;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    SearchCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+        cell = [[SearchCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
     // Configure the cell...
-    if (self.currentView == 0) {
-        
-        cell.textLabel.text = [mySearch.name objectAtIndex:indexPath.row];
-        cell.detailTextLabel.text = [mySearch.tag objectAtIndex:indexPath.row];
-        cell.imageView.image = [UIImage imageNamed:@"second.png"];
-    } else {
-        cell.textLabel.text = [myFollowers.name objectAtIndex:indexPath.row];
-        cell.detailTextLabel.text = [myFollowers.tag objectAtIndex:indexPath.row];
-    }
-    
     return cell;
+    
 }
 
 /*
@@ -141,16 +129,4 @@
      */
 }
 
-- (IBAction)changeView:(id)sender
-{
-    if([sender selectedSegmentIndex] == 1)
-    {
-        //hang on
-        self.currentView = 1;
-        [self.tableView reloadData]; 
-    } else {
-        self.currentView = 0;
-        [self.tableView reloadData]; 
-    }
-}
 @end

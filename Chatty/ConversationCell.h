@@ -14,4 +14,7 @@
 @property (strong, nonatomic) NSString *conversation;
 @property (assign, nonatomic) NSUInteger cellHeight;
 
+
+
+
 @end
