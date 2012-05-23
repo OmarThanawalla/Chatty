@@ -10,7 +10,7 @@
 #import "Conversation.h"
 #import "Login.h"
 #import "AllCell.h"
-
+#import "CustomMessageCell.h"
 
 
 @implementation Community
@@ -104,22 +104,30 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return 5;
+    return 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
+    static NSString *CellIdentifier = @"CustomCellIdentifier";
     
     if(currentView == 0){
-    
-    ConversationCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[ConversationCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+        static BOOL nibsRegistered = NO;
+        if(!nibsRegistered)
+        {
+            UINib *nib = [UINib nibWithNibName: @"CustomMessageCell" bundle:nil];
+            [tableView registerNib:nib forCellReuseIdentifier:CellIdentifier];
+            nibsRegistered = YES;
+        }
+        
+        CustomMessageCell * cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        cell.SenderUser.text = @"Dr. Mitra";
+        cell.Recipients.text = @"Gabe, Omar, Dr. Mitra";
+        cell.MessageUser.text = @"Extra Credit to anyone if you're interested";
+        
+        return cell;
     }
-    return cell;
-    }
-    
+        
     else { 
         AllCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if (cell == nil) {

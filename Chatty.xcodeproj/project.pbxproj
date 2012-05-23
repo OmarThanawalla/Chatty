@@ -12,6 +12,11 @@
 		0807A9D015437AFE00B72B3E /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0807A9CF15437AFE00B72B3E /* SearchViewController.m */; };
 		0807A9D315437C3400B72B3E /* SearchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0807A9D215437C3400B72B3E /* SearchCell.m */; };
 		083A8B29154210EA0078989E /* ConversationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 083A8B28154210E90078989E /* ConversationCell.m */; };
+		08D612CC156D7BF100F33490 /* profileCustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 08D612CB156D7BF100F33490 /* profileCustomCell.xib */; };
+		08D612CF156D7CEF00F33490 /* profileCustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 08D612CE156D7CEF00F33490 /* profileCustomCell.m */; };
+		08D612D3156D84D300F33490 /* CustomMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 08D612D2156D84D300F33490 /* CustomMessageCell.xib */; };
+		08D612D6156D864E00F33490 /* CustomMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 08D612D5156D864E00F33490 /* CustomMessageCell.m */; };
+		08D612DA156D8A2600F33490 /* DrMitra.png in Resources */ = {isa = PBXBuildFile; fileRef = 08D612D9156D8A2600F33490 /* DrMitra.png */; };
 		A736D045152BBA620049AB22 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A736D044152BBA620049AB22 /* UIKit.framework */; };
 		A736D047152BBA620049AB22 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A736D046152BBA620049AB22 /* Foundation.framework */; };
 		A736D049152BBA620049AB22 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A736D048152BBA620049AB22 /* CoreGraphics.framework */; };
@@ -43,6 +48,13 @@
 		0807A9D215437C3400B72B3E /* SearchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchCell.m; sourceTree = "<group>"; };
 		083A8B27154210E90078989E /* ConversationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConversationCell.h; sourceTree = "<group>"; };
 		083A8B28154210E90078989E /* ConversationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConversationCell.m; sourceTree = "<group>"; };
+		08D612CB156D7BF100F33490 /* profileCustomCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = profileCustomCell.xib; sourceTree = "<group>"; };
+		08D612CD156D7CEF00F33490 /* profileCustomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = profileCustomCell.h; sourceTree = "<group>"; };
+		08D612CE156D7CEF00F33490 /* profileCustomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = profileCustomCell.m; sourceTree = "<group>"; };
+		08D612D2156D84D300F33490 /* CustomMessageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CustomMessageCell.xib; path = ../CustomMessageCell.xib; sourceTree = "<group>"; };
+		08D612D4156D864E00F33490 /* CustomMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomMessageCell.h; sourceTree = "<group>"; };
+		08D612D5156D864E00F33490 /* CustomMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomMessageCell.m; sourceTree = "<group>"; };
+		08D612D9156D8A2600F33490 /* DrMitra.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DrMitra.png; sourceTree = "<group>"; };
 		A736D040152BBA620049AB22 /* Chatty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chatty.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A736D044152BBA620049AB22 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		A736D046152BBA620049AB22 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -93,6 +105,9 @@
 			children = (
 				A736D06C152BBD670049AB22 /* Community.h */,
 				A736D06D152BBD670049AB22 /* Community.m */,
+				08D612D2156D84D300F33490 /* CustomMessageCell.xib */,
+				08D612D4156D864E00F33490 /* CustomMessageCell.h */,
+				08D612D5156D864E00F33490 /* CustomMessageCell.m */,
 				0807A9C315435D0E00B72B3E /* AllCell.h */,
 				0807A9C415435D0E00B72B3E /* AllCell.m */,
 				083A8B27154210E90078989E /* ConversationCell.h */,
@@ -121,6 +136,9 @@
 			children = (
 				A7E5998C153A5E13009633DC /* Profile.h */,
 				A7E5998D153A5E13009633DC /* Profile.m */,
+				08D612CD156D7CEF00F33490 /* profileCustomCell.h */,
+				08D612CE156D7CEF00F33490 /* profileCustomCell.m */,
+				08D612CB156D7BF100F33490 /* profileCustomCell.xib */,
 			);
 			name = Profile;
 			sourceTree = "<group>";
@@ -138,6 +156,7 @@
 			isa = PBXGroup;
 			children = (
 				A736D05C152BBA620049AB22 /* first.png */,
+				08D612D9156D8A2600F33490 /* DrMitra.png */,
 				A736D05E152BBA620049AB22 /* first@2x.png */,
 				A736D063152BBA620049AB22 /* second.png */,
 				A736D065152BBA620049AB22 /* second@2x.png */,
@@ -269,6 +288,9 @@
 				A736D05F152BBA620049AB22 /* first@2x.png in Resources */,
 				A736D064152BBA620049AB22 /* second.png in Resources */,
 				A736D066152BBA620049AB22 /* second@2x.png in Resources */,
+				08D612CC156D7BF100F33490 /* profileCustomCell.xib in Resources */,
+				08D612D3156D84D300F33490 /* CustomMessageCell.xib in Resources */,
+				08D612DA156D8A2600F33490 /* DrMitra.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -293,6 +315,8 @@
 				0807A9C515435D0E00B72B3E /* AllCell.m in Sources */,
 				0807A9D015437AFE00B72B3E /* SearchViewController.m in Sources */,
 				0807A9D315437C3400B72B3E /* SearchCell.m in Sources */,
+				08D612CF156D7CEF00F33490 /* profileCustomCell.m in Sources */,
+				08D612D6156D864E00F33490 /* CustomMessageCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

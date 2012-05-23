@@ -7,6 +7,7 @@
 //
 
 #import "Profile.h"
+#import "profileCustomCell.h"
 
 @implementation Profile
 
@@ -85,7 +86,7 @@
 {
     // Return the number of sections.
     if (self.currentView == 0) {
-        return 2;
+        return 1;
     } else {
         return 1;
     }
@@ -95,7 +96,7 @@
 {
     // Return the number of rows in the section.
     if (self.currentView == 0) {
-        return 3;
+        return 1;
     } else {
         return [name count];
     }
@@ -108,14 +109,28 @@
     
     if (self.currentView == 0) {
         
-        static NSString *CellIdentifier = @"CellProfile";
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        if (cell == nil) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+        static NSString *CellIdentifier = @"CellIdentifier";
+        static BOOL nibsRegistered = NO;
+        if(!nibsRegistered)
+        {
+            UINib *nib = [UINib nibWithNibName: @"profileCustomCell" bundle:nil];
+            [tableView registerNib:nib forCellReuseIdentifier:CellIdentifier];
+            nibsRegistered = YES;
         }
-        cell.textLabel.text = [name objectAtIndex:indexPath.row];
-        cell.detailTextLabel.text = [tag objectAtIndex:indexPath.row];
+        
+        profileCustomCell * cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        
+        cell.BioText.text = @"I live in Austin!";
+        cell.NameText.text = @"Gabe Hernandez";
         return cell;
+        
+       
+//            cell = [[ProfileCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+//        }
+//        cell.textLabel.text = [name objectAtIndex:indexPath.row];
+//        cell.detailTextLabel.text = [tag objectAtIndex:indexPath.row];
+        
+        
         
     } 
     else{
@@ -196,6 +211,11 @@
         self.currentView = 0;
         [self.tableView reloadData]; 
     }
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 85.0;
 }
 
 @end
