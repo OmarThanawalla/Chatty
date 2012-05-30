@@ -55,7 +55,7 @@
     
     
 //    push in login on top of this view
-       // [self performSegueWithIdentifier:@"loggedIn" sender:self];
+        [self performSegueWithIdentifier:@"loggedIn" sender:self];
 
     
 }
