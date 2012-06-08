@@ -32,6 +32,10 @@
 		A736D071152BBD7B0049AB22 /* Me.m in Sources */ = {isa = PBXBuildFile; fileRef = A736D070152BBD7B0049AB22 /* Me.m */; };
 		A736D077152BFE8A0049AB22 /* Conversation.m in Sources */ = {isa = PBXBuildFile; fileRef = A736D076152BFE8A0049AB22 /* Conversation.m */; };
 		A736D07A1533859C0049AB22 /* composeMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = A736D0791533859B0049AB22 /* composeMessage.m */; };
+		A7D92ED21582BEEB00ECE81D /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7D92ED11582BEEB00ECE81D /* CFNetwork.framework */; };
+		A7D92ED51582BF1400ECE81D /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7D92ED41582BF1400ECE81D /* SystemConfiguration.framework */; };
+		A7D92ED71582BF2100ECE81D /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7D92ED61582BF2100ECE81D /* MobileCoreServices.framework */; };
+		A7D92ED91582BF6F00ECE81D /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A7D92ED81582BF6F00ECE81D /* libz.dylib */; };
 		A7E5997F153614D8009633DC /* Login.m in Sources */ = {isa = PBXBuildFile; fileRef = A7E5997E153614D8009633DC /* Login.m */; };
 		A7E5998515362CBC009633DC /* Registered.m in Sources */ = {isa = PBXBuildFile; fileRef = A7E5998415362CBC009633DC /* Registered.m */; };
 		A7E5998E153A5E13009633DC /* Profile.m in Sources */ = {isa = PBXBuildFile; fileRef = A7E5998D153A5E13009633DC /* Profile.m */; };
@@ -78,6 +82,10 @@
 		A736D076152BFE8A0049AB22 /* Conversation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Conversation.m; sourceTree = "<group>"; };
 		A736D0781533859B0049AB22 /* composeMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = composeMessage.h; sourceTree = "<group>"; };
 		A736D0791533859B0049AB22 /* composeMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = composeMessage.m; sourceTree = "<group>"; };
+		A7D92ED11582BEEB00ECE81D /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		A7D92ED41582BF1400ECE81D /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		A7D92ED61582BF2100ECE81D /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		A7D92ED81582BF6F00ECE81D /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		A7E5997D153614D8009633DC /* Login.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Login.h; sourceTree = "<group>"; };
 		A7E5997E153614D8009633DC /* Login.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Login.m; sourceTree = "<group>"; };
 		A7E5998315362CBC009633DC /* Registered.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Registered.h; sourceTree = "<group>"; };
@@ -91,9 +99,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A7D92ED91582BF6F00ECE81D /* libz.dylib in Frameworks */,
+				A736D049152BBA620049AB22 /* CoreGraphics.framework in Frameworks */,
+				A7D92ED71582BF2100ECE81D /* MobileCoreServices.framework in Frameworks */,
+				A7D92ED51582BF1400ECE81D /* SystemConfiguration.framework in Frameworks */,
+				A7D92ED21582BEEB00ECE81D /* CFNetwork.framework in Frameworks */,
 				A736D045152BBA620049AB22 /* UIKit.framework in Frameworks */,
 				A736D047152BBA620049AB22 /* Foundation.framework in Frameworks */,
-				A736D049152BBA620049AB22 /* CoreGraphics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -178,6 +190,9 @@
 		A736D035152BBA620049AB22 = {
 			isa = PBXGroup;
 			children = (
+				A7D92ED81582BF6F00ECE81D /* libz.dylib */,
+				A7D92ED61582BF2100ECE81D /* MobileCoreServices.framework */,
+				A7D92ED41582BF1400ECE81D /* SystemConfiguration.framework */,
 				A736D04A152BBA620049AB22 /* Chatty */,
 				A736D043152BBA620049AB22 /* Frameworks */,
 				A736D041152BBA620049AB22 /* Products */,
@@ -195,9 +210,10 @@
 		A736D043152BBA620049AB22 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				A736D044152BBA620049AB22 /* UIKit.framework */,
-				A736D046152BBA620049AB22 /* Foundation.framework */,
+				A7D92ED11582BEEB00ECE81D /* CFNetwork.framework */,
 				A736D048152BBA620049AB22 /* CoreGraphics.framework */,
+				A736D046152BBA620049AB22 /* Foundation.framework */,
+				A736D044152BBA620049AB22 /* UIKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
