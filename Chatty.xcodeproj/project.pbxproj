@@ -41,6 +41,8 @@
 		A76DDED7158537C100F8D65D /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = A76DDECB158537C100F8D65D /* AFURLConnectionOperation.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		A76DDED8158537C100F8D65D /* AFXMLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = A76DDECD158537C100F8D65D /* AFXMLRequestOperation.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		A76DDED9158537C100F8D65D /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = A76DDECF158537C100F8D65D /* UIImageView+AFNetworking.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		A7BBBFD5158858CD00015173 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7BBBFD4158858CD00015173 /* Security.framework */; };
+		A7BBBFD9158859FA00015173 /* KeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = A7BBBFD8158859FA00015173 /* KeychainItemWrapper.m */; };
 		A7E5997F153614D8009633DC /* Login.m in Sources */ = {isa = PBXBuildFile; fileRef = A7E5997E153614D8009633DC /* Login.m */; };
 		A7E5998515362CBC009633DC /* Registered.m in Sources */ = {isa = PBXBuildFile; fileRef = A7E5998415362CBC009633DC /* Registered.m */; };
 		A7E5998E153A5E13009633DC /* Profile.m in Sources */ = {isa = PBXBuildFile; fileRef = A7E5998D153A5E13009633DC /* Profile.m */; };
@@ -107,6 +109,9 @@
 		A76DDECD158537C100F8D65D /* AFXMLRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFXMLRequestOperation.m; sourceTree = "<group>"; };
 		A76DDECE158537C100F8D65D /* UIImageView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+AFNetworking.h"; sourceTree = "<group>"; };
 		A76DDECF158537C100F8D65D /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
+		A7BBBFD4158858CD00015173 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		A7BBBFD7158859FA00015173 /* KeychainItemWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KeychainItemWrapper.h; path = Chatty/KeychainItemWrapper.h; sourceTree = "<group>"; };
+		A7BBBFD8158859FA00015173 /* KeychainItemWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KeychainItemWrapper.m; path = Chatty/KeychainItemWrapper.m; sourceTree = "<group>"; };
 		A7E5997D153614D8009633DC /* Login.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Login.h; sourceTree = "<group>"; };
 		A7E5997E153614D8009633DC /* Login.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Login.m; sourceTree = "<group>"; };
 		A7E5998315362CBC009633DC /* Registered.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Registered.h; sourceTree = "<group>"; };
@@ -120,6 +125,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A7BBBFD5158858CD00015173 /* Security.framework in Frameworks */,
 				A736D045152BBA620049AB22 /* UIKit.framework in Frameworks */,
 				A736D047152BBA620049AB22 /* Foundation.framework in Frameworks */,
 			);
@@ -224,6 +230,9 @@
 		A736D043152BBA620049AB22 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A7BBBFD7158859FA00015173 /* KeychainItemWrapper.h */,
+				A7BBBFD8158859FA00015173 /* KeychainItemWrapper.m */,
+				A7BBBFD4158858CD00015173 /* Security.framework */,
 				A736D046152BBA620049AB22 /* Foundation.framework */,
 				A736D044152BBA620049AB22 /* UIKit.framework */,
 			);
@@ -383,6 +392,7 @@
 				A76DDED7158537C100F8D65D /* AFURLConnectionOperation.m in Sources */,
 				A76DDED8158537C100F8D65D /* AFXMLRequestOperation.m in Sources */,
 				A76DDED9158537C100F8D65D /* UIImageView+AFNetworking.m in Sources */,
+				A7BBBFD9158859FA00015173 /* KeychainItemWrapper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

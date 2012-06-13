@@ -71,11 +71,11 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Login" lineBreakMode="tailTruncation" minimumFontSize="10" id="LT7-Rj-hAg">
-                                <rect key="frame" x="139" y="20" width="42" height="21"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="tailTruncation" minimumFontSize="10" id="LT7-Rj-hAg">
+                                <rect key="frame" x="44" y="0.0" width="192" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="8yY-vT-rHp">
@@ -140,6 +140,7 @@
                     <navigationItem key="navigationItem" title="Root View Controller" id="7z3-w7-lYr"/>
                     <connections>
                         <outlet property="emailBox" destination="XZL-qs-c1Z" id="TuV-IS-8Sw"/>
+                        <outlet property="notice" destination="LT7-Rj-hAg" id="y4M-hU-aim"/>
                         <outlet property="passwordBox" destination="gZr-K6-ECK" id="XEs-Oq-hT3"/>
                     </connections>
                 </viewController>
@@ -549,6 +550,7 @@
             <relationships>
                 <relationship kind="action" name="login"/>
                 <relationship kind="outlet" name="emailBox" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="notice" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="passwordBox" candidateClass="UITextField"/>
             </relationships>
         </class>

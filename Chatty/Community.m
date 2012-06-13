@@ -13,6 +13,7 @@
 #import "CustomMessageCell.h"
 //import AFNetworking
 #import "AFNetworking.h"
+#import "KeychainItemWrapper.h"
 
 
 @implementation Community
@@ -42,6 +43,7 @@
 
 #pragma mark - View lifecycle
 
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -56,8 +58,36 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
-//    push in login on top of this view
-        [self performSegueWithIdentifier:@"loggedIn" sender:self];
+
+    //grab credentials
+    KeychainItemWrapper *keychain = [[KeychainItemWrapper alloc] initWithIdentifier:@"ChattyAppLoginData" accessGroup:nil];
+    NSString * email = [keychain objectForKey:(__bridge id)kSecAttrAccount];
+    NSString * password = [keychain objectForKey:(__bridge id)kSecValueData];
+    
+    //try connecting with credentials
+    NSURL *url = [NSURL URLWithString:@"http://localhost:3000"];
+    AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:url];
+ 
+    NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
+                            email, @"email", 
+                            password, @"password",
+                            nil];
+    
+    [httpClient getPath:@"login/attempt_login" parameters:params 
+                //if login works, log a message to the console
+                 success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                     NSString *text = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+                     NSLog(@"Response: %@", text);
+                     
+                 } 
+                 failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                     NSLog(@"Error from postPath: %@",[error localizedDescription]);
+                //else you cant connect, therefore push modalview login onto the stack
+                     [self performSegueWithIdentifier:@"loggedIn" sender:self];
+                 }];
+        
+    
+    
     //Testing AFNetworking for the first time
     
     

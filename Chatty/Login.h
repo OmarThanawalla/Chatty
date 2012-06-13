@@ -12,6 +12,7 @@
 
 @property (nonatomic, retain) IBOutlet UITextField *emailBox;
 @property (nonatomic, retain) IBOutlet UITextField *passwordBox;
+@property (nonatomic, retain) IBOutlet UILabel *notice;
 
 
 -(IBAction) login;

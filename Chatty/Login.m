@@ -8,9 +8,11 @@
 
 #import "Login.h"
 #import "AFNetworking.h"
+#import "KeychainItemWrapper.h"
 
 @implementation Login
 @synthesize emailBox, passwordBox;
+@synthesize notice;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -57,11 +59,12 @@
 //                failure:^(AFHTTPRequestOperation *operation, NSError *error) {
 //                    NSLog(@"Error from getPath: %@",[error localizedDescription]);
 //                }];
-
+    
     
     }
 -(IBAction)login
 {
+    //when the login button is pushed
     
     NSURL *url = [NSURL URLWithString:@"http://localhost:3000"];
     AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:url];
@@ -69,9 +72,18 @@
     // get these from the text box
     NSString *email = emailBox.text;
     NSString *password = passwordBox.text;
-    //store the email and password in the KeyChain or NSUserDefaults
-
     
+    
+    //store the email and password in the KeyChain or NSUserDefaults. NOTE: I imported the KeychainItemWrapper and linked Secuirty.framework
+    KeychainItemWrapper *keychain = [[KeychainItemWrapper alloc] initWithIdentifier:@"ChattyAppLoginData" accessGroup:nil];
+    if(email)
+    {
+        [keychain setObject:email forKey:(__bridge id) kSecAttrAccount];
+    }
+    if(password)
+    {
+        [keychain setObject:password forKey:(__bridge id)kSecValueData];
+    }
     
     
     
@@ -80,17 +92,19 @@
                             password, @"password",
                             nil];
     
-    //[httpClient setAuthorizationHeaderWithUsername:@"SUPERDWade@yahoo.com" password:@"SUPERsecretPassword"];
-    
-    
-    
+    //try to login
     [httpClient postPath:@"/login/attempt_login" parameters:params 
+                //if successful dismiss the view
                  success:^(AFHTTPRequestOperation *operation, id responseObject) {
                      NSString *text = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
                      NSLog(@"Response: %@", text);
+                     //if successfully logged in, dismiss the modal view
+                     [self dismissModalViewControllerAnimated:YES];
                  } 
+                //else flash a notice on the modal view
                  failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                      NSLog(@"Error from postPath: %@",[error localizedDescription]);
+                     notice.text = @"Incorrect Password";
                  }];
 
 }
