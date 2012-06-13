@@ -7,8 +7,10 @@
 //
 
 #import "Login.h"
+#import "AFNetworking.h"
 
 @implementation Login
+@synthesize emailBox, passwordBox;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -43,7 +45,55 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    //login
+        
+    //////////
+    
+//    [httpClient getPath:@"/login/index" parameters:nil 
+//                success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//                    NSString *text = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+//                    NSLog(@"Response: %@", text);
+//                } 
+//                failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//                    NSLog(@"Error from getPath: %@",[error localizedDescription]);
+//                }];
+
+    
     }
+-(IBAction)login
+{
+    
+    NSURL *url = [NSURL URLWithString:@"http://localhost:3000"];
+    AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:url];
+    
+    // get these from the text box
+    NSString *email = emailBox.text;
+    NSString *password = passwordBox.text;
+    //store the email and password in the KeyChain or NSUserDefaults
+
+    
+    
+    
+    
+    NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
+                            email, @"email", 
+                            password, @"password",
+                            nil];
+    
+    //[httpClient setAuthorizationHeaderWithUsername:@"SUPERDWade@yahoo.com" password:@"SUPERsecretPassword"];
+    
+    
+    
+    [httpClient postPath:@"/login/attempt_login" parameters:params 
+                 success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                     NSString *text = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+                     NSLog(@"Response: %@", text);
+                 } 
+                 failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                     NSLog(@"Error from postPath: %@",[error localizedDescription]);
+                 }];
+
+}
 
 
 - (void)viewDidUnload
