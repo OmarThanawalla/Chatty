@@ -8,11 +8,13 @@
 
 #import "Me.h"
 #import "Conversation.h"
-
+#import "AFNetworking.h"
+#import "KeychainItemWrapper.h"
+#import "AFChattyAPIClient.h"
 
 @implementation Me
+@synthesize conversations;
 
-@synthesize people, conversations;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -36,9 +38,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    //[self refresh];
     
-    people = [[NSMutableArray alloc] initWithObjects:@"Gabe, Riche, Nazish", @"Mom, Dad, Samir", @"Mitra, Miranda", @"Diviya, Joe, Lisa", nil];
-    conversations = [[NSMutableArray alloc] initWithObjects:@"Nazish: Dude I'm going to India", @"Omar: What did drake say when he was sitting on a mexican?", @"Danish: I look good", @"Diviya: I baked you a cupcake guys :)", nil];
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -91,7 +92,8 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return [people count];
+    return 1;
+
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -104,8 +106,8 @@
     }
     
     // Configure the cell...
-    cell.textLabel.text = [people objectAtIndex:indexPath.row];
-    cell.detailTextLabel.text = [conversations objectAtIndex:indexPath.row];
+    //cell.textLabel.text = [people objectAtIndex:indexPath.row];
+    //cell.detailTextLabel.text = [conversations objectAtIndex:indexPath.row];
     return cell;
 }
 
@@ -169,6 +171,36 @@
         Conversation *myTop60 = [segue destinationViewController];
         myTop60.state = 1;
     }
+}
+
+//pull a list of the 20ish most recent conversations for the user
+-(IBAction)refresh
+{
+    KeychainItemWrapper *keychain = [[KeychainItemWrapper alloc] initWithIdentifier:@"ChattyAppLoginData" accessGroup:nil];
+    NSString * email = [keychain objectForKey:(__bridge id)kSecAttrAccount];
+    NSString * password = [keychain objectForKey:(__bridge id)kSecValueData];
+    
+    
+    NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
+                            email, @"email", 
+                            password, @"password",
+                            nil];
+    
+    [[AFChattyAPIClient sharedClient] getPath:@"/my_conversation/" parameters:params 
+     //if login works, log a message to the console
+                 success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                     //NSString *text = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+                     NSLog(@"Response: %@", responseObject);
+                    
+                     
+                 } 
+                 failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                     NSLog(@"Error from postPath: %@",[error localizedDescription]);
+                     //else you cant connect, therefore push modalview login onto the stack
+                     //[self performSegueWithIdentifier:@"loggedIn" sender:self];
+                 }];
+    
+
 }
 
 @end

@@ -10,7 +10,9 @@
 
 @interface Me : UITableViewController
 
-@property (nonatomic, strong) NSMutableArray *people;
-@property (nonatomic,strong) NSMutableArray *conversations;
+@property (nonatomic, strong) NSMutableArray *conversations;
+
+-(IBAction)refresh;
+
 
 @end

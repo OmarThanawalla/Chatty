@@ -19,6 +19,7 @@
  */
 
 @property (nonatomic, retain) IBOutlet UITextView *myTextView;
+@property (nonatomic, retain) IBOutlet UILabel *dialogue;
 -(IBAction)cancelButton;
 -(IBAction)sendButton;
 

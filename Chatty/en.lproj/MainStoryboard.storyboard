@@ -386,11 +386,31 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="WKP-3x-iO0">
+                                <rect key="frame" x="0.0" y="205" width="320" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="tailTruncation" minimumFontSize="10" id="i2K-MG-mjF">
+                                <rect key="frame" x="20" y="212" width="280" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="c8e-Ce-yO7"/>
                     <connections>
+                        <outlet property="dialogue" destination="i2K-MG-mjF" id="bcr-cM-Mab"/>
                         <outlet property="myTextView" destination="T1S-Xo-1Np" id="YoJ-dD-Imq"/>
                     </connections>
                 </viewController>
@@ -443,6 +463,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="mPH-Ba-zIs">
+                        <barButtonItem key="leftBarButtonItem" title="Refresh" id="ZfU-sw-jPV">
+                            <connections>
+                                <action selector="refresh" destination="ycM-Fd-tHT" id="BAU-SX-ySL"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="New Convo" id="c17-Di-wqn">
                             <connections>
                                 <segue destination="ykX-gt-6pe" kind="modal" id="7yl-nr-Xmv"/>
@@ -535,61 +560,12 @@
         <image name="first.png" width="30" height="30"/>
         <image name="second" width="16" height="16"/>
     </resources>
-    <classes>
-        <class className="Community" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/Community.h"/>
-            <relationships>
-                <relationship kind="action" name="toggleView:" candidateClass="UISegmentedControl"/>
-            </relationships>
-        </class>
-        <class className="Conversation" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/Conversation.h"/>
-        </class>
-        <class className="Login" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/Login.h"/>
-            <relationships>
-                <relationship kind="action" name="login"/>
-                <relationship kind="outlet" name="emailBox" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="notice" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="passwordBox" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="Me" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/Me.h"/>
-        </class>
-        <class className="Profile" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/Profile.h"/>
-            <relationships>
-                <relationship kind="action" name="toggleView:"/>
-            </relationships>
-        </class>
-        <class className="Registered" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/Registered.h"/>
-            <relationships>
-                <relationship kind="action" name="register:"/>
-            </relationships>
-        </class>
-        <class className="SearchCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SearchCell.h"/>
-        </class>
-        <class className="SearchViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SearchViewController.h"/>
-        </class>
-        <class className="composeMessage" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/composeMessage.h"/>
-            <relationships>
-                <relationship kind="action" name="cancelButton"/>
-                <relationship kind="action" name="sendButton"/>
-                <relationship kind="outlet" name="myTextView" candidateClass="UITextView"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="uJa-SE-dA2"/>
+        <segue reference="7yl-nr-Xmv"/>
     </inferredMetricsTieBreakers>
 </document>

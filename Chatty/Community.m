@@ -66,25 +66,25 @@
     
     //try connecting with credentials
     NSURL *url = [NSURL URLWithString:@"http://localhost:3000"];
-    AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:url];
+    //AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:url];
  
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
                             email, @"email", 
                             password, @"password",
                             nil];
     
-    [httpClient getPath:@"login/attempt_login" parameters:params 
-                //if login works, log a message to the console
-                 success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                     NSString *text = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-                     NSLog(@"Response: %@", text);
-                     
-                 } 
-                 failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                     NSLog(@"Error from postPath: %@",[error localizedDescription]);
-                //else you cant connect, therefore push modalview login onto the stack
-                     [self performSegueWithIdentifier:@"loggedIn" sender:self];
-                 }];
+//    [httpClient getPath:@"my_conversation/" parameters:params 
+//                //if login works, log a message to the console
+//                 success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//                     NSString *text = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+//                     NSLog(@"Response: %@", text);
+//                     
+//                 } 
+//                 failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//                     NSLog(@"Error from postPath: %@",[error localizedDescription]);
+//                //else you cant connect, therefore push modalview login onto the stack
+//                     [self performSegueWithIdentifier:@"loggedIn" sender:self];
+//                 }];
         
     
     
