@@ -41,6 +41,12 @@
 		A76DDED7158537C100F8D65D /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = A76DDECB158537C100F8D65D /* AFURLConnectionOperation.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		A76DDED8158537C100F8D65D /* AFXMLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = A76DDECD158537C100F8D65D /* AFXMLRequestOperation.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		A76DDED9158537C100F8D65D /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = A76DDECF158537C100F8D65D /* UIImageView+AFNetworking.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		A7954A5915911D63008C0E69 /* JasonTerry.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7954A5815911D63008C0E69 /* JasonTerry.xib */; };
+		A7954A5C15911E35008C0E69 /* jasonT.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = A7954A5B15911E35008C0E69 /* jasonT.jpeg */; };
+		A7954A5E15912925008C0E69 /* JasonKidd.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7954A5D15912925008C0E69 /* JasonKidd.xib */; };
+		A7954A6015912930008C0E69 /* MarkCuban.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7954A5F15912930008C0E69 /* MarkCuban.xib */; };
+		A7954A6215912A38008C0E69 /* JKidd.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A7954A6115912A38008C0E69 /* JKidd.jpg */; };
+		A7954A6415912AD0008C0E69 /* MarkWithAri.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A7954A6315912AD0008C0E69 /* MarkWithAri.jpg */; };
 		A7BBBFD5158858CD00015173 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7BBBFD4158858CD00015173 /* Security.framework */; };
 		A7BBBFD9158859FA00015173 /* KeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = A7BBBFD8158859FA00015173 /* KeychainItemWrapper.m */; };
 		A7E5997F153614D8009633DC /* Login.m in Sources */ = {isa = PBXBuildFile; fileRef = A7E5997E153614D8009633DC /* Login.m */; };
@@ -114,6 +120,12 @@
 		A76DDECD158537C100F8D65D /* AFXMLRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFXMLRequestOperation.m; sourceTree = "<group>"; };
 		A76DDECE158537C100F8D65D /* UIImageView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+AFNetworking.h"; sourceTree = "<group>"; };
 		A76DDECF158537C100F8D65D /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
+		A7954A5815911D63008C0E69 /* JasonTerry.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JasonTerry.xib; sourceTree = "<group>"; };
+		A7954A5B15911E35008C0E69 /* jasonT.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = jasonT.jpeg; sourceTree = "<group>"; };
+		A7954A5D15912925008C0E69 /* JasonKidd.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JasonKidd.xib; sourceTree = "<group>"; };
+		A7954A5F15912930008C0E69 /* MarkCuban.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MarkCuban.xib; sourceTree = "<group>"; };
+		A7954A6115912A38008C0E69 /* JKidd.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = JKidd.jpg; sourceTree = "<group>"; };
+		A7954A6315912AD0008C0E69 /* MarkWithAri.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = MarkWithAri.jpg; sourceTree = "<group>"; };
 		A7BBBFD4158858CD00015173 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		A7BBBFD7158859FA00015173 /* KeychainItemWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KeychainItemWrapper.h; path = Chatty/KeychainItemWrapper.h; sourceTree = "<group>"; };
 		A7BBBFD8158859FA00015173 /* KeychainItemWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KeychainItemWrapper.m; path = Chatty/KeychainItemWrapper.m; sourceTree = "<group>"; };
@@ -156,6 +168,9 @@
 				A7FE1637158F154600AB5876 /* composeMessageOnly.h */,
 				A7FE1638158F154600AB5876 /* composeMessageOnly.m */,
 				08D612D2156D84D300F33490 /* CustomMessageCell.xib */,
+				A7954A5815911D63008C0E69 /* JasonTerry.xib */,
+				A7954A5D15912925008C0E69 /* JasonKidd.xib */,
+				A7954A5F15912930008C0E69 /* MarkCuban.xib */,
 				08D612D4156D864E00F33490 /* CustomMessageCell.h */,
 				08D612D5156D864E00F33490 /* CustomMessageCell.m */,
 				A7954A27158FE318008C0E69 /* Misc */,
@@ -199,7 +214,10 @@
 			isa = PBXGroup;
 			children = (
 				A7FE1631158A939200AB5876 /* UIButtonBarRefresh.jpg */,
+				A7954A6315912AD0008C0E69 /* MarkWithAri.jpg */,
 				A7FE1635158ED00A00AB5876 /* dirk_nowitzki_027.jpg */,
+				A7954A5B15911E35008C0E69 /* jasonT.jpeg */,
+				A7954A6115912A38008C0E69 /* JKidd.jpg */,
 				A736D05C152BBA620049AB22 /* first.png */,
 				A7FE162E158A928B00AB5876 /* refresh.png */,
 				A736D05E152BBA620049AB22 /* first@2x.png */,
@@ -382,6 +400,12 @@
 				A7FE162F158A928B00AB5876 /* refresh.png in Resources */,
 				A7FE1632158A939200AB5876 /* UIButtonBarRefresh.jpg in Resources */,
 				A7FE1636158ED00B00AB5876 /* dirk_nowitzki_027.jpg in Resources */,
+				A7954A5915911D63008C0E69 /* JasonTerry.xib in Resources */,
+				A7954A5C15911E35008C0E69 /* jasonT.jpeg in Resources */,
+				A7954A5E15912925008C0E69 /* JasonKidd.xib in Resources */,
+				A7954A6015912930008C0E69 /* MarkCuban.xib in Resources */,
+				A7954A6215912A38008C0E69 /* JKidd.jpg in Resources */,
+				A7954A6415912AD0008C0E69 /* MarkWithAri.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

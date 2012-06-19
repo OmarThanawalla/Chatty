@@ -14,6 +14,7 @@
 @end
 
 @implementation SearchViewController
+@synthesize search;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {

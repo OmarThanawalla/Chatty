@@ -98,27 +98,75 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return [messages count];
+    return 4; //[messages count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-        static NSString *CellIdentifier = @"CustomCellIdentifier";
+            static NSString *CellIdentifier = @"CustomCellIdentifier";
+            static NSString *JasonKidd = @"JasonKidd";
+            static NSString *JasonTerry = @"JasonTerry";
+            static NSString *MarkC = @"MarkCuban";
         static BOOL nibsRegistered = NO;
         if(!nibsRegistered)
         {
-            UINib *nib = [UINib nibWithNibName: @"CustomMessageCell" bundle:nil];//grab the nib
-            [tableView registerNib:nib forCellReuseIdentifier:CellIdentifier];//register nib
-            //nibsRegistered = YES; //this line commented out on purpose
+            if (indexPath.row == 0) {
+                
+                UINib *nib = [UINib nibWithNibName: @"CustomMessageCell" bundle:nil];//grab the nib
+                [tableView registerNib:nib forCellReuseIdentifier:CellIdentifier];//register nib
+                //nibsRegistered = YES; //this line commented out on purpose
+                CustomMessageCell * cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+                
+                NSDictionary *aMessage = [self.messages objectAtIndex:indexPath.row];
+                cell.MessageUser.text = [aMessage objectForKey:@"message_content"];
+                cell.SenderUser.text = [aMessage objectForKey:@"full_name"];
+                cell.Recipients.text= @"";
+                return cell;
+
+            }
+            if (indexPath.row == 1) {
+                
+                UINib *nib = [UINib nibWithNibName: @"JasonTerry" bundle:nil];//grab the nib
+                [tableView registerNib:nib forCellReuseIdentifier:JasonTerry];//register nib
+                //nibsRegistered = YES; //this line commented out on purpose
+                CustomMessageCell * cell = [tableView dequeueReusableCellWithIdentifier:JasonTerry];
+                
+                cell.MessageUser.text = @"Thas us foolllll";
+                cell.SenderUser.text = @"Jason Terry";
+                return cell;
+
+            }
+
+            if (indexPath.row == 2) {
+                
+                UINib *nib = [UINib nibWithNibName: @"JasonKidd" bundle:nil];//grab the nib
+                [tableView registerNib:nib forCellReuseIdentifier:JasonKidd];//register nib
+                //nibsRegistered = YES; //this line commented out on purpose
+                CustomMessageCell * cell = [tableView dequeueReusableCellWithIdentifier:JasonKidd];
+                
+                cell.MessageUser.text = @"Yo i just left a doobie in Mark's bathroom haha";
+                cell.SenderUser.text = @"Jason Kidd";
+
+                return cell;
+
+            }
+
+            if (indexPath.row == 3) {
+                
+                UINib *nib = [UINib nibWithNibName: @"MarkCuban" bundle:nil];//grab the nib
+                [tableView registerNib:nib forCellReuseIdentifier:MarkC];//register nib
+                //nibsRegistered = YES; //this line commented out on purpose
+                CustomMessageCell * cell = [tableView dequeueReusableCellWithIdentifier:MarkC];
+                cell.MessageUser.text = @"Ugh gross. That's it, I'm signing Deron Williams";
+                cell.SenderUser.text = @"Mark Cuban";
+                
+                return cell;
+
+            }
+
         }
         
-        CustomMessageCell * cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-            
-        NSDictionary *aMessage = [self.messages objectAtIndex:indexPath.row];
-        cell.MessageUser.text = [aMessage objectForKey:@"message_content"];
-        cell.SenderUser.text = [aMessage objectForKey:@"full_name"];
-        return cell;
-
+        
 }
 
 /*
@@ -175,6 +223,10 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if(indexPath.row != 0)
+    {
+        return 75;
+    }
     return 95;
 }
 
