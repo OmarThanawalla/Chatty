@@ -11,6 +11,7 @@
 #import "AFNetworking.h"
 #import "KeychainItemWrapper.h"
 #import "AFChattyAPIClient.h"
+#import "CustomMessageCell.h"
 
 @implementation Me
 @synthesize conversations;
@@ -38,6 +39,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    //refresh the data when the view loads
     //[self refresh];
     
 
@@ -92,24 +94,40 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return 1;
+    return [conversations count];
 
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
+    //begin new type of cell placementing
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+    static NSString *CellIdentifier = @"CustomCellIdentifier";
+    static BOOL nibsRegistered = NO;
+    if(!nibsRegistered)
+    {
+        UINib *nib = [UINib nibWithNibName:@"CustomMessageCell" bundle:nil];
+        [tableView registerNib:nib forCellReuseIdentifier:CellIdentifier];
+        //nibsRegistered = YES;
     }
     
-    // Configure the cell...
-    //cell.textLabel.text = [people objectAtIndex:indexPath.row];
-    //cell.detailTextLabel.text = [conversations objectAtIndex:indexPath.row];
+    CustomMessageCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
+    
+    NSDictionary *tweet = [self.conversations objectAtIndex:indexPath.row];
+    cell.MessageUser.text = [tweet objectForKey:@"message_content"];
+    cell.SenderUser.text = [tweet objectForKey:@"full_name"];
+    cell.Recipients.text = [tweet objectForKey:@"recipient"];
     return cell;
+    
+
 }
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    return 85;
+}
+
 
 /*
 // Override to support conditional editing of the table view.
@@ -154,22 +172,17 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSDictionary *tweet = [conversations objectAtIndex:indexPath.row];
+    NSString *convoID = [tweet objectForKey:@"conversation_id"];
+    [self performSegueWithIdentifier:@"ShowMyMessages" sender:convoID];
     
-    [self performSegueWithIdentifier:@"ShowMyConversation" sender:self];
-    
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
-}
+    }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"ShowMyConversation"]) {
-        Conversation *myTop60 = [segue destinationViewController];
-        myTop60.state = 1;
+    if ([segue.identifier isEqualToString:@"ShowMyMessages"]) {
+        Conversation *myMessagesView = [segue destinationViewController];
+        myMessagesView.currentView = 0;
+        myMessagesView.conversationID = sender;
     }
 }
 
@@ -191,13 +204,15 @@
                  success:^(AFHTTPRequestOperation *operation, id responseObject) {
                      //NSString *text = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
                      NSLog(@"Response: %@", responseObject);
+                     //rmr: responseObject is an array where each element is a diciontary
+                     conversations = responseObject;
+                     [self.tableView reloadData];
                     
                      
                  } 
                  failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                      NSLog(@"Error from postPath: %@",[error localizedDescription]);
                      //else you cant connect, therefore push modalview login onto the stack
-                     //[self performSegueWithIdentifier:@"loggedIn" sender:self];
                  }];
     
 

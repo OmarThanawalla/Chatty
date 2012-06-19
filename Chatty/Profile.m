@@ -121,7 +121,7 @@
         profileCustomCell * cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         
         cell.BioText.text = @"I live in Austin!";
-        cell.NameText.text = @"Gabe Hernandez";
+        cell.NameText.text = @"Omar Thanawalla";
         return cell;
         
        

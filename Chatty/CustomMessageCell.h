@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+//this is the cell we will be using for all conversations
 @interface CustomMessageCell : UITableViewCell
 @property (strong, nonatomic) IBOutlet UILabel *SenderUser;
 @property (strong, nonatomic) IBOutlet UILabel *MessageUser;

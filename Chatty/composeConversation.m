@@ -6,13 +6,13 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "composeMessage.h"
+#import "composeConversation.h"
 #import "KeychainItemWrapper.h"
 #import "AFNetworking.h"
+#import "AFChattyAPIClient.h"
 
-@implementation composeMessage
+@implementation composeConversation
 @synthesize myTextView;
-@synthesize dialogue;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -79,30 +79,44 @@
     NSString * email = [keychain objectForKey:(__bridge id)kSecAttrAccount];
     NSString * password = [keychain objectForKey:(__bridge id)kSecValueData];
     
-    //try connecting with credentials
-    NSURL *url = [NSURL URLWithString:@"http://localhost:3000"];
-    AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:url];
-    
+    //try connecting with credentials    
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
                             email, @"email", 
                             password, @"password",
                             messageContent, @"message",
                             nil];
     
-    [httpClient postPath:@"message/" parameters:params 
+   // NSURL *url = [NSURL URLWithString:@"http://localhost:3000"];
+   // AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:url];
+//    
+//    [httpClient getPath:@"/my_conversation" parameters:nil 
+//     //if login works, log a message to the console
+//                success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//                    NSLog(@"Response: %@", responseObject);
+//                    [self.presentingViewController dismissModalViewControllerAnimated:YES];   
+//                    
+//                } 
+//                failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//                    NSLog(@"Error from postPath: %@",[error localizedDescription]);
+//                    self.dialogue.text = @"Error in sending. Try again later beautiful.";
+//                    //else you cant connect, therefore push modalview login onto the stack
+//                    //[self performSegueWithIdentifier:@"loggedIn" sender:self];
+//                }];
+//    
+//    
+    [[AFChattyAPIClient sharedClient] postPath:@"/message" parameters:params 
      //if login works, log a message to the console
                 success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                    NSString *text = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-                    NSLog(@"Response: %@", text);
+                    NSLog(@"Response was good, here it is: %@", responseObject);
                     [self.presentingViewController dismissModalViewControllerAnimated:YES];   
                     
                 } 
                 failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                     NSLog(@"Error from postPath: %@",[error localizedDescription]);
-                    self.dialogue.text = @"Error in sending. Try again later beautiful.";
                     //else you cant connect, therefore push modalview login onto the stack
-                    //[self performSegueWithIdentifier:@"loggedIn" sender:self];
                 }];
+
+    
 
     
     //dismiss the modal view

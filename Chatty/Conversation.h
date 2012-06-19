@@ -10,8 +10,12 @@
 #import "MessageCell.h"
 @interface Conversation : UITableViewController
 
-@property (nonatomic, strong) NSMutableArray *people;
-@property (nonatomic, strong) NSMutableArray *conversation;
-@property (assign, nonatomic) int state;
+@property (assign, nonatomic) int currentView;
+@property (strong, nonatomic) NSString *conversationID;
+@property (strong, nonatomic) NSMutableArray * messages;
+
+-(void) refresh;
 
 @end
+
+

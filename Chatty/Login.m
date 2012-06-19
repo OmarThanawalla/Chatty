@@ -9,6 +9,7 @@
 #import "Login.h"
 #import "AFNetworking.h"
 #import "KeychainItemWrapper.h"
+#import "AFChattyAPIClient.h"
 
 @implementation Login
 @synthesize emailBox, passwordBox;
@@ -66,13 +67,11 @@
 {
     //when the login button is pushed
     
-    NSURL *url = [NSURL URLWithString:@"http://localhost:3000"];
-    AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:url];
     
     // get these from the text box
     NSString *email = emailBox.text;
     NSString *password = passwordBox.text;
-    
+    NSLog(@"%@, %@", email, password);
     
     //store the email and password in the KeyChain or NSUserDefaults. NOTE: I imported the KeychainItemWrapper and linked Secuirty.framework
     KeychainItemWrapper *keychain = [[KeychainItemWrapper alloc] initWithIdentifier:@"ChattyAppLoginData" accessGroup:nil];
@@ -93,7 +92,7 @@
                             nil];
     
     //try to login
-    [httpClient postPath:@"/login/attempt_login" parameters:params 
+    [[AFChattyAPIClient sharedClient] postPath:@"/login/attempt_login" parameters:params 
                 //if successful dismiss the view
                  success:^(AFHTTPRequestOperation *operation, id responseObject) {
                      NSString *text = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];

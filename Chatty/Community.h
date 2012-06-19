@@ -16,11 +16,12 @@
 
 @interface Community : UITableViewController 
 
-@property (nonatomic, strong) NSMutableArray *people;
-@property (nonatomic,strong) NSMutableArray *conversations;
+
 @property (assign, nonatomic) int currentView;
-@property (nonatomic, strong) NSMutableArray * results;
+@property (nonatomic, strong) NSMutableArray * innerCircleConversations;
+@property (nonatomic, strong) NSMutableArray * allConversations;
 
 - (IBAction)toggleView:(UISegmentedControl *)sender;
+-(IBAction)refresh;
 
 @end
