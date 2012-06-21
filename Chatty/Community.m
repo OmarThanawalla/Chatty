@@ -187,22 +187,7 @@
         
         
         cell.SenderUser.text = [tweet objectForKey:@"full_name"];
-        if(indexPath.row == 0)
-        {
-        cell.Recipients.text = @"Recipients: JKidd, JETerry, MarkC" ; // Message content will reveal recipients
-        }
-        if(indexPath.row == 1)
-        {
-        cell.Recipients.text = @"Recipients: TonyR, Miles, DezBryant" ; // Message content will reveal recipients
-        }
-        if(indexPath.row == 2)
-        {
-            cell.Recipients.text = @"Recipients: Kobe " ; // Message content will reveal recipients
-        }
-        if(indexPath.row == 3)
-        {
-            cell.Recipients.text = @"Recipients: Chris, Blake" ; // Message content will reveal recipients
-        }
+        //cell.Recipients.text = [tweet objectForKey:@"recipient"]; Message content will reveal recipients
 
         
         return cell;
@@ -242,11 +227,8 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == 2) {
-        return  120;
-    }
         
-    return 110;
+    return 100;
 }
 
 
