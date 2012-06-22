@@ -73,14 +73,35 @@
     UserCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     
-   
-        //configure cell here
-        NSDictionary * tweet = [listOfUsers objectAtIndex:indexPath.row];
-        NSString *firstName = [tweet objectForKey:@"first_name"];
-        NSString *lastName = [tweet objectForKey:@"last_name"];
-        cell.userName.text = [NSString stringWithFormat:@"%@ %@", firstName, lastName];
-        cell.bio.text = [tweet objectForKey:@"Bio"];
-        cell.userID = [tweet objectForKey:@"id"];
+
+    //configure cell here
+    NSDictionary * tweet = [listOfUsers objectAtIndex:indexPath.row];
+    NSString *firstName = [tweet objectForKey:@"first_name"];
+    NSString *lastName = [tweet objectForKey:@"last_name"];
+    cell.userName.text = [NSString stringWithFormat:@"%@ %@", firstName, lastName];
+    cell.bio.text = [tweet objectForKey:@"Bio"];
+    cell.userID = [tweet objectForKey:@"id"];
+    
+    //set the state and image of the cell
+    NSString *relationship = [tweet objectForKey:@"is_friend"];
+    NSLog(@"Cell for row at index path has been called again, the value for relationship is %@", relationship);
+    if ([relationship isEqualToString:@"YES"]) 
+    {
+        NSLog(@"You have assigned the value to 1");
+        cell.requestSent = 1;
+        UIImage *btnImage = [UIImage imageNamed:@"green-checkmark.png"];
+        [cell.requestButton setImage:btnImage forState:UIControlStateNormal];
+        
+    }
+    if ([relationship isEqualToString:@"NO"]) 
+    {
+        NSLog(@"You have assigned the value to 0");
+        cell.requestSent = 0;
+        UIImage *btnImage = [UIImage imageNamed:@"bluePlusSign.jpeg"];
+        [cell.requestButton setImage:btnImage forState:UIControlStateNormal];
+        
+
+    }
     
     
     return cell;

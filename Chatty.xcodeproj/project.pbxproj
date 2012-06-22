@@ -20,6 +20,7 @@
 		A727081F1592705B0010E7D2 /* UserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A727081E1592705B0010E7D2 /* UserCell.m */; };
 		A7270821159271030010E7D2 /* UserCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7270820159271030010E7D2 /* UserCell.xib */; };
 		A72708231592D5B60010E7D2 /* bluePlusSign.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = A72708221592D5B60010E7D2 /* bluePlusSign.jpeg */; };
+		A72708251593F25D0010E7D2 /* green-checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = A72708241593F25D0010E7D2 /* green-checkmark.png */; };
 		A736D045152BBA620049AB22 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A736D044152BBA620049AB22 /* UIKit.framework */; };
 		A736D047152BBA620049AB22 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A736D046152BBA620049AB22 /* Foundation.framework */; };
 		A736D04F152BBA620049AB22 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A736D04D152BBA620049AB22 /* InfoPlist.strings */; };
@@ -80,6 +81,7 @@
 		A727081E1592705B0010E7D2 /* UserCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserCell.m; sourceTree = "<group>"; };
 		A7270820159271030010E7D2 /* UserCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserCell.xib; sourceTree = "<group>"; };
 		A72708221592D5B60010E7D2 /* bluePlusSign.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bluePlusSign.jpeg; sourceTree = "<group>"; };
+		A72708241593F25D0010E7D2 /* green-checkmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "green-checkmark.png"; sourceTree = "<group>"; };
 		A736D040152BBA620049AB22 /* Chatty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chatty.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A736D044152BBA620049AB22 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		A736D046152BBA620049AB22 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -213,6 +215,7 @@
 			children = (
 				A72708221592D5B60010E7D2 /* bluePlusSign.jpeg */,
 				A7FE1631158A939200AB5876 /* UIButtonBarRefresh.jpg */,
+				A72708241593F25D0010E7D2 /* green-checkmark.png */,
 				A7FE1635158ED00A00AB5876 /* dirk_nowitzki_027.jpg */,
 				A7954A5B15911E35008C0E69 /* jasonT.jpeg */,
 				A736D05C152BBA620049AB22 /* first.png */,
@@ -403,6 +406,7 @@
 				A7954A5C15911E35008C0E69 /* jasonT.jpeg in Resources */,
 				A7270821159271030010E7D2 /* UserCell.xib in Resources */,
 				A72708231592D5B60010E7D2 /* bluePlusSign.jpeg in Resources */,
+				A72708251593F25D0010E7D2 /* green-checkmark.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

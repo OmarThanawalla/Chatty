@@ -13,8 +13,11 @@
 @property (nonatomic, strong) IBOutlet UILabel *userName;
 @property (nonatomic, strong) IBOutlet UILabel *bio;
 @property (nonatomic, strong) NSString *userID;
+@property (nonatomic, assign) int requestSent;
+@property (nonatomic, strong) IBOutlet UIButton *requestButton;
 
 
 -(IBAction)follow;
+-(void) hasFriendship;
 
 @end
