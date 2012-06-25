@@ -47,6 +47,7 @@
 		A76DDED9158537C100F8D65D /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = A76DDECF158537C100F8D65D /* UIImageView+AFNetworking.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		A7954A5915911D63008C0E69 /* JasonTerry.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7954A5815911D63008C0E69 /* JasonTerry.xib */; };
 		A7954A5C15911E35008C0E69 /* jasonT.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = A7954A5B15911E35008C0E69 /* jasonT.jpeg */; };
+		A7B35B3D1598C47900330B11 /* Registered3.m in Sources */ = {isa = PBXBuildFile; fileRef = A7B35B3C1598C47900330B11 /* Registered3.m */; };
 		A7BBBFD5158858CD00015173 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7BBBFD4158858CD00015173 /* Security.framework */; };
 		A7BBBFD9158859FA00015173 /* KeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = A7BBBFD8158859FA00015173 /* KeychainItemWrapper.m */; };
 		A7E5997F153614D8009633DC /* Login.m in Sources */ = {isa = PBXBuildFile; fileRef = A7E5997E153614D8009633DC /* Login.m */; };
@@ -127,6 +128,8 @@
 		A76DDECF158537C100F8D65D /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
 		A7954A5815911D63008C0E69 /* JasonTerry.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JasonTerry.xib; sourceTree = "<group>"; };
 		A7954A5B15911E35008C0E69 /* jasonT.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = jasonT.jpeg; sourceTree = "<group>"; };
+		A7B35B3B1598C47900330B11 /* Registered3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Registered3.h; sourceTree = "<group>"; };
+		A7B35B3C1598C47900330B11 /* Registered3.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Registered3.m; sourceTree = "<group>"; };
 		A7BBBFD4158858CD00015173 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		A7BBBFD7158859FA00015173 /* KeychainItemWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KeychainItemWrapper.h; path = Chatty/KeychainItemWrapper.h; sourceTree = "<group>"; };
 		A7BBBFD8158859FA00015173 /* KeychainItemWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KeychainItemWrapper.m; path = Chatty/KeychainItemWrapper.m; sourceTree = "<group>"; };
@@ -280,6 +283,8 @@
 				A7E5997E153614D8009633DC /* Login.m */,
 				A7E5998315362CBC009633DC /* Registered.h */,
 				A7E5998415362CBC009633DC /* Registered.m */,
+				A7B35B3B1598C47900330B11 /* Registered3.h */,
+				A7B35B3C1598C47900330B11 /* Registered3.m */,
 				083A8B2515420CCC0078989E /* tabs */,
 				083A8B2415420C9E0078989E /* Images */,
 				A736D04B152BBA620049AB22 /* Supporting Files */,
@@ -447,6 +452,7 @@
 				A7FE1639158F154700AB5876 /* composeMessageOnly.m in Sources */,
 				A727081B15926CF30010E7D2 /* SearchFriends.m in Sources */,
 				A727081F1592705B0010E7D2 /* UserCell.m in Sources */,
+				A7B35B3D1598C47900330B11 /* Registered3.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

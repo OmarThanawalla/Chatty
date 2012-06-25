@@ -7,8 +7,10 @@
 //
 
 #import "Registered.h"
+#import "Registered3.h"
 
 @implementation Registered
+@synthesize email, confirmEmail, password, confirmPassword;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -41,7 +43,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
 }
 
 
@@ -58,7 +59,44 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
-- (IBAction)register:(id)sender {
-    [self dismissModalViewControllerAnimated:YES];
+
+-(IBAction) continue
+{
+
+   BOOL goodToGo = NO;
+    
+   //if email and password box not empty 
+    if(![email.text isEqualToString:@""] && ![password.text isEqualToString:@""])
+    {
+        //if email and password matches their confirmation boxes
+        if([email.text isEqualToString:confirmEmail.text] && [password.text isEqualToString:confirmPassword.text])
+        {
+            //minimum password length
+            if([password.text length] >= 8 )
+            {
+                goodToGo = YES;
+            }
+        }
+    }
+    
+    if(goodToGo)
+    {
+        [self performSegueWithIdentifier:@"continueRegistered" sender:nil];
+        NSLog(@"You hit the continue button and we were goodToGo ");
+    }
 }
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"continueRegistered"]) 
+    {
+        Registered3 * registered3 = [segue destinationViewController];
+        registered3.email = self.email.text;
+        registered3.password = self.password.text;
+        
+    }
+}
+
+
+
 @end

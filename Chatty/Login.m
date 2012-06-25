@@ -75,14 +75,15 @@
     
     //store the email and password in the KeyChain or NSUserDefaults. NOTE: I imported the KeychainItemWrapper and linked Secuirty.framework
     KeychainItemWrapper *keychain = [[KeychainItemWrapper alloc] initWithIdentifier:@"ChattyAppLoginData" accessGroup:nil];
-    if(email)
-    {
-        [keychain setObject:email forKey:(__bridge id) kSecAttrAccount];
-    }
-    if(password)
-    {
-        [keychain setObject:password forKey:(__bridge id)kSecValueData];
-    }
+    
+//    if(email)
+//    {
+//        [keychain setObject:email forKey:(__bridge id) kSecAttrAccount];
+//    }
+//    if(password)
+//    {
+//        [keychain setObject:password forKey:(__bridge id)kSecValueData];
+//    }
     
     
     
@@ -95,10 +96,12 @@
     [[AFChattyAPIClient sharedClient] postPath:@"/login/attempt_login" parameters:params 
                 //if successful dismiss the view
                  success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                     NSString *text = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-                     NSLog(@"Response: %@", text);
+                     NSLog(@"Response: %@", responseObject);
                      //if successfully logged in, dismiss the modal view
                      [self dismissModalViewControllerAnimated:YES];
+                     [keychain setObject:email forKey:(__bridge id) kSecAttrAccount];
+                     [keychain setObject:password forKey:(__bridge id)kSecValueData];
+
                  } 
                 //else flash a notice on the modal view
                  failure:^(AFHTTPRequestOperation *operation, NSError *error) {

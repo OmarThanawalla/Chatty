@@ -10,6 +10,11 @@
 
 @interface Registered : UIViewController
 
-- (IBAction)register:(id)sender;
+@property (nonatomic, strong) IBOutlet UITextField *email;
+@property (nonatomic, strong) IBOutlet UITextField *confirmEmail;
+@property (nonatomic, strong) IBOutlet UITextField *password;
+@property (nonatomic, strong) IBOutlet UITextField *confirmPassword;
+
+-(IBAction) continue;
 
 @end
