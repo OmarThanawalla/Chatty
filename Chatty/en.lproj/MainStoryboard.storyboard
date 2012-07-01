@@ -369,7 +369,7 @@
             </objects>
             <point key="canvasLocation" x="401" y="-586"/>
         </scene>
-        <!--Community-->
+        <!--Community - All Conversations-->
         <scene sceneID="2I8-2f-UfR">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1RN-pd-KYl" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -394,24 +394,12 @@
                             <outlet property="delegate" destination="aKU-2L-QCI" id="jKc-sW-SMG"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="q5Y-C7-y7U">
-                        <nil key="title"/>
+                    <navigationItem key="navigationItem" title="All Conversations" id="q5Y-C7-y7U">
                         <barButtonItem key="leftBarButtonItem" title="Refresh" id="22o-Bu-Dev">
                             <connections>
                                 <action selector="refresh" destination="aKU-2L-QCI" id="sRn-Ye-fFW"/>
                             </connections>
                         </barButtonItem>
-                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="CRD-iD-kbs">
-                            <rect key="frame" x="80" y="7" width="159" height="30"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <segments>
-                                <segment title="Inner Circle"/>
-                                <segment title="All"/>
-                            </segments>
-                            <connections>
-                                <action selector="toggleView:" destination="aKU-2L-QCI" eventType="valueChanged" id="aqA-p8-lmA"/>
-                            </connections>
-                        </segmentedControl>
                         <barButtonItem key="rightBarButtonItem" title="New" id="eVu-9x-87n">
                             <connections>
                                 <segue destination="ykX-gt-6pe" kind="modal" id="uJa-SE-dA2"/>

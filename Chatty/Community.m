@@ -31,7 +31,8 @@
         // Custom initialization
         
         //you start off in state inner circle
-        self.currentView = 0;
+        self.currentView = 1; // ive hidden the segmented control so we should always be in currentView 1 
+        // current view 1 is all view which is what i want in the beginning
     }
     return self;
 }
