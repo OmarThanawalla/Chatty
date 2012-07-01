@@ -97,10 +97,10 @@
                 //if successful dismiss the view
                  success:^(AFHTTPRequestOperation *operation, id responseObject) {
                      NSLog(@"Response: %@", responseObject);
-                     //if successfully logged in, dismiss the modal view
-                     [self dismissModalViewControllerAnimated:YES];
+                     //if successfully logged in, dismiss the modal view, looks like i store email and password
                      [keychain setObject:email forKey:(__bridge id) kSecAttrAccount];
                      [keychain setObject:password forKey:(__bridge id)kSecValueData];
+                     [self dismissModalViewControllerAnimated:YES];
 
                  } 
                 //else flash a notice on the modal view

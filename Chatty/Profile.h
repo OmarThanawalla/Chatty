@@ -15,7 +15,10 @@
 @property (nonatomic, strong) NSMutableArray * tag;
 
 
+
 - (IBAction)toggleView:(id)sender;
+-(IBAction) logout;
+
 
 
 @end

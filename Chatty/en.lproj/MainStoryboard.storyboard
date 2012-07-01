@@ -60,10 +60,38 @@
                                 <action selector="toggleView:" destination="Dhr-Ev-Sc6" eventType="valueChanged" id="nIp-VH-zKr"/>
                             </connections>
                         </segmentedControl>
+                        <barButtonItem key="rightBarButtonItem" title="Log out" id="fcR-zc-0Im">
+                            <connections>
+                                <segue destination="soC-xs-l7S" kind="modal" id="t4A-HM-QIE"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
             </objects>
-            <point key="canvasLocation" x="953" y="1482"/>
+            <point key="canvasLocation" x="1040" y="1482"/>
+        </scene>
+        <!--Edit Profile-->
+        <scene sceneID="8Fw-L4-Rsa">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ntv-wA-RMy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="dMc-1U-TFJ" customClass="editProfile" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="g6U-5w-Wg1">
+                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="VIu-hO-suT">
+                                <rect key="frame" x="147" y="135" width="42" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="1676" y="1490"/>
         </scene>
         <!--Login - Root View Controller-->
         <scene sceneID="ctF-Sr-rVn">
@@ -186,13 +214,13 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Password" minimumFontSize="17" id="N5y-YS-M67">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Password (min 8 characters)" minimumFontSize="17" id="N5y-YS-M67">
                                 <rect key="frame" x="14" y="86" width="294" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Re-enter Password" minimumFontSize="17" id="rG0-6M-jTo">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Re-enter Password (min 8 characters)" minimumFontSize="17" id="rG0-6M-jTo">
                                 <rect key="frame" x="14" y="125" width="294" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -234,7 +262,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder=" Enter a Bio" minimumFontSize="17" id="5Pt-1X-bso">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder=" Enter a Bio (optional)" minimumFontSize="17" id="5Pt-1X-bso">
                                 <rect key="frame" x="6" y="126" width="294" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -261,6 +289,13 @@
                                     <action selector="register" destination="d9G-Pv-ggZ" eventType="touchUpInside" id="b1y-D1-Oxf"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumFontSize="10" id="evm-je-NfF">
+                                <rect key="frame" x="6" y="156" width="117" height="46"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -271,6 +306,7 @@
                         <outlet property="bio" destination="5Pt-1X-bso" id="9jR-bn-K5r"/>
                         <outlet property="firstName" destination="Prt-zF-hFz" id="XRe-i8-kis"/>
                         <outlet property="lastName" destination="WtA-K6-DuC" id="Kbe-eY-Grw"/>
+                        <outlet property="notice" destination="evm-je-NfF" id="dUP-5p-cY7"/>
                         <outlet property="userName" destination="vxI-R0-ls2" id="0SM-RO-v6G"/>
                     </connections>
                 </viewController>
@@ -360,7 +396,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="q5Y-C7-y7U">
                         <nil key="title"/>
-                        <barButtonItem key="leftBarButtonItem" image="UIButtonBarRefresh.jpg" id="22o-Bu-Dev">
+                        <barButtonItem key="leftBarButtonItem" title="Refresh" id="22o-Bu-Dev">
                             <connections>
                                 <action selector="refresh" destination="aKU-2L-QCI" id="sRn-Ye-fFW"/>
                             </connections>
@@ -572,7 +608,7 @@
             </objects>
             <point key="canvasLocation" x="401" y="182"/>
         </scene>
-        <!--Me-->
+        <!--Me - Me Conversations-->
         <scene sceneID="B1W-0L-Xcd">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OVF-du-ppo" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -600,8 +636,8 @@
                             <outlet property="delegate" destination="ycM-Fd-tHT" id="da5-1S-XUE"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="mPH-Ba-zIs">
-                        <barButtonItem key="leftBarButtonItem" image="UIButtonBarRefresh.jpg" id="ZfU-sw-jPV">
+                    <navigationItem key="navigationItem" title="Me Conversations" id="mPH-Ba-zIs">
+                        <barButtonItem key="leftBarButtonItem" title="Refresh" id="ZfU-sw-jPV">
                             <connections>
                                 <action selector="refresh" destination="ycM-Fd-tHT" id="BAU-SX-ySL"/>
                             </connections>
@@ -644,7 +680,7 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" id="qeN-Q2-d7b">
+                            <searchBar contentMode="redraw" placeholder="Find Friends" id="qeN-Q2-d7b">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -670,21 +706,98 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="927" y="849"/>
+            <point key="canvasLocation" x="1055" y="857"/>
         </scene>
     </scenes>
     <resources>
-        <image name="UIButtonBarRefresh.jpg" width="29" height="24"/>
         <image name="first" width="16" height="16"/>
         <image name="second" width="16" height="16"/>
     </resources>
+    <classes>
+        <class className="Community" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/Community.h"/>
+            <relationships>
+                <relationship kind="action" name="refresh"/>
+                <relationship kind="action" name="toggleView:" candidateClass="UISegmentedControl"/>
+            </relationships>
+        </class>
+        <class className="Conversation" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/Conversation.h"/>
+        </class>
+        <class className="Login" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/Login.h"/>
+            <relationships>
+                <relationship kind="action" name="login"/>
+                <relationship kind="outlet" name="emailBox" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="notice" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="passwordBox" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="Me" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/Me.h"/>
+            <relationships>
+                <relationship kind="action" name="refresh"/>
+            </relationships>
+        </class>
+        <class className="Profile" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/Profile.h"/>
+            <relationships>
+                <relationship kind="action" name="logout"/>
+                <relationship kind="action" name="toggleView:"/>
+            </relationships>
+        </class>
+        <class className="Registered" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/Registered.h"/>
+            <relationships>
+                <relationship kind="action" name="continue"/>
+                <relationship kind="outlet" name="confirmEmail" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="confirmPassword" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="email" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="password" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="Registered3" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/Registered3.h"/>
+            <relationships>
+                <relationship kind="action" name="register"/>
+                <relationship kind="outlet" name="bio" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="firstName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="lastName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="notice" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="userName" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="SearchFriends" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SearchFriends.h"/>
+        </class>
+        <class className="composeConversation" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/composeConversation.h"/>
+            <relationships>
+                <relationship kind="action" name="cancelButton"/>
+                <relationship kind="action" name="sendButton"/>
+                <relationship kind="outlet" name="myTextView" candidateClass="UITextView"/>
+            </relationships>
+        </class>
+        <class className="composeMessageOnly" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/composeMessageOnly.h"/>
+            <relationships>
+                <relationship kind="action" name="cancel"/>
+                <relationship kind="action" name="submit"/>
+                <relationship kind="outlet" name="messageBody" candidateClass="UITextView"/>
+            </relationships>
+        </class>
+        <class className="editProfile" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/editProfile.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="7yl-nr-Xmv"/>
+        <segue reference="uJa-SE-dA2"/>
+        <segue reference="sEP-E2-vGj"/>
         <segue reference="inV-Xe-UeF"/>
     </inferredMetricsTieBreakers>
 </document>

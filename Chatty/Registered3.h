@@ -14,6 +14,7 @@
 @property (nonatomic, strong) IBOutlet UITextField *lastName;
 @property (nonatomic, strong) IBOutlet UITextField *userName;
 @property (nonatomic, strong) IBOutlet UITextField *bio;
+@property (nonatomic, strong) IBOutlet UILabel *notice;
 @property (nonatomic, strong) NSString * email;
 @property (nonatomic, strong) NSString *password;
 
@@ -21,5 +22,6 @@
 
 
 -(IBAction)register;
+-(void) submit;
 
 @end

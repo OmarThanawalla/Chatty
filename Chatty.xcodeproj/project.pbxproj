@@ -48,6 +48,8 @@
 		A7954A5915911D63008C0E69 /* JasonTerry.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7954A5815911D63008C0E69 /* JasonTerry.xib */; };
 		A7954A5C15911E35008C0E69 /* jasonT.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = A7954A5B15911E35008C0E69 /* jasonT.jpeg */; };
 		A7B35B3D1598C47900330B11 /* Registered3.m in Sources */ = {isa = PBXBuildFile; fileRef = A7B35B3C1598C47900330B11 /* Registered3.m */; };
+		A7B35B48159A640F00330B11 /* OnMyWay.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A7B35B47159A640F00330B11 /* OnMyWay.jpg */; };
+		A7B35B4C159A6E8E00330B11 /* editProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = A7B35B4B159A6E8D00330B11 /* editProfile.m */; };
 		A7BBBFD5158858CD00015173 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7BBBFD4158858CD00015173 /* Security.framework */; };
 		A7BBBFD9158859FA00015173 /* KeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = A7BBBFD8158859FA00015173 /* KeychainItemWrapper.m */; };
 		A7E5997F153614D8009633DC /* Login.m in Sources */ = {isa = PBXBuildFile; fileRef = A7E5997E153614D8009633DC /* Login.m */; };
@@ -130,6 +132,9 @@
 		A7954A5B15911E35008C0E69 /* jasonT.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = jasonT.jpeg; sourceTree = "<group>"; };
 		A7B35B3B1598C47900330B11 /* Registered3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Registered3.h; sourceTree = "<group>"; };
 		A7B35B3C1598C47900330B11 /* Registered3.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Registered3.m; sourceTree = "<group>"; };
+		A7B35B47159A640F00330B11 /* OnMyWay.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = OnMyWay.jpg; sourceTree = "<group>"; };
+		A7B35B4A159A6E8D00330B11 /* editProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = editProfile.h; sourceTree = "<group>"; };
+		A7B35B4B159A6E8D00330B11 /* editProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = editProfile.m; sourceTree = "<group>"; };
 		A7BBBFD4158858CD00015173 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		A7BBBFD7158859FA00015173 /* KeychainItemWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KeychainItemWrapper.h; path = Chatty/KeychainItemWrapper.h; sourceTree = "<group>"; };
 		A7BBBFD8158859FA00015173 /* KeychainItemWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KeychainItemWrapper.m; path = Chatty/KeychainItemWrapper.m; sourceTree = "<group>"; };
@@ -200,6 +205,8 @@
 				08D612CD156D7CEF00F33490 /* profileCustomCell.h */,
 				08D612CE156D7CEF00F33490 /* profileCustomCell.m */,
 				08D612CB156D7BF100F33490 /* profileCustomCell.xib */,
+				A7B35B4A159A6E8D00330B11 /* editProfile.h */,
+				A7B35B4B159A6E8D00330B11 /* editProfile.m */,
 			);
 			name = Profile;
 			sourceTree = "<group>";
@@ -218,6 +225,7 @@
 			children = (
 				A72708221592D5B60010E7D2 /* bluePlusSign.jpeg */,
 				A7FE1631158A939200AB5876 /* UIButtonBarRefresh.jpg */,
+				A7B35B47159A640F00330B11 /* OnMyWay.jpg */,
 				A72708241593F25D0010E7D2 /* green-checkmark.png */,
 				A7FE1635158ED00A00AB5876 /* dirk_nowitzki_027.jpg */,
 				A7954A5B15911E35008C0E69 /* jasonT.jpeg */,
@@ -278,13 +286,13 @@
 				A736D054152BBA620049AB22 /* BIDAppDelegate.m */,
 				A72129681589D13300AC5EF9 /* AFChattyAPIClient.h */,
 				A72129691589D13300AC5EF9 /* AFChattyAPIClient.m */,
-				A736D056152BBA620049AB22 /* MainStoryboard.storyboard */,
 				A7E5997D153614D8009633DC /* Login.h */,
 				A7E5997E153614D8009633DC /* Login.m */,
 				A7E5998315362CBC009633DC /* Registered.h */,
 				A7E5998415362CBC009633DC /* Registered.m */,
 				A7B35B3B1598C47900330B11 /* Registered3.h */,
 				A7B35B3C1598C47900330B11 /* Registered3.m */,
+				A736D056152BBA620049AB22 /* MainStoryboard.storyboard */,
 				083A8B2515420CCC0078989E /* tabs */,
 				083A8B2415420C9E0078989E /* Images */,
 				A736D04B152BBA620049AB22 /* Supporting Files */,
@@ -412,6 +420,7 @@
 				A7270821159271030010E7D2 /* UserCell.xib in Resources */,
 				A72708231592D5B60010E7D2 /* bluePlusSign.jpeg in Resources */,
 				A72708251593F25D0010E7D2 /* green-checkmark.png in Resources */,
+				A7B35B48159A640F00330B11 /* OnMyWay.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -453,6 +462,7 @@
 				A727081B15926CF30010E7D2 /* SearchFriends.m in Sources */,
 				A727081F1592705B0010E7D2 /* UserCell.m in Sources */,
 				A7B35B3D1598C47900330B11 /* Registered3.m in Sources */,
+				A7B35B4C159A6E8E00330B11 /* editProfile.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

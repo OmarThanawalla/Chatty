@@ -9,8 +9,11 @@
 #import <UIKit/UIKit.h>
 
 @interface profileCustomCell : UITableViewCell
-@property (strong, nonatomic) IBOutlet UITextField *BioText;
+@property (strong, nonatomic) IBOutlet UILabel *BioText;
 @property (strong, nonatomic) IBOutlet UILabel *NameText;
 @property (strong, nonatomic) IBOutlet UIImageView *ProfilePic;
+@property (strong, nonatomic) IBOutlet UILabel *userName;
+
+-(IBAction) editProfile;
 
 @end

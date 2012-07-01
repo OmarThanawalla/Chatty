@@ -7,11 +7,13 @@
 //
 
 #import "profileCustomCell.h"
+#import "editProfile.h"
 
 @implementation profileCustomCell
 @synthesize BioText;
 @synthesize NameText;
 @synthesize ProfilePic;
+@synthesize userName;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -27,6 +29,11 @@
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
+}
+-(IBAction)editProfile
+{
+    NSLog(@"You pushed the edit profile button");
+        
 }
 
 @end

@@ -8,6 +8,7 @@
 
 #import "Profile.h"
 #import "profileCustomCell.h"
+#import "KeychainItemWrapper.h"
 
 @implementation Profile
 
@@ -45,6 +46,7 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
 }
 
 - (void)viewDidUnload
@@ -122,7 +124,9 @@
         
         cell.BioText.text = @"I live in Austin!";
         cell.NameText.text = @"Omar Thanawalla";
+        cell.userName.text = @"Batman";
         return cell;
+        
         
        
 //            cell = [[ProfileCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
@@ -215,7 +219,22 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 85.0;
+    return 120.0;
+}
+
+-(IBAction) logout
+{
+    //i just had the modal view for login pop up, this way the only way to get back in is to successfully login instead of loggin out
+    
+//    NSLog(@"logout function called");
+//    //clear key chain
+//    KeychainItemWrapper *keychain = [[KeychainItemWrapper alloc] initWithIdentifier:@"ChattyAppLoginData" accessGroup:nil];
+//    [keychain setObject:@"" forKey:(__bridge id) kSecAttrAccount];
+//    [keychain setObject:@"" forKey:(__bridge id)kSecValueData];
+//    
+//    //send it to the community tab 
+//    [self.tabBarController setSelectedIndex:0];
+    
 }
 
 @end
