@@ -54,7 +54,6 @@
 		A7BA8CD0159FE593003AAC24 /* windUpMouth.png in Resources */ = {isa = PBXBuildFile; fileRef = A7BA8CCF159FE593003AAC24 /* windUpMouth.png */; };
 		A7BA8CD2159FE5CE003AAC24 /* ChickenMouth.png in Resources */ = {isa = PBXBuildFile; fileRef = A7BA8CD1159FE5CE003AAC24 /* ChickenMouth.png */; };
 		A7BA8CD4159FE5DD003AAC24 /* ChickenMouth.png in Resources */ = {isa = PBXBuildFile; fileRef = A7BA8CD3159FE5DD003AAC24 /* ChickenMouth.png */; };
-		A7BA8CD6159FE68B003AAC24 /* Chat.png in Resources */ = {isa = PBXBuildFile; fileRef = A7BA8CD5159FE68B003AAC24 /* Chat.png */; };
 		A7BA8CD8159FE698003AAC24 /* Chat.png in Resources */ = {isa = PBXBuildFile; fileRef = A7BA8CD7159FE698003AAC24 /* Chat.png */; };
 		A7BBBFD5158858CD00015173 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7BBBFD4158858CD00015173 /* Security.framework */; };
 		A7BBBFD9158859FA00015173 /* KeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = A7BBBFD8158859FA00015173 /* KeychainItemWrapper.m */; };
@@ -145,7 +144,6 @@
 		A7BA8CCF159FE593003AAC24 /* windUpMouth.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = windUpMouth.png; sourceTree = "<group>"; };
 		A7BA8CD1159FE5CE003AAC24 /* ChickenMouth.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ChickenMouth.png; sourceTree = "<group>"; };
 		A7BA8CD3159FE5DD003AAC24 /* ChickenMouth.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ChickenMouth.png; sourceTree = "<group>"; };
-		A7BA8CD5159FE68B003AAC24 /* Chat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Chat.png; path = ../../../../Downloads/Chat.png; sourceTree = "<group>"; };
 		A7BA8CD7159FE698003AAC24 /* Chat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Chat.png; sourceTree = "<group>"; };
 		A7BBBFD4158858CD00015173 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		A7BBBFD7158859FA00015173 /* KeychainItemWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KeychainItemWrapper.h; path = Chatty/KeychainItemWrapper.h; sourceTree = "<group>"; };
@@ -241,7 +239,6 @@
 				A7BA8CCC159FE2D7003AAC24 /* chatty.png */,
 				A72708241593F25D0010E7D2 /* green-checkmark.png */,
 				A7BA8CCF159FE593003AAC24 /* windUpMouth.png */,
-				A7BA8CD5159FE68B003AAC24 /* Chat.png */,
 				A7FE1635158ED00A00AB5876 /* dirk_nowitzki_027.jpg */,
 				A7BA8CD1159FE5CE003AAC24 /* ChickenMouth.png */,
 				A7954A5B15911E35008C0E69 /* jasonT.jpeg */,
@@ -443,7 +440,6 @@
 				A7BA8CD0159FE593003AAC24 /* windUpMouth.png in Resources */,
 				A7BA8CD2159FE5CE003AAC24 /* ChickenMouth.png in Resources */,
 				A7BA8CD4159FE5DD003AAC24 /* ChickenMouth.png in Resources */,
-				A7BA8CD6159FE68B003AAC24 /* Chat.png in Resources */,
 				A7BA8CD8159FE698003AAC24 /* Chat.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

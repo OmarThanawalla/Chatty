@@ -31,7 +31,8 @@
         // Custom initialization
         
         //you start off in state inner circle
-        self.currentView = 1; // ive hidden the segmented control so we should always be in currentView 1 
+         // ive hidden the segmented control so we should always be in currentView 1
+        
         // current view 1 is all view which is what i want in the beginning
     }
     return self;
@@ -51,8 +52,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    
+    //setting currentView to 1 here because I removed the toggling of AllConvo's and FavoriteConvo's
+    self.currentView = 1;
     KeychainItemWrapper *keychain = [[KeychainItemWrapper alloc] initWithIdentifier:@"ChattyAppLoginData" accessGroup:nil];
     NSString * email = [keychain objectForKey:(__bridge id)kSecAttrAccount];
     NSString * password = [keychain objectForKey:(__bridge id)kSecValueData];
@@ -64,6 +65,7 @@
                             email, @"email", 
                             password, @"password",
                             nil];
+    NSLog(@"the current view on viewDidLoad %d", currentView);
     if(currentView == 0)
     {
     [[AFChattyAPIClient sharedClient] getPath:@"/inner_conversation/" parameters:params 
@@ -359,16 +361,15 @@
 
 -(IBAction) refresh
 {
+    
     KeychainItemWrapper *keychain = [[KeychainItemWrapper alloc] initWithIdentifier:@"ChattyAppLoginData" accessGroup:nil];
     NSString * email = [keychain objectForKey:(__bridge id)kSecAttrAccount];
     NSString * password = [keychain objectForKey:(__bridge id)kSecValueData];
-    
-    
+
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
                             email, @"email", 
                             password, @"password",
                             nil];
-    
     if(currentView == 0)
     {
         [[AFChattyAPIClient sharedClient] getPath:@"/inner_conversation/" parameters:params 
@@ -379,8 +380,6 @@
                                               //rmr: responseObject is an array where each element is a diciontary
                                               innerCircleConversations = responseObject;
                                               [self.tableView reloadData];
-                                              
-                                              
                                           } 
                                           failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                                               NSLog(@"Error from postPath: %@",[error localizedDescription]);
