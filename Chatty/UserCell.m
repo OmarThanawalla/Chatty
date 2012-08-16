@@ -13,6 +13,7 @@
 
 
 @implementation UserCell
+
 @synthesize profilePic;
 @synthesize userName, bio;
 @synthesize userID;
