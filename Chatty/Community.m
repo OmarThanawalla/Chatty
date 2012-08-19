@@ -192,7 +192,7 @@
         
         
         cell.SenderUser.text = [tweet objectForKey:@"full_name"];
-        //cell.Recipients.text = [tweet objectForKey:@"recipient"]; Message content will reveal recipients
+        cell.Recipients.text = [tweet objectForKey:@"recipient"]; //Message content will reveal recipients
 
         
         return cell;
@@ -223,7 +223,7 @@
         
         
         cell.SenderUser.text = [tweet objectForKey:@"full_name"];
-        //cell.Recipients.text = [tweet objectForKey:@"recipient"];
+        cell.Recipients.text = [tweet objectForKey:@"recipient"];
         
         return cell;
     }
@@ -233,7 +233,7 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
         
-    return 75;
+    return 85;
 }
 
 

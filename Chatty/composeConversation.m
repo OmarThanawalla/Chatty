@@ -70,56 +70,66 @@
 
 -(IBAction)sendButton
 {
+
     //grab the text from textView
     NSString * messageContent = myTextView.text;
-    //submit the text to the server
-    //were going to fake it and just add it to the array for the moment
-    //grab credentials
-    KeychainItemWrapper *keychain = [[KeychainItemWrapper alloc] initWithIdentifier:@"ChattyAppLoginData" accessGroup:nil];
-    NSString * email = [keychain objectForKey:(__bridge id)kSecAttrAccount];
-    NSString * password = [keychain objectForKey:(__bridge id)kSecValueData];
     
-    //try connecting with credentials    
-    NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
-                            email, @"email", 
-                            password, @"password",
-                            messageContent, @"message",
-                            nil];
-    
-   // NSURL *url = [NSURL URLWithString:@"http://localhost:3000"];
-   // AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:url];
-//    
-//    [httpClient getPath:@"/my_conversation" parameters:nil 
-//     //if login works, log a message to the console
-//                success:^(AFHTTPRequestOperation *operation, id responseObject) {
-//                    NSLog(@"Response: %@", responseObject);
-//                    [self.presentingViewController dismissModalViewControllerAnimated:YES];   
-//                    
-//                } 
-//                failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//                    NSLog(@"Error from postPath: %@",[error localizedDescription]);
-//                    self.dialogue.text = @"Error in sending. Try again later beautiful.";
-//                    //else you cant connect, therefore push modalview login onto the stack
-//                    //[self performSegueWithIdentifier:@"loggedIn" sender:self];
-//                }];
-//    
-//    
-    [[AFChattyAPIClient sharedClient] postPath:@"/message" parameters:params 
-     //if login works, log a message to the console
-                success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                    NSLog(@"Response was good, here it is: %@", responseObject);
-                    [self.presentingViewController dismissModalViewControllerAnimated:YES];   
-                    
-                } 
-                failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                    NSLog(@"Error from postPath: %@",[error localizedDescription]);
-                    //else you cant connect, therefore push modalview login onto the stack
-                }];
+    if([messageContent rangeOfString:@"@"].location == NSNotFound)
+    {
+        //alert the user that he must direct the conversation towards someone
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                        message:@"You must direct conversation towards someone to start a new convo."
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
 
-    
-
-    
-    //dismiss the modal view
-    
+    }else
+    {
+        
+        //submit the text to the server
+        //were going to fake it and just add it to the array for the moment
+        //grab credentials
+        KeychainItemWrapper *keychain = [[KeychainItemWrapper alloc] initWithIdentifier:@"ChattyAppLoginData" accessGroup:nil];
+        NSString * email = [keychain objectForKey:(__bridge id)kSecAttrAccount];
+        NSString * password = [keychain objectForKey:(__bridge id)kSecValueData];
+        
+        //try connecting with credentials
+        NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
+                                email, @"email",
+                                password, @"password",
+                                messageContent, @"message",
+                                nil];
+        
+        // NSURL *url = [NSURL URLWithString:@"http://localhost:3000"];
+        // AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:url];
+        //
+        //    [httpClient getPath:@"/my_conversation" parameters:nil
+        //     //if login works, log a message to the console
+        //                success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        //                    NSLog(@"Response: %@", responseObject);
+        //                    [self.presentingViewController dismissModalViewControllerAnimated:YES];
+        //
+        //                }
+        //                failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        //                    NSLog(@"Error from postPath: %@",[error localizedDescription]);
+        //                    self.dialogue.text = @"Error in sending. Try again later beautiful.";
+        //                    //else you cant connect, therefore push modalview login onto the stack
+        //                    //[self performSegueWithIdentifier:@"loggedIn" sender:self];
+        //                }];
+        //
+        //
+        [[AFChattyAPIClient sharedClient] postPath:@"/message" parameters:params
+         //if login works, log a message to the console
+                                           success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                                               NSLog(@"Response was good, here it is: %@", responseObject);
+                                               [self.presentingViewController dismissModalViewControllerAnimated:YES];
+                                               
+                                           } 
+                                           failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                               NSLog(@"Error from postPath: %@",[error localizedDescription]);
+                                               //else you cant connect, therefore push modalview login onto the stack
+                                           }];
+    }
 }
 @end

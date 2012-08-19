@@ -10,7 +10,7 @@
 #import "AFJSONRequestOperation.h"
 
 static NSString * const kAFChattyAPIBaseURLString = @"http://localhost:3000";
-
+//static NSString * const kAFChattyAPIBaseURLString = @"http://stark-night-7250.herokuapp.com";
 
 @implementation AFChattyAPIClient
 
