@@ -13,11 +13,12 @@
 @property (nonatomic, assign) int currentView;
 @property (nonatomic, strong) NSMutableArray * name;
 @property (nonatomic, strong) NSMutableArray * tag;
-
+@property (nonatomic, strong) NSMutableArray *follows;
 
 
 - (IBAction)toggleView:(id)sender;
 -(IBAction) logout;
+-(IBAction) refresh;
 
 
 

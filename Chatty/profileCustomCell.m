@@ -7,7 +7,6 @@
 //
 
 #import "profileCustomCell.h"
-#import "editProfile.h"
 
 @implementation profileCustomCell
 @synthesize BioText;

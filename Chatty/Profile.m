@@ -8,11 +8,16 @@
 
 #import "Profile.h"
 #import "profileCustomCell.h"
+#import "PendingRequestCell.h"
 #import "KeychainItemWrapper.h"
+//import AFNetworking
+#import "AFNetworking.h"
+#import "AFChattyAPIClient.h"
 
 @implementation Profile
 
 @synthesize currentView, name, tag;
+@synthesize follows;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -38,6 +43,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self refresh];
     name = [[NSMutableArray alloc] initWithObjects:@"Omar", @"Kathy Lee", @"Britney Spears",@"Kobe Bryant",@"Tony Parker",@"Bill Gates", nil];
     tag = [[NSMutableArray alloc] initWithObjects:@"OT", @"KathyL", @"BritneySpears",@"Kobe",@"TParker",@"BGates", nil];
 
@@ -86,10 +92,12 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    // Return the number of sections.
+    // profile segment
     if (self.currentView == 0) {
-        return 1;
-    } else {
+        return 2;
+    }
+    else //other segmented control
+    {
         return 1;
     }
 }
@@ -98,7 +106,14 @@
 {
     // Return the number of rows in the section.
     if (self.currentView == 0) {
-        return 1;
+        if(section == 0)
+        {
+            return 1;
+        }
+        else
+        {
+            return [follows count];
+        }
     } else {
         return [name count];
     }
@@ -108,33 +123,53 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     //static NSString *CellIdentifier = @"Cell";
-    
-    if (self.currentView == 0) {
-        
-        static NSString *CellIdentifier = @"CellIdentifier";
-        static BOOL nibsRegistered = NO;
-        if(!nibsRegistered)
-        {
-            UINib *nib = [UINib nibWithNibName: @"profileCustomCell" bundle:nil];
-            [tableView registerNib:nib forCellReuseIdentifier:CellIdentifier];
-            nibsRegistered = YES;
+   
+    //profile SEGMENT
+    if (self.currentView == 0)
+    {
+        //profile SECTION
+        if (indexPath.section == 0) {
+
+            static NSString *CellIdentifier = @"CellIdentifier";
+            static BOOL nibsRegistered = NO;
+            if(!nibsRegistered)
+            {
+                UINib *nib = [UINib nibWithNibName: @"profileCustomCell" bundle:nil];
+                [tableView registerNib:nib forCellReuseIdentifier:CellIdentifier];
+                nibsRegistered = YES;
+            }
+            
+            profileCustomCell * cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+            
+            cell.BioText.text = @"I live in Austin!";
+            cell.NameText.text = @"Omar Thanawall";
+            cell.userName.text = @"Batman";
+            return cell;
+ 
         }
-        
-        profileCustomCell * cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        
-        cell.BioText.text = @"I live in Austin!";
-        cell.NameText.text = @"Omar Thanawalla";
-        cell.userName.text = @"Batman";
-        return cell;
-        
-        
-       
-//            cell = [[ProfileCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
-//        }
-//        cell.textLabel.text = [name objectAtIndex:indexPath.row];
-//        cell.detailTextLabel.text = [tag objectAtIndex:indexPath.row];
-        
-        
+        else // you are in the pendingRequestsSection
+        {
+            NSLog(@"This is section 1");
+            static NSString *CellIdentifier = @"PendingCell";
+            static BOOL nibsRegistered = NO;
+            if(!nibsRegistered)
+            {
+                UINib *nib = [UINib nibWithNibName: @"PendingRequestCell" bundle:nil];
+                [tableView registerNib:nib forCellReuseIdentifier:CellIdentifier];
+                nibsRegistered = YES;
+            }
+            
+            PendingRequestCell * cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+            
+            NSDictionary *user = [follows objectAtIndex:indexPath.row];
+            
+            cell.fullName.text = [user objectForKey:@"fullName"];
+            cell.bio.text = [user objectForKey:@"bio"];
+            cell.userName.text = [user objectForKey:@"userName"];
+            cell.userID = [user objectForKey:@"userID"];
+            
+            return cell;
+        }
         
     } 
     else{
@@ -219,7 +254,10 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 120.0;
+    if (indexPath.section == 0) {
+        return 120.0;
+    }
+    return 90.0;
 }
 
 -(IBAction) logout
@@ -235,6 +273,35 @@
 //    //send it to the community tab 
 //    [self.tabBarController setSelectedIndex:0];
     
+}
+
+-(IBAction)refresh
+{
+    KeychainItemWrapper *keychain = [[KeychainItemWrapper alloc] initWithIdentifier:@"ChattyAppLoginData" accessGroup:nil];
+    NSString * email = [keychain objectForKey:(__bridge id)kSecAttrAccount];
+    NSString * password = [keychain objectForKey:(__bridge id)kSecValueData];
+    
+    NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
+                            email, @"email",
+                            password, @"password",
+                            nil];
+
+    [[AFChattyAPIClient sharedClient] getPath:@"/follower/" parameters:params
+     //if login works, log a message to the console
+                                      success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                                          //NSString *text = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+                                          NSLog(@"Response: %@", responseObject);
+                                   
+                                          follows = responseObject;
+                                          [self.tableView reloadData];
+                                          
+                                          
+                                      }
+                                      failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                          NSLog(@"Error from postPath: %@",[error localizedDescription]);
+                                          //else you cant connect, therefore push modalview login onto the stack
+                                      }];
+
 }
 
 @end
