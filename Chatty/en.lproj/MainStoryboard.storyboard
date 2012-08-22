@@ -47,7 +47,7 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <segments>
                                 <segment title="Profile"/>
-                                <segment title="Favorites"/>
+                                <segment title="Following"/>
                             </segments>
                             <connections>
                                 <action selector="toggleView:" destination="Dhr-Ev-Sc6" eventType="valueChanged" id="nIp-VH-zKr"/>
@@ -690,6 +690,7 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/Profile.h"/>
             <relationships>
                 <relationship kind="action" name="logout"/>
+                <relationship kind="action" name="refresh"/>
                 <relationship kind="action" name="toggleView:"/>
             </relationships>
         </class>

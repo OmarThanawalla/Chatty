@@ -104,6 +104,8 @@
 
     }
     
+    //prevents highlighting of the cell
+    [tableView setAllowsSelection:NO];
     
     return cell;
 }

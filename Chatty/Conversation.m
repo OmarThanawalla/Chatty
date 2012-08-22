@@ -117,6 +117,7 @@
         NSDictionary *aMessage = [self.messages objectAtIndex:indexPath.row];
         cell.MessageUser.text = [aMessage objectForKey:@"message_content"];
         cell.SenderUser.text = [aMessage objectForKey:@"full_name"];
+        cell.userInteractionEnabled = NO;
         return cell;
 
 }

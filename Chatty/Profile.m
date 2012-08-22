@@ -9,15 +9,19 @@
 #import "Profile.h"
 #import "profileCustomCell.h"
 #import "PendingRequestCell.h"
+
+#import "FollowingUser.h"
+
 #import "KeychainItemWrapper.h"
 //import AFNetworking
 #import "AFNetworking.h"
 #import "AFChattyAPIClient.h"
 
+
 @implementation Profile
 
-@synthesize currentView, name, tag;
-@synthesize follows;
+@synthesize currentView;
+@synthesize follows, follows2;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -44,10 +48,7 @@
 {
     [super viewDidLoad];
     [self refresh];
-    name = [[NSMutableArray alloc] initWithObjects:@"Omar", @"Kathy Lee", @"Britney Spears",@"Kobe Bryant",@"Tony Parker",@"Bill Gates", nil];
-    tag = [[NSMutableArray alloc] initWithObjects:@"OT", @"KathyL", @"BritneySpears",@"Kobe",@"TParker",@"BGates", nil];
-
-    // Uncomment the following line to preserve selection between presentations.
+      // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
@@ -114,8 +115,11 @@
         {
             return [follows count];
         }
-    } else {
-        return [name count];
+    }
+    //
+    else
+    {
+        return [follows2 count];
     }
     
 }
@@ -127,60 +131,80 @@
     //profile SEGMENT
     if (self.currentView == 0)
     {
-        //profile SECTION
-        if (indexPath.section == 0) {
+                    //profile SECTION
+                    if (indexPath.section == 0) {
 
-            static NSString *CellIdentifier = @"CellIdentifier";
-            static BOOL nibsRegistered = NO;
-            if(!nibsRegistered)
-            {
-                UINib *nib = [UINib nibWithNibName: @"profileCustomCell" bundle:nil];
-                [tableView registerNib:nib forCellReuseIdentifier:CellIdentifier];
-                nibsRegistered = YES;
-            }
-            
-            profileCustomCell * cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-            
-            cell.BioText.text = @"I live in Austin!";
-            cell.NameText.text = @"Omar Thanawall";
-            cell.userName.text = @"Batman";
-            return cell;
- 
-        }
-        else // you are in the pendingRequestsSection
+                        static NSString *CellIdentifier = @"CellIdentifier";
+                        static BOOL nibsRegistered = NO;
+                        if(!nibsRegistered)
+                        {
+                            UINib *nib = [UINib nibWithNibName: @"profileCustomCell" bundle:nil];
+                            [tableView registerNib:nib forCellReuseIdentifier:CellIdentifier];
+                            nibsRegistered = YES;
+                        }
+                        
+                        profileCustomCell * cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+                        
+                        cell.BioText.text = @"I live in Austin!";
+                        cell.NameText.text = @"Omar Thanawall";
+                        cell.userName.text = @"Batman";
+                        //this prevents the cell from being hightlighted but still lets me hit the edit profile UIButton
+                        [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+                        return cell;
+             
+                    }
+                    else // you are in the pendingRequestsSection
+                    {
+                        NSLog(@"This is section 1");
+                        static NSString *CellIdentifier = @"PendingCell";
+                        static BOOL nibsRegistered = NO;
+                        if(!nibsRegistered)
+                        {
+                            UINib *nib = [UINib nibWithNibName: @"PendingRequestCell" bundle:nil];
+                            [tableView registerNib:nib forCellReuseIdentifier:CellIdentifier];
+                            nibsRegistered = YES;
+                        }
+                        
+                        PendingRequestCell * cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+                        
+                        NSDictionary *user = [follows objectAtIndex:indexPath.row];
+                        
+                        cell.fullName.text = [user objectForKey:@"fullName"];
+                        cell.bio.text = [user objectForKey:@"bio"];
+                        cell.userName.text = [user objectForKey:@"userName"];
+                        cell.userID = [user objectForKey:@"userID"];
+                        cell.profilePic = [user objectForKey:@"pictureURL"];
+                        UIImage *btnImage = [UIImage imageNamed:@"question-mark.gif"];
+                        [cell.cnfmButton setImage:btnImage forState:UIControlStateNormal];
+                        
+                        //this prevents the cell from being hightlighted but still lets me hit the edit profile UIButton
+                        [tableView setAllowsSelection:NO];
+                        return cell;
+                    }
+        
+    }
+    //Following Section
+    else{
+        
+        NSLog(@"This is section 1");
+        static NSString *CellIdentifier = @"followingUser";
+        static BOOL nibsRegistered = NO;
+        if(!nibsRegistered)
         {
-            NSLog(@"This is section 1");
-            static NSString *CellIdentifier = @"PendingCell";
-            static BOOL nibsRegistered = NO;
-            if(!nibsRegistered)
-            {
-                UINib *nib = [UINib nibWithNibName: @"PendingRequestCell" bundle:nil];
-                [tableView registerNib:nib forCellReuseIdentifier:CellIdentifier];
-                nibsRegistered = YES;
-            }
-            
-            PendingRequestCell * cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-            
-            NSDictionary *user = [follows objectAtIndex:indexPath.row];
-            
-            cell.fullName.text = [user objectForKey:@"fullName"];
-            cell.bio.text = [user objectForKey:@"bio"];
-            cell.userName.text = [user objectForKey:@"userName"];
-            cell.userID = [user objectForKey:@"userID"];
-            
-            return cell;
+            UINib *nib = [UINib nibWithNibName: @"FollowingUser" bundle:nil];
+            [tableView registerNib:nib forCellReuseIdentifier:CellIdentifier];
+            nibsRegistered = YES;
         }
         
-    } 
-    else{
-        static NSString *CellIdentifier = @"CellFav";
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        if (cell == nil) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
-            
-        }
-        cell.textLabel.text = [name objectAtIndex:indexPath.row];
-        cell.detailTextLabel.text = [tag objectAtIndex:indexPath.row];
+        FollowingUser * cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        
+        NSDictionary *user = [follows2 objectAtIndex:indexPath.row];
+        cell.fullName.text = [user objectForKey:@"fullName"];
+        cell.bio.text = [user objectForKey:@"bio"];
+        cell.userName.text = [user objectForKey:@"userName"];
+        cell.userID = [user objectForKey:@"userID"];
+        //this prevents the cell from being hightlighted but still lets me hit the edit profile UIButton
+        [tableView setAllowsSelection:NO];
         return cell;
     }
     
@@ -254,11 +278,22 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 0) {
-        return 120.0;
+    if(currentView == 0)
+    {
+        if (indexPath.section == 0)
+        {
+            return 120.0;
+        }
+        else
+        {
+        return 100.0;
+        }
     }
-    return 90.0;
-}
+    else
+    {
+        return 100.0;
+    }
+} 
 
 -(IBAction) logout
 {
@@ -281,6 +316,9 @@
     NSString * email = [keychain objectForKey:(__bridge id)kSecAttrAccount];
     NSString * password = [keychain objectForKey:(__bridge id)kSecValueData];
     
+    if (currentView == 0)
+    {
+    
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
                             email, @"email",
                             password, @"password",
@@ -302,6 +340,31 @@
                                           //else you cant connect, therefore push modalview login onto the stack
                                       }];
 
+    }
+    else // your in following segment
+    {
+        NSLog(@"youve pushed the refresh button while on following segment");
+        NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
+                                email, @"email",
+                                password, @"password",
+                                nil];
+        
+        [[AFChattyAPIClient sharedClient] getPath:@"/follow/" parameters:params
+         //if login works, log a message to the console
+                                          success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                                              //NSString *text = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+                                              NSLog(@"Response: %@", responseObject);
+                                              
+                                              follows2 = responseObject;
+                                              [self.tableView reloadData];
+                                              
+                                              
+                                          }
+                                          failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                              NSLog(@"Error from postPath: %@",[error localizedDescription]);
+                                              //else you cant connect, therefore push modalview login onto the stack
+                                          }];
+    }
 }
 
 @end

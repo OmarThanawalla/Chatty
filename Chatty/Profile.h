@@ -11,9 +11,8 @@
 @interface Profile : UITableViewController
 
 @property (nonatomic, assign) int currentView;
-@property (nonatomic, strong) NSMutableArray * name;
-@property (nonatomic, strong) NSMutableArray * tag;
 @property (nonatomic, strong) NSMutableArray *follows;
+@property (nonatomic, strong) NSMutableArray *follows2;
 
 
 - (IBAction)toggleView:(id)sender;

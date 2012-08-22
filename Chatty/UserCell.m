@@ -61,7 +61,7 @@
                             self.userID, @"targetFollow",
                             nil];
     
-    [[AFChattyAPIClient sharedClient] getPath:@"/follow/" parameters:params 
+    [[AFChattyAPIClient sharedClient] postPath:@"/follow/" parameters:params
      //if login works, log a message to the console
                                       success:^(AFHTTPRequestOperation *operation, id responseObject) {
                                           //NSString *text = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
