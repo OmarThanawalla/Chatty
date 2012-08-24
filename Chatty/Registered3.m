@@ -75,6 +75,10 @@
     //got the keychain ready
     KeychainItemWrapper *keychain = [[KeychainItemWrapper alloc] initWithIdentifier:@"ChattyAppLoginData" accessGroup:nil];
 
+    //lowercase the userName and email so we dont store it not lowercased
+    self.userName.text = [self.userName.text lowercaseString];
+    self.email = [self.email lowercaseString];
+    
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
                             self.email, @"email", 
                             self.password, @"password",
@@ -83,6 +87,7 @@
                             self.lastName.text, @"lastName",
                             self.bio.text, @"Bio",
                             nil];
+    
     
     [[AFChattyAPIClient sharedClient] postPath:@"/user/create" parameters:params 
      //if login works, log a message to the console

@@ -73,17 +73,10 @@
     NSString *password = passwordBox.text;
     NSLog(@"%@, %@", email, password);
     
+    email = [email lowercaseString];
+    
     //store the email and password in the KeyChain or NSUserDefaults. NOTE: I imported the KeychainItemWrapper and linked Secuirty.framework
     KeychainItemWrapper *keychain = [[KeychainItemWrapper alloc] initWithIdentifier:@"ChattyAppLoginData" accessGroup:nil];
-    
-//    if(email)
-//    {
-//        [keychain setObject:email forKey:(__bridge id) kSecAttrAccount];
-//    }
-//    if(password)
-//    {
-//        [keychain setObject:password forKey:(__bridge id)kSecValueData];
-//    }
     
     
     

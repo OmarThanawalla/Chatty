@@ -118,6 +118,8 @@
     cell.MessageUser.text = [tweet objectForKey:@"message_content"];
     cell.SenderUser.text = [tweet objectForKey:@"full_name"];
     cell.Recipients.text = [tweet objectForKey:@"recipient"];
+    cell.userName.text = [tweet objectForKey:@"userName"];
+
     return cell;
     
 

@@ -79,9 +79,10 @@
     NSDictionary * tweet = [listOfUsers objectAtIndex:indexPath.row];
     NSString *firstName = [tweet objectForKey:@"first_name"];
     NSString *lastName = [tweet objectForKey:@"last_name"];
-    cell.userName.text = [NSString stringWithFormat:@"%@ %@", firstName, lastName];
+    cell.fullName.text = [NSString stringWithFormat:@"%@ %@", firstName, lastName];
     cell.bio.text = [tweet objectForKey:@"Bio"];
     cell.userID = [tweet objectForKey:@"id"];
+    cell.userName.text = [tweet objectForKey:@"userName"];
     
     //set the state and image of the cell
     NSString *relationship = [tweet objectForKey:@"is_friend"];
@@ -162,6 +163,11 @@
     
 }
 
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    return 65;
+}
 
 
 @end

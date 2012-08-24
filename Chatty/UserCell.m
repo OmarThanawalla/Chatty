@@ -15,10 +15,11 @@
 @implementation UserCell
 
 @synthesize profilePic;
-@synthesize userName, bio;
+@synthesize fullName, bio;
 @synthesize userID;
 @synthesize requestSent;
 @synthesize requestButton;
+@synthesize userName;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {

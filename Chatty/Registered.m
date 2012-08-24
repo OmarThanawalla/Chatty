@@ -81,6 +81,7 @@
     
     if(goodToGo)
     {
+        
         [self performSegueWithIdentifier:@"continueRegistered" sender:nil];
         NSLog(@"You hit the continue button and we were goodToGo ");
     }

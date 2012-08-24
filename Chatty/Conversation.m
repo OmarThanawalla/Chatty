@@ -43,7 +43,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    NSLog(@"The convo id i have been initialzed to is : %@", conversationID);
+   
     
 }
 
@@ -67,7 +67,8 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    
+     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:([messages count]-1) inSection:0];
+    [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
     
 }
 
@@ -118,6 +119,7 @@
         cell.MessageUser.text = [aMessage objectForKey:@"message_content"];
         cell.SenderUser.text = [aMessage objectForKey:@"full_name"];
         cell.userInteractionEnabled = NO;
+        cell.userName.text = [aMessage objectForKey:@"userName"];
         return cell;
 
 }
@@ -199,7 +201,7 @@
                                           self.messages = responseObject;
                                           NSLog(@"This is the response I recieved in the message view: %@", responseObject);
                                           [self.tableView reloadData];
-                                          
+
                                           
                                           
                                       } 
