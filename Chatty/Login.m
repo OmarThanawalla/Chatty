@@ -48,21 +48,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    //login
-        
-    //////////
+    self.title = @"Sign In";
     
-//    [httpClient getPath:@"/login/index" parameters:nil 
-//                success:^(AFHTTPRequestOperation *operation, id responseObject) {
-//                    NSString *text = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-//                    NSLog(@"Response: %@", text);
-//                } 
-//                failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//                    NSLog(@"Error from getPath: %@",[error localizedDescription]);
-//                }];
-    
-    
-    }
+}
+
+
 -(IBAction)login
 {
     //when the login button is pushed

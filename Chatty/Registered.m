@@ -43,6 +43,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.title = @"Registration: Step 1 of 2";
 }
 
 
@@ -85,11 +86,20 @@
         [self performSegueWithIdentifier:@"continueRegistered" sender:nil];
         NSLog(@"You hit the continue button and we were goodToGo ");
     }
+    if(!goodToGo)
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Sorry"
+                                                        message:@"Your email or password does not match. Check your spelling."
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
+    }
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier isEqualToString:@"continueRegistered"]) 
+    if ([segue.identifier isEqualToString:@"continueRegistered"])
     {
         Registered3 * registered3 = [segue destinationViewController];
         registered3.email = self.email.text;

@@ -32,6 +32,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.title = @"Registration: Step 2 of 2";
 	// Do any additional setup after loading the view.
     NSLog(@"Email and password: %@, %@",email, password);
 }
@@ -104,11 +105,17 @@
                                               [self dismissModalViewControllerAnimated:YES];
                                           }
                                           if([responseString isEqualToString:@"NO"])
-                                         {
+                                           {
                                              NSLog(@"Record not saved");
                                              //say error
-                                             self.notice.text = @"Invalid Email or Username. Try something different.";
-                                         }
+                                             
+                                             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Sorry"
+                                                                                             message:@"The Username or Email has already been taken"
+                                                                                            delegate:nil
+                                                                                   cancelButtonTitle:@"OK"
+                                                                                   otherButtonTitles:nil];
+                                             [alert show];
+                                        }
                                           
                                           
                                           
