@@ -7,6 +7,9 @@
 //
 
 #import "BIDAppDelegate.h"
+#import "AFNetworking.h"
+#import "AFChattyAPIClient.h"
+#import "KeychainItemWrapper.h"
 
 @implementation BIDAppDelegate
 
@@ -15,6 +18,10 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    
+    //register for push notification
+    [[UIApplication sharedApplication] registerForRemoteNotificationTypes:
+     (UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
     return YES;
 }
 							
@@ -55,6 +62,46 @@
      Save data if appropriate.
      See also applicationDidEnterBackground:.
      */
+}
+
+- (void)application:(UIApplication*)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData*)deviceToken
+{
+	NSLog(@"My token is: %@", deviceToken);
+
+    
+    //send device token to rails
+    KeychainItemWrapper *keychain = [[KeychainItemWrapper alloc] initWithIdentifier:@"ChattyAppLoginData" accessGroup:nil];
+    NSString * email = [keychain objectForKey:(__bridge id)kSecAttrAccount];
+    NSString * password = [keychain objectForKey:(__bridge id)kSecValueData];
+    NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
+                            email, @"email",
+                            password, @"password",
+                            deviceToken, @"token",
+                            nil];   
+    [[AFChattyAPIClient sharedClient] postPath:@"/update_token/" parameters:params
+     //if login works, log a message to the console
+                                      success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                                          //NSString *text = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+                                          NSLog(@"Response: %@", responseObject);
+                                          //rmr: responseObject is an array where each element is a diciontary                                          
+                                      }
+                                      failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                          NSLog(@"Error from postPath: %@",[error localizedDescription]);
+                                      }];
+}
+
+
+
+
+
+- (void)application:(UIApplication*)application didFailToRegisterForRemoteNotificationsWithError:(NSError*)error
+{
+	NSLog(@"Failed to get token, error: %@", error);
+}
+
+-(void) application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
+{
+    NSLog(@"I recieved a remote notification");
 }
 
 @end

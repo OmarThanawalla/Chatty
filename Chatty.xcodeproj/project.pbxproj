@@ -52,8 +52,6 @@
 		A7954A5C15911E35008C0E69 /* jasonT.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = A7954A5B15911E35008C0E69 /* jasonT.jpeg */; };
 		A7B35B3D1598C47900330B11 /* Registered3.m in Sources */ = {isa = PBXBuildFile; fileRef = A7B35B3C1598C47900330B11 /* Registered3.m */; };
 		A7B35B48159A640F00330B11 /* OnMyWay.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A7B35B47159A640F00330B11 /* OnMyWay.jpg */; };
-		A7BA8CCD159FE2D7003AAC24 /* chatty.png in Resources */ = {isa = PBXBuildFile; fileRef = A7BA8CCC159FE2D7003AAC24 /* chatty.png */; };
-		A7BA8CD0159FE593003AAC24 /* windUpMouth.png in Resources */ = {isa = PBXBuildFile; fileRef = A7BA8CCF159FE593003AAC24 /* windUpMouth.png */; };
 		A7BA8CD8159FE698003AAC24 /* Chat.png in Resources */ = {isa = PBXBuildFile; fileRef = A7BA8CD7159FE698003AAC24 /* Chat.png */; };
 		A7BBBFD5158858CD00015173 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7BBBFD4158858CD00015173 /* Security.framework */; };
 		A7BBBFD9158859FA00015173 /* KeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = A7BBBFD8158859FA00015173 /* KeychainItemWrapper.m */; };
@@ -145,8 +143,6 @@
 		A7B35B3B1598C47900330B11 /* Registered3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Registered3.h; sourceTree = "<group>"; };
 		A7B35B3C1598C47900330B11 /* Registered3.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Registered3.m; sourceTree = "<group>"; };
 		A7B35B47159A640F00330B11 /* OnMyWay.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = OnMyWay.jpg; sourceTree = "<group>"; };
-		A7BA8CCC159FE2D7003AAC24 /* chatty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chatty.png; sourceTree = "<group>"; };
-		A7BA8CCF159FE593003AAC24 /* windUpMouth.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = windUpMouth.png; sourceTree = "<group>"; };
 		A7BA8CD7159FE698003AAC24 /* Chat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Chat.png; path = ../Chat.png; sourceTree = "<group>"; };
 		A7BBBFD4158858CD00015173 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		A7BBBFD7158859FA00015173 /* KeychainItemWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KeychainItemWrapper.h; path = Chatty/KeychainItemWrapper.h; sourceTree = "<group>"; };
@@ -250,9 +246,7 @@
 				A7FE1631158A939200AB5876 /* UIButtonBarRefresh.jpg */,
 				A7B35B47159A640F00330B11 /* OnMyWay.jpg */,
 				A7BF80FB15E441C5005E53AC /* delete-icon_tiny.png */,
-				A7BA8CCC159FE2D7003AAC24 /* chatty.png */,
 				A72708241593F25D0010E7D2 /* green-checkmark.png */,
-				A7BA8CCF159FE593003AAC24 /* windUpMouth.png */,
 				A7FE1635158ED00A00AB5876 /* dirk_nowitzki_027.jpg */,
 				A7954A5B15911E35008C0E69 /* jasonT.jpeg */,
 				A736D05C152BBA620049AB22 /* first.png */,
@@ -406,7 +400,7 @@
 		A736D037152BBA620049AB22 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0430;
+				LastUpgradeCheck = 0440;
 			};
 			buildConfigurationList = A736D03A152BBA620049AB22 /* Build configuration list for PBXProject "Chatty" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -447,8 +441,6 @@
 				A72708231592D5B60010E7D2 /* bluePlusSign.jpeg in Resources */,
 				A72708251593F25D0010E7D2 /* green-checkmark.png in Resources */,
 				A7B35B48159A640F00330B11 /* OnMyWay.jpg in Resources */,
-				A7BA8CCD159FE2D7003AAC24 /* chatty.png in Resources */,
-				A7BA8CD0159FE593003AAC24 /* windUpMouth.png in Resources */,
 				A7BA8CD8159FE698003AAC24 /* Chat.png in Resources */,
 				A7486A0315E2D537004E770D /* PendingRequestCell.xib in Resources */,
 				A7486A0515E34F0F004E770D /* question-mark.gif in Resources */,
@@ -570,10 +562,12 @@
 		A736D06A152BBA620049AB22 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer: Omar THANAWALLA (6U7K82RZ2B)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Chatty/Chatty-Prefix.pch";
 				INFOPLIST_FILE = "Chatty/Chatty-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "BC3F226A-C90B-47D6-A67B-5697D9704859";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -581,10 +575,12 @@
 		A736D06B152BBA620049AB22 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer: Omar THANAWALLA (6U7K82RZ2B)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Chatty/Chatty-Prefix.pch";
 				INFOPLIST_FILE = "Chatty/Chatty-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "BC3F226A-C90B-47D6-A67B-5697D9704859";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

@@ -19,6 +19,6 @@
 
 
 -(IBAction)follow;
--(void) hasFriendship;
+//-(void) hasFriendship;
 
 @end

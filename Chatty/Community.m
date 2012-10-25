@@ -87,6 +87,8 @@
     }
     else //you are in All Conversations view
     {
+
+        
         [[AFChattyAPIClient sharedClient] getPath:@"/conversation/" parameters:params 
          //if login works, log a message to the console
                                           success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -103,6 +105,8 @@
                                               //else you cant connect, therefore push modalview login onto the stack
                                               [self performSegueWithIdentifier:@"loggedIn" sender:self];
                                           }];
+        
+        
     }
 }
 
