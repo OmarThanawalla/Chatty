@@ -12,6 +12,7 @@
 
 @property (strong, nonatomic) IBOutlet UITextView *messageBody;
 @property (strong, nonatomic) NSString *conversationID;
+@property (strong, nonatomic) NSString *preAddressing;
 
 -(IBAction)cancel;
 -(IBAction)submit;

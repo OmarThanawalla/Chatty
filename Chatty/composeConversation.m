@@ -78,7 +78,7 @@
     {
         //alert the user that he must direct the conversation towards someone
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
-                                                        message:@"You must direct conversation towards someone to start a new convo."
+                                                        message:@"You must direct conversation towards someone with an @ sign to start a new convo."
                                                        delegate:nil
                                               cancelButtonTitle:@"OK"
                                               otherButtonTitles:nil];

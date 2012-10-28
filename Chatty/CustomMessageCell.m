@@ -13,6 +13,7 @@
 @synthesize MessageUser;
 @synthesize Recipients;
 @synthesize ProfilePicture;
+@synthesize userName;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {

@@ -9,11 +9,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Chatty/composeMessageOnly.h"
-         timestampString = "361753435.68708"
+         timestampString = "373091942.058941"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "18"
-         endingLineNumber = "18"
+         startingLineNumber = "19"
+         endingLineNumber = "19"
          landmarkName = "@interface composeMessageOnly"
          landmarkType = "2">
       </FileBreakpoint>

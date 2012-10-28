@@ -18,6 +18,7 @@
 @synthesize currentView;
 @synthesize conversationID;
 @synthesize messages;
+@synthesize preAddressing;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -67,9 +68,38 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:([messages count]-1) inSection:0];
-    [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+     
+    //taking out the below code because I think it has something to do with my app terminating when viewing a conversation
+    //[self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
     
+    //iterate the first cell and find all the @targets
+    NSIndexPath *firstCellIndex = [NSIndexPath indexPathForRow:0 inSection:0];
+    CustomMessageCell *myFirstCell = (CustomMessageCell*)[self.tableView cellForRowAtIndexPath:firstCellIndex];
+    NSString *message =  myFirstCell.MessageUser.text;
+    NSArray *messageArray = [message componentsSeparatedByString: @" "];
+    
+    //this string will hold the usernames while we iterate
+    NSMutableString *userNames = [[NSMutableString alloc] init];
+    
+    //iterate through the messageArray
+    for(int i = 0; i < messageArray.count; i++)
+    {
+        //grab the element out of the array
+        NSString *element = [messageArray objectAtIndex:i];
+        //grab the first char of this element
+        NSString *subStringFirstChar = [element substringWithRange:NSMakeRange(0, 1)];
+        if([subStringFirstChar isEqualToString:@"@"]) //is the first character an @
+        {
+            //concatenate this word to the list of usernames
+            [userNames appendString:element];
+            [userNames appendString:@" "];
+        }
+    }
+    
+    NSLog(@"%@",userNames);
+    
+    //assign usernames to the preAddressing variable where we will set it to destinationViewController upon prepareForSegueMethod
+    preAddressing = userNames;
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -218,6 +248,7 @@
     {
         composeMessageOnly *myMessageWriter = [segue destinationViewController];
         myMessageWriter.conversationID = self.conversationID;
+        myMessageWriter.preAddressing = self.preAddressing;
         
         
     }

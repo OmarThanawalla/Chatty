@@ -12,7 +12,7 @@
 #import "KeychainItemWrapper.h"
 
 @implementation composeMessageOnly
-@synthesize  messageBody, conversationID;
+@synthesize  messageBody, conversationID, preAddressing;
 
 
 
@@ -49,6 +49,7 @@
     [super viewDidLoad];
     [messageBody becomeFirstResponder];
     NSLog(@"The value of conversation ID for composeMessageOnly class is %@", conversationID);
+    [messageBody setText:preAddressing];
 }
 
 
