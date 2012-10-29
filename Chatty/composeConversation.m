@@ -12,7 +12,7 @@
 #import "AFChattyAPIClient.h"
 
 @implementation composeConversation
-@synthesize myTextView;
+@synthesize myTextView, characterCount;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -47,6 +47,8 @@
     [super viewDidLoad];
     //force the keyboard to open
     [myTextView becomeFirstResponder];
+    
+    myTextView.delegate = self;
 }
 
 
@@ -68,6 +70,12 @@
     [self.presentingViewController dismissModalViewControllerAnimated:YES];   
 }
 
+-(void)textViewDidChange:(UITextView *)textView
+{
+    int count = 140 - [myTextView.text length];
+    [characterCount setTitle:[NSString stringWithFormat:@"%d", count]];
+}
+
 -(IBAction)sendButton
 {
 
@@ -84,7 +92,17 @@
                                               otherButtonTitles:nil];
         [alert show];
 
-    }else
+    }
+    else if ([myTextView.text length] > 140) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                        message:@"Message must be less than 140 characters"
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
+    }
+    
+    else
     {
         
         //submit the text to the server

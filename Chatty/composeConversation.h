@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface composeConversation : UIViewController
+@interface composeConversation : UIViewController <UITextViewDelegate>
 
 /*
 @protocol composeMessageDelegate <NSObject>
@@ -19,6 +19,9 @@
  */
 
 @property (nonatomic, retain) IBOutlet UITextView *myTextView;
+@property (nonatomic, strong) IBOutlet UIBarButtonItem *characterCount;
+
+
 -(IBAction)cancelButton;
 -(IBAction)sendButton;
 

@@ -37,7 +37,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    NSLog(@"this view, conversationMe did load");
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -65,7 +64,8 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-//    [super viewDidAppear:animated];
+    [super viewDidAppear:animated];
+    [self.tableView reloadData];
 //    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:([messages count]-1) inSection:0];
 //    [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
 
@@ -91,9 +91,7 @@
             [userNames appendString:@" "];
         }
     }
-    
-    NSLog(@"%@",userNames);
-    
+        
     //assign usernames to the preAddressing variable where we will set it to destinationViewController upon prepareForSegueMethod
     preAddressing = userNames;
     
@@ -116,7 +114,6 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    NSLog(@"%i", [messages count]);
     return [messages count];
 }
 

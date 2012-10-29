@@ -68,7 +68,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-     
+    [self.tableView reloadData]; 
     //taking out the below code because I think it has something to do with my app terminating when viewing a conversation
     //[self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
     
@@ -96,7 +96,6 @@
         }
     }
     
-    NSLog(@"%@",userNames);
     
     //assign usernames to the preAddressing variable where we will set it to destinationViewController upon prepareForSegueMethod
     preAddressing = userNames;
