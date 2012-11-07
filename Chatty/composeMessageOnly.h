@@ -8,11 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@interface composeMessageOnly : UIViewController
+@interface composeMessageOnly : UIViewController <UITextViewDelegate>
 
 @property (strong, nonatomic) IBOutlet UITextView *messageBody;
 @property (strong, nonatomic) NSString *conversationID;
 @property (strong, nonatomic) NSString *preAddressing;
+@property (nonatomic, strong) IBOutlet UIBarButtonItem *characterCount;
+
 
 -(IBAction)cancel;
 -(IBAction)submit;

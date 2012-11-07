@@ -12,7 +12,7 @@
 #import "KeychainItemWrapper.h"
 
 @implementation composeMessageOnly
-@synthesize  messageBody, conversationID, preAddressing;
+@synthesize  messageBody, conversationID, preAddressing, characterCount;
 
 
 
@@ -50,6 +50,9 @@
     [messageBody becomeFirstResponder];
     NSLog(@"The value of conversation ID for composeMessageOnly class is %@", conversationID);
     [messageBody setText:preAddressing];
+    messageBody.delegate = self;
+    int count = 140 - [messageBody.text length];
+    [characterCount setTitle:[NSString stringWithFormat:@"%d", count]];
 }
 
 
@@ -69,6 +72,14 @@
 {
     [self.presentingViewController dismissModalViewControllerAnimated:YES];   
    
+}
+
+-(void)textViewDidChange:(UITextView *)textView
+{
+    int count = 140 - [messageBody.text length];
+    [characterCount setTitle:[NSString stringWithFormat:@"%d", count]];
+    NSLog(@"You called the textViewDidChange method");
+    
 }
 
 -(IBAction)submit
