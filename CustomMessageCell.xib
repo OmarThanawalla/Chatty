@@ -123,7 +123,7 @@
 							<object class="IBUILabel" id="810147974">
 								<reference key="NSNextResponder" ref="331541200"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{77, 65}, {198, 21}}</string>
+								<string key="NSFrame">{{77, 62}, {198, 21}}</string>
 								<reference key="NSSuperview" ref="331541200"/>
 								<reference key="NSWindow"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -132,7 +132,7 @@
 								<int key="IBUIContentMode">7</int>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<string key="IBUIText"/>
+								<string key="IBUIText">Recip</string>
 								<object class="NSColor" key="IBUITextColor">
 									<int key="NSColorSpace">3</int>
 									<bytes key="NSWhite">MC42NjY2NjY2NjY3AA</bytes>
@@ -179,7 +179,7 @@
 								</object>
 							</object>
 						</array>
-						<string key="NSFrameSize">{320, 86}</string>
+						<string key="NSFrameSize">{320, 83}</string>
 						<reference key="NSSuperview" ref="61653446"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="338201820"/>
@@ -195,7 +195,7 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 					</object>
 				</array>
-				<string key="NSFrameSize">{320, 87}</string>
+				<string key="NSFrameSize">{320, 84}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="331541200"/>
@@ -203,7 +203,7 @@
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 				<reference key="IBUIContentView" ref="331541200"/>
 				<string key="IBUIReuseIdentifier">CustomCellIdentifier</string>
-				<real value="87" key="IBUIRowHeight"/>
+				<real value="84" key="IBUIRowHeight"/>
 			</object>
 		</array>
 		<object class="IBObjectContainer" key="IBDocument.Objects">
@@ -272,11 +272,11 @@
 						<int key="objectID">2</int>
 						<reference key="object" ref="61653446"/>
 						<array class="NSMutableArray" key="children">
-							<reference ref="810147974"/>
 							<reference ref="338201820"/>
 							<reference ref="887060480"/>
-							<reference ref="3962829"/>
 							<reference ref="69532582"/>
+							<reference ref="3962829"/>
+							<reference ref="810147974"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
