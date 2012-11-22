@@ -223,7 +223,7 @@
         NSDictionary *tweet = [self.allConversations objectAtIndex:indexPath.row];
         cell.MessageUser.text = [tweet objectForKey:@"message_content"];
         cell.MessageUser.lineBreakMode = UILineBreakModeWordWrap;
-        cell.MessageUser.numberOfLines = 0;
+        cell.MessageUser.numberOfLines = 0; //You'll notice that I set the number of lines for the label to 0. This lets it use as many lines as it needs.
         
         
         cell.SenderUser.text = [tweet objectForKey:@"full_name"];
@@ -237,7 +237,19 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-        
+   
+   // CustomMessageCell * cell = (CustomMessageCell *) [tableView cellForRowAtIndexPath:indexPath];
+    
+    
+    
+//    NSString *cellText = @"fjsldfja;sldfja;sldkfja;sldkfja;slkdfj;aslkdfj;alskdjf;alskdfj;alskjdf;aslkdfj;aslkjdf;laskdf;alskjf;laskjdf;alskjfd;alskjf;alskdjf;alskdfj;alskdjf;alskdjf;alskdjf;aslkdjfa;skdjflaskjdf;laskjdf;laksjfd;lkasjdf;laskjdf;laskjdf;alskdjf;laskdjf;alskdjf;alskjdfa;lskdjfa;lksdfj;alksdkjfals;dkfja;lskdjfl;alskdjf";
+//    
+//    UIFont *cellFont = [UIFont fontWithName:@"Helvetica" size:17.0];
+//    CGSize constraintSize = CGSizeMake(280.0f, MAXFLOAT);
+//    CGSize labelSize = [cellText sizeWithFont:cellFont constrainedToSize:constraintSize lineBreakMode:UILineBreakModeWordWrap];
+//    
+//    return labelSize.height + 20;
+    
     return 85;
 }
 
