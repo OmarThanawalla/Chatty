@@ -226,9 +226,39 @@
         cell.MessageUser.numberOfLines = 0; //You'll notice that I set the number of lines for the label to 0. This lets it use as many lines as it needs.
         
         
+        
+        
+        //SIZE AND WIDTH OF LABEL
+        //trying to alter the UILabel Size
+        NSString *cellText = cell.MessageUser.text;             //grab the message 
+        UIFont *cellFont = [UIFont fontWithName:@"Helvetica" size:17.0];
+        CGSize constraintSize = CGSizeMake(220.0f, MAXFLOAT);   //This sets how wide we can go
+        CGSize labelSize = [cellText sizeWithFont:cellFont constrainedToSize:constraintSize lineBreakMode:UILineBreakModeWordWrap];
+
+        //you are able to assign the frame but not the fields of the frame
+        //effectively what it does is: sets the frame size for UILabel
+        //Now what frames are and how this all works with UILabel, I dont know. lol
+        CGRect temp = cell.MessageUser.frame;
+        temp.size = labelSize;
+        cell.MessageUser.frame = temp;
+        [cell.MessageUser sizeToFit];
+        
+        
+        
+        
         cell.SenderUser.text = [tweet objectForKey:@"full_name"];
+        
+        //modify the recipeints UILabel
         cell.Recipients.text = [tweet objectForKey:@"recipient"];
+        CGRect temp2 = cell.Recipients.frame;
+        temp2.origin.x = 77;
+        temp2.origin.y = 100;//this is what i have to calculate
+        cell.Recipients.frame = temp2;
+        
+        
         cell.userName.text = [tweet objectForKey:@"userName"];
+        
+        
         
         return cell;
     }
@@ -250,7 +280,7 @@
 //    
 //    return labelSize.height + 20;
     
-    return 85;
+    return 155;
 }
 
 
