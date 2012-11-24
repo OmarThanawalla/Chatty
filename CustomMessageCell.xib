@@ -58,7 +58,7 @@
 							<object class="IBUILabel" id="810147974">
 								<reference key="NSNextResponder" ref="331541200"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{77, 62}, {198, 21}}</string>
+								<string key="NSFrame">{{72, 152}, {198, 21}}</string>
 								<reference key="NSSuperview" ref="331541200"/>
 								<reference key="NSWindow"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -196,7 +196,7 @@
 								</object>
 							</object>
 						</array>
-						<string key="NSFrameSize">{320, 83}</string>
+						<string key="NSFrameSize">{320, 178}</string>
 						<reference key="NSSuperview" ref="61653446"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="338201820"/>
@@ -212,7 +212,7 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 					</object>
 				</array>
-				<string key="NSFrameSize">{320, 84}</string>
+				<string key="NSFrameSize">{320, 179}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="331541200"/>
@@ -224,7 +224,7 @@
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 				<reference key="IBUIContentView" ref="331541200"/>
 				<string key="IBUIReuseIdentifier">CustomCellIdentifier</string>
-				<real value="84" key="IBUIRowHeight"/>
+				<real value="179" key="IBUIRowHeight"/>
 			</object>
 		</array>
 		<object class="IBObjectContainer" key="IBDocument.Objects">
@@ -296,8 +296,8 @@
 							<reference ref="338201820"/>
 							<reference ref="887060480"/>
 							<reference ref="69532582"/>
-							<reference ref="810147974"/>
 							<reference ref="3962829"/>
+							<reference ref="810147974"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>

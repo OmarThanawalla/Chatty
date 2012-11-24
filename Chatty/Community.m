@@ -23,6 +23,7 @@
 
 @synthesize currentView;
 @synthesize innerCircleConversations, allConversations;
+@synthesize variableCellHeight;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -174,9 +175,9 @@
     
     static NSString *CellIdentifier = @"CustomCellIdentifier";
    
-    
+    //DONT LOOK AT THIS IF STATEMENT BECAUSE YOU DON'T HAVE AN INNER CIRCLE CONVERSATION TAB 
     if(currentView == 0){ //current view is Inner Circle
-        
+        /*
         static BOOL nibsRegistered = NO;
         if(!nibsRegistered)
         {
@@ -200,10 +201,11 @@
         
         
         return cell;
+         */
     }
       
     
-    
+    //THIS IS DOING ALL YOUR WORK. YAY. I LOVE WORK.
     else { //current view is ALL
         static BOOL nibsRegistered = NO;
         if(!nibsRegistered)
@@ -228,7 +230,7 @@
         
         
         
-        //SIZE AND WIDTH OF LABEL
+        //SIZE AND WIDTH OF MESSAGE CONTENT LABEL
         //trying to alter the UILabel Size
         NSString *cellText = cell.MessageUser.text;             //grab the message 
         UIFont *cellFont = [UIFont fontWithName:@"Helvetica" size:17.0];
@@ -242,20 +244,23 @@
         temp.size = labelSize;
         cell.MessageUser.frame = temp;
         [cell.MessageUser sizeToFit];
-        
+        NSLog(@"fasldjf;alsdkfj;alsdkjfadks %lf", cell.MessageUser.frame.size.height);
         
         
         
         cell.SenderUser.text = [tweet objectForKey:@"full_name"];
         
-        //modify the recipeints UILabel
+        //MODIFY RECIPIENTS UILABEL
         cell.Recipients.text = [tweet objectForKey:@"recipient"];
+        //grab recipients frame so i can modify it's height
         CGRect temp2 = cell.Recipients.frame;
         temp2.origin.x = 77;
-        temp2.origin.y = 100;//this is what i have to calculate
+        //
+        int messageHeight = cell.MessageUser.frame.size.height;
+        temp2.origin.y = 30 + messageHeight; //this is what i have to calculate        
         cell.Recipients.frame = temp2;
         
-        
+        //userName label
         cell.userName.text = [tweet objectForKey:@"userName"];
         
         
@@ -267,10 +272,41 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-   
-   // CustomMessageCell * cell = (CustomMessageCell *) [tableView cellForRowAtIndexPath:indexPath];
+    // #1 Get the labelSize
+    //grab the tweet
+    NSDictionary *tweet = [self.allConversations objectAtIndex:indexPath.row];
+    //grab the text out of the tweet
+    NSString *cellText = [tweet objectForKey:@"message_content"];             //grab the message 
+    UIFont *cellFont = [UIFont fontWithName:@"Helvetica" size:17.0];
+    CGSize constraintSize = CGSizeMake(220.0f, MAXFLOAT);                     //This sets how wide we can go
+    //calculate labelSize
+    CGSize labelSize = [cellText sizeWithFont:cellFont constrainedToSize:constraintSize lineBreakMode:UILineBreakModeWordWrap];
+    // #2 Create the label
+    CGRect labelFrame = CGRectMake(0, 0, labelSize.width, labelSize.height);//created a label frame
+    UILabel *myLabel = [[UILabel alloc] initWithFrame: labelFrame];         //created a label
     
     
+    
+    
+    
+    //BEGIN WEIRD HACK:
+    [myLabel setText:cellText];
+     myLabel.lineBreakMode = UILineBreakModeWordWrap;
+    [myLabel setNumberOfLines:0];
+    NSString *cellText2 = [tweet objectForKey:@"message_content"];
+    UIFont *cellFont2 = [UIFont fontWithName:@"Helvetica" size:17.0];
+    CGSize constraintSize2 = CGSizeMake(220.0f, MAXFLOAT);
+    CGSize labelSize2 = [cellText2 sizeWithFont:cellFont2 constrainedToSize:constraintSize2 lineBreakMode:UILineBreakModeWordWrap];
+    
+    CGRect temp2 = myLabel.frame;
+    temp2.size = labelSize2;
+    myLabel.frame = temp2;    
+    // #3 Call sizeToFit method
+    [myLabel sizeToFit];                                                    //myLabel sizeToFit
+    
+    
+    //NSLog(@"this is what labelSize was before: %lf",labelSize.height);
+    NSLog(@"this is what labelSize is after sizeTofit: %lf",myLabel.frame.size.height);
     
 //    NSString *cellText = @"fjsldfja;sldfja;sldkfja;sldkfja;slkdfj;aslkdfj;alskdjf;alskdfj;alskjdf;aslkdfj;aslkjdf;laskdf;alskjf;laskjdf;alskjfd;alskjf;alskdjf;alskdfj;alskdjf;alskdjf;alskdjf;aslkdjfa;skdjflaskjdf;laskjdf;laksjfd;lkasjdf;laskjdf;laskjdf;alskdjf;laskdjf;alskdjf;alskjdfa;lskdjfa;lksdfj;alksdkjfals;dkfja;lskdjfl;alskdjf";
 //    
@@ -280,7 +316,7 @@
 //    
 //    return labelSize.height + 20;
     
-    return 155;
+    return 60 + myLabel.frame.size.height;
 }
 
 
