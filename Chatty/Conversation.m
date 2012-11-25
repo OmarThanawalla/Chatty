@@ -145,14 +145,20 @@
         CustomMessageCell * cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
             
         NSDictionary *aMessage = [self.messages objectAtIndex:indexPath.row];
-        cell.MessageUser.text = [aMessage objectForKey:@"message_content"];
+        
+            cell.MessageUser.text = [aMessage objectForKey:@"message_content"];
+    
+    
         cell.SenderUser.text = [aMessage objectForKey:@"full_name"];
         cell.userInteractionEnabled = NO;
         cell.userName.text = [aMessage objectForKey:@"userName"];
         return cell;
 
 }
-
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+}    
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath

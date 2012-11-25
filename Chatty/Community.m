@@ -216,48 +216,52 @@
         }
         
         CustomMessageCell * cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        //        cell.SenderUser.text = @"Dr. Mitra";
-        //        cell.Recipients.text = @"Gabe, Omar, Dr. Mitra";
-        //NSDictionary *tweet = [self.results objectAtIndex:indexPath.row];
-        //cell.SenderUser.text = [tweet objectForKey:@"from_user"];
-        //cell.MessageUser.text = [tweet objectForKey:@"text"];
         
         NSDictionary *tweet = [self.allConversations objectAtIndex:indexPath.row];
-        cell.MessageUser.text = [tweet objectForKey:@"message_content"];
-        cell.MessageUser.lineBreakMode = UILineBreakModeWordWrap;
-        cell.MessageUser.numberOfLines = 0; //You'll notice that I set the number of lines for the label to 0. This lets it use as many lines as it needs.
-        
-        
-        
-        
-        //SIZE AND WIDTH OF MESSAGE CONTENT LABEL
-        //trying to alter the UILabel Size
-        NSString *cellText = cell.MessageUser.text;             //grab the message 
-        UIFont *cellFont = [UIFont fontWithName:@"Helvetica" size:17.0];
-        CGSize constraintSize = CGSizeMake(220.0f, MAXFLOAT);   //This sets how wide we can go
-        CGSize labelSize = [cellText sizeWithFont:cellFont constrainedToSize:constraintSize lineBreakMode:UILineBreakModeWordWrap];
+           
+            //MessageUser Label
+            CGRect labelFrame = CGRectMake(72.0f, 26.0f, 0.0f, 0.0f);   
+            UILabel *myLabel = [[UILabel alloc] initWithFrame:labelFrame];  //initialize the label
+            
+            myLabel.text = [tweet objectForKey:@"message_content"];
+            myLabel.font =[UIFont systemFontOfSize:15];
+            myLabel.lineBreakMode = UILineBreakModeWordWrap;
+            myLabel.numberOfLines = 0;                             //As many lines as it needs
+            [myLabel setBackgroundColor:[UIColor clearColor]];   //For debugging purposes
+            myLabel.tag = 1;
+            //Create Label Size
+            NSString *cellText = [tweet objectForKey:@"message_content"];   //grab the message 
+            UIFont *cellFont = [UIFont fontWithName:@"Helvetica" size:15.0];
+            CGSize constraintSize = CGSizeMake(225.0f, MAXFLOAT);           //This sets how wide we can go
+            CGSize labelSize = [cellText sizeWithFont:cellFont constrainedToSize:constraintSize lineBreakMode:UILineBreakModeWordWrap];
 
-        //you are able to assign the frame but not the fields of the frame
-        //effectively what it does is: sets the frame size for UILabel
-        //Now what frames are and how this all works with UILabel, I dont know. lol
-        CGRect temp = cell.MessageUser.frame;
-        temp.size = labelSize;
-        cell.MessageUser.frame = temp;
-        [cell.MessageUser sizeToFit];
-        NSLog(@"fasldjf;alsdkfj;alsdkjfadks %lf", cell.MessageUser.frame.size.height);
+           //Apend the labelSize and call sizeToFit
+            CGRect temp = myLabel.frame;
+            temp.size = labelSize;
+            myLabel.frame = temp;                                  //so origin x,y should stil be in tact
+            [myLabel sizeToFit];
+            
+            //Adding the label to the view
+            if(cell.MessageUser == NULL){
+                cell.MessageUser = myLabel;
+                [cell.contentView addSubview:cell.MessageUser];
+            }else{
+                [cell.MessageUser removeFromSuperview];         //remove the old label before putting the new one in
+                cell.MessageUser = myLabel;
+                [cell.contentView addSubview:cell.MessageUser];
+            }
         
         
-        
+        //SenderUser Label
         cell.SenderUser.text = [tweet objectForKey:@"full_name"];
         
-        //MODIFY RECIPIENTS UILABEL
+        //Recipients Label
         cell.Recipients.text = [tweet objectForKey:@"recipient"];
         //grab recipients frame so i can modify it's height
         CGRect temp2 = cell.Recipients.frame;
         temp2.origin.x = 77;
-        //
-        int messageHeight = cell.MessageUser.frame.size.height;
-        temp2.origin.y = 30 + messageHeight; //this is what i have to calculate        
+        int messageHeight = myLabel.frame.size.height;
+        temp2.origin.y = 35 + messageHeight; //this is what i have to calculate        
         cell.Recipients.frame = temp2;
         
         //userName label
@@ -277,7 +281,7 @@
     NSDictionary *tweet = [self.allConversations objectAtIndex:indexPath.row];
     //grab the text out of the tweet
     NSString *cellText = [tweet objectForKey:@"message_content"];             //grab the message 
-    UIFont *cellFont = [UIFont fontWithName:@"Helvetica" size:17.0];
+    UIFont *cellFont = [UIFont fontWithName:@"Helvetica" size:15.0];
     CGSize constraintSize = CGSizeMake(220.0f, MAXFLOAT);                     //This sets how wide we can go
     //calculate labelSize
     CGSize labelSize = [cellText sizeWithFont:cellFont constrainedToSize:constraintSize lineBreakMode:UILineBreakModeWordWrap];
@@ -306,17 +310,8 @@
     
     
     //NSLog(@"this is what labelSize was before: %lf",labelSize.height);
-    NSLog(@"this is what labelSize is after sizeTofit: %lf",myLabel.frame.size.height);
-    
-//    NSString *cellText = @"fjsldfja;sldfja;sldkfja;sldkfja;slkdfj;aslkdfj;alskdjf;alskdfj;alskjdf;aslkdfj;aslkjdf;laskdf;alskjf;laskjdf;alskjfd;alskjf;alskdjf;alskdfj;alskdjf;alskdjf;alskdjf;aslkdjfa;skdjflaskjdf;laskjdf;laksjfd;lkasjdf;laskjdf;laskjdf;alskdjf;laskdjf;alskdjf;alskjdfa;lskdjfa;lksdfj;alksdkjfals;dkfja;lskdjfl;alskdjf";
-//    
-//    UIFont *cellFont = [UIFont fontWithName:@"Helvetica" size:17.0];
-//    CGSize constraintSize = CGSizeMake(280.0f, MAXFLOAT);
-//    CGSize labelSize = [cellText sizeWithFont:cellFont constrainedToSize:constraintSize lineBreakMode:UILineBreakModeWordWrap];
-//    
-//    return labelSize.height + 20;
-    
-    return 60 + myLabel.frame.size.height;
+    NSLog(@"Predicted cell height:  %lf",myLabel.frame.size.height);
+    return 55 + myLabel.frame.size.height;
 }
 
 
