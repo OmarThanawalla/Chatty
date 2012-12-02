@@ -59,6 +59,7 @@
 		A7BF80F715E40622005E53AC /* FollowingUser.m in Sources */ = {isa = PBXBuildFile; fileRef = A7BF80F615E40622005E53AC /* FollowingUser.m */; };
 		A7BF80FA15E4063A005E53AC /* FollowingUser.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7BF80F915E4063A005E53AC /* FollowingUser.xib */; };
 		A7BF80FC15E441C5005E53AC /* delete-icon_tiny.png in Resources */ = {isa = PBXBuildFile; fileRef = A7BF80FB15E441C5005E53AC /* delete-icon_tiny.png */; };
+		A7C17B1D166B4AAD00186336 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A7C17B1C166B4AAD00186336 /* Default-568h@2x.png */; };
 		A7E5997F153614D8009633DC /* Login.m in Sources */ = {isa = PBXBuildFile; fileRef = A7E5997E153614D8009633DC /* Login.m */; };
 		A7E5998515362CBC009633DC /* Registered.m in Sources */ = {isa = PBXBuildFile; fileRef = A7E5998415362CBC009633DC /* Registered.m */; };
 		A7E5998E153A5E13009633DC /* Profile.m in Sources */ = {isa = PBXBuildFile; fileRef = A7E5998D153A5E13009633DC /* Profile.m */; };
@@ -158,6 +159,7 @@
 		A7BF80F615E40622005E53AC /* FollowingUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FollowingUser.m; sourceTree = "<group>"; };
 		A7BF80F915E4063A005E53AC /* FollowingUser.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FollowingUser.xib; sourceTree = "<group>"; };
 		A7BF80FB15E441C5005E53AC /* delete-icon_tiny.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "delete-icon_tiny.png"; sourceTree = "<group>"; };
+		A7C17B1C166B4AAD00186336 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		A7E5997D153614D8009633DC /* Login.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Login.h; sourceTree = "<group>"; };
 		A7E5997E153614D8009633DC /* Login.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Login.m; sourceTree = "<group>"; };
 		A7E5998315362CBC009633DC /* Registered.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Registered.h; sourceTree = "<group>"; };
@@ -289,6 +291,7 @@
 		A736D035152BBA620049AB22 = {
 			isa = PBXGroup;
 			children = (
+				A7C17B1C166B4AAD00186336 /* Default-568h@2x.png */,
 				A76DDEBA158537C100F8D65D /* AFNetworking */,
 				A736D04A152BBA620049AB22 /* Chatty */,
 				A736D043152BBA620049AB22 /* Frameworks */,
@@ -417,7 +420,7 @@
 		A736D037152BBA620049AB22 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0440;
+				LastUpgradeCheck = 0450;
 			};
 			buildConfigurationList = A736D03A152BBA620049AB22 /* Build configuration list for PBXProject "Chatty" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -467,6 +470,7 @@
 				A7E7FB79166B0F8600BC29CB /* PENDING_Stamp1.png in Resources */,
 				A7E7FB7B166B13B100BC29CB /* unfollow.jpeg in Resources */,
 				A7E7FB7F166B165700BC29CB /* whyYouNoFollow.png in Resources */,
+				A7C17B1D166B4AAD00186336 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
