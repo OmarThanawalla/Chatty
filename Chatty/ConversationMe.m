@@ -131,15 +131,82 @@
     
     CustomMessageCell * cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
-    NSDictionary *aMessage = [self.messages objectAtIndex:indexPath.row];
-    cell.MessageUser.text = [aMessage objectForKey:@"message_content"];
-    cell.SenderUser.text = [aMessage objectForKey:@"full_name"];
+    NSDictionary *tweet = [self.messages objectAtIndex:indexPath.row];
+    
+    //MessageUser Label
+            CGRect labelFrame = CGRectMake(72.0f, 26.0f, 0.0f, 0.0f);   
+            UILabel *myLabel = [[UILabel alloc] initWithFrame:labelFrame];  //initialize the label
+            
+            myLabel.text = [tweet objectForKey:@"message_content"];
+            myLabel.font =[UIFont systemFontOfSize:15];
+            myLabel.lineBreakMode = UILineBreakModeWordWrap;
+            myLabel.numberOfLines = 0;                             //As many lines as it needs
+            [myLabel setBackgroundColor:[UIColor clearColor]];   //For debugging purposes
+            myLabel.tag = 1;
+            //Create Label Size
+            NSString *cellText = [tweet objectForKey:@"message_content"];   //grab the message 
+            UIFont *cellFont = [UIFont fontWithName:@"Helvetica" size:15.0];
+            CGSize constraintSize = CGSizeMake(225.0f, MAXFLOAT);           //This sets how wide we can go
+            CGSize labelSize = [cellText sizeWithFont:cellFont constrainedToSize:constraintSize lineBreakMode:UILineBreakModeWordWrap];
+            
+            //Apend the labelSize and call sizeToFit
+            CGRect temp = myLabel.frame;
+            temp.size = labelSize;
+            myLabel.frame = temp;                                  //so origin x,y should stil be in tact
+            NSLog(@"%@", myLabel.text);
+            NSLog(@"%@", myLabel.frame.size.height);
+            [myLabel sizeToFit];
+            NSLog(@"actual height: %@", myLabel.frame.size.height);
+            //Adding the label to the view
+            if(cell.MessageUser == NULL){
+                cell.MessageUser = myLabel;
+                [cell.contentView addSubview:cell.MessageUser];
+            }else{
+                [cell.MessageUser removeFromSuperview];         //remove the old label before putting the new one in
+                cell.MessageUser = myLabel;
+                [cell.contentView addSubview:cell.MessageUser];
+            }
+
+    
+    //SenderUser Label
+    cell.SenderUser.text = [tweet objectForKey:@"full_name"];
+    
+    [cell.Recipients removeFromSuperview];
     cell.userInteractionEnabled = NO;
-    cell.userName.text = [aMessage objectForKey:@"userName"];
+    cell.userName.text = [tweet objectForKey:@"userName"];
     return cell;
     
 }
-
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSDictionary *tweet = [self.messages objectAtIndex:indexPath.row];
+    NSString *cellText = [tweet objectForKey:@"message_content"];             //grab the message 
+    UIFont *cellFont = [UIFont fontWithName:@"Helvetica" size:15.0];
+    CGSize constraintSize = CGSizeMake(220.0f, MAXFLOAT);                     //This sets how wide we can go
+    //calculate labelSize
+    CGSize labelSize = [cellText sizeWithFont:cellFont constrainedToSize:constraintSize lineBreakMode:UILineBreakModeWordWrap];
+    // #2 Create the label
+    CGRect labelFrame = CGRectMake(0, 0, labelSize.width, labelSize.height);//created a label frame
+    UILabel *myLabel = [[UILabel alloc] initWithFrame: labelFrame];         //created a label
+    
+    //BEGIN WEIRD HACK:
+    [myLabel setText:cellText];
+    myLabel.lineBreakMode = UILineBreakModeWordWrap;
+    [myLabel setNumberOfLines:0];
+    NSString *cellText2 = [tweet objectForKey:@"message_content"];
+    UIFont *cellFont2 = [UIFont fontWithName:@"Helvetica" size:15.0];
+    CGSize constraintSize2 = CGSizeMake(220.0f, MAXFLOAT);
+    CGSize labelSize2 = [cellText2 sizeWithFont:cellFont2 constrainedToSize:constraintSize2 lineBreakMode:UILineBreakModeWordWrap];
+    
+    CGRect temp2 = myLabel.frame;
+    temp2.size = labelSize2;
+    myLabel.frame = temp2;    
+    // #3 Call sizeToFit method
+    [myLabel sizeToFit];    
+    
+    double total = 0 + myLabel.frame.size.height;
+    return (total > 70 ? total : 70);
+}    
 
 #pragma mark - Table view delegate
 
@@ -196,9 +263,6 @@
     }
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return 75;
-}
+
 
 @end
