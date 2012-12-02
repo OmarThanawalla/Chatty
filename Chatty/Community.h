@@ -20,6 +20,7 @@
 @property (assign, nonatomic) int currentView;
 @property (nonatomic, strong) NSMutableArray * innerCircleConversations;
 @property (nonatomic, strong) NSMutableArray * allConversations;
+@property (nonatomic, strong) NSMutableArray * variableCellHeight;
 
 - (IBAction)toggleView:(UISegmentedControl *)sender;
 -(IBAction)refresh;

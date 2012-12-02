@@ -496,7 +496,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
-                                    <navigationItem title="Title" id="l3v-O4-wBW">
+                                    <navigationItem title="Say something!" id="l3v-O4-wBW">
                                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="20a-ui-uGB">
                                             <connections>
                                                 <action selector="cancelButton" destination="ykX-gt-6pe" id="eWX-FH-gab"/>
@@ -527,7 +527,7 @@
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="1536" y="-208"/>
+            <point key="canvasLocation" x="1528" y="-208"/>
         </scene>
         <!--Navigation Controller - Me-->
         <scene sceneID="nHZ-hU-3SW">
@@ -648,8 +648,8 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="sEP-E2-vGj"/>
         <segue reference="uJa-SE-dA2"/>
+        <segue reference="sEP-E2-vGj"/>
         <segue reference="8La-9C-anb"/>
     </inferredMetricsTieBreakers>
 </document>

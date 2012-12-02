@@ -41,6 +41,7 @@
 */
 
 
+
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad
 {
@@ -70,8 +71,25 @@
     [self.presentingViewController dismissModalViewControllerAnimated:YES];   
 }
 
+- (BOOL) textViewShouldBeginEditing:(UITextView *)textView
+{
+    //Simulate placeholder text
+    myTextView.text = @"Direct your message to someone using the @ sign";
+    myTextView.textColor = [UIColor lightGrayColor];
+    myTextView.selectedRange = NSMakeRange(0, 0);
+    return YES;
+}
+
 -(void)textViewDidChange:(UITextView *)textView
 {
+    //Clear placeholder
+    if(myTextView.textColor == [UIColor lightGrayColor])
+       {
+           myTextView.textColor= [UIColor blackColor];
+           NSRange clearMe = NSMakeRange(1, myTextView.text.length -1);     //grab the front rest of the string
+           myTextView.text = [myTextView.text stringByReplacingCharactersInRange: clearMe withString:@""]; //clear that front rest
+       }
+    //counter
     int count = 140 - [myTextView.text length];
     [characterCount setTitle:[NSString stringWithFormat:@"%d", count]];
 }
@@ -82,7 +100,7 @@
     //grab the text from textView
     NSString * messageContent = myTextView.text;
     
-    if([messageContent rangeOfString:@"@"].location == NSNotFound)
+    if([messageContent rangeOfString:@"@"].location == NSNotFound || (myTextView.textColor ==[UIColor lightGrayColor]) )
     {
         //alert the user that he must direct the conversation towards someone
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"

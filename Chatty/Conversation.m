@@ -77,7 +77,7 @@
     CustomMessageCell *myFirstCell = (CustomMessageCell*)[self.tableView cellForRowAtIndexPath:firstCellIndex];
     NSString *message =  myFirstCell.MessageUser.text;
     NSArray *messageArray = [message componentsSeparatedByString: @" "];
-    
+    NSLog(@"%@",messageArray);
     //this string will hold the usernames while we iterate
     NSMutableString *userNames = [[NSMutableString alloc] init];
     
@@ -87,8 +87,16 @@
         //grab the element out of the array
         NSString *element = [messageArray objectAtIndex:i];
         //grab the first char of this element
-        NSString *subStringFirstChar = [element substringWithRange:NSMakeRange(0, 1)];
-        if([subStringFirstChar isEqualToString:@"@"]) //is the first character an @
+        NSString *subStringFirstChar;
+        if(element.length > 1)
+        {
+            subStringFirstChar = [element substringWithRange:NSMakeRange(0, 1)];
+        }else {
+            //handles one character long excpetions
+            subStringFirstChar = element;
+            NSLog(@"length less than one");
+        }
+        if([subStringFirstChar isEqualToString:@"@"]) //asks: is the first character an @ ?
         {
             //concatenate this word to the list of usernames
             [userNames appendString:element];
@@ -144,15 +152,80 @@
         
         CustomMessageCell * cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
             
-        NSDictionary *aMessage = [self.messages objectAtIndex:indexPath.row];
-        cell.MessageUser.text = [aMessage objectForKey:@"message_content"];
-        cell.SenderUser.text = [aMessage objectForKey:@"full_name"];
+        NSDictionary *tweet = [self.messages objectAtIndex:indexPath.row];
+        
+            //MessageUser Label
+            CGRect labelFrame = CGRectMake(72.0f, 26.0f, 0.0f, 0.0f);   
+            UILabel *myLabel = [[UILabel alloc] initWithFrame:labelFrame];  //initialize the label
+            
+            myLabel.text = [tweet objectForKey:@"message_content"];
+            myLabel.font =[UIFont systemFontOfSize:15];
+            myLabel.lineBreakMode = UILineBreakModeWordWrap;
+            myLabel.numberOfLines = 0;
+            [myLabel setBackgroundColor:[UIColor clearColor]];
+            myLabel.tag = 1;
+            //Create Label Size
+            NSString *cellText = [tweet objectForKey:@"message_content"];   //grab the message 
+            UIFont *cellFont = [UIFont fontWithName:@"Helvetica" size:15.0];
+            CGSize constraintSize = CGSizeMake(225.0f, MAXFLOAT);           //This sets how wide we can go
+            CGSize labelSize = [cellText sizeWithFont:cellFont constrainedToSize:constraintSize lineBreakMode:UILineBreakModeWordWrap];
+            //Apend the labelSize and call sizeToFit
+            CGRect temp = myLabel.frame;
+            temp.size = labelSize;
+            myLabel.frame = temp;                                  //so origin x,y should stil be in tact
+            [myLabel sizeToFit];
+            
+            //Adding the label to the view
+            if(cell.MessageUser == NULL){
+                cell.MessageUser = myLabel;
+                [cell.contentView addSubview:cell.MessageUser];
+            }else{
+                [cell.MessageUser removeFromSuperview];         //remove the old label before putting the new one in
+                cell.MessageUser = myLabel;
+                [cell.contentView addSubview:cell.MessageUser];
+            }
+            
+    
+        //SenderUser Label
+        cell.SenderUser.text = [tweet objectForKey:@"full_name"];
+    
+        //Remove recipients label
+        [cell.Recipients removeFromSuperview];
         cell.userInteractionEnabled = NO;
-        cell.userName.text = [aMessage objectForKey:@"userName"];
+        cell.userName.text = [tweet objectForKey:@"userName"];
         return cell;
 
 }
-
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSDictionary *tweet = [self.messages objectAtIndex:indexPath.row];
+    NSString *cellText = [tweet objectForKey:@"message_content"];             //grab the message 
+    UIFont *cellFont = [UIFont fontWithName:@"Helvetica" size:15.0];
+    CGSize constraintSize = CGSizeMake(220.0f, MAXFLOAT);                     //This sets how wide we can go
+    //calculate labelSize
+    CGSize labelSize = [cellText sizeWithFont:cellFont constrainedToSize:constraintSize lineBreakMode:UILineBreakModeWordWrap];
+    // #2 Create the label
+    CGRect labelFrame = CGRectMake(0, 0, labelSize.width, labelSize.height);//created a label frame
+    UILabel *myLabel = [[UILabel alloc] initWithFrame: labelFrame];         //created a label
+    
+    //BEGIN WEIRD HACK:
+    [myLabel setText:cellText];
+    myLabel.lineBreakMode = UILineBreakModeWordWrap;
+    [myLabel setNumberOfLines:0];
+    NSString *cellText2 = [tweet objectForKey:@"message_content"];
+    UIFont *cellFont2 = [UIFont fontWithName:@"Helvetica" size:15.0];
+    CGSize constraintSize2 = CGSizeMake(220.0f, MAXFLOAT);
+    CGSize labelSize2 = [cellText2 sizeWithFont:cellFont2 constrainedToSize:constraintSize2 lineBreakMode:UILineBreakModeWordWrap];
+    
+    CGRect temp2 = myLabel.frame;
+    temp2.size = labelSize2;
+    myLabel.frame = temp2;    
+    // #3 Call sizeToFit method
+    [myLabel sizeToFit];    
+    
+    double total = 0 + myLabel.frame.size.height;
+    return (total > 70 ? total : 70);
+}    
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
@@ -205,10 +278,7 @@
      */
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return 75;
-}
+
 
 -(void) refresh
 {
