@@ -80,7 +80,12 @@
     NSString *firstName = [tweet objectForKey:@"first_name"];
     NSString *lastName = [tweet objectForKey:@"last_name"];
     cell.fullName.text = [NSString stringWithFormat:@"%@ %@", firstName, lastName];
+    //resize the bio label since you are dequeing some of them
+    CGRect labelFrame = CGRectMake(68.0f, 21.0f, 211.0f, 41.0f);
+    cell.bio.frame = labelFrame;
     cell.bio.text = [tweet objectForKey:@"Bio"];
+    cell.bio.numberOfLines = 0;
+    [cell.bio sizeToFit];
     cell.userID = [tweet objectForKey:@"id"];
     cell.userName.text = [tweet objectForKey:@"userName"];
     
@@ -113,7 +118,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 65;
+    return 70;
 }
 
 - (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString

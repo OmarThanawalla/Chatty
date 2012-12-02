@@ -159,14 +159,14 @@
             UILabel *myLabel = [[UILabel alloc] initWithFrame:labelFrame];  //initialize the label
             
             myLabel.text = [tweet objectForKey:@"message_content"];
-            myLabel.font =[UIFont systemFontOfSize:15];
+            myLabel.font =[UIFont systemFontOfSize:13];
             myLabel.lineBreakMode = UILineBreakModeWordWrap;
             myLabel.numberOfLines = 0;
             [myLabel setBackgroundColor:[UIColor clearColor]];
             myLabel.tag = 1;
             //Create Label Size
             NSString *cellText = [tweet objectForKey:@"message_content"];   //grab the message 
-            UIFont *cellFont = [UIFont fontWithName:@"Helvetica" size:15.0];
+            UIFont *cellFont = [UIFont fontWithName:@"Helvetica" size:13.0];
             CGSize constraintSize = CGSizeMake(225.0f, MAXFLOAT);           //This sets how wide we can go
             CGSize labelSize = [cellText sizeWithFont:cellFont constrainedToSize:constraintSize lineBreakMode:UILineBreakModeWordWrap];
             //Apend the labelSize and call sizeToFit

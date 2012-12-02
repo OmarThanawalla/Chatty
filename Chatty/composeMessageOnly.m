@@ -78,7 +78,6 @@
 {
     int count = 140 - [messageBody.text length];
     [characterCount setTitle:[NSString stringWithFormat:@"%d", count]];
-    NSLog(@"You called the textViewDidChange method");
     
 }
 

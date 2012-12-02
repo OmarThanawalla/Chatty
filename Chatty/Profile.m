@@ -146,8 +146,8 @@
                         profileCustomCell * cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
                         
                         cell.BioText.text = @"I live in Austin!";
-                        cell.NameText.text = @"Omar Thanawall";
-                        cell.userName.text = @"Batman";
+                        cell.NameText.text = @"Omar Thanawalla";
+                        cell.userName.text = @"@omar";
                         //this prevents the cell from being hightlighted but still lets me hit the edit profile UIButton
                         [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
                         return cell;
@@ -170,11 +170,17 @@
                         NSDictionary *user = [follows objectAtIndex:indexPath.row];
                         
                         cell.fullName.text = [user objectForKey:@"fullName"];
+                        //reset the labelFrame because the cell could be dequed
+                        CGRect labelFrame = CGRectMake(62.0f, 27.0f, 166.0f, 34.0f);
+                        cell.bio.frame = labelFrame;
                         cell.bio.text = [user objectForKey:@"bio"];
+                        cell.bio.numberOfLines = 0;
+                        [cell.bio sizeToFit];
+                        
                         cell.userName.text = [user objectForKey:@"userName"];
                         cell.userID = [user objectForKey:@"userID"];
                         cell.profilePic = [user objectForKey:@"pictureURL"];
-                        UIImage *btnImage = [UIImage imageNamed:@"question-mark.gif"];
+                        UIImage *btnImage = [UIImage imageNamed:@"PENDING_Stamp1.png"];
                         [cell.cnfmButton setImage:btnImage forState:UIControlStateNormal];
                         
                         //this prevents the cell from being hightlighted but still lets me hit the edit profile UIButton
@@ -198,9 +204,20 @@
         
         FollowingUser * cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         
+        //reset the picture on the unfollow button because the cell could be dequeued
+        UIImage *btnImage = [UIImage imageNamed:@"unfollow.jpeg"];
+        [cell.unfollowButton setImage:btnImage forState:UIControlStateNormal];
+        
         NSDictionary *user = [follows2 objectAtIndex:indexPath.row];
         cell.fullName.text = [user objectForKey:@"fullName"];
+        
+        //reset the labelFrame because the cell could be dequed
+        CGRect labelFrame = CGRectMake(63.0f, 29.0f, 150.0f, 21.0f);
+        cell.bio.frame = labelFrame;
         cell.bio.text = [user objectForKey:@"bio"];
+        cell.bio.numberOfLines = 0;
+        [cell.bio sizeToFit];
+        
         cell.userName.text = [user objectForKey:@"userName"];
         cell.userID = [user objectForKey:@"userID"];
         //this prevents the cell from being hightlighted but still lets me hit the edit profile UIButton
@@ -286,12 +303,12 @@
         }
         else
         {
-        return 100.0;
+        return 90.0;
         }
     }
     else
     {
-        return 100.0;
+        return 90.0;
     }
 } 
 

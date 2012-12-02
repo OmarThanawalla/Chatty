@@ -62,6 +62,10 @@
 		A7E5997F153614D8009633DC /* Login.m in Sources */ = {isa = PBXBuildFile; fileRef = A7E5997E153614D8009633DC /* Login.m */; };
 		A7E5998515362CBC009633DC /* Registered.m in Sources */ = {isa = PBXBuildFile; fileRef = A7E5998415362CBC009633DC /* Registered.m */; };
 		A7E5998E153A5E13009633DC /* Profile.m in Sources */ = {isa = PBXBuildFile; fileRef = A7E5998D153A5E13009633DC /* Profile.m */; };
+		A7E7FB76166B0ED600BC29CB /* approved.png in Resources */ = {isa = PBXBuildFile; fileRef = A7E7FB75166B0ED600BC29CB /* approved.png */; };
+		A7E7FB79166B0F8600BC29CB /* PENDING_Stamp1.png in Resources */ = {isa = PBXBuildFile; fileRef = A7E7FB78166B0F8600BC29CB /* PENDING_Stamp1.png */; };
+		A7E7FB7B166B13B100BC29CB /* unfollow.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = A7E7FB7A166B13B100BC29CB /* unfollow.jpeg */; };
+		A7E7FB7F166B165700BC29CB /* whyYouNoFollow.png in Resources */ = {isa = PBXBuildFile; fileRef = A7E7FB7E166B165700BC29CB /* whyYouNoFollow.png */; };
 		A7FE162F158A928B00AB5876 /* refresh.png in Resources */ = {isa = PBXBuildFile; fileRef = A7FE162E158A928B00AB5876 /* refresh.png */; };
 		A7FE1632158A939200AB5876 /* UIButtonBarRefresh.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A7FE1631158A939200AB5876 /* UIButtonBarRefresh.jpg */; };
 		A7FE1636158ED00B00AB5876 /* dirk_nowitzki_027.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A7FE1635158ED00A00AB5876 /* dirk_nowitzki_027.jpg */; };
@@ -160,6 +164,10 @@
 		A7E5998415362CBC009633DC /* Registered.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Registered.m; sourceTree = "<group>"; };
 		A7E5998C153A5E13009633DC /* Profile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Profile.h; sourceTree = "<group>"; };
 		A7E5998D153A5E13009633DC /* Profile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Profile.m; sourceTree = "<group>"; };
+		A7E7FB75166B0ED600BC29CB /* approved.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = approved.png; sourceTree = "<group>"; };
+		A7E7FB78166B0F8600BC29CB /* PENDING_Stamp1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PENDING_Stamp1.png; sourceTree = "<group>"; };
+		A7E7FB7A166B13B100BC29CB /* unfollow.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = unfollow.jpeg; sourceTree = "<group>"; };
+		A7E7FB7E166B165700BC29CB /* whyYouNoFollow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = whyYouNoFollow.png; sourceTree = "<group>"; };
 		A7FE162E158A928B00AB5876 /* refresh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = refresh.png; sourceTree = "<group>"; };
 		A7FE1631158A939200AB5876 /* UIButtonBarRefresh.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = UIButtonBarRefresh.jpg; path = ../AFNetworking/UIButtonBarRefresh.jpg; sourceTree = "<group>"; };
 		A7FE1635158ED00A00AB5876 /* dirk_nowitzki_027.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = dirk_nowitzki_027.jpg; sourceTree = "<group>"; };
@@ -245,20 +253,24 @@
 		083A8B2415420C9E0078989E /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				A7BA8CD7159FE698003AAC24 /* Chat.png */,
+				A7E7FB75166B0ED600BC29CB /* approved.png */,
+				A7E7FB7E166B165700BC29CB /* whyYouNoFollow.png */,
 				A72708221592D5B60010E7D2 /* bluePlusSign.jpeg */,
-				A7486A0415E34F0F004E770D /* question-mark.gif */,
-				A7FE1631158A939200AB5876 /* UIButtonBarRefresh.jpg */,
-				A7B35B47159A640F00330B11 /* OnMyWay.jpg */,
+				A7E7FB7A166B13B100BC29CB /* unfollow.jpeg */,
+				A7BA8CD7159FE698003AAC24 /* Chat.png */,
 				A7BF80FB15E441C5005E53AC /* delete-icon_tiny.png */,
-				A72708241593F25D0010E7D2 /* green-checkmark.png */,
 				A7FE1635158ED00A00AB5876 /* dirk_nowitzki_027.jpg */,
-				A7954A5B15911E35008C0E69 /* jasonT.jpeg */,
 				A736D05C152BBA620049AB22 /* first.png */,
-				A7FE162E158A928B00AB5876 /* refresh.png */,
 				A736D05E152BBA620049AB22 /* first@2x.png */,
+				A72708241593F25D0010E7D2 /* green-checkmark.png */,
+				A7954A5B15911E35008C0E69 /* jasonT.jpeg */,
+				A7B35B47159A640F00330B11 /* OnMyWay.jpg */,
+				A7E7FB78166B0F8600BC29CB /* PENDING_Stamp1.png */,
+				A7486A0415E34F0F004E770D /* question-mark.gif */,
+				A7FE162E158A928B00AB5876 /* refresh.png */,
 				A736D063152BBA620049AB22 /* second.png */,
 				A736D065152BBA620049AB22 /* second@2x.png */,
+				A7FE1631158A939200AB5876 /* UIButtonBarRefresh.jpg */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -451,6 +463,10 @@
 				A7486A0515E34F0F004E770D /* question-mark.gif in Resources */,
 				A7BF80FA15E4063A005E53AC /* FollowingUser.xib in Resources */,
 				A7BF80FC15E441C5005E53AC /* delete-icon_tiny.png in Resources */,
+				A7E7FB76166B0ED600BC29CB /* approved.png in Resources */,
+				A7E7FB79166B0F8600BC29CB /* PENDING_Stamp1.png in Resources */,
+				A7E7FB7B166B13B100BC29CB /* unfollow.jpeg in Resources */,
+				A7E7FB7F166B165700BC29CB /* whyYouNoFollow.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

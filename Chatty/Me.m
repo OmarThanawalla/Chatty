@@ -129,7 +129,7 @@
     myLabel.tag = 1;
     //Create Label Size
     NSString *cellText = [tweet objectForKey:@"message_content"];   //grab the message 
-    UIFont *cellFont = [UIFont fontWithName:@"Helvetica" size:15.0];
+    UIFont *cellFont = [UIFont fontWithName:@"Helvetica" size:13.0];
     CGSize constraintSize = CGSizeMake(225.0f, MAXFLOAT);           //This sets how wide we can go
     CGSize labelSize = [cellText sizeWithFont:cellFont constrainedToSize:constraintSize lineBreakMode:UILineBreakModeWordWrap];
     
@@ -137,10 +137,7 @@
     CGRect temp = myLabel.frame;
     temp.size = labelSize;
     myLabel.frame = temp;                                  //so origin x,y should stil be in tact
-    NSLog(@"%@", myLabel.text);
-     NSLog(@"%@", myLabel.frame.size.height);
     [myLabel sizeToFit];
-    NSLog(@"actual height: %@", myLabel.frame.size.height);
     //Adding the label to the view
     if(cell.MessageUser == NULL){
         cell.MessageUser = myLabel;
@@ -167,7 +164,7 @@
 
     //userName label
     cell.userName.text = [tweet objectForKey:@"userName"];
-
+    NSLog(@"actual cell height %lf",cell.frame.size.height);
     return cell;
     
 
@@ -179,7 +176,7 @@
     //grab the text out of the tweet
     NSString *cellText = [tweet objectForKey:@"message_content"];             //grab the message 
     UIFont *cellFont = [UIFont fontWithName:@"Helvetica" size:15.0];
-    CGSize constraintSize = CGSizeMake(220.0f, MAXFLOAT);                     //This sets how wide we can go
+    CGSize constraintSize = CGSizeMake(225.0f, MAXFLOAT);                     //This sets how wide we can go
     //calculate labelSize
     CGSize labelSize = [cellText sizeWithFont:cellFont constrainedToSize:constraintSize lineBreakMode:UILineBreakModeWordWrap];
     // #2 Create the label
