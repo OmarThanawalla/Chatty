@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.1" toolsVersion="2182" systemVersion="11E53" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="11E53" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="4">
     <dependencies>
-        <deployment defaultVersion="1296" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1181"/>
+        <deployment defaultVersion="1536" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1930"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller - Profile-->
         <scene sceneID="Bj4-Ck-8x0">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="2b5-Ch-3mL" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController storyboardIdentifier="myConversationScene" definesPresentationContext="YES" id="lkB-M3-c6w" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Profile" id="ENf-MS-ueD"/>
                     <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="ERX-cR-ebt">
@@ -18,13 +17,13 @@
                         <segue destination="Dhr-Ev-Sc6" kind="relationship" relationship="rootViewController" id="M5b-9K-uM2"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2b5-Ch-3mL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="417" y="1482"/>
         </scene>
         <!--Profile-->
         <scene sceneID="s4O-t8-Qfu">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="wT8-72-QRQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController storyboardIdentifier="" id="Dhr-Ev-Sc6" customClass="Profile" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="ehv-wA-GnW">
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
@@ -60,13 +59,13 @@
                         </barButtonItem>
                     </navigationItem>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wT8-72-QRQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1040" y="1482"/>
         </scene>
         <!--Login - Root View Controller-->
         <scene sceneID="ctF-Sr-rVn">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="q5c-8g-7cz" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="NX4-l2-cxl" customClass="Login" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kmO-L5-QDP">
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
@@ -145,13 +144,13 @@
                         <outlet property="passwordBox" destination="gZr-K6-ECK" id="XEs-Oq-hT3"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="q5c-8g-7cz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1080" y="-1227"/>
         </scene>
         <!--Registered-->
         <scene sceneID="Dna-wM-azV">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="hae-ZR-8in" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="BRB-Iy-OJi" customClass="Registered" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xiJ-Lt-uLb">
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
@@ -208,13 +207,13 @@
                         <segue destination="d9G-Pv-ggZ" kind="push" identifier="continueRegistered" id="DaN-9K-zW8"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hae-ZR-8in" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1559" y="-1221"/>
         </scene>
         <!--Registered3-->
         <scene sceneID="4mT-b5-0NZ">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="wET-Tj-wyX" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="d9G-Pv-ggZ" customClass="Registered3" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="TQq-l4-nne">
                         <rect key="frame" x="0.0" y="64" width="320" height="372"/>
@@ -280,13 +279,13 @@
                         <outlet property="userName" destination="vxI-R0-ls2" id="0SM-RO-v6G"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wET-Tj-wyX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2082" y="-1227"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="yoo-YW-P31">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Zry-yI-Lel" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController definesPresentationContext="YES" id="soC-xs-l7S" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="OPL-wG-fIg">
                         <autoresizingMask key="autoresizingMask"/>
@@ -295,13 +294,13 @@
                         <segue destination="NX4-l2-cxl" kind="relationship" relationship="rootViewController" id="BXP-F3-Hd6"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Zry-yI-Lel" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="536" y="-1227"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="15">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="14" sceneMemberID="firstResponder"/>
                 <tabBarController id="4" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="1XT-08-zOy"/>
                     <nil key="simulatedBottomBarMetrics"/>
@@ -317,13 +316,13 @@
                         <segue destination="lkB-M3-c6w" kind="relationship" relationship="viewControllers" id="9nt-rx-SFX"/>
                     </connections>
                 </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="14" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-296" y="-306"/>
         </scene>
         <!--Navigation Controller - Community-->
         <scene sceneID="hGa-Eh-Afm">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="JHy-sS-yTL" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController id="rWC-65-tuO" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Community" image="first" id="7"/>
                     <toolbarItems/>
@@ -336,13 +335,13 @@
                         <segue destination="aKU-2L-QCI" kind="relationship" relationship="rootViewController" id="sNw-Pn-iVr"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JHy-sS-yTL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="401" y="-586"/>
         </scene>
         <!--Community - All Conversations-->
         <scene sceneID="2I8-2f-UfR">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="1RN-pd-KYl" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="aKU-2L-QCI" customClass="Community" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="a5W-x4-1vE">
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
@@ -361,7 +360,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="New" id="eVu-9x-87n">
                             <connections>
-                                <segue destination="ykX-gt-6pe" kind="modal" id="uJa-SE-dA2"/>
+                                <segue destination="ykX-gt-6pe" kind="modal" identifier="composeAConvo" id="uJa-SE-dA2"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -370,13 +369,13 @@
                         <segue destination="soC-xs-l7S" kind="modal" identifier="loggedIn" id="sEP-E2-vGj"/>
                     </connections>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1RN-pd-KYl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="995" y="-586"/>
         </scene>
         <!--Conversation-->
         <scene sceneID="GmT-0d-XCM">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="s7I-2M-aSC" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController storyboardIdentifier="ShowConversation" id="U1q-MA-OxX" customClass="Conversation" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="1j6-O9-LsG">
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
@@ -395,13 +394,13 @@
                         </barButtonItem>
                     </navigationItem>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="s7I-2M-aSC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2054" y="-586"/>
         </scene>
         <!--Compose Message Only-->
         <scene sceneID="dJS-Cg-hOw">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="2Nf-c9-Dxh" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="BzI-Jm-Axy" customClass="composeMessageOnly" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1dp-6d-W3l">
                         <rect key="frame" x="0.0" y="20" width="320" height="460"/>
@@ -448,13 +447,13 @@
                         <outlet property="messageBody" destination="1zn-1Z-RQy" id="XKB-af-QPp"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2Nf-c9-Dxh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2628" y="-208"/>
         </scene>
         <!--Conversation Me-->
         <scene sceneID="X2R-11-zww">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="My4-hR-Pai" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="a8r-el-Kt7" customClass="ConversationMe" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="uHk-Vq-WXn">
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
@@ -473,13 +472,13 @@
                         </barButtonItem>
                     </navigationItem>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="My4-hR-Pai" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2073" y="182"/>
         </scene>
         <!--Compose Conversation-->
         <scene sceneID="9cV-Az-2bx">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="NWH-q3-N5t" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="ykX-gt-6pe" customClass="composeConversation" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hFb-af-ona">
                         <rect key="frame" x="0.0" y="20" width="320" height="460"/>
@@ -526,13 +525,13 @@
                         <outlet property="myTextView" destination="T1S-Xo-1Np" id="YoJ-dD-Imq"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NWH-q3-N5t" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1528" y="-208"/>
         </scene>
         <!--Navigation Controller - Me-->
         <scene sceneID="nHZ-hU-3SW">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="vJJ-6b-V64" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController id="ntu-dJ-yZO" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Me" image="second" id="6"/>
                     <toolbarItems/>
@@ -545,13 +544,13 @@
                         <segue destination="ycM-Fd-tHT" kind="relationship" relationship="rootViewController" id="bzL-HU-FRL"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vJJ-6b-V64" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="401" y="182"/>
         </scene>
         <!--Me - Me Conversations-->
         <scene sceneID="B1W-0L-Xcd">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="OVF-du-ppo" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="ycM-Fd-tHT" customClass="Me" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="TBA-8a-4g6">
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
@@ -578,13 +577,13 @@
                         <segue destination="a8r-el-Kt7" kind="push" identifier="ShowMyMessages" id="Y0g-pq-2WV"/>
                     </connections>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OVF-du-ppo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1047" y="182"/>
         </scene>
         <!--Navigation Controller - Find Friends-->
         <scene sceneID="V3f-8I-m1j">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="rcd-Xl-xzx" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController id="PNE-OG-r1r" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Find Friends" id="uYl-Fb-Vcv"/>
                     <toolbarItems/>
@@ -597,13 +596,13 @@
                         <segue destination="qSr-4J-3fa" kind="relationship" relationship="rootViewController" id="4W9-So-Gd0"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rcd-Xl-xzx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="417" y="849"/>
         </scene>
         <!--Search Friends-->
         <scene sceneID="ZUU-rb-bLO">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="RCs-Qh-MNz" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="qSr-4J-3fa" customClass="SearchFriends" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="iAL-Jb-u29">
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
@@ -625,6 +624,7 @@
                         <outlet property="searchDisplayController" destination="e4K-LW-AzY" id="IZ1-Z5-KAj"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RCs-Qh-MNz" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <searchDisplayController id="e4K-LW-AzY">
                     <connections>
                         <outlet property="delegate" destination="qSr-4J-3fa" id="8mh-Jq-Zow"/>
@@ -642,14 +642,94 @@
         <image name="first" width="16" height="16"/>
         <image name="second" width="16" height="16"/>
     </resources>
+    <classes>
+        <class className="Community" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/Community.h"/>
+            <relationships>
+                <relationship kind="action" name="refresh"/>
+                <relationship kind="action" name="toggleView:" candidateClass="UISegmentedControl"/>
+            </relationships>
+        </class>
+        <class className="Conversation" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/Conversation.h"/>
+        </class>
+        <class className="ConversationMe" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ConversationMe.h"/>
+        </class>
+        <class className="Login" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/Login.h"/>
+            <relationships>
+                <relationship kind="action" name="login"/>
+                <relationship kind="outlet" name="emailBox" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="notice" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="passwordBox" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="Me" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/Me.h"/>
+            <relationships>
+                <relationship kind="action" name="refresh"/>
+            </relationships>
+        </class>
+        <class className="Profile" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/Profile.h"/>
+            <relationships>
+                <relationship kind="action" name="logout"/>
+                <relationship kind="action" name="refresh"/>
+                <relationship kind="action" name="toggleView:"/>
+            </relationships>
+        </class>
+        <class className="Registered" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/Registered.h"/>
+            <relationships>
+                <relationship kind="action" name="continue"/>
+                <relationship kind="outlet" name="confirmEmail" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="confirmPassword" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="email" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="password" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="Registered3" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/Registered3.h"/>
+            <relationships>
+                <relationship kind="action" name="register"/>
+                <relationship kind="outlet" name="bio" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="firstName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="lastName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="notice" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="userName" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="SearchFriends" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SearchFriends.h"/>
+        </class>
+        <class className="composeConversation" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/composeConversation.h"/>
+            <relationships>
+                <relationship kind="action" name="cancelButton"/>
+                <relationship kind="action" name="sendButton"/>
+                <relationship kind="outlet" name="characterCount" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="myTextView" candidateClass="UITextView"/>
+            </relationships>
+        </class>
+        <class className="composeMessageOnly" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/composeMessageOnly.h"/>
+            <relationships>
+                <relationship kind="action" name="cancel"/>
+                <relationship kind="action" name="submit"/>
+                <relationship kind="outlet" name="characterCount" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="messageBody" candidateClass="UITextView"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="uJa-SE-dA2"/>
-        <segue reference="sEP-E2-vGj"/>
         <segue reference="8La-9C-anb"/>
+        <segue reference="sEP-E2-vGj"/>
+        <segue reference="uJa-SE-dA2"/>
     </inferredMetricsTieBreakers>
 </document>

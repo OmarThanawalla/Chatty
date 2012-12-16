@@ -71,7 +71,7 @@
     [self.presentingViewController dismissModalViewControllerAnimated:YES];   
 }
 
-- (BOOL) textViewShouldBeginEditing:(UITextView *)textView
+- (BOOL) textViewShouldBeginEditing:(UITextView *)textView //calls this method because "becomeFirstResponder"
 {
     //Simulate placeholder text
     myTextView.text = @"Direct your message to someone using the @ sign";
@@ -80,7 +80,7 @@
     return YES;
 }
 
--(void)textViewDidChange:(UITextView *)textView
+-(void)textViewDidChange:(UITextView *)textView //calls this method when you put text in it
 {
     //Clear placeholder
     if(myTextView.textColor == [UIColor lightGrayColor])
@@ -92,6 +92,41 @@
     //counter
     int count = 140 - [myTextView.text length];
     [characterCount setTitle:[NSString stringWithFormat:@"%d", count]];
+    
+    
+    
+    int cursorPostion = [myTextView selectedRange].location;
+    [self callAutoComplete:cursorPostion];
+    
+}
+
+-(void) callAutoComplete:(int) cursorPosition   //handles the autoCompletion of @sign
+{
+  
+    //NSLog(@"the cursor is at %i", cursorPosition);
+    if(cursorPosition == 0) //dont do anything because theres no letter to the left
+    {
+        return;
+    }
+    while(cursorPosition != 0)
+    {
+        //NSLog(@"cursorPostion %i",cursorPosition);
+        //NSLog(@"the letter at cursor space is %c", [myTextView.text characterAtIndex:cursorPosition-1]);
+        char currentLetter = [myTextView.text characterAtIndex:cursorPosition-1];
+        if(currentLetter == ' ')
+        {
+            NSLog(@"We have a space.");
+            return;
+        }
+        if(currentLetter == '@')
+        {
+            NSLog(@"we have an @  sign");
+            //Display a table view on screen
+            
+            return;
+        }
+        cursorPosition--;
+    }
 }
 
 -(IBAction)sendButton
