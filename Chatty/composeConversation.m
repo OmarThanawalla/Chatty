@@ -10,6 +10,7 @@
 #import "KeychainItemWrapper.h"
 #import "AFNetworking.h"
 #import "AFChattyAPIClient.h"
+#import "autoCompleteEngine.h"
 
 @implementation composeConversation
 @synthesize myTextView, characterCount;
@@ -48,7 +49,6 @@
     [super viewDidLoad];
     //force the keyboard to open
     [myTextView becomeFirstResponder];
-    
     myTextView.delegate = self;
 }
 

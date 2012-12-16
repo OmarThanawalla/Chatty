@@ -20,7 +20,7 @@
 
 @property (nonatomic, retain) IBOutlet UITextView *myTextView;
 @property (nonatomic, strong) IBOutlet UIBarButtonItem *characterCount;
-
+//@property (nonatomic, strong) autoCompleteEngine * autoObject;
 
 -(IBAction)cancelButton;
 -(IBAction)sendButton;
