@@ -126,9 +126,9 @@
             return;
         }
         //Begin Checking if we should be Turning on Autocomplete
+        NSLog(@"cursorPostion %i",cursorPosition);
         while(cursorPosition != 0)
         {
-                    //NSLog(@"cursorPostion %i",cursorPosition);
                     //NSLog(@"the letter at cursor space is %c", [myTextView.text characterAtIndex:cursorPosition-1]);
                     char currentLetter = [myTextView.text characterAtIndex:cursorPosition-1];
                     if(currentLetter == ' ')
@@ -157,7 +157,7 @@
                     if(currentLetter == '@')
                     {
                         NSLog(@"we have an @  sign to the left of the word");
-                        [autoCompleteObject iDoNothing];
+
                         if(viewOn == NO)
                         {
                             //Move the  TextView up higher so you can see the line of text
@@ -175,6 +175,8 @@
                             [self.view addSubview:autoCompleteObject.view];
                             //Flip viewOn "switch" to on
                             viewOn = YES;
+                            
+                            [myTextView scrollRectToVisible:CGRectMake(10, 10, 10, 10)  animated:YES];
                         }
                         //constantly update the viewcontroller with the new text
                         
