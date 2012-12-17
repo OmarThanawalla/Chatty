@@ -68,7 +68,6 @@
     }
     
     autoCompleteCell * cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
     return cell;
 }
 -(void) iDoNothing
