@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+@class autoCompleteEngine;  //This allows this class to see autoComplete since import does not. hm maybe i should take that compilers elective
 @interface composeConversation : UIViewController <UITextViewDelegate>
 
 /*
@@ -20,7 +21,10 @@
 
 @property (nonatomic, retain) IBOutlet UITextView *myTextView;
 @property (nonatomic, strong) IBOutlet UIBarButtonItem *characterCount;
-//@property (nonatomic, strong) autoCompleteEngine * autoObject;
+
+//This will hold our viewcontroller to display the autocompleted choices
+@property (nonatomic, strong) autoCompleteEngine * autoCompleteObject;
+@property (nonatomic, assign) BOOL viewOn;
 
 -(IBAction)cancelButton;
 -(IBAction)sendButton;

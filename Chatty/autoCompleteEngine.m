@@ -21,6 +21,7 @@
     if (self) {
         // Custom initialization
     }
+    NSLog(@"You have instantiated an object from class autoCompleteEngine");
     return self;
 }
 
@@ -52,7 +53,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return 3;
+    return 5;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -69,6 +70,10 @@
     autoCompleteCell * cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     return cell;
+}
+-(void) iDoNothing
+{
+    NSLog(@"The sky is falling");
 }
 
 /*

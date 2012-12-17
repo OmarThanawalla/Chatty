@@ -14,6 +14,8 @@
 
 @implementation composeConversation
 @synthesize myTextView, characterCount;
+@synthesize autoCompleteObject;
+@synthesize viewOn;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -50,9 +52,14 @@
     //force the keyboard to open
     [myTextView becomeFirstResponder];
     myTextView.delegate = self;
+    autoCompleteObject = [[autoCompleteEngine alloc] init]; //ready this object to be viewed on and off
+    viewOn = NO;
 }
 
-
+-(void)viewDidDisappear:(BOOL)animated
+{
+    viewOn = NO;
+}
 - (void)viewDidUnload
 {
     [super viewDidUnload];
@@ -103,30 +110,78 @@
 -(void) callAutoComplete:(int) cursorPosition   //handles the autoCompletion of @sign
 {
   
-    //NSLog(@"the cursor is at %i", cursorPosition);
-    if(cursorPosition == 0) //dont do anything because theres no letter to the left
-    {
-        return;
-    }
-    while(cursorPosition != 0)
-    {
-        //NSLog(@"cursorPostion %i",cursorPosition);
-        //NSLog(@"the letter at cursor space is %c", [myTextView.text characterAtIndex:cursorPosition-1]);
-        char currentLetter = [myTextView.text characterAtIndex:cursorPosition-1];
-        if(currentLetter == ' ')
+        //dont do anything because theres no letter to the left
+        if(cursorPosition == 0) 
         {
-            NSLog(@"We have a space.");
+            //Corner Case: If user hits @ sign then backspaces leaving the cursor at position 0
+            for (UIView *subView in self.view.subviews)
+            {
+                if (subView.tag == 1)               //autoCompleteObject tag is 1
+                {
+                    [subView removeFromSuperview];
+                }
+            }
+            //Flip the viewOn "switch" to off
+            viewOn = NO;
             return;
         }
-        if(currentLetter == '@')
+        //Begin Checking if we should be Turning on Autocomplete
+        while(cursorPosition != 0)
         {
-            NSLog(@"we have an @  sign");
-            //Display a table view on screen
-            
-            return;
+                    //NSLog(@"cursorPostion %i",cursorPosition);
+                    //NSLog(@"the letter at cursor space is %c", [myTextView.text characterAtIndex:cursorPosition-1]);
+                    char currentLetter = [myTextView.text characterAtIndex:cursorPosition-1];
+                    if(currentLetter == ' ')
+                    {
+                        NSLog(@"We have a space to the left of the word.");
+                        if (viewOn == YES)
+                        {
+                            //remove the subview from screen
+                            for (UIView *subView in self.view.subviews)
+                            {
+                                if (subView.tag == 1)               //autoCompleteObject tag is 1
+                                {
+                                    [subView removeFromSuperview];
+                                }
+                            }
+                            //Flip the viewOn "switch" to off
+                            viewOn = NO;
+                            
+                            //Lower the textView in proper poistion
+                            //CGRect temp0 = myTextView.frame;
+                            //temp0.origin.y = temp0.origin.y + 15;
+                            //myTextView.frame = temp0;
+                        }
+                        return;
+                    }
+                    if(currentLetter == '@')
+                    {
+                        NSLog(@"we have an @  sign to the left of the word");
+                        [autoCompleteObject iDoNothing];
+                        if(viewOn == NO)
+                        {
+                            //Move the  TextView up higher so you can see the line of text
+                            //CGRect temp0 = myTextView.frame;
+                            //temp0.origin.y = temp0.origin.y - 15;
+                            //myTextView.frame = temp0;
+                            
+                            //Display a table view on screen
+                            autoCompleteObject.view.tag = 1;
+                            //Change the viewControlers frame
+                            CGRect temp = autoCompleteObject.view.frame;
+                            temp.origin.y = 85;
+                            autoCompleteObject.view.frame = temp;
+                            
+                            [self.view addSubview:autoCompleteObject.view];
+                            //Flip viewOn "switch" to on
+                            viewOn = YES;
+                        }
+                        //constantly update the viewcontroller with the new text
+                        
+                        return;
+                    }
+                    cursorPosition--;
         }
-        cursorPosition--;
-    }
 }
 
 -(IBAction)sendButton
