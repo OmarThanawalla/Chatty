@@ -49,6 +49,12 @@
 		A76DDED7158537C100F8D65D /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = A76DDECB158537C100F8D65D /* AFURLConnectionOperation.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		A76DDED8158537C100F8D65D /* AFXMLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = A76DDECD158537C100F8D65D /* AFXMLRequestOperation.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		A76DDED9158537C100F8D65D /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = A76DDECF158537C100F8D65D /* UIImageView+AFNetworking.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		A778622B167DBC410016290A /* autoCompleteEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = A778622A167DBC410016290A /* autoCompleteEngine.m */; };
+		A778622F167DBE700016290A /* autoCompleteCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A778622E167DBE700016290A /* autoCompleteCell.m */; };
+		A7786231167DBE9A0016290A /* autoComplete.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7786230167DBE9A0016290A /* autoComplete.xib */; };
+		A7786233167E58AD0016290A /* Heart_corazón.png in Resources */ = {isa = PBXBuildFile; fileRef = A7786232167E58AD0016290A /* Heart_corazón.png */; };
+		A7786235167E592D0016290A /* like-button1.png in Resources */ = {isa = PBXBuildFile; fileRef = A7786234167E592D0016290A /* like-button1.png */; };
+		A7786237167E5A3C0016290A /* 14643521-thumb-up-icon.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A7786236167E5A3C0016290A /* 14643521-thumb-up-icon.jpg */; };
 		A7954A5915911D63008C0E69 /* JasonTerry.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7954A5815911D63008C0E69 /* JasonTerry.xib */; };
 		A7954A5C15911E35008C0E69 /* jasonT.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = A7954A5B15911E35008C0E69 /* jasonT.jpeg */; };
 		A7B35B3D1598C47900330B11 /* Registered3.m in Sources */ = {isa = PBXBuildFile; fileRef = A7B35B3C1598C47900330B11 /* Registered3.m */; };
@@ -146,6 +152,14 @@
 		A76DDECD158537C100F8D65D /* AFXMLRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFXMLRequestOperation.m; sourceTree = "<group>"; };
 		A76DDECE158537C100F8D65D /* UIImageView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+AFNetworking.h"; sourceTree = "<group>"; };
 		A76DDECF158537C100F8D65D /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
+		A7786229167DBC410016290A /* autoCompleteEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = autoCompleteEngine.h; sourceTree = "<group>"; };
+		A778622A167DBC410016290A /* autoCompleteEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = autoCompleteEngine.m; sourceTree = "<group>"; };
+		A778622D167DBE700016290A /* autoCompleteCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = autoCompleteCell.h; sourceTree = "<group>"; };
+		A778622E167DBE700016290A /* autoCompleteCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = autoCompleteCell.m; sourceTree = "<group>"; };
+		A7786230167DBE9A0016290A /* autoComplete.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = autoComplete.xib; sourceTree = "<group>"; };
+		A7786232167E58AD0016290A /* Heart_corazón.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Heart_corazón.png"; path = "../../../../Downloads/Heart_corazón.png"; sourceTree = "<group>"; };
+		A7786234167E592D0016290A /* like-button1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "like-button1.png"; path = "../../../../Downloads/like-button1.png"; sourceTree = "<group>"; };
+		A7786236167E5A3C0016290A /* 14643521-thumb-up-icon.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "14643521-thumb-up-icon.jpg"; sourceTree = "<group>"; };
 		A7954A5815911D63008C0E69 /* JasonTerry.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JasonTerry.xib; sourceTree = "<group>"; };
 		A7954A5B15911E35008C0E69 /* jasonT.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = jasonT.jpeg; sourceTree = "<group>"; };
 		A7B35B3B1598C47900330B11 /* Registered3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Registered3.h; sourceTree = "<group>"; };
@@ -206,6 +220,11 @@
 				08D612D2156D84D300F33490 /* CustomMessageCell.xib */,
 				08D612D4156D864E00F33490 /* CustomMessageCell.h */,
 				08D612D5156D864E00F33490 /* CustomMessageCell.m */,
+				A7786229167DBC410016290A /* autoCompleteEngine.h */,
+				A778622A167DBC410016290A /* autoCompleteEngine.m */,
+				A778622D167DBE700016290A /* autoCompleteCell.h */,
+				A778622E167DBE700016290A /* autoCompleteCell.m */,
+				A7786230167DBE9A0016290A /* autoComplete.xib */,
 				A7954A27158FE318008C0E69 /* Misc */,
 			);
 			name = Community;
@@ -257,13 +276,16 @@
 			children = (
 				A7E7FB75166B0ED600BC29CB /* approved.png */,
 				A7E7FB7E166B165700BC29CB /* whyYouNoFollow.png */,
+				A7786236167E5A3C0016290A /* 14643521-thumb-up-icon.jpg */,
 				A72708221592D5B60010E7D2 /* bluePlusSign.jpeg */,
+				A7786234167E592D0016290A /* like-button1.png */,
 				A7E7FB7A166B13B100BC29CB /* unfollow.jpeg */,
 				A7BA8CD7159FE698003AAC24 /* Chat.png */,
 				A7BF80FB15E441C5005E53AC /* delete-icon_tiny.png */,
 				A7FE1635158ED00A00AB5876 /* dirk_nowitzki_027.jpg */,
 				A736D05C152BBA620049AB22 /* first.png */,
 				A736D05E152BBA620049AB22 /* first@2x.png */,
+				A7786232167E58AD0016290A /* Heart_corazón.png */,
 				A72708241593F25D0010E7D2 /* green-checkmark.png */,
 				A7954A5B15911E35008C0E69 /* jasonT.jpeg */,
 				A7B35B47159A640F00330B11 /* OnMyWay.jpg */,
@@ -471,6 +493,10 @@
 				A7E7FB7B166B13B100BC29CB /* unfollow.jpeg in Resources */,
 				A7E7FB7F166B165700BC29CB /* whyYouNoFollow.png in Resources */,
 				A7C17B1D166B4AAD00186336 /* Default-568h@2x.png in Resources */,
+				A7786231167DBE9A0016290A /* autoComplete.xib in Resources */,
+				A7786233167E58AD0016290A /* Heart_corazón.png in Resources */,
+				A7786235167E592D0016290A /* like-button1.png in Resources */,
+				A7786237167E5A3C0016290A /* 14643521-thumb-up-icon.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -515,6 +541,8 @@
 				A7486A0115E2D4C9004E770D /* PendingRequestCell.m in Sources */,
 				A7BF80F715E40622005E53AC /* FollowingUser.m in Sources */,
 				A71D842816392C5100F45755 /* ConversationMe.m in Sources */,
+				A778622B167DBC410016290A /* autoCompleteEngine.m in Sources */,
+				A778622F167DBE700016290A /* autoCompleteCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

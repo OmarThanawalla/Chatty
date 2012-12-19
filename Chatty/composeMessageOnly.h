@@ -14,7 +14,7 @@
 @property (strong, nonatomic) NSString *conversationID;
 @property (strong, nonatomic) NSString *preAddressing;
 @property (nonatomic, strong) IBOutlet UIBarButtonItem *characterCount;
-
+//@property (strong, nonatomic)
 
 -(IBAction)cancel;
 -(IBAction)submit;
