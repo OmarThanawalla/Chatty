@@ -10,5 +10,10 @@
 
 @interface autoCompleteEngine : UITableViewController
 
--(void) iDoNothing;
+
+@property (nonatomic, strong) NSMutableArray *myUsers;
+@property (nonatomic, strong) NSString *currentQuery; //holds the current query
+
+-(void) searchKickOff: (NSString *) query;
+-(void) refresh;
 @end

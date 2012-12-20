@@ -9,11 +9,17 @@
 #import "autoCompleteEngine.h"
 #import "autoCompleteCell.h"
 
+//import AFNetworking
+#import "AFNetworking.h"
+#import "AFChattyAPIClient.h"
+#import "KeychainItemWrapper.h"
+
 @interface autoCompleteEngine ()
 
 @end
 
 @implementation autoCompleteEngine
+@synthesize myUsers, currentQuery;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -53,7 +59,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return 5;
+    return [myUsers count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -70,11 +76,32 @@
     autoCompleteCell * cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     return cell;
 }
--(void) iDoNothing
-{
-    NSLog(@"The sky is falling");
-}
 
+
+-(void) searchKickOff: (NSString *) query
+{
+    NSLog(@"searchKickOff called");
+    self.currentQuery = query;
+    NSLog(@"%@", self.currentQuery);
+    //call search method
+    //[self refresh];
+    
+}
+//with the query go get 
+-(void) refresh
+{
+    KeychainItemWrapper *keychain = [[KeychainItemWrapper alloc] initWithIdentifier:@"ChattyAppLoginData" accessGroup:nil];
+    NSString * email = [keychain objectForKey:(__bridge id)kSecAttrAccount];
+    NSString * password = [keychain objectForKey:(__bridge id)kSecValueData];
+    
+    
+    
+    NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
+                            email, @"email", 
+                            password, @"password",
+                            self.currentQuery, @"query",
+                            nil];
+}
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath

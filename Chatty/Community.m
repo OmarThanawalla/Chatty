@@ -311,7 +311,7 @@
     
     
     //NSLog(@"this is what labelSize was before: %lf",labelSize.height);
-    NSLog(@"Predicted cell height:  %lf",myLabel.frame.size.height);
+    //NSLog(@"Predicted cell height:  %lf",myLabel.frame.size.height);
     return 55 + myLabel.frame.size.height;
 }
 

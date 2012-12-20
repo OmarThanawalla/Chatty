@@ -25,6 +25,7 @@
 //This will hold our viewcontroller to display the autocompleted choices
 @property (nonatomic, strong) autoCompleteEngine * autoCompleteObject;
 @property (nonatomic, assign) BOOL viewOn;
+@property (nonatomic, strong) NSMutableString *theWord; //this holds the word left of the cursor always
 
 -(IBAction)cancelButton;
 -(IBAction)sendButton;
