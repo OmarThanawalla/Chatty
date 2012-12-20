@@ -10,11 +10,12 @@
 #import "AFChattyAPIClient.h"
 #import "AFNetworking.h"
 #import "KeychainItemWrapper.h"
+#import "autoCompleteEngine.h"
 
 @implementation composeMessageOnly
 @synthesize  messageBody, conversationID, preAddressing, characterCount;
-
-
+@synthesize autoCompleteObject;
+@synthesize viewOn;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -53,8 +54,15 @@
     messageBody.delegate = self;
     int count = 140 - [messageBody.text length];
     [characterCount setTitle:[NSString stringWithFormat:@"%d", count]];
+    autoCompleteObject = [[autoCompleteEngine alloc] init]; //ready this object to be viewed on and off
+    viewOn = NO;
+    messageBody.scrollEnabled = YES; //Im not sure if this worked
 }
 
+-(void)viewDidDisappear:(BOOL)animated
+{
+    viewOn = NO;
+}
 
 - (void)viewDidUnload
 {
@@ -79,6 +87,95 @@
     int count = 140 - [messageBody.text length];
     [characterCount setTitle:[NSString stringWithFormat:@"%d", count]];
     
+    int cursorPostion = [messageBody selectedRange].location;
+    [self callAutoComplete:cursorPostion];
+    
+}
+
+-(void) callAutoComplete:(int) cursorPosition   //handles the autoCompletion of @sign
+{
+    //dont do anything because theres no letter to the left
+    if(cursorPosition == 0) 
+    {
+        //Corner Case: If user hits @ sign then backspaces leaving the cursor at position 0
+        for (UIView *subView in self.view.subviews)
+        {
+            if (subView.tag == 1)               //autoCompleteObject tag is 1
+            {
+                [subView removeFromSuperview];
+            }
+        }
+        //Flip the viewOn "switch" to off
+        viewOn = NO;
+        
+        //Return UITextView back to normal dimensions
+        CGRect temp2 = messageBody.frame;
+        temp2.size.height = 158;
+        messageBody.frame = temp2;
+        
+        return;
+    }
+    //Begin Checking if we should be Turning on Autocomplete
+    NSLog(@"cursorPostion %i",cursorPosition);
+    while(cursorPosition != 0)
+    {
+        //NSLog(@"the letter at cursor space is %c", [myTextView.text characterAtIndex:cursorPosition-1]);
+        char currentLetter = [messageBody.text characterAtIndex:cursorPosition-1];
+        if(currentLetter == ' ')
+        {
+            NSLog(@"We have a space to the left of the word.");
+            if (viewOn == YES)
+            {
+                //remove the subview from screen
+                for (UIView *subView in self.view.subviews)
+                {
+                    if (subView.tag == 1)               //autoCompleteObject tag is 1
+                    {
+                        [subView removeFromSuperview];
+                    }
+                }
+                //Flip the viewOn "switch" to off
+                viewOn = NO;
+                
+                //Return UITextView back to normal dimensions
+                CGRect temp2 = messageBody.frame;
+                temp2.size.height = 158;
+                messageBody.frame = temp2;
+            }
+            return;
+        }
+        if(currentLetter == '@')
+        {
+            NSLog(@"we have an @  sign to the left of the word");
+            
+            //display autocompletion feature
+            if(viewOn == NO)
+            {
+                //Display a table view on screen
+                autoCompleteObject.view.tag = 1;
+                //Change the viewControlers frame
+                CGRect temp = autoCompleteObject.view.frame;
+                temp.origin.y = 85;
+                autoCompleteObject.view.frame = temp;
+                
+                [self.view addSubview:autoCompleteObject.view];
+                //Flip viewOn "switch" to on
+                viewOn = YES;
+                
+                //Shorten the UITextView Box
+                CGRect temp2 = messageBody.frame;
+                temp2.size.height = 40;
+                messageBody.frame = temp2;
+                //Scroll to the bottom of the UITextView Box because we assume curosor is as bottom of textview
+                NSRange myRange = NSMakeRange(messageBody.text.length-1 ,messageBody.text.length);
+                [messageBody scrollRangeToVisible:myRange];
+            }
+            //constantly update the viewcontroller with the new text
+            
+            return;
+        }
+        cursorPosition--;
+    }
 }
 
 -(IBAction)submit

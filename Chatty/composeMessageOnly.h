@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+@class autoCompleteEngine;
 
 @interface composeMessageOnly : UIViewController <UITextViewDelegate>
 
@@ -14,7 +15,9 @@
 @property (strong, nonatomic) NSString *conversationID;
 @property (strong, nonatomic) NSString *preAddressing;
 @property (nonatomic, strong) IBOutlet UIBarButtonItem *characterCount;
-//@property (strong, nonatomic)
+//This will hold our viewcontroller to display the autocompleted choices
+@property (nonatomic, strong) autoCompleteEngine * autoCompleteObject;
+@property (nonatomic, assign) BOOL viewOn;
 
 -(IBAction)cancel;
 -(IBAction)submit;

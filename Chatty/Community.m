@@ -61,7 +61,7 @@
     
     NSLog(@"%@, %@", email, password);
     
-    
+    [self performSegueWithIdentifier:@"composeAConvo" sender:self];
     
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
                             email, @"email", 

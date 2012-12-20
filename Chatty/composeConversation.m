@@ -54,6 +54,7 @@
     myTextView.delegate = self;
     autoCompleteObject = [[autoCompleteEngine alloc] init]; //ready this object to be viewed on and off
     viewOn = NO;
+    myTextView.scrollEnabled = YES; //Im not sure if this worked
 }
 
 -(void)viewDidDisappear:(BOOL)animated
@@ -123,6 +124,12 @@
             }
             //Flip the viewOn "switch" to off
             viewOn = NO;
+            
+            //Return UITextView back to normal dimensions
+            CGRect temp2 = myTextView.frame;
+            temp2.size.height = 158;
+            myTextView.frame = temp2;
+            
             return;
         }
         //Begin Checking if we should be Turning on Autocomplete
@@ -147,24 +154,20 @@
                             //Flip the viewOn "switch" to off
                             viewOn = NO;
                             
-                            //Lower the textView in proper poistion
-                            //CGRect temp0 = myTextView.frame;
-                            //temp0.origin.y = temp0.origin.y + 15;
-                            //myTextView.frame = temp0;
+                            //Return UITextView back to normal dimensions
+                            CGRect temp2 = myTextView.frame;
+                            temp2.size.height = 158;
+                            myTextView.frame = temp2;
                         }
                         return;
                     }
                     if(currentLetter == '@')
                     {
                         NSLog(@"we have an @  sign to the left of the word");
-
+                        
+                        //display autocompletion feature
                         if(viewOn == NO)
                         {
-                            //Move the  TextView up higher so you can see the line of text
-                            //CGRect temp0 = myTextView.frame;
-                            //temp0.origin.y = temp0.origin.y - 15;
-                            //myTextView.frame = temp0;
-                            
                             //Display a table view on screen
                             autoCompleteObject.view.tag = 1;
                             //Change the viewControlers frame
@@ -176,7 +179,13 @@
                             //Flip viewOn "switch" to on
                             viewOn = YES;
                             
-                            [myTextView scrollRectToVisible:CGRectMake(10, 10, 10, 10)  animated:YES];
+                            //Shorten the UITextView Box
+                            CGRect temp2 = myTextView.frame;
+                            temp2.size.height = 40;
+                            myTextView.frame = temp2;
+                            //Scroll to the bottom of the UITextView Box because we assume curosor is as bottom of textview
+                            NSRange myRange = NSMakeRange(myTextView.text.length-1 ,myTextView.text.length);
+                            [myTextView scrollRangeToVisible:myRange];
                         }
                         //constantly update the viewcontroller with the new text
                         
