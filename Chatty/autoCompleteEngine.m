@@ -72,19 +72,22 @@
         [tableView registerNib:nib forCellReuseIdentifier:CellIdentifier];
         //nibsRegistered = YES;
     }
-    
+
     autoCompleteCell * cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
+    //fill the cells with first, last, and username
+    
     return cell;
 }
 
 
 -(void) searchKickOff: (NSString *) query
 {
-    NSLog(@"searchKickOff called");
+    
     self.currentQuery = query;
-    NSLog(@"%@", self.currentQuery);
+    NSLog(@"The value of query is: %@", self.currentQuery);
     //call search method
-    //[self refresh];
+    [self refresh];
     
 }
 //with the query go get 
@@ -101,6 +104,24 @@
                             password, @"password",
                             self.currentQuery, @"query",
                             nil];
+    
+    [[AFChattyAPIClient sharedClient] getPath:@"/query/" parameters:params 
+     //if login works, log a message to the console
+                                      success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                                          //NSString *text = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+                                          NSLog(@"Response: %@", responseObject);
+                                          //rmr: responseObject is an array where each element is a diciontary
+                                          myUsers = responseObject;
+                                          [self.tableView reloadData];
+                                          
+                                          
+                                      } 
+                                      failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                          NSLog(@"Error from postPath: %@",[error localizedDescription]);
+                                          //else you cant connect, therefore push modalview login onto the stack
+                                          //[self performSegueWithIdentifier:@"loggedIn" sender:self];
+                                      }];
+
 }
 /*
 // Override to support conditional editing of the table view.

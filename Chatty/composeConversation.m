@@ -57,7 +57,7 @@
     viewOn = NO;
     myTextView.scrollEnabled = YES; //Im not sure if this worked
     theWord = [[NSMutableString alloc] init];
-    [theWord setString:@"test"];
+    [theWord setString:@""];
     
 }
 
@@ -116,7 +116,7 @@
 
 -(void) callAutoComplete:(int) cursorPosition   //handles the autoCompletion of @sign
 {
-   
+        [theWord setString:@""];    //clear theWord so we can update theWord to the "more user provided" information
         //dont do anything because theres no letter to the left
         if(cursorPosition == 0) 
         {
@@ -142,15 +142,15 @@
             return;
         }
         //Begin Checking if we should be Turning on Autocomplete
-        NSLog(@"cursorPostion %i",cursorPosition);
+        //NSLog(@"cursorPostion %i",cursorPosition);
         
         while(cursorPosition != 0)
         {
                     //NSLog(@"the letter at cursor space is %c", [myTextView.text characterAtIndex:cursorPosition-1]);
                     char currentLetter = [myTextView.text characterAtIndex:cursorPosition-1];
-                    if(currentLetter == ' ')
+                    if(currentLetter == ' ' || currentLetter == '\n')
                     {
-                        NSLog(@"We have a space to the left of the word.");
+                        NSLog(@"We have a space or new-line character to the left of the word.");
                         if (viewOn == YES)
                         {
                             //remove the subview from screen
@@ -177,7 +177,9 @@
                     if(currentLetter == '@')
                     {
                         NSLog(@"we have an @  sign to the left of the word");
-                        
+                        //Gotta add an @to theWord so we can send a good query to the server
+                        NSString *temp3 = [NSString stringWithFormat:@"%c", currentLetter];
+                        [theWord insertString:temp3 atIndex:0];
                         //display autocompletion feature
                         if(viewOn == NO)
                         {
@@ -202,16 +204,15 @@
                         }
                         //constantly update the viewcontroller with the new text
                         [autoCompleteObject searchKickOff:theWord];     //send the word to the right of the @ sign
-                        NSLog(@"We have a @sign hit. The word is %@",theWord);
+                       
                         return;
                     }
-                //build up the word
-                    //grab char at postion
-                    NSLog(@"char is %c", currentLetter);
-            NSLog(@"my text view length is %i", myTextView.text.length);
-                    NSLog(@"this is also the char in string format: %@",[myTextView.text substringWithRange:NSMakeRange(cursorPosition-1, cursorPosition)]);
-                    //concatenate the char with theWord
                     
+                    //convert char into NSString
+                    NSString *temp3 = [NSString stringWithFormat:@"%c", currentLetter];
+                    //build up the chars into a string
+                    [theWord insertString:temp3 atIndex:0];
+                    //NSLog(@"The value of the word is %@",theWord);
                     cursorPosition--;
         }
 }
