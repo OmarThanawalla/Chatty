@@ -75,7 +75,18 @@
 
     autoCompleteCell * cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
+    NSDictionary *user = [self.myUsers objectAtIndex:indexPath.row];
+    
     //fill the cells with first, last, and username
+    cell.userName.text = [user objectForKey:@"userName"];
+    
+    //fullName
+    NSString *firstName = [user objectForKey:@"firstName"];
+    NSString *firstNameWithSpace = [firstName stringByAppendingString:@" "];
+    NSString *lastName = [user objectForKey:@"lastName"];
+    NSString * fullName = [firstNameWithSpace stringByAppendingString:lastName];
+    cell.fullName.text = fullName;
+    
     
     return cell;
 }
@@ -166,13 +177,13 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
+    //Grab the userName from the cell
+    autoCompleteCell *cell = (autoCompleteCell*)[tableView cellForRowAtIndexPath:indexPath];
+    NSString *userName = cell.userName.text;
+    
+    //package the userName in a dictionary
+    NSDictionary *aDict = @{@"userName" : userName};
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"userNameSelected" object:nil userInfo:aDict];
 }
 
 @end

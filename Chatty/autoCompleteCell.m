@@ -9,6 +9,8 @@
 #import "autoCompleteCell.h"
 
 @implementation autoCompleteCell
+//I think i dont have to write @synthesize anymore
+
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {

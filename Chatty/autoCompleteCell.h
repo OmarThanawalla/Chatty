@@ -10,4 +10,8 @@
 
 @interface autoCompleteCell : UITableViewCell
 
+@property (nonatomic, strong) IBOutlet UILabel *userName;
+@property (nonatomic, strong) IBOutlet UILabel *fullName;
+@property (nonatomic, strong) IBOutlet UIImageView *profilePicture;
+
 @end

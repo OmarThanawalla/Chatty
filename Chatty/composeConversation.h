@@ -30,4 +30,6 @@
 -(IBAction)cancelButton;
 -(IBAction)sendButton;
 
+//inserts the userName into the textbox
+-(void)autoCompleteFinish;
 @end

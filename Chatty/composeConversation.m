@@ -51,21 +51,24 @@
 {
     [super viewDidLoad];
     //force the keyboard to open
-    [myTextView becomeFirstResponder];
-    myTextView.delegate = self;
-    autoCompleteObject = [[autoCompleteEngine alloc] init]; //ready this object to be viewed on and off
-    viewOn = NO;
-    myTextView.scrollEnabled = YES; //Im not sure if this worked
-    theWord = [[NSMutableString alloc] init];
-    [theWord setString:@""];
-    
+    [self.myTextView becomeFirstResponder];
+    self.myTextView.delegate = self;
+    self.autoCompleteObject = [[autoCompleteEngine alloc] init]; //ready this object to be viewed on and off
+    self.viewOn = NO;
+    self.myTextView.scrollEnabled = YES; //Im not sure if this worked
+    self.theWord = [[NSMutableString alloc] init];
+    [self.theWord setString:@""];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(anyAction:) name:@"userNameSelected" object:nil];
+
 }
+
+
 
 -(void)viewDidDisappear:(BOOL)animated
 {
     viewOn = NO;
     [theWord setString:@""];
-    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];  //this is to avoid notification being sent here when we are in composeMessageOnly due to the face that we are using autoCompleteEngine class there too.
 }
 - (void)viewDidUnload
 {
@@ -202,6 +205,7 @@
                             NSRange myRange = NSMakeRange(myTextView.text.length-1 ,myTextView.text.length);
                             [myTextView scrollRangeToVisible:myRange];
                         }
+                        
                         //constantly update the viewcontroller with the new text
                         [autoCompleteObject searchKickOff:theWord];     //send the word to the right of the @ sign
                        
@@ -215,6 +219,46 @@
                     //NSLog(@"The value of the word is %@",theWord);
                     cursorPosition--;
         }
+}
+
+//is called when autoCompleteEngine.m has a userName ready for us
+-(void)anyAction:(NSNotification *)anote
+{
+    
+    NSDictionary *dict = [anote userInfo];
+    NSString *userName = [dict objectForKey:@"userName"];
+    [self autoCompleteFinish:userName];
+}
+
+//inserts the userName into the textBox
+-(void)autoCompleteFinish:(NSString *) userName
+{
+    //remove the @ in userName
+    userName = [userName substringFromIndex:1];
+    //NSLog(@"The value of userName in autoCompleteFinish is: %@",userName);
+    int cursorPosition = [myTextView selectedRange].location;
+    //NSLog(@"The contents in the textbox are: %@", myTextView.text);
+    //NSLog(@"Cursor position is %i",cursorPosition);
+    while(cursorPosition != 0)
+    {
+        char currentLetter = [myTextView.text characterAtIndex:cursorPosition-1];
+        if(currentLetter == '@')
+        {
+            //Append userName to the right of @sign
+            NSMutableString *messageContent = [NSMutableString stringWithString:myTextView.text];
+            [messageContent appendString:userName];             //append the userName to the end
+            [messageContent appendString:@" "];                 //append a space at the end
+            [NSString stringWithString:messageContent];         //convert mutableString back to string
+            myTextView.text = messageContent;
+            
+            int cursorPostion = [myTextView selectedRange].location;
+            [self callAutoComplete:cursorPostion];
+            return;
+        }
+        //delete the letter to the left (kinda verbose I know, but it works!)
+        myTextView.text = [myTextView.text substringToIndex:[myTextView.text length] -1];
+        cursorPosition--;
+    }
 }
 
 -(IBAction)sendButton
