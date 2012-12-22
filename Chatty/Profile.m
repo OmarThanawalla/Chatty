@@ -53,7 +53,13 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(anyAction:) name:@"editProfile" object:nil];
+}
+
+-(void)anyAction:(NSNotification *)anote
+{
+    NSLog(@"anyAction method fired. presumably from editProfile button being hit");
+    [self performSegueWithIdentifier:@"editProfileModal" sender:self];
 }
 
 - (void)viewDidUnload
@@ -131,7 +137,7 @@
     //profile SEGMENT
     if (self.currentView == 0)
     {
-                    //profile SECTION
+                    //configure User SECTION
                     if (indexPath.section == 0) {
 
                         static NSString *CellIdentifier = @"CellIdentifier";
@@ -146,7 +152,7 @@
                         profileCustomCell * cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
                         
                         cell.BioText.text = @"I live in Austin!";
-                        cell.NameText.text = @"Omar Thanawalla";
+                        cell.NameText.text = @"Omaar Thanawalla";
                         cell.userName.text = @"@omar";
                         //this prevents the cell from being hightlighted but still lets me hit the edit profile UIButton
                         [cell setSelectionStyle:UITableViewCellSelectionStyleNone];

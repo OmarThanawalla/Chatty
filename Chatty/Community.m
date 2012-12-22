@@ -61,7 +61,9 @@
     
     NSLog(@"%@, %@", email, password);
     
-    [self performSegueWithIdentifier:@"composeAConvo" sender:self];
+    //DONT FORGET TO DELETE THIS LINE
+    self.tabBarController.selectedIndex = 3;        //DONT FORGET TO DELETE THIS LINE
+    //[self performSegueWithIdentifier:@"composeAConvo" sender:self];
     
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
                             email, @"email", 
@@ -177,37 +179,37 @@
     static NSString *CellIdentifier = @"CustomCellIdentifier";
    
     //DONT LOOK AT THIS IF STATEMENT BECAUSE YOU DON'T HAVE AN INNER CIRCLE CONVERSATION TAB 
-    if(currentView == 0){ //current view is Inner Circle
-        /*
-        static BOOL nibsRegistered = NO;
-        if(!nibsRegistered)
-        {
-            UINib *nib = [UINib nibWithNibName: @"CustomMessageCell" bundle:nil]; //grab nib
-            [tableView registerNib:nib forCellReuseIdentifier:CellIdentifier];//register nib
-            //nibsRegistered = YES;
-        }
-        
-        CustomMessageCell * cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-      
-        //customize cell
-        
-        NSDictionary *tweet = [innerCircleConversations objectAtIndex:indexPath.row];
-        cell.MessageUser.text = [tweet objectForKey:@"message_content"];
-        cell.MessageUser.lineBreakMode = UILineBreakModeWordWrap;
-        cell.MessageUser.numberOfLines = 0;
-        
-        
-        cell.SenderUser.text = [tweet objectForKey:@"full_name"];
-        cell.Recipients.text = [tweet objectForKey:@"recipient"]; //Message content will reveal recipients
-        
-        
-        return cell;
-         */
-    }
-      
+//    if(currentView == 0){ //current view is Inner Circle
+//        /*
+//        static BOOL nibsRegistered = NO;
+//        if(!nibsRegistered)
+//        {
+//            UINib *nib = [UINib nibWithNibName: @"CustomMessageCell" bundle:nil]; //grab nib
+//            [tableView registerNib:nib forCellReuseIdentifier:CellIdentifier];//register nib
+//            //nibsRegistered = YES;
+//        }
+//        
+//        CustomMessageCell * cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+//      
+//        //customize cell
+//        
+//        NSDictionary *tweet = [innerCircleConversations objectAtIndex:indexPath.row];
+//        cell.MessageUser.text = [tweet objectForKey:@"message_content"];
+//        cell.MessageUser.lineBreakMode = UILineBreakModeWordWrap;
+//        cell.MessageUser.numberOfLines = 0;
+//        
+//        
+//        cell.SenderUser.text = [tweet objectForKey:@"full_name"];
+//        cell.Recipients.text = [tweet objectForKey:@"recipient"]; //Message content will reveal recipients
+//        
+//        
+//        return cell;
+//         */
+//    }
+    
     
     //THIS IS DOING ALL YOUR WORK. YAY. I LOVE WORK.
-    else { //current view is ALL
+//    else { //current view is ALL
         static BOOL nibsRegistered = NO;
         if(!nibsRegistered)
         {
@@ -271,7 +273,7 @@
         
         
         return cell;
-    }
+    
 }
 
 

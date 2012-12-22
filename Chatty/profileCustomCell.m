@@ -32,7 +32,8 @@
 -(IBAction)editProfile
 {
     NSLog(@"You pushed the edit profile button");
-        
+    //Use notifications
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"editProfile" object:nil userInfo:nil];
 }
 
 @end

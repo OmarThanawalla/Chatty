@@ -36,6 +36,7 @@
 		A736D071152BBD7B0049AB22 /* Me.m in Sources */ = {isa = PBXBuildFile; fileRef = A736D070152BBD7B0049AB22 /* Me.m */; };
 		A736D077152BFE8A0049AB22 /* Conversation.m in Sources */ = {isa = PBXBuildFile; fileRef = A736D076152BFE8A0049AB22 /* Conversation.m */; };
 		A736D07A1533859C0049AB22 /* composeConversation.m in Sources */ = {isa = PBXBuildFile; fileRef = A736D0791533859B0049AB22 /* composeConversation.m */; };
+		A7421D4E168672630023211D /* editProfileModal.m in Sources */ = {isa = PBXBuildFile; fileRef = A7421D4D168672630023211D /* editProfileModal.m */; };
 		A7486A0115E2D4C9004E770D /* PendingRequestCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A7486A0015E2D4C9004E770D /* PendingRequestCell.m */; };
 		A7486A0315E2D537004E770D /* PendingRequestCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7486A0215E2D537004E770D /* PendingRequestCell.xib */; };
 		A7486A0515E34F0F004E770D /* question-mark.gif in Resources */ = {isa = PBXBuildFile; fileRef = A7486A0415E34F0F004E770D /* question-mark.gif */; };
@@ -125,6 +126,8 @@
 		A736D076152BFE8A0049AB22 /* Conversation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Conversation.m; sourceTree = "<group>"; };
 		A736D0781533859B0049AB22 /* composeConversation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = composeConversation.h; sourceTree = "<group>"; };
 		A736D0791533859B0049AB22 /* composeConversation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = composeConversation.m; sourceTree = "<group>"; };
+		A7421D4C168672630023211D /* editProfileModal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = editProfileModal.h; sourceTree = "<group>"; };
+		A7421D4D168672630023211D /* editProfileModal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = editProfileModal.m; sourceTree = "<group>"; };
 		A74869FF15E2D4C8004E770D /* PendingRequestCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PendingRequestCell.h; sourceTree = "<group>"; };
 		A7486A0015E2D4C9004E770D /* PendingRequestCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PendingRequestCell.m; sourceTree = "<group>"; };
 		A7486A0215E2D537004E770D /* PendingRequestCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PendingRequestCell.xib; sourceTree = "<group>"; };
@@ -243,6 +246,8 @@
 			children = (
 				A7E5998C153A5E13009633DC /* Profile.h */,
 				A7E5998D153A5E13009633DC /* Profile.m */,
+				A7421D4C168672630023211D /* editProfileModal.h */,
+				A7421D4D168672630023211D /* editProfileModal.m */,
 				08D612CD156D7CEF00F33490 /* profileCustomCell.h */,
 				08D612CE156D7CEF00F33490 /* profileCustomCell.m */,
 				08D612CB156D7BF100F33490 /* profileCustomCell.xib */,
@@ -535,6 +540,7 @@
 				A71D842816392C5100F45755 /* ConversationMe.m in Sources */,
 				A778622B167DBC410016290A /* autoCompleteEngine.m in Sources */,
 				A778622F167DBE700016290A /* autoCompleteCell.m in Sources */,
+				A7421D4E168672630023211D /* editProfileModal.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
