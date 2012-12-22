@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.1" toolsVersion="2182" systemVersion="11E53" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="11E53" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="4">
     <dependencies>
-        <deployment defaultVersion="1296" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1181"/>
+        <deployment defaultVersion="1536" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1930"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller - Profile-->
@@ -671,89 +671,6 @@
         <image name="first" width="16" height="16"/>
         <image name="second" width="16" height="16"/>
     </resources>
-    <classes>
-        <class className="Community" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/Community.h"/>
-            <relationships>
-                <relationship kind="action" name="refresh"/>
-                <relationship kind="action" name="toggleView:" candidateClass="UISegmentedControl"/>
-            </relationships>
-        </class>
-        <class className="Conversation" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/Conversation.h"/>
-        </class>
-        <class className="ConversationMe" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ConversationMe.h"/>
-        </class>
-        <class className="Login" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/Login.h"/>
-            <relationships>
-                <relationship kind="action" name="login"/>
-                <relationship kind="outlet" name="emailBox" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="notice" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="passwordBox" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="Me" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/Me.h"/>
-            <relationships>
-                <relationship kind="action" name="refresh"/>
-            </relationships>
-        </class>
-        <class className="Profile" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/Profile.h"/>
-            <relationships>
-                <relationship kind="action" name="logout"/>
-                <relationship kind="action" name="refresh"/>
-                <relationship kind="action" name="toggleView:"/>
-            </relationships>
-        </class>
-        <class className="Registered" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/Registered.h"/>
-            <relationships>
-                <relationship kind="action" name="continue"/>
-                <relationship kind="outlet" name="confirmEmail" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="confirmPassword" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="email" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="password" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="Registered3" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/Registered3.h"/>
-            <relationships>
-                <relationship kind="action" name="register"/>
-                <relationship kind="outlet" name="bio" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="firstName" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="lastName" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="notice" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="userName" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="SearchFriends" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SearchFriends.h"/>
-        </class>
-        <class className="autoCompleteEngine" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/autoCompleteEngine.h"/>
-        </class>
-        <class className="composeConversation" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/composeConversation.h"/>
-            <relationships>
-                <relationship kind="action" name="cancelButton"/>
-                <relationship kind="action" name="sendButton"/>
-                <relationship kind="outlet" name="characterCount" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="myTextView" candidateClass="UITextView"/>
-            </relationships>
-        </class>
-        <class className="composeMessageOnly" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/composeMessageOnly.h"/>
-            <relationships>
-                <relationship kind="action" name="cancel"/>
-                <relationship kind="action" name="submit"/>
-                <relationship kind="outlet" name="characterCount" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="messageBody" candidateClass="UITextView"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

@@ -16,6 +16,7 @@
 @synthesize  messageBody, conversationID, preAddressing, characterCount;
 @synthesize autoCompleteObject;
 @synthesize viewOn;
+@synthesize theWord;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -57,11 +58,18 @@
     autoCompleteObject = [[autoCompleteEngine alloc] init]; //ready this object to be viewed on and off
     viewOn = NO;
     messageBody.scrollEnabled = YES; //Im not sure if this worked
+    
+    self.theWord = [[NSMutableString alloc] init];
+    [self.theWord setString:@""];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(anyAction:) name:@"userNameSelected" object:nil];
 }
 
 -(void)viewDidDisappear:(BOOL)animated
 {
     viewOn = NO;
+    [theWord setString:@""];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];  //this is to avoid notification being sent here when we are in composeMessageOnly due to the face that we are using autoCompleteEngine class there too.
 }
 
 - (void)viewDidUnload
@@ -94,6 +102,7 @@
 
 -(void) callAutoComplete:(int) cursorPosition   //handles the autoCompletion of @sign
 {
+    [theWord setString:@""];    //clear theWord so we can update theWord to the "more user provided" information
     //dont do anything because theres no letter to the left
     if(cursorPosition == 0) 
     {
@@ -113,6 +122,8 @@
         temp2.size.height = 158;
         messageBody.frame = temp2;
         
+        //clear theWord
+        [theWord setString:@""];
         return;
     }
     //Begin Checking if we should be Turning on Autocomplete
@@ -121,9 +132,9 @@
     {
         //NSLog(@"the letter at cursor space is %c", [myTextView.text characterAtIndex:cursorPosition-1]);
         char currentLetter = [messageBody.text characterAtIndex:cursorPosition-1];
-        if(currentLetter == ' ')
+        if(currentLetter == ' '|| currentLetter == '\n')
         {
-            NSLog(@"We have a space to the left of the word.");
+            NSLog(@"We have a space or new-line character to the left of the word.");
             if (viewOn == YES)
             {
                 //remove the subview from screen
@@ -142,12 +153,17 @@
                 temp2.size.height = 158;
                 messageBody.frame = temp2;
             }
+            //clear theWord
+            [theWord setString:@""];
+            
             return;
         }
         if(currentLetter == '@')
         {
             NSLog(@"we have an @  sign to the left of the word");
-            
+            //Gotta add an @to theWord so we can send a good query to the server
+            NSString *temp3 = [NSString stringWithFormat:@"%c", currentLetter];
+            [theWord insertString:temp3 atIndex:0];
             //display autocompletion feature
             if(viewOn == NO)
             {
@@ -171,12 +187,58 @@
                 [messageBody scrollRangeToVisible:myRange];
             }
             //constantly update the viewcontroller with the new text
-            
+            [autoCompleteObject searchKickOff:theWord];     //send the word to the right of the @ sign
             return;
         }
+        //convert char into NSString
+        NSString *temp3 = [NSString stringWithFormat:@"%c", currentLetter];
+        //build up the chars into a string
+        [theWord insertString:temp3 atIndex:0];
+        //NSLog(@"The value of the word is %@",theWord);
         cursorPosition--;
     }
 }
+
+//is called when autoCompleteEngine.m has a userName ready for us
+-(void)anyAction:(NSNotification *)anote
+{
+    
+    NSDictionary *dict = [anote userInfo];
+    NSString *userName = [dict objectForKey:@"userName"];
+    [self autoCompleteFinish:userName];
+}
+
+//inserts the userName into the textBox
+-(void)autoCompleteFinish:(NSString *) userName
+{
+    //remove the @ in userName
+    userName = [userName substringFromIndex:1];
+    //NSLog(@"The value of userName in autoCompleteFinish is: %@",userName);
+    int cursorPosition = [messageBody selectedRange].location;
+    //NSLog(@"The contents in the textbox are: %@", myTextView.text);
+    //NSLog(@"Cursor position is %i",cursorPosition);
+    while(cursorPosition != 0)
+    {
+        char currentLetter = [messageBody.text characterAtIndex:cursorPosition-1];
+        if(currentLetter == '@')
+        {
+            //Append userName to the right of @sign
+            NSMutableString *messageContent = [NSMutableString stringWithString:messageBody.text];
+            [messageContent appendString:userName];             //append the userName to the end
+            [messageContent appendString:@" "];                 //append a space at the end
+            [NSString stringWithString:messageContent];         //convert mutableString back to string
+            messageBody.text = messageContent;
+            
+            int cursorPostion = [messageBody selectedRange].location;
+            [self callAutoComplete:cursorPostion];
+            return;
+        }
+        //delete the letter to the left (kinda verbose I know, but it works!)
+        messageBody.text = [messageBody.text substringToIndex:[messageBody.text length] -1];
+        cursorPosition--;
+    }
+}
+
 
 -(IBAction)submit
 {

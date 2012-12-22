@@ -53,11 +53,14 @@
     //force the keyboard to open
     [self.myTextView becomeFirstResponder];
     self.myTextView.delegate = self;
+    
     self.autoCompleteObject = [[autoCompleteEngine alloc] init]; //ready this object to be viewed on and off
+    
     self.viewOn = NO;
     self.myTextView.scrollEnabled = YES; //Im not sure if this worked
     self.theWord = [[NSMutableString alloc] init];
     [self.theWord setString:@""];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(anyAction:) name:@"userNameSelected" object:nil];
 
 }
