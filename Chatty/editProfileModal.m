@@ -52,6 +52,11 @@
 -(IBAction)editPicture
 {
     NSLog(@"You hit the editPicture button");
+    
+    
+    
+    
+    
 }
 
 @end
