@@ -15,6 +15,7 @@
 @implementation editProfileModal
 @synthesize firstName, lastName,Bio;
 @synthesize profilePic;
+@synthesize imagePicker;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -52,11 +53,40 @@
 -(IBAction)editPicture
 {
     NSLog(@"You hit the editPicture button");
+    //initialize imagePicker, imagePicker is a navigationController, which is a viewController as well
+    imagePicker = [[UIImagePickerController alloc]init];
+    
+    //set the delegate
+    imagePicker.delegate = self;
+    
+    //set the sourceType to camera or photoLibrary
+    if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
+    {
+        imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
+    }
+    else
+    {
+        imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    }
+    
+    //present imagePicker as modalView
+    [self presentModalViewController:imagePicker animated:YES];
     
     
+}
+
+
+-(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    //image property is a UIImage
+    profilePic.image = [info objectForKey:UIImagePickerControllerOriginalImage];
     
-    
-    
+    [self dismissModalViewControllerAnimated:YES];
+}
+
+-(void) imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
+    [self dismissModalViewControllerAnimated:YES];
 }
 
 @end
