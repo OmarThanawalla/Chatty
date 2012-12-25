@@ -269,9 +269,9 @@
         
         //userName label
         cell.userName.text = [tweet objectForKey:@"userName"];
-        
-        
-        
+    
+    //FIX THIS LOADING OF THE PROFILE PICTURE
+        //[cell.ProfilePicture setImageWithURL:[NSURL URLWithString:[tweet objectForKey: @"profilePic"]]];
         return cell;
     
 }
