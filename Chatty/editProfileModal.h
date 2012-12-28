@@ -15,9 +15,10 @@
 
 @property (nonatomic, strong) IBOutlet UITextField *firstName;
 @property (nonatomic, strong) IBOutlet UITextField *lastName;
-@property (nonatomic, strong) IBOutlet UITextField *Bio;
+@property (nonatomic, strong) IBOutlet UITextView *Bio;
 @property (nonatomic, strong) IBOutlet UIImageView *profilePic;
 @property (nonatomic, strong) UIImagePickerController *imagePicker;
+@property (nonatomic, strong) NSMutableDictionary *resultsDict;
 
 
 -(IBAction)cancel;

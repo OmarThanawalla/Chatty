@@ -233,7 +233,7 @@
             [myLabel setBackgroundColor:[UIColor clearColor]];   //For debugging purposes
             myLabel.tag = 1;
             //Create Label Size
-            NSString *cellText = [tweet objectForKey:@"message_content"];   //grab the message 
+            NSString *cellText = [tweet objectForKey:@"message_content"];   //grab the message
             UIFont *cellFont = [UIFont fontWithName:@"Helvetica" size:13.0];
             CGSize constraintSize = CGSizeMake(225.0f, MAXFLOAT);           //This sets how wide we can go
             CGSize labelSize = [cellText sizeWithFont:cellFont constrainedToSize:constraintSize lineBreakMode:UILineBreakModeWordWrap];
@@ -270,8 +270,10 @@
         //userName label
         cell.userName.text = [tweet objectForKey:@"userName"];
     
-    //FIX THIS LOADING OF THE PROFILE PICTURE
-        //[cell.ProfilePicture setImageWithURL:[NSURL URLWithString:[tweet objectForKey: @"profilePic"]]];
+        //load Profile Picture
+        NSString *picURL = [tweet objectForKey: @"profilePic"];
+        NSLog(@"The url for the pic is: %@", picURL);
+        [cell.ProfilePicture setImageWithURL:[NSURL URLWithString:picURL]];
         return cell;
     
 }

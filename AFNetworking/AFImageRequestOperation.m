@@ -186,7 +186,7 @@ static dispatch_queue_t image_request_operation_processing_queue() {
 #pragma mark - AFHTTPClientOperation
 
 + (NSSet *)acceptableContentTypes {
-    return [NSSet setWithObjects:@"image/tiff", @"image/jpeg", @"image/gif", @"image/png", @"image/ico", @"image/x-icon", @"image/bmp", @"image/x-bmp", @"image/x-xbitmap", @"image/x-win-bitmap", nil];
+    return [NSSet setWithObjects:@"image/tiff", @"image/jpeg", @"image/gif", @"image/png", @"image/ico", @"image/x-icon", @"image/bmp", @"image/x-bmp", @"image/x-xbitmap", @"image/x-win-bitmap",@"image/jpg", nil];
 }
 
 + (BOOL)canProcessRequest:(NSURLRequest *)request {

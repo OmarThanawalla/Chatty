@@ -19,6 +19,7 @@
 @synthesize firstName, lastName,Bio;
 @synthesize profilePic;
 @synthesize imagePicker;
+@synthesize  resultsDict;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -32,10 +33,42 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
-    NSLog(@"VIEWdidLoad set a profilePicture");
-    [profilePic setImageWithURL:[NSURL URLWithString:@"https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTCKiRD1oKcAUTAmli_0qraKJMdpXjd4Ws5fzlHmbUFglJs14ViIQ"] placeholderImage:[UIImage imageNamed:@"approved.png"]];
+    
 }
+-(void)viewWillAppear:(BOOL)animated
+{
+    //start downloading the data
+     [self downloadUserInfo];
+}
+
+-(void) downloadUserInfo
+{   
+    KeychainItemWrapper *keychain = [[KeychainItemWrapper alloc] initWithIdentifier:@"ChattyAppLoginData" accessGroup:nil];
+    NSString * email = [keychain objectForKey:(__bridge id)kSecAttrAccount];
+    NSString * password = [keychain objectForKey:(__bridge id)kSecValueData];
+    NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
+                            email, @"email",
+                            password, @"password",
+                            nil];
+        [[AFChattyAPIClient sharedClient] getPath:@"/updateUserInfo/" parameters:params
+         //if login works, log a message to the console
+                                          success:^(AFHTTPRequestOperation *operation, id responseObject)
+                                          {
+                                              //NSString *text = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+                                              NSLog(@"Response: %@", responseObject);                                           
+                                              resultsDict = responseObject;
+                                              [self fillUserInfo];
+                                              //rmr: responseObject is an array where each element is a diciontary
+                                          }
+                                          failure:^(AFHTTPRequestOperation *operation, NSError *error)
+                                          {
+                                              NSLog(@"Error from postPath: %@",[error localizedDescription]);
+                                              //else you cant connect, therefore push modalview login onto the stack
+                                              [self performSegueWithIdentifier:@"loggedIn" sender:self];
+                                          }
+         ];
+        
+       }
 
 - (void)didReceiveMemoryWarning
 {
@@ -43,7 +76,19 @@
     // Dispose of any resources that can be recreated.
 }
 
-
+-(void)fillUserInfo
+{
+    //pull JSON Data
+    NSString *firstNameData = [resultsDict objectForKey:@"first_name"];
+    NSString *lastNameData = [resultsDict objectForKey:@"last_name"];
+    NSString *BioData = [resultsDict objectForKey:@"Bio"];
+    
+    // assign data to labels
+    firstName.text = firstNameData;
+    lastName.text = lastNameData;
+    Bio.text = BioData;
+    
+}
 
 
 
@@ -89,10 +134,16 @@
 }
 
 //Send the profilePic.image (UIImage) to the server
+
 -(IBAction)save
 {
-    NSLog(@"You hit the save button");
-
+    //Grab the fields 
+    NSString *theFirst = self.firstName.text;
+    NSString *theLast = self.lastName.text;
+    NSString * theBio = self.Bio.text;
+    
+    
+    
     KeychainItemWrapper *keychain = [[KeychainItemWrapper alloc] initWithIdentifier:@"ChattyAppLoginData" accessGroup:nil];
     NSString * email = [keychain objectForKey:(__bridge id)kSecAttrAccount];
     NSString * password = [keychain objectForKey:(__bridge id)kSecValueData];
@@ -101,6 +152,9 @@
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
                             email, @"email",
                             password, @"password",
+                            theFirst, @"first_name",
+                            theLast, @"last_name",
+                            theBio, @"Bio",
                             nil];
 
     //Grab Image
@@ -111,7 +165,7 @@
     
     //create the NSMUtableURLRequest
     NSMutableURLRequest *request = [[AFChattyAPIClient sharedClient] multipartFormRequestWithMethod:@"POST" path:@"/updateUserInfo/create" parameters:params constructingBodyWithBlock: ^(id <AFMultipartFormData>formData) {
-        [formData appendPartWithFileData:imageData name:@"profilePicture" fileName:@"avatar.jpg" mimeType:@"image/jpeg"];
+        [formData appendPartWithFileData:imageData name:@"profilePicture" fileName:@"avatar.png" mimeType:@"image/png"];
     }];
     
     //create the AFHTTPRequestOperation object
@@ -122,6 +176,7 @@
     
     [self.presentingViewController dismissModalViewControllerAnimated:YES];
 }
+ 
 
 -(IBAction)cancel
 {
