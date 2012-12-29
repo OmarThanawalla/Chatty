@@ -86,7 +86,10 @@
     NSString *lastName = [user objectForKey:@"lastName"];
     NSString * fullName = [firstNameWithSpace stringByAppendingString:lastName];
     cell.fullName.text = fullName;
-    
+    //set profile picture
+    NSString *picURL = [user objectForKey: @"profilePic"];
+    //NSLog(@"The url for the pic is: %@", picURL);
+    [cell.profilePicture setImageWithURL:[NSURL URLWithString:picURL]];
     
     return cell;
 }

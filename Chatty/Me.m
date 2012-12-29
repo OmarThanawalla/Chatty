@@ -101,7 +101,6 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     //begin new type of cell placementing
-    
     static NSString *CellIdentifier = @"CustomCellIdentifier";
     static BOOL nibsRegistered = NO;
     if(!nibsRegistered)
@@ -112,7 +111,6 @@
     }
     
     CustomMessageCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
     
     NSDictionary *tweet = [self.conversations objectAtIndex:indexPath.row];
     
@@ -142,16 +140,15 @@
     if(cell.MessageUser == NULL){
         cell.MessageUser = myLabel;
         [cell.contentView addSubview:cell.MessageUser];
-    }else{
+    }
+    if(cell.MessageUser != NULL){
         [cell.MessageUser removeFromSuperview];         //remove the old label before putting the new one in
         cell.MessageUser = myLabel;
         [cell.contentView addSubview:cell.MessageUser];
     }
 
     
-    
     cell.SenderUser.text = [tweet objectForKey:@"full_name"];
-    
     
     //Recipients Label
     cell.Recipients.text = [tweet objectForKey:@"recipient"];
@@ -164,17 +161,24 @@
 
     //userName label
     cell.userName.text = [tweet objectForKey:@"userName"];
-    NSLog(@"actual cell height %lf",cell.frame.size.height);
-    return cell;
+    //NSLog(@"actual cell height %lf",cell.frame.size.height);
+   
     
-
+    NSString *picURL = [tweet objectForKey: @"profilePic"];
+    [cell.ProfilePicture setImageWithURL:[NSURL URLWithString:picURL]];
+    
+     return cell;
 }
+
+
+
+
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSDictionary *tweet = [self.conversations objectAtIndex:indexPath.row];
     
     //grab the text out of the tweet
-    NSString *cellText = [tweet objectForKey:@"message_content"];             //grab the message 
+    NSString *cellText = [tweet objectForKey:@"message_content"];             //grab the message
     UIFont *cellFont = [UIFont fontWithName:@"Helvetica" size:15.0];
     CGSize constraintSize = CGSizeMake(225.0f, MAXFLOAT);                     //This sets how wide we can go
     //calculate labelSize
@@ -204,49 +208,12 @@
     
     
     //NSLog(@"this is what labelSize was before: %lf",labelSize.height);
-    NSLog(@"Predicted cell height:  %lf",myLabel.frame.size.height);
+    //NSLog(@"Predicted cell height:  %lf",myLabel.frame.size.height);
     return 55 + myLabel.frame.size.height;
 }
 
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 #pragma mark - Table view delegate
 
@@ -269,6 +236,7 @@
 //pull a list of the 20ish most recent conversations for the user
 -(IBAction)refresh
 {
+    NSLog(@"you hit the refresh button////////////////////////////////////");
     KeychainItemWrapper *keychain = [[KeychainItemWrapper alloc] initWithIdentifier:@"ChattyAppLoginData" accessGroup:nil];
     NSString * email = [keychain objectForKey:(__bridge id)kSecAttrAccount];
     NSString * password = [keychain objectForKey:(__bridge id)kSecValueData];
@@ -291,7 +259,7 @@
                      
                  } 
                  failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                     NSLog(@"Error from postPath: %@",[error localizedDescription]);
+                     //NSLog(@"Error from postPath: %@",[error localizedDescription]);
                      //else you cant connect, therefore push modalview login onto the stack
                  }];
     

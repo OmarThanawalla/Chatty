@@ -246,9 +246,9 @@
 			children = (
 				A7E5998C153A5E13009633DC /* Profile.h */,
 				A7E5998D153A5E13009633DC /* Profile.m */,
-				08D612CD156D7CEF00F33490 /* profileCustomCell.h */,
 				A7421D4C168672630023211D /* editProfileModal.h */,
 				A7421D4D168672630023211D /* editProfileModal.m */,
+				08D612CD156D7CEF00F33490 /* profileCustomCell.h */,
 				08D612CE156D7CEF00F33490 /* profileCustomCell.m */,
 				08D612CB156D7BF100F33490 /* profileCustomCell.xib */,
 				A74869FF15E2D4C8004E770D /* PendingRequestCell.h */,

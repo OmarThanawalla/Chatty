@@ -88,6 +88,10 @@
     [cell.bio sizeToFit];
     cell.userID = [tweet objectForKey:@"id"];
     cell.userName.text = [tweet objectForKey:@"userName"];
+    NSString *picURL = [tweet objectForKey: @"profilePic"];
+    [cell.profilePic setImageWithURL:[NSURL URLWithString:picURL]];
+    
+    
     
     //set the state and image of the cell
     NSString *relationship = [tweet objectForKey:@"is_friend"];

@@ -193,6 +193,12 @@
         [cell.Recipients removeFromSuperview];
         cell.userInteractionEnabled = NO;
         cell.userName.text = [tweet objectForKey:@"userName"];
+    
+        //load Profile Picture
+        NSString *picURL = [tweet objectForKey: @"profilePic"];
+        //NSLog(@"The url for the pic is: %@", picURL);
+        [cell.ProfilePicture setImageWithURL:[NSURL URLWithString:picURL]];
+    
         return cell;
 
 }

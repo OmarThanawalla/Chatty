@@ -78,6 +78,9 @@
     NSMutableString *userNames = [[NSMutableString alloc] init];
     
     //iterate through the messageArray
+    
+    //FIX THIS CODE BECAUSE IT THROWS UP EXCEPTIONS
+    /*
     for(int i = 0; i < messageArray.count; i++)
     {
         //grab the element out of the array
@@ -91,6 +94,7 @@
             [userNames appendString:@" "];
         }
     }
+    */
         
     //assign usernames to the preAddressing variable where we will set it to destinationViewController upon prepareForSegueMethod
     preAddressing = userNames;
@@ -174,6 +178,10 @@
     [cell.Recipients removeFromSuperview];
     cell.userInteractionEnabled = NO;
     cell.userName.text = [tweet objectForKey:@"userName"];
+    NSString *picURL = [tweet objectForKey: @"profilePic"];
+    [cell.ProfilePicture setImageWithURL:[NSURL URLWithString:picURL]];
+    
+    
     return cell;
     
 }

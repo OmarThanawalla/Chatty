@@ -160,8 +160,8 @@
     //Grab Image
     UIImage *pic = profilePic.image;
     
-    //Create NSData
-    NSData *imageData = UIImageJPEGRepresentation(pic,0.5);
+    //Create NSData // reduce image quality to speed upload, decrease storage size on amazon, and speed download
+    NSData *imageData = UIImageJPEGRepresentation(pic,0.1);
     
     //create the NSMUtableURLRequest
     NSMutableURLRequest *request = [[AFChattyAPIClient sharedClient] multipartFormRequestWithMethod:@"POST" path:@"/updateUserInfo/create" parameters:params constructingBodyWithBlock: ^(id <AFMultipartFormData>formData) {

@@ -22,6 +22,7 @@
 
 @synthesize currentView;
 @synthesize follows, follows2;
+@synthesize firstName,lastName,userName,Bio;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -47,7 +48,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self refresh];
+    //[self refresh];
       // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -72,12 +73,49 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [self refresh];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    //download user data
+    [self downloadUserInfo];
 }
+
+-(void) downloadUserInfo
+{
+    KeychainItemWrapper *keychain = [[KeychainItemWrapper alloc] initWithIdentifier:@"ChattyAppLoginData" accessGroup:nil];
+    NSString * email = [keychain objectForKey:(__bridge id)kSecAttrAccount];
+    NSString * password = [keychain objectForKey:(__bridge id)kSecValueData];
+    NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
+                            email, @"email",
+                            password, @"password",
+                            nil];
+    [[AFChattyAPIClient sharedClient] getPath:@"/updateUserInfo/" parameters:params
+     //if login works, log a message to the console
+                                      success:^(AFHTTPRequestOperation *operation, id responseObject)
+     {
+         //NSString *text = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+         NSLog(@"Response: %@", responseObject);
+         //rmr: responseObject is an array where each element is a diciontary
+         //set the instance variables and call reload table
+         NSDictionary *userJSON = responseObject;
+         self.firstName = [userJSON objectForKey:@"first_name"];
+         self.lastName = [userJSON objectForKey:@"last_name"];
+         self.userName = [userJSON objectForKey:@"userName"];
+         self.Bio = [userJSON objectForKey:@"Bio"];
+         [self.tableView reloadData];
+     }
+                                      failure:^(AFHTTPRequestOperation *operation, NSError *error)
+     {
+         NSLog(@"Error from postPath: %@",[error localizedDescription]);
+         //else you cant connect, therefore push modalview login onto the stack
+     }
+     ];
+    
+}
+
 
 - (void)viewWillDisappear:(BOOL)animated
 {
@@ -151,13 +189,14 @@
                         
                         profileCustomCell * cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
                         
-                        cell.BioText.text = @"I live in Austin!";
-                        cell.NameText.text = @"Omaar Thanawalla";
-                        cell.userName.text = @"@omar";
+                        cell.NameText.text = self.firstName;
+                        cell.userName.text = self.userName;
+                        cell.BioText.text = self.Bio;
+                        [cell.BioText sizeThatFits:CGSizeMake(40, 196)];
+                        
                         //this prevents the cell from being hightlighted but still lets me hit the edit profile UIButton
                         [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
                         return cell;
-             
                     }
                     else // you are in the pendingRequestsSection
                     {
@@ -175,6 +214,9 @@
                         
                         NSDictionary *user = [follows objectAtIndex:indexPath.row];
                         
+                        //set UIImage with link to Profile Pic
+                        
+                        
                         cell.fullName.text = [user objectForKey:@"fullName"];
                         //reset the labelFrame because the cell could be dequed
                         CGRect labelFrame = CGRectMake(62.0f, 27.0f, 166.0f, 34.0f);
@@ -188,6 +230,10 @@
                         cell.profilePic = [user objectForKey:@"pictureURL"];
                         UIImage *btnImage = [UIImage imageNamed:@"PENDING_Stamp1.png"];
                         [cell.cnfmButton setImage:btnImage forState:UIControlStateNormal];
+                        
+                        
+                        
+                        
                         
                         //this prevents the cell from being hightlighted but still lets me hit the edit profile UIButton
                         [tableView setAllowsSelection:NO];
@@ -217,6 +263,12 @@
         NSDictionary *user = [follows2 objectAtIndex:indexPath.row];
         cell.fullName.text = [user objectForKey:@"fullName"];
         
+        //set profile pic
+        NSString *picURL = [user objectForKey: @"profilePic"];
+        [cell.profilePic setImageWithURL:[NSURL URLWithString:picURL]];
+        
+
+        
         //reset the labelFrame because the cell could be dequed
         CGRect labelFrame = CGRectMake(63.0f, 29.0f, 150.0f, 21.0f);
         cell.bio.frame = labelFrame;
@@ -235,44 +287,7 @@
 
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 #pragma mark - Table view delegate
 

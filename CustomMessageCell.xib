@@ -45,13 +45,14 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{10, 6}, {61, 60}}</string>
 								<reference key="NSSuperview" ref="331541200"/>
+								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="887060480"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<object class="NSCustomResource" key="IBUIImage">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">dirk_nowitzki_027.jpg</string>
+									<string key="NSResourceName">jasonT.jpeg</string>
 								</object>
 							</object>
 							<object class="IBUILabel" id="810147974">
@@ -59,6 +60,7 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{72, 78}, {198, 21}}</string>
 								<reference key="NSSuperview" ref="331541200"/>
+								<reference key="NSWindow"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -91,6 +93,7 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{72, 6}, {108, 21}}</string>
 								<reference key="NSSuperview" ref="331541200"/>
+								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="69532582"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
@@ -122,6 +125,7 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{226, 6}, {89, 21}}</string>
 								<reference key="NSSuperview" ref="331541200"/>
+								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="1039151759"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
@@ -149,6 +153,7 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{267, 37}, {33, 29}}</string>
 								<reference key="NSSuperview" ref="331541200"/>
+								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="810147974"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -161,6 +166,7 @@
 						</array>
 						<string key="NSFrameSize">{320, 99}</string>
 						<reference key="NSSuperview" ref="61653446"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="338201820"/>
 						<string key="NSReuseIdentifierKey">_NS:11</string>
 						<object class="NSColor" key="IBUIBackgroundColor">
@@ -176,6 +182,7 @@
 				</array>
 				<string key="NSFrameSize">{320, 100}</string>
 				<reference key="NSSuperview"/>
+				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="331541200"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -295,7 +302,47 @@
 			<nil key="sourceID"/>
 			<int key="maxID">16</int>
 		</object>
-		<object class="IBClassDescriber" key="IBDocument.Classes"/>
+		<object class="IBClassDescriber" key="IBDocument.Classes">
+			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
+				<object class="IBPartialClassDescription">
+					<string key="className">CustomMessageCell</string>
+					<string key="superclassName">UITableViewCell</string>
+					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="MessageUser">UILabel</string>
+						<string key="ProfilePicture">UIImageView</string>
+						<string key="Recipients">UILabel</string>
+						<string key="SenderUser">UILabel</string>
+						<string key="userName">UILabel</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="MessageUser">
+							<string key="name">MessageUser</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="ProfilePicture">
+							<string key="name">ProfilePicture</string>
+							<string key="candidateClassName">UIImageView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="Recipients">
+							<string key="name">Recipients</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="SenderUser">
+							<string key="name">SenderUser</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="userName">
+							<string key="name">userName</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+					</dictionary>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/CustomMessageCell.h</string>
+					</object>
+				</object>
+			</array>
+		</object>
 		<int key="IBDocument.localizationMode">0</int>
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaTouchFramework</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginDeclaredDependencyDefaults">
@@ -306,7 +353,7 @@
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="14643521-thumb-up-icon.jpg">{1149, 1200}</string>
-			<string key="dirk_nowitzki_027.jpg">{240, 240}</string>
+			<string key="jasonT.jpeg">{128, 90}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">1930</string>
 	</data>
