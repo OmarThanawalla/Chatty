@@ -22,6 +22,10 @@
     //register for push notification
     [[UIApplication sharedApplication] registerForRemoteNotificationTypes:
      (UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
+    
+    
+    [[UITabBar appearance] setSelectedImageTintColor:[UIColor colorWithRed:240.0/256.0 green:240.0/256.0 blue:240.0/256.0 alpha:1.0]];
+    
     return YES;
 }
 							
