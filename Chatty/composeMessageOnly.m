@@ -86,12 +86,31 @@
 }
 -(IBAction)cancel
 {
+    
     [self.presentingViewController dismissModalViewControllerAnimated:YES];   
    
 }
 
+- (BOOL) textViewShouldBeginEditing:(UITextView *)textView //calls this method because "becomeFirstResponder"
+{
+    //Simulate placeholder text
+    messageBody.text = @"Use the @ sign to send a push notification to that person";
+    messageBody.textColor = [UIColor lightGrayColor];
+    messageBody.selectedRange = NSMakeRange(0, 0);
+    return YES;
+}
+
 -(void)textViewDidChange:(UITextView *)textView
 {
+    //Clear placeholder
+    if(messageBody.textColor == [UIColor lightGrayColor])
+    {
+        messageBody.textColor= [UIColor blackColor];
+        NSRange clearMe = NSMakeRange(1, messageBody.text.length -1);     //grab the front rest of the string
+        messageBody.text = [messageBody.text stringByReplacingCharactersInRange: clearMe withString:@""]; //clear that front rest
+    }
+    
+    //counter
     int count = 140 - [messageBody.text length];
     [characterCount setTitle:[NSString stringWithFormat:@"%d", count]];
     
