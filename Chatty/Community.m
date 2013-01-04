@@ -62,6 +62,8 @@
     NSLog(@"%@, %@", email, password);
     
     //[self performSegueWithIdentifier:@"composeAConvo" sender:self];
+    [self.tabBarController setSelectedIndex:3];
+    
     
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
                             email, @"email", 
@@ -270,7 +272,7 @@
     
         //load Profile Picture
         NSString *picURL = [tweet objectForKey: @"profilePic"];
-        //NSLog(@"The url for the pic is: %@", picURL);
+        NSLog(@"The url for the pic is: %@", picURL);
         [cell.ProfilePicture setImageWithURL:[NSURL URLWithString:picURL]];
         return cell;
     

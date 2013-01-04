@@ -22,7 +22,7 @@
 
 @synthesize currentView;
 @synthesize follows, follows2;
-@synthesize firstName,lastName,userName,Bio;
+@synthesize firstName,lastName,userName,Bio,profilePicLink;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -74,13 +74,15 @@
 {
     [super viewWillAppear:animated];
     [self refresh];
+    
+    //download user data
+    [self downloadUserInfo];
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    //download user data
-    [self downloadUserInfo];
 }
 
 -(void) downloadUserInfo
@@ -105,6 +107,9 @@
          self.lastName = [userJSON objectForKey:@"last_name"];
          self.userName = [userJSON objectForKey:@"userName"];
          self.Bio = [userJSON objectForKey:@"Bio"];
+         self.profilePicLink =[userJSON objectForKey:@"profilePic"];
+        
+         
          [self.tableView reloadData];
      }
                                       failure:^(AFHTTPRequestOperation *operation, NSError *error)
@@ -172,10 +177,10 @@
 {
     //static NSString *CellIdentifier = @"Cell";
    
-    //profile SEGMENT
+    //profile segmented tab
     if (self.currentView == 0)
     {
-                    //configure User SECTION
+                    //configure First Cell (profileCustomCell)
                     if (indexPath.section == 0) {
 
                         static NSString *CellIdentifier = @"CellIdentifier";
@@ -194,13 +199,17 @@
                         cell.BioText.text = self.Bio;
                         [cell.BioText sizeThatFits:CGSizeMake(40, 196)];
                         
+                        
+                        
+                        [cell.ProfilePic setImageWithURL:[NSURL URLWithString:self.profilePicLink]];
+                        
                         //this prevents the cell from being hightlighted but still lets me hit the edit profile UIButton
                         [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
                         return cell;
                     }
-                    else // you are in the pendingRequestsSection
+                    else // configure 2-END cells (pending request cells)
                     {
-                        NSLog(@"This is section 1");
+                        
                         static NSString *CellIdentifier = @"PendingCell";
                         static BOOL nibsRegistered = NO;
                         if(!nibsRegistered)
@@ -227,7 +236,9 @@
                         
                         cell.userName.text = [user objectForKey:@"userName"];
                         cell.userID = [user objectForKey:@"userID"];
-                        cell.profilePic = [user objectForKey:@"pictureURL"];
+                        NSString * ProfilePictureURL = [user objectForKey:@"profilePic"];
+                        [cell.profilePic setImageWithURL:[NSURL URLWithString:ProfilePictureURL]];
+                       
                         UIImage *btnImage = [UIImage imageNamed:@"PENDING_Stamp1.png"];
                         [cell.cnfmButton setImage:btnImage forState:UIControlStateNormal];
                         
@@ -241,10 +252,10 @@
                     }
         
     }
-    //Following Section
+    //Following segmented Tab
     else{
         
-        NSLog(@"This is section 1");
+        
         static NSString *CellIdentifier = @"followingUser";
         static BOOL nibsRegistered = NO;
         if(!nibsRegistered)
@@ -291,16 +302,6 @@
 
 #pragma mark - Table view delegate
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
-}
 
 - (IBAction)toggleView:(id)sender {
     
@@ -350,6 +351,7 @@
 
 -(IBAction)refresh
 {
+    [self downloadUserInfo];
     KeychainItemWrapper *keychain = [[KeychainItemWrapper alloc] initWithIdentifier:@"ChattyAppLoginData" accessGroup:nil];
     NSString * email = [keychain objectForKey:(__bridge id)kSecAttrAccount];
     NSString * password = [keychain objectForKey:(__bridge id)kSecValueData];
@@ -367,7 +369,8 @@
                                       success:^(AFHTTPRequestOperation *operation, id responseObject) {
                                           //NSString *text = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
                                           NSLog(@"Response: %@", responseObject);
-                                   
+                                          
+                                          //set up follows array
                                           follows = responseObject;
                                           [self.tableView reloadData];
                                           

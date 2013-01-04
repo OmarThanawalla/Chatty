@@ -17,6 +17,7 @@
 @property (nonatomic, strong) NSString *lastName;
 @property (nonatomic, strong) NSString *Bio;
 @property (nonatomic, strong) NSString *userName;
+@property (nonatomic, strong) NSString *profilePicLink;
 
 - (IBAction)toggleView:(id)sender;
 -(IBAction) logout;
