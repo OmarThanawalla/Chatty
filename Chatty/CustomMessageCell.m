@@ -14,6 +14,7 @@
 @synthesize Recipients;
 @synthesize ProfilePicture;
 @synthesize userName;
+@synthesize cumulativeLikes;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {

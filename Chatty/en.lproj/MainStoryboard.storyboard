@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="11E53" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="4">
     <dependencies>
-        <deployment defaultVersion="1536" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1930"/>
     </dependencies>
     <scenes>
@@ -553,6 +552,8 @@
                     <connections>
                         <outlet property="characterCount" destination="doM-my-eNP" id="x1Z-h7-ZL3"/>
                         <outlet property="messageBody" destination="1zn-1Z-RQy" id="XKB-af-QPp"/>
+                        <outlet property="navBar" destination="TYT-ko-kbp" id="9dH-de-moY"/>
+                        <outlet property="statusBar" destination="Ina-oy-9rF" id="TD3-x3-o6J"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Nf-c9-Dxh" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -660,6 +661,8 @@
                     <connections>
                         <outlet property="characterCount" destination="PDJ-Uv-AsE" id="j8C-WO-aTm"/>
                         <outlet property="myTextView" destination="T1S-Xo-1Np" id="YoJ-dD-Imq"/>
+                        <outlet property="navBar" destination="hig-1i-jNV" id="Xyy-ca-BRv"/>
+                        <outlet property="statusBar" destination="Xye-id-TLO" id="NlK-lp-bXL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NWH-q3-N5t" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -699,7 +702,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Me Conversations" id="mPH-Ba-zIs">
-                        <barButtonItem key="leftBarButtonItem" title="Refresh" id="ZfU-sw-jPV">
+                        <barButtonItem key="leftBarButtonItem" image="refresh (2).png" id="ZfU-sw-jPV">
                             <connections>
                                 <action selector="refresh" destination="ycM-Fd-tHT" id="BAU-SX-ySL"/>
                             </connections>
@@ -855,6 +858,8 @@
                 <relationship kind="action" name="sendButton"/>
                 <relationship kind="outlet" name="characterCount" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="myTextView" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="navBar" candidateClass="UINavigationBar"/>
+                <relationship kind="outlet" name="statusBar" candidateClass="UIToolbar"/>
             </relationships>
         </class>
         <class className="composeMessageOnly" superclassName="UIViewController">
@@ -864,6 +869,8 @@
                 <relationship kind="action" name="submit"/>
                 <relationship kind="outlet" name="characterCount" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="messageBody" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="navBar" candidateClass="UINavigationBar"/>
+                <relationship kind="outlet" name="statusBar" candidateClass="UIToolbar"/>
             </relationships>
         </class>
         <class className="editProfileModal" superclassName="UIViewController">
@@ -885,8 +892,8 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="uJa-SE-dA2"/>
         <segue reference="sEP-E2-vGj"/>
+        <segue reference="7yl-nr-Xmv"/>
         <segue reference="8La-9C-anb"/>
     </inferredMetricsTieBreakers>
 </document>

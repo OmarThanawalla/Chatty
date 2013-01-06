@@ -38,6 +38,12 @@
 {
     [super viewDidLoad];
 
+    //change tableview Image
+    UIImageView *tempImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bg_4.png"]];
+    [tempImageView setFrame:self.tableView.frame];
+    
+    self.tableView.backgroundView = tempImageView;
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -58,6 +64,7 @@
     //refresh the data on view loading
     [self refresh];
     
+    
 }
 
 
@@ -66,8 +73,9 @@
 {
     [super viewDidAppear:animated];
     [self.tableView reloadData];
-//    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:([messages count]-1) inSection:0];
-//    [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+    //scroll to the bottom of the messages
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[messages count]-1 inSection:0 ];
+    [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
 
     NSIndexPath *firstCellIndex = [NSIndexPath indexPathForRow:0 inSection:0];
     CustomMessageCell *myFirstCell = (CustomMessageCell*)[self.tableView cellForRowAtIndexPath:firstCellIndex];
@@ -80,7 +88,7 @@
     //iterate through the messageArray
     
     //FIX THIS CODE BECAUSE IT THROWS UP EXCEPTIONS
-    /*
+    
     for(int i = 0; i < messageArray.count; i++)
     {
         //grab the element out of the array
@@ -94,7 +102,7 @@
             [userNames appendString:@" "];
         }
     }
-    */
+    
         
     //assign usernames to the preAddressing variable where we will set it to destinationViewController upon prepareForSegueMethod
     preAddressing = userNames;

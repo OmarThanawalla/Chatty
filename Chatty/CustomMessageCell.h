@@ -14,5 +14,6 @@
 @property (strong, nonatomic) IBOutlet UILabel *Recipients;
 @property (strong, nonatomic) IBOutlet UIImageView *ProfilePicture;
 @property (strong, nonatomic) IBOutlet UILabel *userName;
+@property (strong, nonatomic) IBOutlet UILabel *cumulativeLikes;
 
 @end

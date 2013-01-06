@@ -68,63 +68,12 @@
 
     //setting currentView to 1 here because I removed the toggling of AllConvo's and FavoriteConvo's
     self.currentView = 1;
-    KeychainItemWrapper *keychain = [[KeychainItemWrapper alloc] initWithIdentifier:@"ChattyAppLoginData" accessGroup:nil];
-    NSString * email = [keychain objectForKey:(__bridge id)kSecAttrAccount];
-    NSString * password = [keychain objectForKey:(__bridge id)kSecValueData];
     
-    NSLog(@"%@, %@", email, password);
     
     //[self performSegueWithIdentifier:@"composeAConvo" sender:self];
-    [self.tabBarController setSelectedIndex:1];
-    
-    
-    NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
-                            email, @"email", 
-                            password, @"password",
-                            nil];
-    NSLog(@"the current view on viewDidLoad %d", currentView);
-    if(currentView == 0)
-    {
-    [[AFChattyAPIClient sharedClient] getPath:@"/inner_conversation/" parameters:params 
-     //if login works, log a message to the console
-                                      success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                                          //NSString *text = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-                                          NSLog(@"Response: %@", responseObject);
-                                          //rmr: responseObject is an array where each element is a diciontary
-                                          innerCircleConversations = responseObject;
-                                          [self.tableView reloadData];
-                                          
-                                          
-                                      } 
-                                      failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                                          NSLog(@"Error from postPath: %@",[error localizedDescription]);
-                                          //else you cant connect, therefore push modalview login onto the stack
-                                          [self performSegueWithIdentifier:@"loggedIn" sender:self];
-                                      }];
-    }
-    else //you are in All Conversations view
-    {
-
-        
-        [[AFChattyAPIClient sharedClient] getPath:@"/conversation/" parameters:params 
-         //if login works, log a message to the console
-                                          success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                                              //NSString *text = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-                                              NSLog(@"Response: %@", responseObject);
-                                              //rmr: responseObject is an array where each element is a diciontary
-                                              allConversations = responseObject;
-                                              [self.tableView reloadData];
-                                              
-                                              
-                                          } 
-                                          failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                                              NSLog(@"Error from postPath: %@",[error localizedDescription]);
-                                              //else you cant connect, therefore push modalview login onto the stack
-                                              [self performSegueWithIdentifier:@"loggedIn" sender:self];
-                                          }];
-        
-        
-    }
+    //[self.tabBarController setSelectedIndex:1];
+    [self refresh];
+   
 }
 
 - (void)viewDidUnload
@@ -137,6 +86,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
     
 }
 
@@ -286,6 +236,10 @@
         //userName label
         cell.userName.text = [tweet objectForKey:@"userName"];
     
+        //set numberOfLikes on cell
+        cell.cumulativeLikes.text = @"87";
+    
+    
         //load Profile Picture
         NSString *picURL = [tweet objectForKey: @"profilePic"];
         NSLog(@"The url for the pic is: %@", picURL);
@@ -337,45 +291,6 @@
 
 
 
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 
 
@@ -479,11 +394,12 @@
                                               //rmr: responseObject is an array where each element is a diciontary
                                               innerCircleConversations = responseObject;
                                               [self.tableView reloadData];
+                                              
                                           } 
                                           failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                                               NSLog(@"Error from postPath: %@",[error localizedDescription]);
                                               //else you cant connect, therefore push modalview login onto the stack
-                                              [self performSegueWithIdentifier:@"loggedIn" sender:self];
+                                              
                                           }];
     }
     else //you are in All Conversations view
@@ -496,13 +412,13 @@
                                               //rmr: responseObject is an array where each element is a diciontary
                                               allConversations = responseObject;
                                               [self.tableView reloadData];
-                                              
+                                              [self messagesDownloadStart]; //1 of 4 Begins background message downloads
                                               
                                           } 
                                           failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                                               NSLog(@"Error from postPath: %@",[error localizedDescription]);
                                               //else you cant connect, therefore push modalview login onto the stack
-                                              [self performSegueWithIdentifier:@"loggedIn" sender:self];
+                                              
                                           }];
     }
 
@@ -510,7 +426,81 @@
     
 }
 
+//this method will start downloading messages for each conversation displayed in community
+-(void) messagesDownloadStart //2 of 4
+{
+    NSLog(@"You have called the databaseDownload method in the Community.m class");
     
+    //for each conversation go call getMessages Method which will start downloading data (messages)
+    for(int i = 0; i < [allConversations count]; i++)
+    {
+        //grab the conversation ID 
+        NSDictionary *temp = [allConversations objectAtIndex:i];
+        NSString * convoID = [temp objectForKey:@"conversation_id"];
+        NSLog(@"The conversaion IDs that you are viewing in this tableview are: %@",convoID);
+        
+        //grab all the messages in that conversation
+        //if(i == 0) //debugging purposes (just to see what messages are in the first displayed convo)
+        
+        //get the messages
+        [self getMessages:convoID];
+        
+        
+    }
+     
+}
+
+//this method gets called for each conversationID
+-(void) messagesDownloadFinish  //4 of 4
+{
+    NSLog(@"You have called databaseDownloadFInish");
+    NSLog(@"the length of convoMessages is: %i", [self.convoMessages count]);
+    //grab the first message out
+    NSDictionary * omar = [self.convoMessages objectAtIndex:0];
+    //grab the message content out of that first message
+    NSString *message = [omar objectForKey:@"message_content"];
+    NSLog(@"The message content is: %@",message);
+    
+    //Store the dictionary's found in convoMessages array (these are messages) in the database
+    //||pause
+    
+    
+    
+    
+}
+
+//grab all the messages for a given conversation ID
+-(void) getMessages: (NSString *) convoID //3 of 4
+{
+    //NSMutableArray *convoMessages;
+    
+    KeychainItemWrapper *keychain = [[KeychainItemWrapper alloc] initWithIdentifier:@"ChattyAppLoginData" accessGroup:nil];
+    NSString * email = [keychain objectForKey:(__bridge id)kSecAttrAccount];
+    NSString * password = [keychain objectForKey:(__bridge id)kSecValueData];
+    
+    //NSLog(@"The value of conversationID is %i", conversationID);
+    
+    
+    NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
+                            email, @"email",
+                            password, @"password",
+                            convoID, @"conversationID",
+                            nil];
+    [[AFChattyAPIClient sharedClient] getPath:@"/get_message/" parameters:params
+     //if login works, log a message to the console
+                                      success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                                          _convoMessages = responseObject;
+                                          NSLog(@"This is the response I recieved: %@", responseObject);
+                                          [self messagesDownloadFinish];
+                                          
+                                          
+                                          
+                                      }
+                                      failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                          NSLog(@"Error from postPath: %@",[error localizedDescription]);
+                                      }];
+        
+}
 
 
 

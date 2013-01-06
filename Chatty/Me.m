@@ -39,6 +39,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self refresh];
     //refresh the data when the view loads
     //[self refresh];
     

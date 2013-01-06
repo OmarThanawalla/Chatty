@@ -63,6 +63,11 @@
     [self.theWord setString:@""];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(anyAction:) name:@"userNameSelected" object:nil];
+    
+    //set up the color
+    self.navBar.tintColor = [UIColor colorWithRed:68.0/256.0 green:71.0/256.0 blue:72.0/256.0 alpha:1.0];
+    self.statusBar.tintColor = [UIColor colorWithRed:68.0/256.0 green:71.0/256.0 blue:72.0/256.0 alpha:1.0];
+
 }
 
 -(void)viewDidDisappear:(BOOL)animated
@@ -74,6 +79,8 @@
 
 - (void)viewDidUnload
 {
+    [self setNavBar:nil];
+    [self setStatusBar:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -282,9 +289,7 @@
     [[AFChattyAPIClient sharedClient] postPath:@"/get_message/" parameters:params 
 //     //if login works, log a message to the console
                                       success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                                      NSLog(@"This is the response I recieved in the message view: %@", responseObject);
-                                      [self.presentingViewController dismissModalViewControllerAnimated:YES];                                                                                    
-                                          
+                                      NSLog(@"This is the response I recieved in the message view: %@", responseObject);                                        
                                           
                                       } 
                                       failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -292,5 +297,6 @@
                                           //else you cant connect, therefore push modalview login onto the stack
                                       }];
 
+    [self.presentingViewController dismissModalViewControllerAnimated:YES]; 
 }
 @end

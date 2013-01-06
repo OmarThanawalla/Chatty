@@ -45,7 +45,17 @@
 {
     [super viewDidLoad];
    
+    //change tableview Image
+    UIImageView *tempImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bg_4.png"]];
+    [tempImageView setFrame:self.tableView.frame];
     
+    self.tableView.backgroundView = tempImageView;
+    
+    //create NSIndexPath
+    //NSIndexPath * tempIndexPath = [NSIndexPath indexPathForRow:([messages count]-1) inSection:0];
+    
+    //SCROLL to the bottom
+    //[self.tableView scrollToRowAtIndexPath:tempIndexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
 }
 
 - (void)viewDidUnload
@@ -69,7 +79,9 @@
 {
     [super viewDidAppear:animated];
     [self.tableView reloadData]; 
-    //taking out the below code because I think it has something to do with my app terminating when viewing a conversation
+    
+    //scroll to the bottom of the messages (YOU HAVE TO initialze messages to 0 because it takes a few seconds on the iphone)
+    //NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[messages count]-1 inSection:0 ];
     //[self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
     
     //iterate the first cell and find all the @targets
@@ -81,6 +93,7 @@
     //this string will hold the usernames while we iterate
     NSMutableString *userNames = [[NSMutableString alloc] init];
     
+    /*
     //iterate through the messageArray
     for(int i = 0; i < messageArray.count; i++)
     {
@@ -103,7 +116,7 @@
             [userNames appendString:@" "];
         }
     }
-    
+    */
     
     //assign usernames to the preAddressing variable where we will set it to destinationViewController upon prepareForSegueMethod
     preAddressing = userNames;
@@ -272,18 +285,6 @@
 */
 
 #pragma mark - Table view delegate
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
-}
-
 
 
 -(void) refresh
