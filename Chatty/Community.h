@@ -22,6 +22,7 @@
 @property (nonatomic, strong) NSMutableArray * allConversations;
 @property (nonatomic, strong) NSMutableArray * variableCellHeight;
 @property (nonatomic, strong) NSMutableArray * convoMessages;
+@property (nonatomic, strong) NSMutableArray * listOfImages;
 
 //This is for CoreData
 @property (nonatomic,strong) NSManagedObjectContext* managedObjectContext;

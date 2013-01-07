@@ -212,9 +212,15 @@
     
     
         //load Profile Picture
+    //dont forget to load from listOfImages Array
         NSString *picURL = [tweet objectForKey: @"profilePic"];
         NSLog(@"The url for the pic is: %@", picURL);
         [cell.ProfilePicture setImageWithURL:[NSURL URLWithString:picURL]];
+       // UIImageView * profPic2 = [self.listOfImages objectAtIndex:indexPath.row];
+       // UIImage *profPicImage = profPic2.image;
+    //[cell.ProfilePicture setImage:profPicImage];
+    
+    
         return cell;
     
 }
@@ -383,6 +389,7 @@
                                               //rmr: responseObject is an array where each element is a diciontary
                                               allConversations = responseObject;
                                               [self.tableView reloadData];
+                                              //[self loadProfilePictures];
                                               [self messagesDownloadStart]; //1 of 4 Begins background message downloads
                                               
                                           } 
@@ -395,6 +402,24 @@
 
     
     
+}
+
+//this method has been skipped
+-(void)loadProfilePictures
+{
+    for(int i =0; i < [allConversations count]; i++)
+    {
+        //load images
+        NSDictionary *tweet = [self.allConversations objectAtIndex:i];
+        NSString *picURL = [tweet objectForKey: @"profilePic"];
+        UIImageView *profPic2 = [[UIImageView alloc]init];
+        [profPic2 setImageWithURL:[NSURL URLWithString:picURL]];
+        NSLog(@"///////////////////////////////////////////////////////////////////////////////////////////////////");
+        NSLog(@"picurl is %@", picURL);
+        //append the image to the array
+        [self.listOfImages addObject:profPic2];
+    }
+    [self.tableView reloadData];
 }
 
 //this method will start downloading messages for each conversation displayed in community
