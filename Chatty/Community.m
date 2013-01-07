@@ -16,7 +16,9 @@
 #import "AFNetworking.h"
 #import "AFChattyAPIClient.h"
 #import "KeychainItemWrapper.h"
+#import "Message.h"
 
+#import "BIDAppDelegate.h" //This is for CoreData: in order to grab the managedObjectContext
 
 @implementation Community
 
@@ -141,38 +143,7 @@
     
     static NSString *CellIdentifier = @"CustomCellIdentifier";
    
-    //DONT LOOK AT THIS IF STATEMENT BECAUSE YOU DON'T HAVE AN INNER CIRCLE CONVERSATION TAB 
-//    if(currentView == 0){ //current view is Inner Circle
-//        /*
-//        static BOOL nibsRegistered = NO;
-//        if(!nibsRegistered)
-//        {
-//            UINib *nib = [UINib nibWithNibName: @"CustomMessageCell" bundle:nil]; //grab nib
-//            [tableView registerNib:nib forCellReuseIdentifier:CellIdentifier];//register nib
-//            //nibsRegistered = YES;
-//        }
-//        
-//        CustomMessageCell * cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-//      
-//        //customize cell
-//        
-//        NSDictionary *tweet = [innerCircleConversations objectAtIndex:indexPath.row];
-//        cell.MessageUser.text = [tweet objectForKey:@"message_content"];
-//        cell.MessageUser.lineBreakMode = UILineBreakModeWordWrap;
-//        cell.MessageUser.numberOfLines = 0;
-//        
-//        
-//        cell.SenderUser.text = [tweet objectForKey:@"full_name"];
-//        cell.Recipients.text = [tweet objectForKey:@"recipient"]; //Message content will reveal recipients
-//        
-//        
-//        return cell;
-//         */
-//    }
-    
-    
-    //THIS IS DOING ALL YOUR WORK. YAY. I LOVE WORK.
-//    else { //current view is ALL
+
         static BOOL nibsRegistered = NO;
         if(!nibsRegistered)
         {
@@ -439,9 +410,7 @@
         NSString * convoID = [temp objectForKey:@"conversation_id"];
         NSLog(@"The conversaion IDs that you are viewing in this tableview are: %@",convoID);
         
-        //grab all the messages in that conversation
         //if(i == 0) //debugging purposes (just to see what messages are in the first displayed convo)
-        
         //get the messages
         [self getMessages:convoID];
         
@@ -450,22 +419,68 @@
      
 }
 
-//this method gets called for each conversationID
+//this method gets called for each conversation (expecting convoMessages to have the dictionarys to populate
 -(void) messagesDownloadFinish  //4 of 4
 {
     NSLog(@"You have called databaseDownloadFInish");
-    NSLog(@"the length of convoMessages is: %i", [self.convoMessages count]);
-    //grab the first message out
-    NSDictionary * omar = [self.convoMessages objectAtIndex:0];
-    //grab the message content out of that first message
-    NSString *message = [omar objectForKey:@"message_content"];
-    NSLog(@"The message content is: %@",message);
+    NSLog(@"the length of convoMessages is: %i", [self.convoMessages count]);   
     
-    //Store the dictionary's found in convoMessages array (these are messages) in the database
-    //||pause
-    
-    
-    
+    //Store the message into the database
+    for(int i = 0; i < [self.convoMessages count]; i++)
+    {
+        NSDictionary *aMessage = [self.convoMessages objectAtIndex:i];
+        
+        
+        BIDAppDelegate * appDelegate = (BIDAppDelegate *)[[UIApplication sharedApplication] delegate];
+        NSManagedObjectContext *context = [appDelegate managedObjectContext];
+        Message *messageTable = [NSEntityDescription insertNewObjectForEntityForName:@"Message" inManagedObjectContext:context];
+        
+        //only if messageID doesn't already exist then do the save
+        //query messageTable and see if messageID already exists
+        
+        //set up fetch request
+        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+        NSEntityDescription *entity = [NSEntityDescription entityForName:@"Message" inManagedObjectContext:context];
+        [fetchRequest setEntity:entity];
+        
+        //set the predicate (Message.where(:messageID => messageID) )
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"messageID == %@", aMessage[@"id"]];
+        [fetchRequest setPredicate:predicate];
+        
+        //execute fetchrequest
+        NSError *error;
+        NSArray *results = [context executeFetchRequest:fetchRequest error:&error];
+        
+        //if execute fetchrequest returns array of 0, then you can run the below statements
+        NSLog(@"the number of results gotten back from the query is: %i", [results count]);
+        if([results count] == 0)
+        {
+        messageTable.conversationID =  aMessage[@"conversation_id"]; //[aMessage objectForKey:@"conversation_id"];
+            
+        NSDateFormatter *df = [[NSDateFormatter alloc] init];
+        [df setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZZ"];
+        NSDate *myDate = [df dateFromString: aMessage[@"created_at"]];
+        messageTable.createdAt = myDate;
+            
+        messageTable.fullName = aMessage[@"full_name"]; 
+        messageTable.messageContent = aMessage[@"message_content"];
+        messageTable.messageID = aMessage[@"id"];
+        messageTable.profilePic = aMessage[@"profilePic"];
+        
+        NSDate *myDate2 = [df dateFromString: aMessage[@"updated_at"]];
+        messageTable.updatedAt = myDate2;
+            
+        messageTable.userID = aMessage[@"user_id"];
+        messageTable.userName = aMessage[@"userName"];
+        
+        //SAVE
+        
+        if (![context save:&error])
+            {
+                NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+            }
+        }
+    }
     
 }
 

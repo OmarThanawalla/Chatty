@@ -43,7 +43,6 @@
 		A765BEAC16976AFE00FB2DD6 /* find.png in Resources */ = {isa = PBXBuildFile; fileRef = A765BEA816976AFE00FB2DD6 /* find.png */; };
 		A765BEAE16976AFE00FB2DD6 /* profile.png in Resources */ = {isa = PBXBuildFile; fileRef = A765BEAA16976AFE00FB2DD6 /* profile.png */; };
 		A765BEB116976C0A00FB2DD6 /* mychats.png in Resources */ = {isa = PBXBuildFile; fileRef = A765BEAF16976C0A00FB2DD6 /* mychats.png */; };
-		A765BEB216976C0A00FB2DD6 /* community.png in Resources */ = {isa = PBXBuildFile; fileRef = A765BEB016976C0A00FB2DD6 /* community.png */; };
 		A765BEB416976CB700FB2DD6 /* new.png in Resources */ = {isa = PBXBuildFile; fileRef = A765BEB316976CB700FB2DD6 /* new.png */; };
 		A765BEB6169770B200FB2DD6 /* bg_4.png in Resources */ = {isa = PBXBuildFile; fileRef = A765BEB5169770B200FB2DD6 /* bg_4.png */; };
 		A765BEBA169774B000FB2DD6 /* refresh (1).png in Resources */ = {isa = PBXBuildFile; fileRef = A765BEB9169774B000FB2DD6 /* refresh (1).png */; };
@@ -55,6 +54,10 @@
 		A765BECA16977CB500FB2DD6 /* Icon@2x (1).png in Resources */ = {isa = PBXBuildFile; fileRef = A765BEC916977CB500FB2DD6 /* Icon@2x (1).png */; };
 		A765BED1169783D900FB2DD6 /* add.png in Resources */ = {isa = PBXBuildFile; fileRef = A765BECF169783D900FB2DD6 /* add.png */; };
 		A765BED2169783D900FB2DD6 /* friends.png in Resources */ = {isa = PBXBuildFile; fileRef = A765BED0169783D900FB2DD6 /* friends.png */; };
+		A765BF1B1699444300FB2DD6 /* Messages.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A765BF191699444200FB2DD6 /* Messages.xcdatamodeld */; };
+		A765BF1D1699484400FB2DD6 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A765BF1C1699484400FB2DD6 /* CoreData.framework */; };
+		A765BF1F169A2E3200FB2DD6 /* community.png in Resources */ = {isa = PBXBuildFile; fileRef = A765BF1E169A2E3200FB2DD6 /* community.png */; };
+		A765BF22169A35ED00FB2DD6 /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = A765BF21169A35EC00FB2DD6 /* Message.m */; };
 		A76DDED0158537C100F8D65D /* AFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = A76DDEBC158537C100F8D65D /* AFHTTPClient.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		A76DDED1158537C100F8D65D /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = A76DDEBE158537C100F8D65D /* AFHTTPRequestOperation.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		A76DDED2158537C100F8D65D /* AFImageRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = A76DDEC0158537C100F8D65D /* AFImageRequestOperation.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -147,7 +150,6 @@
 		A765BEA816976AFE00FB2DD6 /* find.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = find.png; sourceTree = "<group>"; };
 		A765BEAA16976AFE00FB2DD6 /* profile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profile.png; sourceTree = "<group>"; };
 		A765BEAF16976C0A00FB2DD6 /* mychats.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mychats.png; sourceTree = "<group>"; };
-		A765BEB016976C0A00FB2DD6 /* community.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = community.png; sourceTree = "<group>"; };
 		A765BEB316976CB700FB2DD6 /* new.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = new.png; sourceTree = "<group>"; };
 		A765BEB5169770B200FB2DD6 /* bg_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_4.png; sourceTree = "<group>"; };
 		A765BEB9169774B000FB2DD6 /* refresh (1).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "refresh (1).png"; sourceTree = "<group>"; };
@@ -159,6 +161,11 @@
 		A765BEC916977CB500FB2DD6 /* Icon@2x (1).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x (1).png"; sourceTree = "<group>"; };
 		A765BECF169783D900FB2DD6 /* add.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = add.png; sourceTree = "<group>"; };
 		A765BED0169783D900FB2DD6 /* friends.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = friends.png; sourceTree = "<group>"; };
+		A765BF1A1699444300FB2DD6 /* Messages.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Messages.xcdatamodel; sourceTree = "<group>"; };
+		A765BF1C1699484400FB2DD6 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		A765BF1E169A2E3200FB2DD6 /* community.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = community.png; sourceTree = "<group>"; };
+		A765BF20169A35EC00FB2DD6 /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
+		A765BF21169A35EC00FB2DD6 /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
 		A76DDEBB158537C100F8D65D /* AFHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPClient.h; sourceTree = "<group>"; };
 		A76DDEBC158537C100F8D65D /* AFHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPClient.m; sourceTree = "<group>"; };
 		A76DDEBD158537C100F8D65D /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
@@ -221,6 +228,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A765BF1D1699484400FB2DD6 /* CoreData.framework in Frameworks */,
 				A7BBBFD5158858CD00015173 /* Security.framework in Frameworks */,
 				A736D045152BBA620049AB22 /* UIKit.framework in Frameworks */,
 				A736D047152BBA620049AB22 /* Foundation.framework in Frameworks */,
@@ -302,6 +310,7 @@
 			isa = PBXGroup;
 			children = (
 				A765BECF169783D900FB2DD6 /* add.png */,
+				A765BF1E169A2E3200FB2DD6 /* community.png */,
 				A765BED0169783D900FB2DD6 /* friends.png */,
 				A765BEC516977C9300FB2DD6 /* Icon@2x (1).png */,
 				A765BEC616977C9300FB2DD6 /* Icon (1).png */,
@@ -311,7 +320,6 @@
 				A765BEB5169770B200FB2DD6 /* bg_4.png */,
 				A765BEA816976AFE00FB2DD6 /* find.png */,
 				A765BEAF16976C0A00FB2DD6 /* mychats.png */,
-				A765BEB016976C0A00FB2DD6 /* community.png */,
 				A765BEB316976CB700FB2DD6 /* new.png */,
 				A765BEAA16976AFE00FB2DD6 /* profile.png */,
 				A7E7FB75166B0ED600BC29CB /* approved.png */,
@@ -373,6 +381,7 @@
 			children = (
 				A7BBBFD7158859FA00015173 /* KeychainItemWrapper.h */,
 				A7BBBFD8158859FA00015173 /* KeychainItemWrapper.m */,
+				A765BF1C1699484400FB2DD6 /* CoreData.framework */,
 				A7BBBFD4158858CD00015173 /* Security.framework */,
 				A736D046152BBA620049AB22 /* Foundation.framework */,
 				A736D044152BBA620049AB22 /* UIKit.framework */,
@@ -394,6 +403,9 @@
 				A7B35B3B1598C47900330B11 /* Registered3.h */,
 				A7B35B3C1598C47900330B11 /* Registered3.m */,
 				A736D056152BBA620049AB22 /* MainStoryboard.storyboard */,
+				A765BF191699444200FB2DD6 /* Messages.xcdatamodeld */,
+				A765BF20169A35EC00FB2DD6 /* Message.h */,
+				A765BF21169A35EC00FB2DD6 /* Message.m */,
 				083A8B2515420CCC0078989E /* tabs */,
 				083A8B2415420C9E0078989E /* Images */,
 				A736D04B152BBA620049AB22 /* Supporting Files */,
@@ -534,7 +546,6 @@
 				A765BEAC16976AFE00FB2DD6 /* find.png in Resources */,
 				A765BEAE16976AFE00FB2DD6 /* profile.png in Resources */,
 				A765BEB116976C0A00FB2DD6 /* mychats.png in Resources */,
-				A765BEB216976C0A00FB2DD6 /* community.png in Resources */,
 				A765BEB416976CB700FB2DD6 /* new.png in Resources */,
 				A765BEB6169770B200FB2DD6 /* bg_4.png in Resources */,
 				A765BEBA169774B000FB2DD6 /* refresh (1).png in Resources */,
@@ -546,6 +557,7 @@
 				A765BECA16977CB500FB2DD6 /* Icon@2x (1).png in Resources */,
 				A765BED1169783D900FB2DD6 /* add.png in Resources */,
 				A765BED2169783D900FB2DD6 /* friends.png in Resources */,
+				A765BF1F169A2E3200FB2DD6 /* community.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -593,6 +605,8 @@
 				A778622B167DBC410016290A /* autoCompleteEngine.m in Sources */,
 				A778622F167DBE700016290A /* autoCompleteCell.m in Sources */,
 				A7421D4E168672630023211D /* editProfileModal.m in Sources */,
+				A765BF1B1699444300FB2DD6 /* Messages.xcdatamodeld in Sources */,
+				A765BF22169A35ED00FB2DD6 /* Message.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -711,6 +725,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		A765BF191699444200FB2DD6 /* Messages.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				A765BF1A1699444300FB2DD6 /* Messages.xcdatamodel */,
+			);
+			currentVersion = A765BF1A1699444300FB2DD6 /* Messages.xcdatamodel */;
+			path = Messages.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = A736D037152BBA620049AB22 /* Project object */;
 }

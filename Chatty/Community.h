@@ -23,6 +23,10 @@
 @property (nonatomic, strong) NSMutableArray * variableCellHeight;
 @property (nonatomic, strong) NSMutableArray * convoMessages;
 
+//This is for CoreData
+@property (nonatomic,strong) NSManagedObjectContext* managedObjectContext;
+
+
 - (IBAction)toggleView:(UISegmentedControl *)sender;
 -(IBAction)refresh;
 

@@ -13,6 +13,9 @@
 #import "CustomMessageCell.h"
 #import "composeMessageOnly.h"
 
+#import "BIDAppDelegate.h" //This is for CoreData: in order to grab the managedObjectContext
+#import "Message.h"
+
 @implementation Conversation
 
 @synthesize currentView;
@@ -69,8 +72,27 @@
 {
     [super viewWillAppear:animated];
     //refresh the data on view loading
-    [self refresh];
+    
+    //[self refresh];
+    // We're going to pull our data from the database
+    BIDAppDelegate * appDelegate = (BIDAppDelegate *)[[UIApplication sharedApplication] delegate];
+    NSManagedObjectContext *context = [appDelegate managedObjectContext];
+    
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Message" inManagedObjectContext:context];
+    [fetchRequest setEntity:entity];
+    
+    //set the predicate (all messages that are in conversationID)
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"conversationID == %@", self.conversationID];
+    [fetchRequest setPredicate:predicate];
 
+    NSError *error;
+     NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
+    NSLog(@"The number of messages that were found were: %i", [fetchedObjects count]);
+    
+    self.messages = fetchedObjects;
+    [self.tableView reloadData];
 }
 
 
@@ -165,20 +187,20 @@
         
         CustomMessageCell * cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
             
-        NSDictionary *tweet = [self.messages objectAtIndex:indexPath.row];
         
+            Message * myMessage = [self.messages objectAtIndex:indexPath.row];
             //MessageUser Label
             CGRect labelFrame = CGRectMake(72.0f, 26.0f, 0.0f, 0.0f);   
             UILabel *myLabel = [[UILabel alloc] initWithFrame:labelFrame];  //initialize the label
             
-            myLabel.text = [tweet objectForKey:@"message_content"];
+            myLabel.text = myMessage.messageContent; //[tweet objectForKey:@"message_content"];
             myLabel.font =[UIFont systemFontOfSize:13];
             myLabel.lineBreakMode = UILineBreakModeWordWrap;
             myLabel.numberOfLines = 0;
             [myLabel setBackgroundColor:[UIColor clearColor]];
             myLabel.tag = 1;
             //Create Label Size
-            NSString *cellText = [tweet objectForKey:@"message_content"];   //grab the message 
+            NSString *cellText = myMessage.messageContent; //[tweet objectForKey:@"message_content"];   //grab the message
             UIFont *cellFont = [UIFont fontWithName:@"Helvetica" size:13.0];
             CGSize constraintSize = CGSizeMake(225.0f, MAXFLOAT);           //This sets how wide we can go
             CGSize labelSize = [cellText sizeWithFont:cellFont constrainedToSize:constraintSize lineBreakMode:UILineBreakModeWordWrap];
@@ -200,15 +222,15 @@
             
     
         //SenderUser Label
-        cell.SenderUser.text = [tweet objectForKey:@"full_name"];
+        cell.SenderUser.text = myMessage.fullName; //[tweet objectForKey:@"full_name"];
     
         //Remove recipients label
         [cell.Recipients removeFromSuperview];
         cell.userInteractionEnabled = NO;
-        cell.userName.text = [tweet objectForKey:@"userName"];
+        cell.userName.text = myMessage.userName; //[tweet objectForKey:@"userName"];
     
         //load Profile Picture
-        NSString *picURL = [tweet objectForKey: @"profilePic"];
+        NSString *picURL = myMessage.profilePic; //[tweet objectForKey: @"profilePic"];
         //NSLog(@"The url for the pic is: %@", picURL);
         [cell.ProfilePicture setImageWithURL:[NSURL URLWithString:picURL]];
     
@@ -217,8 +239,8 @@
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSDictionary *tweet = [self.messages objectAtIndex:indexPath.row];
-    NSString *cellText = [tweet objectForKey:@"message_content"];             //grab the message 
+    Message * myMessage = [self.messages objectAtIndex:indexPath.row];
+    NSString *cellText = myMessage.messageContent;             //grab the message 
     UIFont *cellFont = [UIFont fontWithName:@"Helvetica" size:15.0];
     CGSize constraintSize = CGSizeMake(220.0f, MAXFLOAT);                     //This sets how wide we can go
     //calculate labelSize
@@ -231,7 +253,7 @@
     [myLabel setText:cellText];
     myLabel.lineBreakMode = UILineBreakModeWordWrap;
     [myLabel setNumberOfLines:0];
-    NSString *cellText2 = [tweet objectForKey:@"message_content"];
+    NSString *cellText2 = myMessage.messageContent;
     UIFont *cellFont2 = [UIFont fontWithName:@"Helvetica" size:15.0];
     CGSize constraintSize2 = CGSizeMake(220.0f, MAXFLOAT);
     CGSize labelSize2 = [cellText2 sizeWithFont:cellFont2 constrainedToSize:constraintSize2 lineBreakMode:UILineBreakModeWordWrap];
