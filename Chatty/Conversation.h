@@ -13,6 +13,7 @@
 @property (assign, nonatomic) int currentView;
 @property (strong, nonatomic) NSString *conversationID;
 @property (strong, nonatomic) NSArray * messages;
+@property (strong, nonatomic) NSArray * convoMessages;
 @property (strong, nonatomic) NSString *preAddressing;
 
 -(void) refresh;

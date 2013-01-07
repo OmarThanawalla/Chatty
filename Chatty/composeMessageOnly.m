@@ -289,8 +289,9 @@
     [[AFChattyAPIClient sharedClient] postPath:@"/get_message/" parameters:params 
 //     //if login works, log a message to the console
                                       success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                                      NSLog(@"This is the response I recieved in the message view: %@", responseObject);                                        
-                                          
+                                      NSLog(@"This is the response I recieved in the message view: %@", responseObject);
+                                     //Hit the refreshTheDatabase method in conversation.m file    
+                                      [[NSNotificationCenter defaultCenter] postNotificationName:@"composeMessageOnly" object:nil userInfo:nil];    
                                       } 
                                       failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                                           NSLog(@"Error from postPath: %@",[error localizedDescription]);

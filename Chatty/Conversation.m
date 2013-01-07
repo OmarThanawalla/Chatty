@@ -22,6 +22,7 @@
 @synthesize conversationID;
 @synthesize messages;
 @synthesize preAddressing;
+@synthesize convoMessages;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -59,6 +60,10 @@
     
     //SCROLL to the bottom
     //[self.tableView scrollToRowAtIndexPath:tempIndexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+    
+    //Set up Listener pattern
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(anyAction:) name:@"composeMessageOnly" object:nil];
+
 }
 
 - (void)viewDidUnload
@@ -66,6 +71,8 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -75,6 +82,11 @@
     
     //[self refresh];
     // We're going to pull our data from the database
+    [self loadFromDatabase];
+}
+
+-(void)loadFromDatabase
+{
     BIDAppDelegate * appDelegate = (BIDAppDelegate *)[[UIApplication sharedApplication] delegate];
     NSManagedObjectContext *context = [appDelegate managedObjectContext];
     
@@ -86,14 +98,128 @@
     //set the predicate (all messages that are in conversationID)
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"conversationID == %@", self.conversationID];
     [fetchRequest setPredicate:predicate];
-
+    
     NSError *error;
-     NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
+    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
     NSLog(@"The number of messages that were found were: %i", [fetchedObjects count]);
     
     self.messages = fetchedObjects;
     [self.tableView reloadData];
 }
+
+//0 The submit button on composeMessageOnly was hit
+-(void)anyAction:(NSNotification *)anote
+{
+    NSLog(@"anyAction method fired. presumably from composeMessageOnly submit button being hit");
+    [self refreshTheDatabase];
+}
+
+//1 Kickoff method
+-(void)refreshTheDatabase
+{
+    NSLog(@"You hit the refreshTheDatabase method in Conversation.m file");
+    //update the database with information from the server
+    [self getMessages:conversationID];
+}
+
+//2 Get new content
+-(void) getMessages: (NSString *) convoID
+{
+    //NSMutableArray *convoMessages;
+    
+    KeychainItemWrapper *keychain = [[KeychainItemWrapper alloc] initWithIdentifier:@"ChattyAppLoginData" accessGroup:nil];
+    NSString * email = [keychain objectForKey:(__bridge id)kSecAttrAccount];
+    NSString * password = [keychain objectForKey:(__bridge id)kSecValueData];
+    
+    //NSLog(@"The value of conversationID is %i", conversationID);
+    
+    
+    NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
+                            email, @"email",
+                            password, @"password",
+                            convoID, @"conversationID",
+                            nil];
+    [[AFChattyAPIClient sharedClient] getPath:@"/get_message/" parameters:params
+     //if login works, log a message to the console
+                                      success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                                          convoMessages = responseObject;
+                                          NSLog(@"This is the response I recieved: %@", responseObject);
+                                          [self saveToDatabase];
+                                          
+                                          
+                                          
+                                      }
+                                      failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                          NSLog(@"Error from postPath: %@",[error localizedDescription]);
+                                      }];
+    
+}
+//3 Save Content to Database
+-(void) saveToDatabase  //3
+{
+    NSLog(@"You have called databaseDownloadFInish");
+    NSLog(@"the length of convoMessages is: %i", [self.convoMessages count]);
+    
+    //Store the message into the database
+    for(int i = 0; i < [self.convoMessages count]; i++)
+    {
+        NSDictionary *aMessage = [self.convoMessages objectAtIndex:i];
+        
+        
+        BIDAppDelegate * appDelegate = (BIDAppDelegate *)[[UIApplication sharedApplication] delegate];
+        NSManagedObjectContext *context = [appDelegate managedObjectContext];
+        Message *messageTable = [NSEntityDescription insertNewObjectForEntityForName:@"Message" inManagedObjectContext:context];
+        
+        //only if messageID doesn't already exist then do the save
+        //query messageTable and see if messageID already exists
+        
+        //set up fetch request
+        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+        NSEntityDescription *entity = [NSEntityDescription entityForName:@"Message" inManagedObjectContext:context];
+        [fetchRequest setEntity:entity];
+        
+        //set the predicate (Message.where(:messageID => messageID) )
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"messageID == %@", aMessage[@"id"]];
+        [fetchRequest setPredicate:predicate];
+        
+        //execute fetchrequest
+        NSError *error;
+        NSArray *results = [context executeFetchRequest:fetchRequest error:&error];
+        
+        //if execute fetchrequest returns array of 0, then you can run the below statements
+        NSLog(@"the number of results gotten back from the query is: %i", [results count]);
+        if([results count] == 0)
+        {
+            messageTable.conversationID =  aMessage[@"conversation_id"]; //[aMessage objectForKey:@"conversation_id"];
+            
+            NSDateFormatter *df = [[NSDateFormatter alloc] init];
+            [df setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZZ"];
+            NSDate *myDate = [df dateFromString: aMessage[@"created_at"]];
+            messageTable.createdAt = myDate;
+            
+            messageTable.fullName = aMessage[@"full_name"];
+            messageTable.messageContent = aMessage[@"message_content"];
+            messageTable.messageID = aMessage[@"id"];
+            messageTable.profilePic = aMessage[@"profilePic"];
+            
+            NSDate *myDate2 = [df dateFromString: aMessage[@"updated_at"]];
+            messageTable.updatedAt = myDate2;
+            
+            messageTable.userID = aMessage[@"user_id"];
+            messageTable.userName = aMessage[@"userName"];
+            
+            //SAVE
+            
+            if (![context save:&error])
+            {
+                NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+            }
+        }
+    }
+    //and then call loadFromDatabase
+    [self loadFromDatabase]; //4
+}
+
 
 
 
@@ -106,6 +232,7 @@
     //NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[messages count]-1 inSection:0 ];
     //[self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
     
+    /*
     //iterate the first cell and find all the @targets
     NSIndexPath *firstCellIndex = [NSIndexPath indexPathForRow:0 inSection:0];
     CustomMessageCell *myFirstCell = (CustomMessageCell*)[self.tableView cellForRowAtIndexPath:firstCellIndex];
@@ -114,7 +241,7 @@
     NSLog(@"%@",messageArray);
     //this string will hold the usernames while we iterate
     NSMutableString *userNames = [[NSMutableString alloc] init];
-    
+    */
     /*
     //iterate through the messageArray
     for(int i = 0; i < messageArray.count; i++)
@@ -141,7 +268,7 @@
     */
     
     //assign usernames to the preAddressing variable where we will set it to destinationViewController upon prepareForSegueMethod
-    preAddressing = userNames;
+    //preAddressing = userNames;
 }
 
 - (void)viewWillDisappear:(BOOL)animated
