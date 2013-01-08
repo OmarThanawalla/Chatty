@@ -161,7 +161,7 @@
         NSDictionary *tweet = [self.allConversations objectAtIndex:indexPath.row];
            
             //MessageUser Label
-            CGRect labelFrame = CGRectMake(72.0f, 26.0f, 0.0f, 0.0f);   
+            CGRect labelFrame = CGRectMake(72.0f, 31.0f, 0.0f, 0.0f);//pointer
             UILabel *myLabel = [[UILabel alloc] initWithFrame:labelFrame];  //initialize the label
             
             myLabel.text = [tweet objectForKey:@"message_content"];
@@ -200,7 +200,7 @@
         cell.Recipients.text = [tweet objectForKey:@"recipient"];
         //grab recipients frame so i can modify it's height
         CGRect temp2 = cell.Recipients.frame;
-        temp2.origin.x = 77;
+        temp2.origin.x = 72;
         int messageHeight = myLabel.frame.size.height;
         temp2.origin.y = 35 + messageHeight; //this is what i have to calculate        
         cell.Recipients.frame = temp2;

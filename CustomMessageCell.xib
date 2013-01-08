@@ -96,7 +96,7 @@
 							<object class="IBUILabel" id="887060480">
 								<reference key="NSNextResponder" ref="331541200"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{79, 6}, {153, 21}}</string>
+								<string key="NSFrame">{{72, 6}, {118, 21}}</string>
 								<reference key="NSSuperview" ref="331541200"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="69532582"/>
@@ -132,7 +132,7 @@
 							<object class="IBUILabel" id="69532582">
 								<reference key="NSNextResponder" ref="331541200"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{201, 6}, {89, 21}}</string>
+								<string key="NSFrame">{{191, 6}, {105, 21}}</string>
 								<reference key="NSSuperview" ref="331541200"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="810147974"/>
@@ -171,7 +171,7 @@
 								<string key="NSFrame">{{267, 50}, {33, 29}}</string>
 								<reference key="NSSuperview" ref="331541200"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="1027333374"/>
+								<reference key="NSNextKeyView" ref="314422733"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -180,7 +180,7 @@
 									<string key="NSResourceName">14643521-thumb-up-icon.jpg</string>
 								</object>
 							</object>
-							<object class="IBUILabel" id="1027333374">
+							<object class="IBUILabel" id="314422733">
 								<reference key="NSNextResponder" ref="331541200"/>
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{279, 76}, {21, 23}}</string>
@@ -273,7 +273,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">cumulativeLikes</string>
 						<reference key="source" ref="61653446"/>
-						<reference key="destination" ref="1027333374"/>
+						<reference key="destination" ref="314422733"/>
 					</object>
 					<int key="connectionID">18</int>
 				</object>
@@ -306,7 +306,7 @@
 							<reference ref="338201820"/>
 							<reference ref="69532582"/>
 							<reference ref="1039151759"/>
-							<reference ref="1027333374"/>
+							<reference ref="314422733"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -337,7 +337,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">17</int>
-						<reference key="object" ref="1027333374"/>
+						<reference key="object" ref="314422733"/>
 						<reference key="parent" ref="61653446"/>
 					</object>
 				</array>
