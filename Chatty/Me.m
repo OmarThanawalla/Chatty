@@ -13,6 +13,11 @@
 #import "AFChattyAPIClient.h"
 #import "CustomMessageCell.h"
 
+#import "Message.h" //this is for CoreData
+
+#import "BIDAppDelegate.h" //This is for CoreData: in order to grab the managedObjectContext
+
+
 @implementation Me
 @synthesize conversations;
 
@@ -270,7 +275,7 @@
                      //rmr: responseObject is an array where each element is a diciontary
                      conversations = responseObject;
                      [self.tableView reloadData];
-                    
+                     [self messagesDownloadStart]; //1 of 4 Begins background message downloads
                      
                  } 
                  failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -281,7 +286,124 @@
 
 }
 
+-(void) messagesDownloadStart //2 of 4
+{
+    NSLog(@"You have called the databaseDownload method in the Community.m class");
+    
+    //for each conversation go call getMessages Method which will start downloading data (messages)
+    for(int i = 0; i < [conversations count]; i++)
+    {
+        //grab the conversation ID
+        NSDictionary *temp = [conversations objectAtIndex:i];
+        NSString * convoID = [temp objectForKey:@"conversation_id"];
+        NSLog(@"The conversaion IDs that you are viewing in this tableview are: %@",convoID);
+        
+        //if(i == 0) //debugging purposes (just to see what messages are in the first displayed convo)
+        //get the messages
+        [self getMessages:convoID];
+        
+        
+    }
+    
+}
 
+//grab all the messages for a given conversation ID
+-(void) getMessages: (NSString *) convoID //3 of 4
+{
+    //NSMutableArray *convoMessages;
+    
+    KeychainItemWrapper *keychain = [[KeychainItemWrapper alloc] initWithIdentifier:@"ChattyAppLoginData" accessGroup:nil];
+    NSString * email = [keychain objectForKey:(__bridge id)kSecAttrAccount];
+    NSString * password = [keychain objectForKey:(__bridge id)kSecValueData];
+    
+    //NSLog(@"The value of conversationID is %i", conversationID);
+    
+    
+    NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
+                            email, @"email",
+                            password, @"password",
+                            convoID, @"conversationID",
+                            nil];
+    [[AFChattyAPIClient sharedClient] getPath:@"/get_message/" parameters:params
+     //if login works, log a message to the console
+                                      success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                                          _convoMessages = responseObject;
+                                          NSLog(@"This is the response I recieved: %@", responseObject);
+                                          [self messagesDownloadFinish];
+                                          
+                                          
+                                          
+                                      }
+                                      failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                          NSLog(@"Error from postPath: %@",[error localizedDescription]);
+                                      }];
+    
+}
+
+//this method gets called for each conversation (expecting convoMessages to have the dictionarys to populate
+-(void) messagesDownloadFinish  //4 of 4
+{
+    NSLog(@"You have called databaseDownloadFInish");
+    NSLog(@"the length of convoMessages is: %i", [self.convoMessages count]);
+    
+    //Store the message into the database
+    for(int i = 0; i < [self.convoMessages count]; i++)
+    {
+        NSDictionary *aMessage = [self.convoMessages objectAtIndex:i];
+        
+        
+        BIDAppDelegate * appDelegate = (BIDAppDelegate *)[[UIApplication sharedApplication] delegate];
+        NSManagedObjectContext *context = [appDelegate managedObjectContext];
+        Message *messageTable = [NSEntityDescription insertNewObjectForEntityForName:@"Message" inManagedObjectContext:context];
+        
+        //only if messageID doesn't already exist then do the save
+        //query messageTable and see if messageID already exists
+        
+        //set up fetch request
+        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+        NSEntityDescription *entity = [NSEntityDescription entityForName:@"Message" inManagedObjectContext:context];
+        [fetchRequest setEntity:entity];
+        
+        //set the predicate (Message.where(:messageID => messageID) )
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"messageID == %@", aMessage[@"id"]];
+        [fetchRequest setPredicate:predicate];
+        
+        //execute fetchrequest
+        NSError *error;
+        NSArray *results = [context executeFetchRequest:fetchRequest error:&error];
+        
+        //if execute fetchrequest returns array of 0, then you can run the below statements
+        NSLog(@"the number of results gotten back from the query is: %i", [results count]);
+        if([results count] == 0)
+        {
+            messageTable.conversationID =  aMessage[@"conversation_id"]; //[aMessage objectForKey:@"conversation_id"];
+            
+            NSDateFormatter *df = [[NSDateFormatter alloc] init];
+            [df setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZZ"];
+            NSDate *myDate = [df dateFromString: aMessage[@"created_at"]];
+            messageTable.createdAt = myDate;
+            
+            messageTable.fullName = aMessage[@"full_name"];
+            messageTable.messageContent = aMessage[@"message_content"];
+            messageTable.messageID = aMessage[@"id"];
+            messageTable.profilePic = aMessage[@"profilePic"];
+            
+            NSDate *myDate2 = [df dateFromString: aMessage[@"updated_at"]];
+            messageTable.updatedAt = myDate2;
+            
+            messageTable.userID = aMessage[@"user_id"];
+            messageTable.userName = aMessage[@"userName"];
+            
+            //SAVE
+            
+            if (![context save:&error])
+            {
+                NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+            }
+        }
+    }
+    
+}
 
 
 @end

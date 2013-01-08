@@ -13,6 +13,8 @@
 #import "CustomMessageCell.h"
 #import "composeMessageOnly.h"
 
+#import "BIDAppDelegate.h" //This is for CoreData: in order to grab the managedObjectContext
+#import "Message.h"
 
 @interface ConversationMe ()
 
@@ -24,6 +26,7 @@
 @synthesize conversationID;
 @synthesize messages;
 @synthesize preAddressing;
+@synthesize convoMessages;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -49,6 +52,8 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(anyAction:) name:@"composeMessageOnly" object:nil];
 }
 
 - (void)viewDidUnload
@@ -56,23 +61,164 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     //refresh the data on view loading
-    [self refresh];
+    NSLog(@"////////////////////////////////////////////////////////////////////////");
+    NSLog(@"refresh method called");
+    [self loadFromDatabase];
     
     
 }
 
+-(void)loadFromDatabase
+{
+    BIDAppDelegate * appDelegate = (BIDAppDelegate *)[[UIApplication sharedApplication] delegate];
+    NSManagedObjectContext *context = [appDelegate managedObjectContext];
+    
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Message" inManagedObjectContext:context];
+    [fetchRequest setEntity:entity];
+    
+    //set the predicate (all messages that are in conversationID)
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"conversationID == %@", self.conversationID];
+    [fetchRequest setPredicate:predicate];
+    
+    NSError *error;
+    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
+    NSLog(@"The number of messages that were found were: %i", [fetchedObjects count]);
+    
+    self.messages = fetchedObjects;
+    [self.tableView reloadData];
+}
+
+//0 The submit button on composeMessageOnly was hit
+-(void)anyAction:(NSNotification *)anote
+{
+    NSLog(@"anyAction method fired. presumably from composeMessageOnly submit button being hit");
+    [self refreshTheDatabase];
+}
+
+//1 Kickoff method
+-(void)refreshTheDatabase
+{
+    NSLog(@"You hit the refreshTheDatabase method in Conversation.m file");
+    //update the database with information from the server
+    [self getMessages:conversationID];
+}
+
+//2 Get new content
+-(void) getMessages: (NSString *) convoID
+{
+    //NSMutableArray *convoMessages;
+    
+    KeychainItemWrapper *keychain = [[KeychainItemWrapper alloc] initWithIdentifier:@"ChattyAppLoginData" accessGroup:nil];
+    NSString * email = [keychain objectForKey:(__bridge id)kSecAttrAccount];
+    NSString * password = [keychain objectForKey:(__bridge id)kSecValueData];
+    
+    //NSLog(@"The value of conversationID is %i", conversationID);
+    
+    
+    NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
+                            email, @"email",
+                            password, @"password",
+                            convoID, @"conversationID",
+                            nil];
+    [[AFChattyAPIClient sharedClient] getPath:@"/get_message/" parameters:params
+     //if login works, log a message to the console
+                                      success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                                          convoMessages = responseObject;
+                                          NSLog(@"This is the response I recieved: %@", responseObject);
+                                          [self saveToDatabase];
+                                          
+                                          
+                                          
+                                      }
+                                      failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                          NSLog(@"Error from postPath: %@",[error localizedDescription]);
+                                      }];
+    
+}
+
+//3 Save Content to Database
+-(void) saveToDatabase  //3
+{
+    NSLog(@"You have called databaseDownloadFInish");
+    NSLog(@"the length of convoMessages is: %i", [self.convoMessages count]);
+    
+    //Store the message into the database
+    for(int i = 0; i < [self.convoMessages count]; i++)
+    {
+        NSDictionary *aMessage = [self.convoMessages objectAtIndex:i];
+        
+        
+        BIDAppDelegate * appDelegate = (BIDAppDelegate *)[[UIApplication sharedApplication] delegate];
+        NSManagedObjectContext *context = [appDelegate managedObjectContext];
+        Message *messageTable = [NSEntityDescription insertNewObjectForEntityForName:@"Message" inManagedObjectContext:context];
+        
+        //only if messageID doesn't already exist then do the save
+        //query messageTable and see if messageID already exists
+        
+        //set up fetch request
+        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+        NSEntityDescription *entity = [NSEntityDescription entityForName:@"Message" inManagedObjectContext:context];
+        [fetchRequest setEntity:entity];
+        
+        //set the predicate (Message.where(:messageID => messageID) )
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"messageID == %@", aMessage[@"id"]];
+        [fetchRequest setPredicate:predicate];
+        
+        //execute fetchrequest
+        NSError *error;
+        NSArray *results = [context executeFetchRequest:fetchRequest error:&error];
+        
+        //if execute fetchrequest returns array of 0, then you can run the below statements
+        NSLog(@"the number of results gotten back from the query is: %i", [results count]);
+        if([results count] == 0)
+        {
+            messageTable.conversationID =  aMessage[@"conversation_id"]; //[aMessage objectForKey:@"conversation_id"];
+            
+            NSDateFormatter *df = [[NSDateFormatter alloc] init];
+            [df setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZZ"];
+            NSDate *myDate = [df dateFromString: aMessage[@"created_at"]];
+            messageTable.createdAt = myDate;
+            
+            messageTable.fullName = aMessage[@"full_name"];
+            messageTable.messageContent = aMessage[@"message_content"];
+            messageTable.messageID = aMessage[@"id"];
+            messageTable.profilePic = aMessage[@"profilePic"];
+            
+            NSDate *myDate2 = [df dateFromString: aMessage[@"updated_at"]];
+            messageTable.updatedAt = myDate2;
+            
+            messageTable.userID = aMessage[@"user_id"];
+            messageTable.userName = aMessage[@"userName"];
+            
+            //SAVE
+            
+            if (![context save:&error])
+            {
+                NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+            }
+        }
+    }
+    //and then call loadFromDatabase
+    [self loadFromDatabase]; //4
+}
 
 
 - (void)viewDidAppear:(BOOL)animated
 {
+    
     [super viewDidAppear:animated];
     [self.tableView reloadData];
+    
+    /*
     //scroll to the bottom of the messages
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[messages count]-1 inSection:0 ];
     [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
@@ -106,7 +252,7 @@
         
     //assign usernames to the preAddressing variable where we will set it to destinationViewController upon prepareForSegueMethod
     preAddressing = userNames;
-    
+    */
 }
 
 
@@ -143,20 +289,20 @@
     
     CustomMessageCell * cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
-    NSDictionary *tweet = [self.messages objectAtIndex:indexPath.row];
+    Message * myMessage = [self.messages objectAtIndex:indexPath.row];
     
     //MessageUser Label
             CGRect labelFrame = CGRectMake(72.0f, 26.0f, 0.0f, 0.0f);   
             UILabel *myLabel = [[UILabel alloc] initWithFrame:labelFrame];  //initialize the label
             
-            myLabel.text = [tweet objectForKey:@"message_content"];
+            myLabel.text = myMessage.messageContent;
             myLabel.font =[UIFont systemFontOfSize:13];
             myLabel.lineBreakMode = UILineBreakModeWordWrap;
             myLabel.numberOfLines = 0;                             //As many lines as it needs
             [myLabel setBackgroundColor:[UIColor clearColor]];   //For debugging purposes
             myLabel.tag = 1;
             //Create Label Size
-            NSString *cellText = [tweet objectForKey:@"message_content"];   //grab the message 
+            NSString *cellText = myMessage.messageContent;   //grab the message 
             UIFont *cellFont = [UIFont fontWithName:@"Helvetica" size:13.0];
             CGSize constraintSize = CGSizeMake(225.0f, MAXFLOAT);           //This sets how wide we can go
             CGSize labelSize = [cellText sizeWithFont:cellFont constrainedToSize:constraintSize lineBreakMode:UILineBreakModeWordWrap];
@@ -181,12 +327,12 @@
 
     
     //SenderUser Label
-    cell.SenderUser.text = [tweet objectForKey:@"full_name"];
+    cell.SenderUser.text = myMessage.fullName;
     
     [cell.Recipients removeFromSuperview];
     cell.userInteractionEnabled = NO;
-    cell.userName.text = [tweet objectForKey:@"userName"];
-    NSString *picURL = [tweet objectForKey: @"profilePic"];
+    cell.userName.text = myMessage.userName;
+    NSString *picURL = myMessage.profilePic;
     [cell.ProfilePicture setImageWithURL:[NSURL URLWithString:picURL]];
     
     
@@ -195,8 +341,8 @@
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSDictionary *tweet = [self.messages objectAtIndex:indexPath.row];
-    NSString *cellText = [tweet objectForKey:@"message_content"];             //grab the message 
+     Message * myMessage = [self.messages objectAtIndex:indexPath.row];
+    NSString *cellText = myMessage.messageContent;             //grab the message 
     UIFont *cellFont = [UIFont fontWithName:@"Helvetica" size:15.0];
     CGSize constraintSize = CGSizeMake(220.0f, MAXFLOAT);                     //This sets how wide we can go
     //calculate labelSize
@@ -209,7 +355,7 @@
     [myLabel setText:cellText];
     myLabel.lineBreakMode = UILineBreakModeWordWrap;
     [myLabel setNumberOfLines:0];
-    NSString *cellText2 = [tweet objectForKey:@"message_content"];
+    NSString *cellText2 = myMessage.messageContent;
     UIFont *cellFont2 = [UIFont fontWithName:@"Helvetica" size:15.0];
     CGSize constraintSize2 = CGSizeMake(220.0f, MAXFLOAT);
     CGSize labelSize2 = [cellText2 sizeWithFont:cellFont2 constrainedToSize:constraintSize2 lineBreakMode:UILineBreakModeWordWrap];
