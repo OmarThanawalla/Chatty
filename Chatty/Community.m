@@ -159,38 +159,53 @@
         [cell setBackgroundColor:[UIColor whiteColor]];
     
         NSDictionary *tweet = [self.allConversations objectAtIndex:indexPath.row];
-           
-            //MessageUser Label
-            CGRect labelFrame = CGRectMake(72.0f, 31.0f, 0.0f, 0.0f);//pointer
+    
+    
+        //load Profile Picture
+        NSString *picURL = [tweet objectForKey: @"profilePic"];
+        NSLog(@"The url for the pic is: %@", picURL);
+        [cell.ProfilePicture setImageWithURL:[NSURL URLWithString:picURL]];
+    
+    
+            //MessageUser Label: Calculate Dimensions
+            CGRect labelFrame = CGRectMake(72.0f, 31.0f, 225.0f, 21.0f);//this is saying no width and no height
             UILabel *myLabel = [[UILabel alloc] initWithFrame:labelFrame];  //initialize the label
             
-            myLabel.text = [tweet objectForKey:@"message_content"];
+            
             myLabel.font =[UIFont systemFontOfSize:13];
-            myLabel.lineBreakMode = UILineBreakModeWordWrap;
+            myLabel.lineBreakMode = NSLineBreakByWordWrapping; // "Wrap or clip the string only at word boundaries. This is the default wrapping option"
             myLabel.numberOfLines = 0;                             //As many lines as it needs
             [myLabel setBackgroundColor:[UIColor darkGrayColor]];   //For debugging purposes
             myLabel.tag = 1;
             //Create Label Size
             NSString *cellText = [tweet objectForKey:@"message_content"];   //grab the message
-            UIFont *cellFont = [UIFont fontWithName:@"Helvetica" size:13.0];
+            NSLog(@"cellText ////////////////////////////////////////////////////////////////////////////////////////////////////////////////is: ");
+            NSLog(@"cellText is: %@", cellText);
+            UIFont *cellFont = [UIFont systemFontOfSize:13];
             CGSize constraintSize = CGSizeMake(225.0f, MAXFLOAT);           //This sets how wide we can go
-            CGSize labelSize = [cellText sizeWithFont:cellFont constrainedToSize:constraintSize lineBreakMode:UILineBreakModeWordWrap];
+            CGSize labelSize = [cellText sizeWithFont:cellFont constrainedToSize:constraintSize lineBreakMode:NSLineBreakByWordWrapping];
 
            //Apend the labelSize and call sizeToFit
             CGRect temp = myLabel.frame;
             temp.size = labelSize;
             myLabel.frame = temp;                                  //so origin x,y should stil be in tact
-            [myLabel sizeToFit];
-            
+            //[myLabel sizeToFit];
+    
+            myLabel.text = [tweet objectForKey:@"message_content"];
+    
+    
             //Adding the label to the view
             if(cell.MessageUser == NULL){
                 cell.MessageUser = myLabel;
                 [cell.contentView addSubview:cell.MessageUser];
-            }else{
+            }else
+            {
                 [cell.MessageUser removeFromSuperview];         //remove the old label before putting the new one in
                 cell.MessageUser = myLabel;
                 [cell.contentView addSubview:cell.MessageUser];
             }
+    
+    
         
         
         //SenderUser Label
@@ -202,7 +217,7 @@
         CGRect temp2 = cell.Recipients.frame;
         temp2.origin.x = 72;
         int messageHeight = myLabel.frame.size.height;
-        temp2.origin.y = 35 + messageHeight; //this is what i have to calculate        
+        temp2.origin.y = 35 + messageHeight; //35 is distance between top of cell and messageUserLabel, and messageHeight is the height of the messageUserLabel        
         cell.Recipients.frame = temp2;
         
         //userName label
@@ -212,11 +227,7 @@
         cell.cumulativeLikes.text = @"87";
     
     
-        //load Profile Picture
-    //dont forget to load from listOfImages Array
-        NSString *picURL = [tweet objectForKey: @"profilePic"];
-        NSLog(@"The url for the pic is: %@", picURL);
-        [cell.ProfilePicture setImageWithURL:[NSURL URLWithString:picURL]];
+        
     
     
        // UIImageView * profPic2 = [self.listOfImages objectAtIndex:indexPath.row];
