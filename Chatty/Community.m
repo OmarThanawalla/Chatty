@@ -179,18 +179,17 @@
             myLabel.tag = 1;
             //Create Label Size
             NSString *cellText = [tweet objectForKey:@"message_content"];   //grab the message
-            NSLog(@"cellText ////////////////////////////////////////////////////////////////////////////////////////////////////////////////is: ");
-            NSLog(@"cellText is: %@", cellText);
             UIFont *cellFont = [UIFont systemFontOfSize:13];
             CGSize constraintSize = CGSizeMake(225.0f, MAXFLOAT);           //This sets how wide we can go
             CGSize labelSize = [cellText sizeWithFont:cellFont constrainedToSize:constraintSize lineBreakMode:NSLineBreakByWordWrapping];
-
-           //Apend the labelSize and call sizeToFit
+            
+           //Apend the labelSize 
             CGRect temp = myLabel.frame;
             temp.size = labelSize;
             myLabel.frame = temp;                                  //so origin x,y should stil be in tact
             //[myLabel sizeToFit];
     
+            //assign text into the label
             myLabel.text = [tweet objectForKey:@"message_content"];
     
     

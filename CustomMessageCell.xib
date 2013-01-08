@@ -171,7 +171,7 @@
 								<string key="NSFrame">{{267, 50}, {33, 29}}</string>
 								<reference key="NSSuperview" ref="331541200"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="787163615"/>
+								<reference key="NSNextKeyView" ref="860996169"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -180,7 +180,7 @@
 									<string key="NSResourceName">14643521-thumb-up-icon.jpg</string>
 								</object>
 							</object>
-							<object class="IBUILabel" id="787163615">
+							<object class="IBUILabel" id="860996169">
 								<reference key="NSNextResponder" ref="331541200"/>
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{279, 76}, {21, 23}}</string>
@@ -274,7 +274,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">cumulativeLikes</string>
 						<reference key="source" ref="61653446"/>
-						<reference key="destination" ref="787163615"/>
+						<reference key="destination" ref="860996169"/>
 					</object>
 					<int key="connectionID">18</int>
 				</object>
@@ -302,12 +302,12 @@
 						<int key="objectID">2</int>
 						<reference key="object" ref="61653446"/>
 						<array class="NSMutableArray" key="children">
-							<reference ref="887060480"/>
 							<reference ref="810147974"/>
 							<reference ref="338201820"/>
 							<reference ref="69532582"/>
 							<reference ref="1039151759"/>
-							<reference ref="787163615"/>
+							<reference ref="860996169"/>
+							<reference ref="887060480"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -338,7 +338,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">17</int>
-						<reference key="object" ref="787163615"/>
+						<reference key="object" ref="860996169"/>
 						<reference key="parent" ref="61653446"/>
 					</object>
 				</array>
