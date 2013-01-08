@@ -18,7 +18,7 @@
 @property (nonatomic,strong) NSManagedObjectContext* managedObjectContext;
 
 
-- (IBAction)toggleView:(UISegmentedControl *)sender;
+
 
 
 -(IBAction)refresh;

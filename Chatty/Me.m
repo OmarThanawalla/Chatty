@@ -8,6 +8,7 @@
 
 #import "Me.h"
 #import "Conversation.h"
+#import "ConversationMe.h"
 #import "AFNetworking.h"
 #import "KeychainItemWrapper.h"
 #import "AFChattyAPIClient.h"
@@ -19,8 +20,9 @@
 
 
 @implementation Me
-@synthesize conversations;
 
+@synthesize conversations;
+@synthesize convoMessages;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -241,15 +243,19 @@
 {
     NSDictionary *tweet = [conversations objectAtIndex:indexPath.row];
     NSString *convoID = [tweet objectForKey:@"conversation_id"];
-    [self performSegueWithIdentifier:@"ShowMyMessages" sender:convoID];
+    NSString *preAddressing = [tweet objectForKey:@"preAddressing"];
+    NSDictionary * setupMaterial = @{ @"convoID" : convoID, @"preAddressing" : preAddressing};
+    
+    [self performSegueWithIdentifier:@"ShowMyMessages" sender:setupMaterial];
     
     }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"ShowMyMessages"]) {
-        Conversation *myMessagesView = [segue destinationViewController];
+        ConversationMe *myMessagesView = [segue destinationViewController];
         myMessagesView.currentView = 0;
-        myMessagesView.conversationID = sender;
+        myMessagesView.conversationID = sender[@"convoID"];
+        myMessagesView.preAddressing = sender[@"preAddressing"];
     }
 }
 
@@ -327,7 +333,7 @@
     [[AFChattyAPIClient sharedClient] getPath:@"/get_message/" parameters:params
      //if login works, log a message to the console
                                       success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                                          _convoMessages = responseObject;
+                                          convoMessages = responseObject;
                                           NSLog(@"This is the response I recieved: %@", responseObject);
                                           [self messagesDownloadFinish];
                                           

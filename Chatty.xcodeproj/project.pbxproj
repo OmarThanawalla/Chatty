@@ -57,7 +57,7 @@
 		A765BF1B1699444300FB2DD6 /* Messages.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A765BF191699444200FB2DD6 /* Messages.xcdatamodeld */; };
 		A765BF1D1699484400FB2DD6 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A765BF1C1699484400FB2DD6 /* CoreData.framework */; };
 		A765BF1F169A2E3200FB2DD6 /* community.png in Resources */ = {isa = PBXBuildFile; fileRef = A765BF1E169A2E3200FB2DD6 /* community.png */; };
-		A765BF22169A35ED00FB2DD6 /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = A765BF21169A35EC00FB2DD6 /* Message.m */; };
+		A765BF25169BAE9700FB2DD6 /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = A765BF24169BAE9300FB2DD6 /* Message.m */; };
 		A76DDED0158537C100F8D65D /* AFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = A76DDEBC158537C100F8D65D /* AFHTTPClient.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		A76DDED1158537C100F8D65D /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = A76DDEBE158537C100F8D65D /* AFHTTPRequestOperation.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		A76DDED2158537C100F8D65D /* AFImageRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = A76DDEC0158537C100F8D65D /* AFImageRequestOperation.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -164,8 +164,8 @@
 		A765BF1A1699444300FB2DD6 /* Messages.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Messages.xcdatamodel; sourceTree = "<group>"; };
 		A765BF1C1699484400FB2DD6 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		A765BF1E169A2E3200FB2DD6 /* community.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = community.png; sourceTree = "<group>"; };
-		A765BF20169A35EC00FB2DD6 /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
-		A765BF21169A35EC00FB2DD6 /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
+		A765BF23169BAE9200FB2DD6 /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
+		A765BF24169BAE9300FB2DD6 /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
 		A76DDEBB158537C100F8D65D /* AFHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPClient.h; sourceTree = "<group>"; };
 		A76DDEBC158537C100F8D65D /* AFHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPClient.m; sourceTree = "<group>"; };
 		A76DDEBD158537C100F8D65D /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
@@ -403,9 +403,9 @@
 				A7B35B3B1598C47900330B11 /* Registered3.h */,
 				A7B35B3C1598C47900330B11 /* Registered3.m */,
 				A736D056152BBA620049AB22 /* MainStoryboard.storyboard */,
+				A765BF23169BAE9200FB2DD6 /* Message.h */,
+				A765BF24169BAE9300FB2DD6 /* Message.m */,
 				A765BF191699444200FB2DD6 /* Messages.xcdatamodeld */,
-				A765BF20169A35EC00FB2DD6 /* Message.h */,
-				A765BF21169A35EC00FB2DD6 /* Message.m */,
 				083A8B2515420CCC0078989E /* tabs */,
 				083A8B2415420C9E0078989E /* Images */,
 				A736D04B152BBA620049AB22 /* Supporting Files */,
@@ -606,7 +606,7 @@
 				A778622F167DBE700016290A /* autoCompleteCell.m in Sources */,
 				A7421D4E168672630023211D /* editProfileModal.m in Sources */,
 				A765BF1B1699444300FB2DD6 /* Messages.xcdatamodeld in Sources */,
-				A765BF22169A35ED00FB2DD6 /* Message.m in Sources */,
+				A765BF25169BAE9700FB2DD6 /* Message.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

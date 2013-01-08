@@ -289,7 +289,11 @@
     {
         NSDictionary *tweet = [allConversations objectAtIndex:indexPath.row];
         NSString *convoID = [tweet objectForKey:@"conversation_id"];
-        [self performSegueWithIdentifier:@"ShowMyCommunityMessages" sender:convoID];
+        NSString *preAddressing = [tweet objectForKey:@"preAddressing"];
+        NSDictionary * setupMaterial = @{ @"convoID" : convoID, @"preAddressing" : preAddressing};
+        
+        
+        [self performSegueWithIdentifier:@"ShowMyCommunityMessages" sender:setupMaterial];
     }
           
     
@@ -308,12 +312,13 @@
             messageView.currentView = 0;
             NSString *convoID = sender;
             messageView.conversationID = convoID;
+            //missing dictionary style entry because i dont antiripcate currentview to be 0
         }
         if(currentView == 1)
         {
             messageView.currentView = 1;
-            NSString * convoID = sender;
-            messageView.conversationID = convoID;
+            messageView.conversationID = sender[@"convoID"];
+            messageView.preAddressing = sender[@"preAddressing"];
         }
     }
 }
@@ -454,7 +459,7 @@
     for(int i = 0; i < [self.convoMessages count]; i++)
     {
         NSDictionary *aMessage = [self.convoMessages objectAtIndex:i];
-        
+        //[aMessage objectForKey:@"preAddressing"];
         
         BIDAppDelegate * appDelegate = (BIDAppDelegate *)[[UIApplication sharedApplication] delegate];
         NSManagedObjectContext *context = [appDelegate managedObjectContext];

@@ -101,9 +101,9 @@
 - (BOOL) textViewShouldBeginEditing:(UITextView *)textView //calls this method because "becomeFirstResponder"
 {
     //Simulate placeholder text
-    messageBody.text = @"Use the @ sign to send a push notification to that person";
-    messageBody.textColor = [UIColor lightGrayColor];
-    messageBody.selectedRange = NSMakeRange(0, 0);
+    messageBody.text = self.preAddressing;
+    //messageBody.textColor = [UIColor lightGrayColor];
+    //messageBody.selectedRange = NSMakeRange(0, 0);
     return YES;
 }
 
