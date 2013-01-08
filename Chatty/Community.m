@@ -20,6 +20,7 @@
 
 #import "BIDAppDelegate.h" //This is for CoreData: in order to grab the managedObjectContext
 
+#import <QuartzCore/QuartzCore.h> //This is for accessing layer properties in ProfilePicture to curve the image
 @implementation Community
 
 
@@ -167,7 +168,7 @@
             myLabel.font =[UIFont systemFontOfSize:13];
             myLabel.lineBreakMode = UILineBreakModeWordWrap;
             myLabel.numberOfLines = 0;                             //As many lines as it needs
-            [myLabel setBackgroundColor:[UIColor whiteColor]];   //For debugging purposes
+            [myLabel setBackgroundColor:[UIColor darkGrayColor]];   //For debugging purposes
             myLabel.tag = 1;
             //Create Label Size
             NSString *cellText = [tweet objectForKey:@"message_content"];   //grab the message
@@ -216,11 +217,19 @@
         NSString *picURL = [tweet objectForKey: @"profilePic"];
         NSLog(@"The url for the pic is: %@", picURL);
         [cell.ProfilePicture setImageWithURL:[NSURL URLWithString:picURL]];
+    
+    
        // UIImageView * profPic2 = [self.listOfImages objectAtIndex:indexPath.row];
        // UIImage *profPicImage = profPic2.image;
     //[cell.ProfilePicture setImage:profPicImage];
-    
-    
+        cell.ProfilePicture.layer.cornerRadius = 9.0;
+        cell.ProfilePicture.layer.masksToBounds = YES;
+        cell.ProfilePicture.layer.borderColor = [UIColor blackColor].CGColor;
+        cell.ProfilePicture.layer.borderWidth = 0.0;
+        CGRect frame = cell.ProfilePicture.frame;
+        frame.size.height = 50;
+        frame.size.width = 50;
+        cell.ProfilePicture.frame = frame;
         return cell;
     
 }
