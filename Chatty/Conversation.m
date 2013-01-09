@@ -315,7 +315,7 @@
         }
         
         CustomMessageCell * cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
+        [cell setBackgroundColor:[UIColor whiteColor]];
     
         Message * myMessage = [self.messages objectAtIndex:indexPath.row];
     
@@ -333,7 +333,7 @@
             myLabel.font =[UIFont systemFontOfSize:13];
             myLabel.lineBreakMode = NSLineBreakByWordWrapping;
             myLabel.numberOfLines = 0;
-            [myLabel setBackgroundColor:[UIColor grayColor]];
+            [myLabel setBackgroundColor:[UIColor whiteColor]];
             myLabel.tag = 1;
             //Create Label Size
             NSString *cellText = myMessage.messageContent; //[tweet objectForKey:@"message_content"];   //grab the message

@@ -175,7 +175,7 @@
             myLabel.font =[UIFont systemFontOfSize:13];
             myLabel.lineBreakMode = NSLineBreakByWordWrapping; // "Wrap or clip the string only at word boundaries. This is the default wrapping option"
             myLabel.numberOfLines = 0;                             //As many lines as it needs
-            [myLabel setBackgroundColor:[UIColor grayColor]];   //For debugging purposes
+            [myLabel setBackgroundColor:[UIColor whiteColor]];   //For debugging purposes
             myLabel.tag = 1;
             //Create Label Size
             NSString *cellText = [tweet objectForKey:@"message_content"];   //grab the message
@@ -484,31 +484,50 @@
         NSLog(@"the number of results gotten back from the query is: %i", [results count]);
         if([results count] == 0)
         {
-        messageTable.conversationID =  aMessage[@"conversation_id"]; //[aMessage objectForKey:@"conversation_id"];
+            messageTable.conversationID =  aMessage[@"conversation_id"]; //[aMessage objectForKey:@"conversation_id"];
+                
+            NSDateFormatter *df = [[NSDateFormatter alloc] init];
+            [df setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZZ"];
+            NSDate *myDate = [df dateFromString: aMessage[@"created_at"]];
+            messageTable.createdAt = myDate;
+                
+            messageTable.fullName = aMessage[@"full_name"]; 
+            messageTable.messageContent = aMessage[@"message_content"];
+            messageTable.messageID = aMessage[@"id"];
+            messageTable.profilePic = aMessage[@"profilePic"];
             
-        NSDateFormatter *df = [[NSDateFormatter alloc] init];
-        [df setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZZ"];
-        NSDate *myDate = [df dateFromString: aMessage[@"created_at"]];
-        messageTable.createdAt = myDate;
+            NSDate *myDate2 = [df dateFromString: aMessage[@"updated_at"]];
+            messageTable.updatedAt = myDate2;
+                
+            messageTable.userID = aMessage[@"user_id"];
+            messageTable.userName = aMessage[@"userName"];
             
-        messageTable.fullName = aMessage[@"full_name"]; 
-        messageTable.messageContent = aMessage[@"message_content"];
-        messageTable.messageID = aMessage[@"id"];
-        messageTable.profilePic = aMessage[@"profilePic"];
-        
-        NSDate *myDate2 = [df dateFromString: aMessage[@"updated_at"]];
-        messageTable.updatedAt = myDate2;
+            //SAVE
             
-        messageTable.userID = aMessage[@"user_id"];
-        messageTable.userName = aMessage[@"userName"];
+            if (![context save:&error])
+                {
+                    NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+                }
+            
+        }
         
-        //SAVE
-        
-        if (![context save:&error])
+        //else you should update the found object sitting in results array and update the likes columns
+        /*
+        else
+        {
+         //update the object
+          Message * myMessage =[results objectAtIndex:0];
+          //myMessage.likes = aMessage[@"likes"];
+            
+            if (![context save:&error])
             {
                 NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
             }
+             
+            
         }
+        */
+        
     }
     
 }
