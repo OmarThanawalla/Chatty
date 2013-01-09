@@ -33,4 +33,9 @@
     // Configure the view for the selected state
 }
 
+-(IBAction)likeAction
+{
+    NSLog(@"Like action depressed");
+}
+
 @end

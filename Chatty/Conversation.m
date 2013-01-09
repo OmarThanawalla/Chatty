@@ -156,7 +156,7 @@
                                       }];
     
 }
-//3 Save Content to Database
+//3 Save Content to Database NOTE: THIS WILL NOT UPDATE LIKE COUNTER LABEL OR THE LIKESCOUNTER ATTRIBUTE IN CORE DATA
 -(void) saveToDatabase  //3
 {
     NSLog(@"You have called databaseDownloadFInish");
@@ -230,47 +230,6 @@
     [super viewDidAppear:animated];
     [self.tableView reloadData]; 
     
-    //scroll to the bottom of the messages (YOU HAVE TO initialze messages to 0 because it takes a few seconds on the iphone)
-    //NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[messages count]-1 inSection:0 ];
-    //[self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
-    
-    /*
-    //iterate the first cell and find all the @targets
-    NSIndexPath *firstCellIndex = [NSIndexPath indexPathForRow:0 inSection:0];
-    CustomMessageCell *myFirstCell = (CustomMessageCell*)[self.tableView cellForRowAtIndexPath:firstCellIndex];
-    NSString *message =  myFirstCell.MessageUser.text;
-    NSArray *messageArray = [message componentsSeparatedByString: @" "];
-    NSLog(@"%@",messageArray);
-    //this string will hold the usernames while we iterate
-    NSMutableString *userNames = [[NSMutableString alloc] init];
-    */
-    /*
-    //iterate through the messageArray
-    for(int i = 0; i < messageArray.count; i++)
-    {
-        //grab the element out of the array
-        NSString *element = [messageArray objectAtIndex:i];
-        //grab the first char of this element
-        NSString *subStringFirstChar;
-        if(element.length > 1)
-        {
-            subStringFirstChar = [element substringWithRange:NSMakeRange(0, 1)];
-        }else {
-            //handles one character long excpetions
-            subStringFirstChar = element;
-            NSLog(@"length less than one");
-        }
-        if([subStringFirstChar isEqualToString:@"@"]) //asks: is the first character an @ ?
-        {
-            //concatenate this word to the list of usernames
-            [userNames appendString:element];
-            [userNames appendString:@" "];
-        }
-    }
-    */
-    
-    //assign usernames to the preAddressing variable where we will set it to destinationViewController upon prepareForSegueMethod
-   // preAddressing = userNames;
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -316,7 +275,7 @@
         
         CustomMessageCell * cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         [cell setBackgroundColor:[UIColor whiteColor]];
-    
+        [cell setSelectionStyle:UITableViewCellSelectionStyleNone]; //this is to turn off highlighting the cell, but allow the like button to be pushed
         Message * myMessage = [self.messages objectAtIndex:indexPath.row];
     
         //load Profile Picture
@@ -333,7 +292,7 @@
             myLabel.font =[UIFont systemFontOfSize:13];
             myLabel.lineBreakMode = NSLineBreakByWordWrapping;
             myLabel.numberOfLines = 0;
-            [myLabel setBackgroundColor:[UIColor whiteColor]];
+            [myLabel setBackgroundColor:[UIColor grayColor]];
             myLabel.tag = 1;
             //Create Label Size
             NSString *cellText = myMessage.messageContent; //[tweet objectForKey:@"message_content"];   //grab the message
@@ -360,10 +319,25 @@
         //SenderUser Label
         cell.SenderUser.text = myMessage.fullName; //[tweet objectForKey:@"full_name"];
     
+        //likesCounter: give it value and position it on the cell
+        cell.cumulativeLikes.text = [NSString stringWithFormat:@"%@", myMessage.likesCount];
+        CGRect temp2 = cell.cumulativeLikes.frame;
+        int messageUserHeight = temp.size.height; //makes use of labelSize calcluates above (temp.frame)
+        temp2.origin.y = 30 + messageUserHeight;
+        temp2.origin.x = temp2.origin.x - 3;
+        cell.cumulativeLikes.frame = temp2;
+    
+        //like button: position it on the cell
+        CGRect temp3 = cell.likeButton.frame;
+        temp3.origin.y = 32 + messageUserHeight;
+        cell.likeButton.frame = temp3;
+    
         //Remove recipients label
         [cell.Recipients removeFromSuperview];
-        cell.userInteractionEnabled = NO;
+    
+        //userName label
         cell.userName.text = myMessage.userName; //[tweet objectForKey:@"userName"];
+
     
         cell.ProfilePicture.layer.cornerRadius = 9.0;
         cell.ProfilePicture.layer.masksToBounds = YES;
@@ -373,7 +347,7 @@
         frame.size.height = 50;
         frame.size.width = 50;
         cell.ProfilePicture.frame = frame;
-    
+        
         return cell;
 
 }
@@ -381,7 +355,7 @@
 {
         
     int topSectionHeight = 27; //height of SenderUser Label and top border
-    int bottomSectionHeight = 25; //height of Recipients Label and bottom border
+    int bottomSectionHeight = 30; //height of Recipients Label and bottom border
     
     Message * myMessage = [self.messages objectAtIndex:indexPath.row];
     NSString *cellText = myMessage.messageContent;

@@ -480,10 +480,11 @@
         NSError *error;
         NSArray *results = [context executeFetchRequest:fetchRequest error:&error];
         
-        //if execute fetchrequest returns array of 0, then you can run the below statements
+        //IF RECORD EXISTS
         NSLog(@"the number of results gotten back from the query is: %i", [results count]);
         if([results count] == 0)
         {
+            //CREATE A NEW RECORD
             messageTable.conversationID =  aMessage[@"conversation_id"]; //[aMessage objectForKey:@"conversation_id"];
                 
             NSDateFormatter *df = [[NSDateFormatter alloc] init];
@@ -501,7 +502,7 @@
                 
             messageTable.userID = aMessage[@"user_id"];
             messageTable.userName = aMessage[@"userName"];
-            
+            messageTable.likesCount = [NSString stringWithFormat:@"%@", aMessage[@"likes"]];
             //SAVE
             
             if (![context save:&error])
@@ -512,21 +513,21 @@
         }
         
         //else you should update the found object sitting in results array and update the likes columns
-        /*
+        
         else
         {
-         //update the object
+         //UPDATE RECORD: by grabbing the object and updating it
           Message * myMessage =[results objectAtIndex:0];
-          //myMessage.likes = aMessage[@"likes"];
+          myMessage.likesCount = aMessage[@"likes"];
             
             if (![context save:&error])
             {
-                NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+                NSLog(@"Whoops, couldn't save the updation of likesCount: %@", [error localizedDescription]);
             }
              
             
         }
-        */
+        
         
     }
     

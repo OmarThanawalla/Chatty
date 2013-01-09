@@ -16,4 +16,8 @@
 @property (strong, nonatomic) IBOutlet UILabel *userName;
 @property (strong, nonatomic) IBOutlet UILabel *cumulativeLikes;
 
+@property (strong, nonatomic) IBOutlet UIButton *likeButton;
+
+-(IBAction)likeAction;
+
 @end

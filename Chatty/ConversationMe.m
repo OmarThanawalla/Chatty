@@ -292,7 +292,7 @@
     
     CustomMessageCell * cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     [cell setBackgroundColor:[UIColor whiteColor]];
-    
+    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     
     Message * myMessage = [self.messages objectAtIndex:indexPath.row];
     
@@ -316,12 +316,11 @@
             CGSize constraintSize = CGSizeMake(225.0f, MAXFLOAT);           //This sets how wide we can go
             CGSize labelSize = [cellText sizeWithFont:cellFont constrainedToSize:constraintSize lineBreakMode:NSLineBreakByWordWrapping];
             
-            //Apend the labelSize and call sizeToFit
+            //Apend the labelSize
             CGRect temp = myLabel.frame;
             temp.size = labelSize;
             myLabel.frame = temp;                                  //so origin x,y should stil be in tact
      
-            //[myLabel sizeToFit];
             
             //Adding the label to the view
             if(cell.MessageUser == NULL){
@@ -337,10 +336,13 @@
     //SenderUser Label
     cell.SenderUser.text = myMessage.fullName;
     
+    //Remove recipients label
     [cell.Recipients removeFromSuperview];
-    cell.userInteractionEnabled = NO;
+    
+    //userName label
     cell.userName.text = myMessage.userName;
     
+    //ProfilePicture: round corners
     cell.ProfilePicture.layer.cornerRadius = 9.0;
     cell.ProfilePicture.layer.masksToBounds = YES;
     cell.ProfilePicture.layer.borderColor = [UIColor blackColor].CGColor;
