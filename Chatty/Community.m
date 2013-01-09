@@ -247,42 +247,22 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // #1 Get the labelSize
-    //grab the tweet
+    int topSectionHeight = 27; //height of SenderUser Label and top border
+    int bottomSectionHeight = 32; //height of Recipients Label and bottom border
+    
+    //Begin calculation of the variable height that is MessageUser
     NSDictionary *tweet = [self.allConversations objectAtIndex:indexPath.row];
-    //grab the text out of the tweet
-    NSString *cellText = [tweet objectForKey:@"message_content"];             //grab the message 
-    UIFont *cellFont = [UIFont fontWithName:@"Helvetica" size:15.0];
-    CGSize constraintSize = CGSizeMake(220.0f, MAXFLOAT);                     //This sets how wide we can go
-    //calculate labelSize
-    CGSize labelSize = [cellText sizeWithFont:cellFont constrainedToSize:constraintSize lineBreakMode:UILineBreakModeWordWrap];
-    // #2 Create the label
-    CGRect labelFrame = CGRectMake(0, 0, labelSize.width, labelSize.height);//created a label frame
-    UILabel *myLabel = [[UILabel alloc] initWithFrame: labelFrame];         //created a label
     
+    NSString *cellText = [tweet objectForKey:@"message_content"];   //grab the message
+    UIFont *cellFont = [UIFont systemFontOfSize:13];
+    CGSize constraintSize = CGSizeMake(225.0f, MAXFLOAT);           //This sets how wide we can go
+    CGSize labelSize = [cellText sizeWithFont:cellFont constrainedToSize:constraintSize lineBreakMode:NSLineBreakByWordWrapping];
     
+    int dynamicHeight = labelSize.height; //height of MessageUser label
     
+    int totalHeight = topSectionHeight + dynamicHeight + bottomSectionHeight;
     
-    
-    //BEGIN WEIRD HACK:
-    [myLabel setText:cellText];
-     myLabel.lineBreakMode = UILineBreakModeWordWrap;
-    [myLabel setNumberOfLines:0];
-    NSString *cellText2 = [tweet objectForKey:@"message_content"];
-    UIFont *cellFont2 = [UIFont fontWithName:@"Helvetica" size:15.0];
-    CGSize constraintSize2 = CGSizeMake(220.0f, MAXFLOAT);
-    CGSize labelSize2 = [cellText2 sizeWithFont:cellFont2 constrainedToSize:constraintSize2 lineBreakMode:UILineBreakModeWordWrap];
-    
-    CGRect temp2 = myLabel.frame;
-    temp2.size = labelSize2;
-    myLabel.frame = temp2;    
-    // #3 Call sizeToFit method
-    [myLabel sizeToFit];                                                    //myLabel sizeToFit
-    
-    
-    //NSLog(@"this is what labelSize was before: %lf",labelSize.height);
-    //NSLog(@"Predicted cell height:  %lf",myLabel.frame.size.height);
-    return 55 + myLabel.frame.size.height;
+    return totalHeight;
 }
 
 
