@@ -175,7 +175,7 @@
             myLabel.font =[UIFont systemFontOfSize:13];
             myLabel.lineBreakMode = NSLineBreakByWordWrapping; // "Wrap or clip the string only at word boundaries. This is the default wrapping option"
             myLabel.numberOfLines = 0;                             //As many lines as it needs
-            [myLabel setBackgroundColor:[UIColor darkGrayColor]];   //For debugging purposes
+            [myLabel setBackgroundColor:[UIColor whiteColor]];   //For debugging purposes
             myLabel.tag = 1;
             //Create Label Size
             NSString *cellText = [tweet objectForKey:@"message_content"];   //grab the message
