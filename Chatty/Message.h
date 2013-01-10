@@ -2,7 +2,7 @@
 //  Message.h
 //  Chatty
 //
-//  Created by Omar Thanawalla on 1/9/13.
+//  Created by Omar Thanawalla on 1/10/13.
 //
 //
 
@@ -23,5 +23,6 @@
 @property (nonatomic, retain) NSDate * updatedAt;
 @property (nonatomic, retain) NSNumber * userID;
 @property (nonatomic, retain) NSString * userName;
+@property (nonatomic, retain) NSNumber * hasBeenLiked;
 
 @end

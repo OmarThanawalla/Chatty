@@ -224,9 +224,16 @@
     
         //set numberOfLikes on cell
         cell.cumulativeLikes.text = @"87";
+        CGRect temp5 = cell.cumulativeLikes.frame;
+        int messageUserHeight = temp.size.height; //makes use of labelSize calcluates above (temp.frame)
+        temp5.origin.y = 30 + messageUserHeight;
+        temp5.origin.x = temp5.origin.x - 3;
+        cell.cumulativeLikes.frame = temp5;
     
-    
-        
+        //like button: position it on the cell
+        CGRect temp3 = cell.likeButton.frame;
+        temp3.origin.y = 32 + messageUserHeight;
+        cell.likeButton.frame = temp3;
     
     
        // UIImageView * profPic2 = [self.listOfImages objectAtIndex:indexPath.row];
@@ -503,6 +510,7 @@
             messageTable.userID = aMessage[@"user_id"];
             messageTable.userName = aMessage[@"userName"];
             messageTable.likesCount = [NSString stringWithFormat:@"%@", aMessage[@"likes"]];
+            messageTable.hasBeenLiked = aMessage[@"hasBeenLiked"];
             //SAVE
             
             if (![context save:&error])
@@ -518,7 +526,8 @@
         {
          //UPDATE RECORD: by grabbing the object and updating it
           Message * myMessage =[results objectAtIndex:0];
-          myMessage.likesCount = aMessage[@"likes"];
+          myMessage.likesCount = [NSString stringWithFormat:@"%@", aMessage[@"likes"]];
+          myMessage.hasBeenLiked = aMessage[@"hasBeenLiked"];
             
             if (![context save:&error])
             {

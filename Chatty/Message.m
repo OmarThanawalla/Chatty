@@ -2,7 +2,7 @@
 //  Message.m
 //  Chatty
 //
-//  Created by Omar Thanawalla on 1/9/13.
+//  Created by Omar Thanawalla on 1/10/13.
 //
 //
 
@@ -22,5 +22,6 @@
 @dynamic updatedAt;
 @dynamic userID;
 @dynamic userName;
+@dynamic hasBeenLiked;
 
 @end

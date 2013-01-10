@@ -65,6 +65,7 @@
     
     //Set up Listener pattern
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(anyAction:) name:@"composeMessageOnly" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(anyAction:) name:@"likeButtonDepressed" object:nil];
 
 }
 
@@ -112,7 +113,7 @@
 //0 The submit button on composeMessageOnly was hit
 -(void)anyAction:(NSNotification *)anote
 {
-    NSLog(@"anyAction method fired. presumably from composeMessageOnly submit button being hit");
+    NSLog(@"anyAction method fired. presumably from composeMessageOnly submit button or likeButtonDepressed  being hit");
     [self refreshTheDatabase];
 }
 
@@ -145,7 +146,7 @@
      //if login works, log a message to the console
                                       success:^(AFHTTPRequestOperation *operation, id responseObject) {
                                           convoMessages = responseObject;
-                                          NSLog(@"This is the response I recieved: %@", responseObject);
+                                          NSLog(@"@This is the response I recieved: %@", responseObject);
                                           [self saveToDatabase];
                                           
                                           
@@ -209,6 +210,9 @@
             
             messageTable.userID = aMessage[@"user_id"];
             messageTable.userName = aMessage[@"userName"];
+            messageTable.hasBeenLiked = aMessage[@"hasBeenLiked"];
+            messageTable.likesCount = [NSString stringWithFormat:@"%@", aMessage[@"likes"]];
+            NSLog(@"The value of likesCount is: %@", [NSString stringWithFormat:@"%@", aMessage[@"likes"]]);
             
             //SAVE
             
@@ -216,6 +220,23 @@
             {
                 NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
             }
+        }
+        
+        //else you should update the found object sitting in results array and update the likes columns
+        
+        else
+        {
+            //UPDATE RECORD: by grabbing the object and updating it
+            Message * myMessage =[results objectAtIndex:0];
+            myMessage.likesCount = [NSString stringWithFormat:@"%@", aMessage[@"likes"]];
+            myMessage.hasBeenLiked = aMessage[@"hasBeenLiked"];
+            
+            if (![context save:&error])
+            {
+                NSLog(@"Whoops, couldn't save the updation of likesCount: %@", [error localizedDescription]);
+            }
+            
+            
         }
     }
     //and then call loadFromDatabase
@@ -314,8 +335,9 @@
                 cell.MessageUser = myLabel;
                 [cell.contentView addSubview:cell.MessageUser];
             }
-            
-    
+        //set the messageID on the cell
+        cell.messageID = [myMessage.messageID stringValue];
+        
         //SenderUser Label
         cell.SenderUser.text = myMessage.fullName; //[tweet objectForKey:@"full_name"];
     
@@ -338,6 +360,10 @@
         //userName label
         cell.userName.text = myMessage.userName; //[tweet objectForKey:@"userName"];
 
+        //tell the cell if the user has liked this message before
+        NSNumber * myNumber = myMessage.hasBeenLiked;
+        NSLog(@"The value for bool is: %@", myNumber);
+        [cell isLike:myNumber];
     
         cell.ProfilePicture.layer.cornerRadius = 9.0;
         cell.ProfilePicture.layer.masksToBounds = YES;
