@@ -11,6 +11,15 @@
 @interface Me : UITableViewController
 
 @property (nonatomic, strong) NSMutableArray *conversations;
+@property (nonatomic, strong) NSMutableArray * convoMessages;
+
+
+//This is for CoreData
+@property (nonatomic,strong) NSManagedObjectContext* managedObjectContext;
+
+
+
+
 
 -(IBAction)refresh;
 

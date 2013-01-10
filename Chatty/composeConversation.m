@@ -63,6 +63,13 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(anyAction:) name:@"userNameSelected" object:nil];
 
+    
+    //set up coloring
+    //self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:68.0/256.0 green:71.0/256.0 blue:72.0/256.0 alpha:1.0];
+    //self.tabBarController.tabBar.tintColor = [UIColor colorWithRed:48.0/256.0 green:49.0/256.0 blue:50.0/256.0 alpha:1.0];
+    
+    self.navBar.tintColor = [UIColor colorWithRed:68.0/256.0 green:71.0/256.0 blue:72.0/256.0 alpha:1.0];
+    self.statusBar.tintColor = [UIColor colorWithRed:68.0/256.0 green:71.0/256.0 blue:72.0/256.0 alpha:1.0];
 }
 
 
@@ -75,6 +82,8 @@
 }
 - (void)viewDidUnload
 {
+    [self setNavBar:nil];
+    [self setStatusBar:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -329,13 +338,13 @@
          //if login works, log a message to the console
                                            success:^(AFHTTPRequestOperation *operation, id responseObject) {
                                                NSLog(@"Response was good, here it is: %@", responseObject);
-                                               [self.presentingViewController dismissModalViewControllerAnimated:YES];
                                                
                                            } 
                                            failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                                                NSLog(@"Error from postPath: %@",[error localizedDescription]);
                                                //else you cant connect, therefore push modalview login onto the stack
                                            }];
+    [self.presentingViewController dismissModalViewControllerAnimated:YES];
     }
 }
 @end

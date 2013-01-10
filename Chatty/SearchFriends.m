@@ -34,6 +34,14 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     self.title = @"Find Friends";
+    
+    //Set up colors
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackTranslucent animated:NO];
+    self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:68.0/256.0 green:71.0/256.0 blue:72.0/256.0 alpha:1.0];
+    self.tabBarController.tabBar.tintColor = [UIColor colorWithRed:48.0/256.0 green:49.0/256.0 blue:50.0/256.0 alpha:1.0];
+    
+    
+    
 }
 
 - (void)viewDidUnload
@@ -100,7 +108,7 @@
     {
         NSLog(@"You have assigned the value to 1");
         cell.requestSent = 1;
-        UIImage *btnImage = [UIImage imageNamed:@"green-checkmark.png"];
+        UIImage *btnImage = [UIImage imageNamed:@"friends.png"];
         [cell.requestButton setImage:btnImage forState:UIControlStateNormal];
         
     }
@@ -108,7 +116,7 @@
     {
         NSLog(@"You have assigned the value to 0");
         cell.requestSent = 0;
-        UIImage *btnImage = [UIImage imageNamed:@"bluePlusSign.jpeg"];
+        UIImage *btnImage = [UIImage imageNamed:@"add.png"];
         [cell.requestButton setImage:btnImage forState:UIControlStateNormal];
         
 

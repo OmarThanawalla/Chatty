@@ -64,7 +64,7 @@
                                           {
                                               NSLog(@"Error from postPath: %@",[error localizedDescription]);
                                               //else you cant connect, therefore push modalview login onto the stack
-                                              [self performSegueWithIdentifier:@"loggedIn" sender:self];
+                                              
                                           }
          ];
         
@@ -102,14 +102,14 @@
     imagePicker.delegate = self;
     
     //set the sourceType to camera or photoLibrary
-    if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
-    {
-        imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
-    }
-    else
-    {
+    //if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
+    //{
+    //    imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
+    //}
+    //else
+    //{
         imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-    }
+    
     
     //present imagePicker as modalView
     [self presentModalViewController:imagePicker animated:YES];

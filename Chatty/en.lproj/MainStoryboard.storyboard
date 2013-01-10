@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="11E53" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="4">
     <dependencies>
-        <deployment defaultVersion="1536" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1930"/>
     </dependencies>
     <scenes>
@@ -9,7 +8,7 @@
         <scene sceneID="Bj4-Ck-8x0">
             <objects>
                 <navigationController storyboardIdentifier="myConversationScene" definesPresentationContext="YES" id="lkB-M3-c6w" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Profile" id="ENf-MS-ueD"/>
+                    <tabBarItem key="tabBarItem" title="Profile" image="profile.png" id="ENf-MS-ueD"/>
                     <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="ERX-cR-ebt">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -151,7 +150,7 @@
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="sr9-c0-Agw">
                                         <rect key="frame" x="109" y="96" width="191" height="64"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" red="0.33185710203935054" green="0.21541935158934639" blue="0.33333333333333331" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
@@ -432,7 +431,7 @@
         <scene sceneID="hGa-Eh-Afm">
             <objects>
                 <navigationController id="rWC-65-tuO" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Community" image="first" id="7"/>
+                    <tabBarItem key="tabBarItem" title="Community" image="community.png" id="7"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="LVK-x4-umb">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -461,12 +460,12 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="All Conversations" id="q5Y-C7-y7U">
-                        <barButtonItem key="leftBarButtonItem" title="Refresh" id="22o-Bu-Dev">
+                        <barButtonItem key="leftBarButtonItem" image="refresh (2).png" id="22o-Bu-Dev">
                             <connections>
                                 <action selector="refresh" destination="aKU-2L-QCI" id="sRn-Ye-fFW"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="New" id="eVu-9x-87n">
+                        <barButtonItem key="rightBarButtonItem" image="new.png" id="eVu-9x-87n">
                             <connections>
                                 <segue destination="ykX-gt-6pe" kind="modal" identifier="composeAConvo" id="uJa-SE-dA2"/>
                             </connections>
@@ -553,6 +552,8 @@
                     <connections>
                         <outlet property="characterCount" destination="doM-my-eNP" id="x1Z-h7-ZL3"/>
                         <outlet property="messageBody" destination="1zn-1Z-RQy" id="XKB-af-QPp"/>
+                        <outlet property="navBar" destination="TYT-ko-kbp" id="9dH-de-moY"/>
+                        <outlet property="statusBar" destination="Ina-oy-9rF" id="TD3-x3-o6J"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Nf-c9-Dxh" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -660,6 +661,8 @@
                     <connections>
                         <outlet property="characterCount" destination="PDJ-Uv-AsE" id="j8C-WO-aTm"/>
                         <outlet property="myTextView" destination="T1S-Xo-1Np" id="YoJ-dD-Imq"/>
+                        <outlet property="navBar" destination="hig-1i-jNV" id="Xyy-ca-BRv"/>
+                        <outlet property="statusBar" destination="Xye-id-TLO" id="NlK-lp-bXL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NWH-q3-N5t" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -670,7 +673,7 @@
         <scene sceneID="nHZ-hU-3SW">
             <objects>
                 <navigationController id="ntu-dJ-yZO" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Me" image="second" id="6"/>
+                    <tabBarItem key="tabBarItem" title="Me" image="mychats.png" id="6"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="4rA-6p-9xK">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -699,7 +702,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Me Conversations" id="mPH-Ba-zIs">
-                        <barButtonItem key="leftBarButtonItem" title="Refresh" id="ZfU-sw-jPV">
+                        <barButtonItem key="leftBarButtonItem" image="refresh (2).png" id="ZfU-sw-jPV">
                             <connections>
                                 <action selector="refresh" destination="ycM-Fd-tHT" id="BAU-SX-ySL"/>
                             </connections>
@@ -722,7 +725,7 @@
         <scene sceneID="V3f-8I-m1j">
             <objects>
                 <navigationController id="PNE-OG-r1r" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Find Friends" id="uYl-Fb-Vcv"/>
+                    <tabBarItem key="tabBarItem" title="Find Friends" image="find.png" id="uYl-Fb-Vcv"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="aEj-hX-RaE">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -776,9 +779,13 @@
         </scene>
     </scenes>
     <resources>
+        <image name="community.png" width="30" height="30"/>
         <image name="dirk_nowitzki_027.jpg" width="240" height="240"/>
-        <image name="first" width="16" height="16"/>
-        <image name="second" width="16" height="16"/>
+        <image name="find.png" width="30" height="30"/>
+        <image name="mychats.png" width="30" height="30"/>
+        <image name="new.png" width="20" height="20"/>
+        <image name="profile.png" width="30" height="30"/>
+        <image name="refresh (2).png" width="20" height="20"/>
     </resources>
     <classes>
         <class className="Community" superclassName="UITableViewController">
@@ -851,6 +858,8 @@
                 <relationship kind="action" name="sendButton"/>
                 <relationship kind="outlet" name="characterCount" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="myTextView" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="navBar" candidateClass="UINavigationBar"/>
+                <relationship kind="outlet" name="statusBar" candidateClass="UIToolbar"/>
             </relationships>
         </class>
         <class className="composeMessageOnly" superclassName="UIViewController">
@@ -860,6 +869,8 @@
                 <relationship kind="action" name="submit"/>
                 <relationship kind="outlet" name="characterCount" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="messageBody" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="navBar" candidateClass="UINavigationBar"/>
+                <relationship kind="outlet" name="statusBar" candidateClass="UIToolbar"/>
             </relationships>
         </class>
         <class className="editProfileModal" superclassName="UIViewController">
@@ -881,8 +892,8 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="sEP-E2-vGj"/>
+        <segue reference="7yl-nr-Xmv"/>
         <segue reference="8La-9C-anb"/>
-        <segue reference="t4A-HM-QIE"/>
-        <segue reference="uJa-SE-dA2"/>
     </inferredMetricsTieBreakers>
 </document>

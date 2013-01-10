@@ -40,6 +40,9 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    //set the background color on the table view
+    self.tableView.backgroundColor = [UIColor colorWithRed:255.0/256.0 green:250.0/256.0 blue:240.0/256.0 alpha:1.0];
 }
 
 - (void)didReceiveMemoryWarning
@@ -74,6 +77,11 @@
     }
 
     autoCompleteCell * cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
+    //set the background color of the cell here
+    //self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:68.0/256.0 green:71.0/256.0 blue:72.0/256.0 alpha:1.0];
+    //cell.contentView.backgroundColor = [UIColor colorWithRed:255.0/256.0 green:250.0/256.0 blue:240.0/256.0 alpha:1.0];
+    
     
     NSDictionary *user = [self.myUsers objectAtIndex:indexPath.row];
     

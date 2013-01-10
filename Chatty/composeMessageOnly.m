@@ -63,6 +63,11 @@
     [self.theWord setString:@""];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(anyAction:) name:@"userNameSelected" object:nil];
+    
+    //set up the color
+    self.navBar.tintColor = [UIColor colorWithRed:68.0/256.0 green:71.0/256.0 blue:72.0/256.0 alpha:1.0];
+    self.statusBar.tintColor = [UIColor colorWithRed:68.0/256.0 green:71.0/256.0 blue:72.0/256.0 alpha:1.0];
+
 }
 
 -(void)viewDidDisappear:(BOOL)animated
@@ -74,6 +79,8 @@
 
 - (void)viewDidUnload
 {
+    [self setNavBar:nil];
+    [self setStatusBar:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -86,12 +93,31 @@
 }
 -(IBAction)cancel
 {
+    
     [self.presentingViewController dismissModalViewControllerAnimated:YES];   
    
 }
 
+- (BOOL) textViewShouldBeginEditing:(UITextView *)textView //calls this method because "becomeFirstResponder"
+{
+    //Simulate placeholder text
+    messageBody.text = self.preAddressing;
+    //messageBody.textColor = [UIColor lightGrayColor];
+    //messageBody.selectedRange = NSMakeRange(0, 0);
+    return YES;
+}
+
 -(void)textViewDidChange:(UITextView *)textView
 {
+    //Clear placeholder
+    if(messageBody.textColor == [UIColor lightGrayColor])
+    {
+        messageBody.textColor= [UIColor blackColor];
+        NSRange clearMe = NSMakeRange(1, messageBody.text.length -1);     //grab the front rest of the string
+        messageBody.text = [messageBody.text stringByReplacingCharactersInRange: clearMe withString:@""]; //clear that front rest
+    }
+    
+    //counter
     int count = 140 - [messageBody.text length];
     [characterCount setTitle:[NSString stringWithFormat:@"%d", count]];
     
@@ -264,14 +290,14 @@
 //     //if login works, log a message to the console
                                       success:^(AFHTTPRequestOperation *operation, id responseObject) {
                                       NSLog(@"This is the response I recieved in the message view: %@", responseObject);
-                                      [self.presentingViewController dismissModalViewControllerAnimated:YES];                                                                                    
-                                          
-                                          
+                                     //Hit the refreshTheDatabase method in conversation.m file    
+                                      [[NSNotificationCenter defaultCenter] postNotificationName:@"composeMessageOnly" object:nil userInfo:nil];    
                                       } 
                                       failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                                           NSLog(@"Error from postPath: %@",[error localizedDescription]);
                                           //else you cant connect, therefore push modalview login onto the stack
                                       }];
 
+    [self.presentingViewController dismissModalViewControllerAnimated:YES]; 
 }
 @end

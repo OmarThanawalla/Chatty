@@ -14,5 +14,12 @@
 @property (strong, nonatomic) IBOutlet UILabel *Recipients;
 @property (strong, nonatomic) IBOutlet UIImageView *ProfilePicture;
 @property (strong, nonatomic) IBOutlet UILabel *userName;
+@property (strong, nonatomic) IBOutlet UILabel *cumulativeLikes;
+@property (strong, nonatomic) IBOutlet UIButton *likeButton;
+
+@property (strong, nonatomic) NSString * messageID;
+
+-(IBAction)likeAction;
+-(void) isLike: (NSNumber *)myNumber;
 
 @end

@@ -17,10 +17,16 @@
 @interface Community : UITableViewController 
 
 
-@property (assign, nonatomic) int currentView;
+@property (assign, nonatomic) int currentView; //this was for when i had segmented view, which is not part of version 1.0 anymore
 @property (nonatomic, strong) NSMutableArray * innerCircleConversations;
 @property (nonatomic, strong) NSMutableArray * allConversations;
 @property (nonatomic, strong) NSMutableArray * variableCellHeight;
+@property (nonatomic, strong) NSMutableArray * convoMessages;
+@property (nonatomic, strong) NSMutableArray * listOfImages;
+
+//This is for CoreData
+@property (nonatomic,strong) NSManagedObjectContext* managedObjectContext;
+
 
 - (IBAction)toggleView:(UISegmentedControl *)sender;
 -(IBAction)refresh;

@@ -139,7 +139,7 @@
 								<reference key="IBUINormalTitleShadowColor" ref="828488370"/>
 								<object class="NSCustomResource" key="IBUINormalImage">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">bluePlusSign.jpeg</string>
+									<string key="NSResourceName">add.png</string>
 								</object>
 								<object class="IBUIFontDescription" key="IBUIFontDescription">
 									<int key="type">2</int>
@@ -334,7 +334,7 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="bluePlusSign.jpeg">{44, 44}</string>
+			<string key="add.png">{30, 30}</string>
 			<string key="dirk_nowitzki_027.jpg">{240, 240}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">1930</string>
