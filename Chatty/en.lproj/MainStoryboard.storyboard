@@ -200,7 +200,7 @@
                                     <segue destination="BRB-Iy-OJi" kind="push" id="nGs-hS-cvZ"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your emal" minimumFontSize="17" id="XZL-qs-c1Z">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your email" minimumFontSize="17" id="XZL-qs-c1Z">
                                 <rect key="frame" x="20" y="49" width="280" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -242,7 +242,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Root View Controller" id="7z3-w7-lYr"/>
                     <connections>
@@ -460,7 +460,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="All Conversations" id="q5Y-C7-y7U">
-                        <barButtonItem key="leftBarButtonItem" image="refresh (2).png" id="22o-Bu-Dev">
+                        <barButtonItem key="leftBarButtonItem" image="refresh.png" id="22o-Bu-Dev">
                             <connections>
                                 <action selector="refresh" destination="aKU-2L-QCI" id="sRn-Ye-fFW"/>
                             </connections>
@@ -673,7 +673,7 @@
         <scene sceneID="nHZ-hU-3SW">
             <objects>
                 <navigationController id="ntu-dJ-yZO" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Me" image="mychats.png" id="6"/>
+                    <tabBarItem key="tabBarItem" title="Me" image="me.png" id="6"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="4rA-6p-9xK">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -688,7 +688,7 @@
             </objects>
             <point key="canvasLocation" x="401" y="182"/>
         </scene>
-        <!--Me - Me Conversations-->
+        <!--Me - My Conversations-->
         <scene sceneID="B1W-0L-Xcd">
             <objects>
                 <tableViewController id="ycM-Fd-tHT" customClass="Me" sceneMemberID="viewController">
@@ -701,13 +701,13 @@
                             <outlet property="delegate" destination="ycM-Fd-tHT" id="da5-1S-XUE"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Me Conversations" id="mPH-Ba-zIs">
-                        <barButtonItem key="leftBarButtonItem" image="refresh (2).png" id="ZfU-sw-jPV">
+                    <navigationItem key="navigationItem" title="My Conversations" id="mPH-Ba-zIs">
+                        <barButtonItem key="leftBarButtonItem" image="refresh.png" id="ZfU-sw-jPV">
                             <connections>
                                 <action selector="refresh" destination="ycM-Fd-tHT" id="BAU-SX-ySL"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="New" id="c17-Di-wqn">
+                        <barButtonItem key="rightBarButtonItem" image="new.png" id="c17-Di-wqn">
                             <connections>
                                 <segue destination="ykX-gt-6pe" kind="modal" id="7yl-nr-Xmv"/>
                             </connections>
@@ -782,118 +782,19 @@
         <image name="community.png" width="30" height="30"/>
         <image name="dirk_nowitzki_027.jpg" width="240" height="240"/>
         <image name="find.png" width="30" height="30"/>
-        <image name="mychats.png" width="30" height="30"/>
+        <image name="me.png" width="30" height="30"/>
         <image name="new.png" width="20" height="20"/>
         <image name="profile.png" width="30" height="30"/>
-        <image name="refresh (2).png" width="20" height="20"/>
+        <image name="refresh.png" width="20" height="20"/>
     </resources>
-    <classes>
-        <class className="Community" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/Community.h"/>
-            <relationships>
-                <relationship kind="action" name="refresh"/>
-                <relationship kind="action" name="toggleView:" candidateClass="UISegmentedControl"/>
-            </relationships>
-        </class>
-        <class className="Conversation" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/Conversation.h"/>
-        </class>
-        <class className="ConversationMe" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ConversationMe.h"/>
-        </class>
-        <class className="Login" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/Login.h"/>
-            <relationships>
-                <relationship kind="action" name="login"/>
-                <relationship kind="outlet" name="emailBox" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="notice" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="passwordBox" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="Me" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/Me.h"/>
-            <relationships>
-                <relationship kind="action" name="refresh"/>
-            </relationships>
-        </class>
-        <class className="Profile" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/Profile.h"/>
-            <relationships>
-                <relationship kind="action" name="logout"/>
-                <relationship kind="action" name="refresh"/>
-                <relationship kind="action" name="toggleView:"/>
-            </relationships>
-        </class>
-        <class className="Registered" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/Registered.h"/>
-            <relationships>
-                <relationship kind="action" name="continue"/>
-                <relationship kind="outlet" name="confirmEmail" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="confirmPassword" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="email" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="password" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="Registered3" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/Registered3.h"/>
-            <relationships>
-                <relationship kind="action" name="register"/>
-                <relationship kind="outlet" name="bio" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="firstName" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="lastName" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="notice" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="userName" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="SearchFriends" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SearchFriends.h"/>
-        </class>
-        <class className="autoCompleteEngine" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/autoCompleteEngine.h"/>
-        </class>
-        <class className="composeConversation" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/composeConversation.h"/>
-            <relationships>
-                <relationship kind="action" name="cancelButton"/>
-                <relationship kind="action" name="sendButton"/>
-                <relationship kind="outlet" name="characterCount" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="myTextView" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="navBar" candidateClass="UINavigationBar"/>
-                <relationship kind="outlet" name="statusBar" candidateClass="UIToolbar"/>
-            </relationships>
-        </class>
-        <class className="composeMessageOnly" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/composeMessageOnly.h"/>
-            <relationships>
-                <relationship kind="action" name="cancel"/>
-                <relationship kind="action" name="submit"/>
-                <relationship kind="outlet" name="characterCount" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="messageBody" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="navBar" candidateClass="UINavigationBar"/>
-                <relationship kind="outlet" name="statusBar" candidateClass="UIToolbar"/>
-            </relationships>
-        </class>
-        <class className="editProfileModal" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/editProfileModal.h"/>
-            <relationships>
-                <relationship kind="action" name="cancel"/>
-                <relationship kind="action" name="editPicture"/>
-                <relationship kind="action" name="save"/>
-                <relationship kind="outlet" name="Bio" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="firstName" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="lastName" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="profilePic" candidateClass="UIImageView"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="sEP-E2-vGj"/>
         <segue reference="7yl-nr-Xmv"/>
         <segue reference="8La-9C-anb"/>
+        <segue reference="sEP-E2-vGj"/>
     </inferredMetricsTieBreakers>
 </document>

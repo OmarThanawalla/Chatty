@@ -63,7 +63,7 @@
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackTranslucent animated:NO];
     self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:68.0/256.0 green:71.0/256.0 blue:72.0/256.0 alpha:1.0];
     self.tabBarController.tabBar.tintColor = [UIColor colorWithRed:48.0/256.0 green:49.0/256.0 blue:50.0/256.0 alpha:1.0];
-    
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"tabbar.png"] forBarMetrics:UIBarMetricsDefault];
     //change tableview Image
     UIImageView *tempImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bg_4.png"]];
     [tempImageView setFrame:self.tableView.frame];
@@ -255,7 +255,7 @@
                         NSString * ProfilePictureURL = [user objectForKey:@"profilePic"];
                         [cell.profilePic setImageWithURL:[NSURL URLWithString:ProfilePictureURL]];
                        
-                        UIImage *btnImage = [UIImage imageNamed:@"PENDING_Stamp1.png"];
+                        UIImage *btnImage = [UIImage imageNamed:@"pending.png"];
                         [cell.cnfmButton setImage:btnImage forState:UIControlStateNormal];
                         
                         

@@ -59,7 +59,12 @@
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackTranslucent animated:NO];
     
     self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:68.0/256.0 green:71.0/256.0 blue:72.0/256.0 alpha:1.0];
-    self.tabBarController.tabBar.tintColor = [UIColor colorWithRed:48.0/256.0 green:49.0/256.0 blue:50.0/256.0 alpha:1.0];
+    //self.tabBarController.tabBar.tintColor = [UIColor colorWithRed:48.0/256.0 green:49.0/256.0 blue:50.0/256.0 alpha:1.0];
+    
+    //flatten image
+    [[[self tabBarController] tabBar] setBackgroundImage:[UIImage imageNamed:@"tabbar.png"]];
+    //[self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"tabbar.png"]];
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"tabbar.png"] forBarMetrics:UIBarMetricsDefault];
     
     //change tableview Image
     UIImageView *tempImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bg_4.png"]];
@@ -75,6 +80,35 @@
     
     //[self performSegueWithIdentifier:@"composeAConvo" sender:self];
     //[self.tabBarController setSelectedIndex:1];
+    
+    /*
+    if ([self.tabBarController.tabBarItem respondsToSelector:@selector(setTitleTextAttributes:)]) {
+        NSLog(@"*** Support method(iOS 5): setTitleTextAttributes:");
+        [self.tabBarController.tabBarItem setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                 [UIFont fontWithName:@"AmericanTypewriter" size:20.0f], UITextAttributeFont,
+                                                 [UIColor blackColor], UITextAttributeTextColor,
+                                                 [UIColor grayColor], UITextAttributeTextShadowColor,
+                                                 [NSValue valueWithUIOffset:UIOffsetMake(0.0f, 1.0f)], UITextAttributeTextShadowOffset,
+                                                 nil]];
+    }
+    
+     */
+    
+    //change navcontroller font
+    /*
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 400, 44)];
+    label.backgroundColor = [UIColor clearColor];
+    [label setFont:[UIFont fontWithName:@"Century Gothic-Bold" size:46]];
+    label.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
+    label.textAlignment = UITextAlignmentCenter;
+    label.textColor =[UIColor blackColor];
+    label.text=self.title;
+    self.navigationController.navigationItem.titleView = label;
+    */
+    
+    //set tableView font
+    [self.tableView setSeparatorColor: [UIColor colorWithRed:224.0/256.0 green:224.0/256.0 blue:224.0/256.0 alpha:1.0]];
+    
     [self refresh];
    
 }
@@ -227,7 +261,7 @@
         CGRect temp5 = cell.cumulativeLikes.frame;
         int messageUserHeight = temp.size.height; //makes use of labelSize calcluates above (temp.frame)
         temp5.origin.y = 30 + messageUserHeight;
-        temp5.origin.x = temp5.origin.x - 3;
+        temp5.origin.x = 279; //temp5.origin.x - 3;
         cell.cumulativeLikes.frame = temp5;
     
         //like button: position it on the cell

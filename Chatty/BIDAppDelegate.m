@@ -29,7 +29,7 @@
      (UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
     
     
-    [[UITabBar appearance] setSelectedImageTintColor:[UIColor colorWithRed:240.0/256.0 green:240.0/256.0 blue:240.0/256.0 alpha:1.0]];
+    [[UITabBar appearance] setSelectedImageTintColor:[UIColor colorWithRed:113.0/256.0 green:230.0/256.0 blue:216.0/256.0 alpha:1.0]];
     
     
     /*
