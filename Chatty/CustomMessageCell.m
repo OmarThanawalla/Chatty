@@ -21,13 +21,14 @@
 @synthesize cumulativeLikes;
 @synthesize messageID;
 @synthesize likeButton;
+@synthesize stateOfCell;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
-        //self.likeButton.layer.borderWidth = 0.0;
+        stateOfCell = NO;
     }
     return self;
 }
@@ -39,6 +40,7 @@
     // Configure the view for the selected state
 }
 
+//This is called when the like button has been pressed
 -(IBAction)likeAction
 {
     NSLog(@"Like action depressed");
@@ -59,6 +61,18 @@
                             myID, @"messageID",
                             nil];
     
+    //Alter the state of the cell
+    if (stateOfCell == NO) {
+        stateOfCell = YES;
+    }
+    else{//state of cell == YES
+        stateOfCell = NO;
+    }
+    
+    //MAKE THE CALLS TO RAILS
+    
+    if(stateOfCell == YES)
+    {
     [[AFChattyAPIClient sharedClient] postPath:@"/does_like/" parameters:params
      //if login works, log a message to the console
                                       success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -72,11 +86,23 @@
                                           NSLog(@"Error from postPath: %@",[error localizedDescription]);
                                       }];
     
-   //Change the text
-    
-    [likeButton setTitle:@"Doe" forState:UIControlStateNormal];
+   //Change the image
+    [likeButton setImage:[UIImage imageNamed:@"likedMe.png"] forState:UIControlStateNormal];
+    //[likeButton setTitle:@"Doe" forState:UIControlStateNormal];
     //and disable the action of the button
     self.likeButton.userInteractionEnabled = NO;
+    }
+    else // stateOfCell == NO
+    {
+        NSLog(@"The stateOfCell is unliked");
+        //send message to Rails to destory recrod that i like the message and to decrement the cumulativeLikes attribute of the message
+        
+        
+        //send NSNotification to reload the tableView
+        
+        //change the image of the cell
+        [likeButton setImage:[UIImage imageNamed:@"likeMe.png"] forState:UIControlStateNormal];
+    }
 }
 
 -(void) isLike: (NSNumber *) myNumber
@@ -84,14 +110,21 @@
     
     if([myNumber intValue] == 1)
     {
-        //Change the text
-        //[likeButton setTitle:@"Doe" forState:UIControlStateNormal];
+        //set the state of the cell
+        stateOfCell = YES;
         //Set the Image of the Button to "LikedMe"
         [likeButton setImage:[UIImage imageNamed:@"likedMe.png"] forState:UIControlStateNormal];
         
-        //and disable the action of the button
-        self.likeButton.userInteractionEnabled = NO;
+        
 
+    }
+    else    //the user has not liked the cell
+    {
+        // set the state of the cell
+        stateOfCell = NO;
+        //Set the Image of the Button to "LikeMe"
+        [likeButton setImage:[UIImage imageNamed:@"likeMe.png"] forState:UIControlStateNormal];
+        
     }
 }
 

@@ -16,7 +16,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *userName;
 @property (strong, nonatomic) IBOutlet UILabel *cumulativeLikes;
 @property (strong, nonatomic) IBOutlet UIButton *likeButton;
-
+@property (nonatomic, assign) BOOL stateOfCell;             // 0 = unliked, 1 = liked
 @property (strong, nonatomic) NSString * messageID;
 
 -(IBAction)likeAction;
