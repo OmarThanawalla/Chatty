@@ -10,6 +10,7 @@
 #import "AFNetworking.h"
 #import "AFChattyAPIClient.h"
 #import "KeychainItemWrapper.h"
+//#import <QuartzCore/QuartzCore.h>
 
 @implementation CustomMessageCell
 @synthesize SenderUser;
@@ -26,7 +27,7 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
-        
+        //self.likeButton.layer.borderWidth = 0.0;
     }
     return self;
 }
@@ -80,10 +81,14 @@
 
 -(void) isLike: (NSNumber *) myNumber
 {
+    
     if([myNumber intValue] == 1)
     {
         //Change the text
-        [likeButton setTitle:@"Doe" forState:UIControlStateNormal];
+        //[likeButton setTitle:@"Doe" forState:UIControlStateNormal];
+        //Set the Image of the Button to "LikedMe"
+        [likeButton setImage:[UIImage imageNamed:@"likedMe.png"] forState:UIControlStateNormal];
+        
         //and disable the action of the button
         self.likeButton.userInteractionEnabled = NO;
 

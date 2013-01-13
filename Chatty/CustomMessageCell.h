@@ -22,4 +22,6 @@
 -(IBAction)likeAction;
 -(void) isLike: (NSNumber *)myNumber;
 
+
+
 @end

@@ -33,7 +33,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"tabbar.png"] forBarMetrics:UIBarMetricsDefault];
 }
 -(void)viewWillAppear:(BOOL)animated
 {

@@ -49,7 +49,12 @@
 {
     [super viewDidLoad];
     self.title = @"Sign In";
+    UIImageView *backgroundImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bg_4.png"]];
     
+    [self.view addSubview:backgroundImage];
+    [self.view sendSubviewToBack:backgroundImage];
+     [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"tabbar.png"] forBarMetrics:UIBarMetricsDefault];
+    self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:68.0/256.0 green:71.0/256.0 blue:72.0/256.0 alpha:1.0];
 }
 
 
