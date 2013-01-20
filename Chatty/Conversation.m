@@ -58,15 +58,35 @@
     self.tableView.backgroundView = tempImageView;
     
     //create NSIndexPath
-    //NSIndexPath * tempIndexPath = [NSIndexPath indexPathForRow:([messages count]-1) inSection:0];
-    
+    NSIndexPath * tempIndexPath = [NSIndexPath indexPathForRow:([messages count]-1) inSection:0];
+    NSLog(@"Upon view did load, number of messages -1 is: %d",tempIndexPath.row);
     //SCROLL to the bottom
     //[self.tableView scrollToRowAtIndexPath:tempIndexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
     
-    //Set up Listener pattern
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(anyAction:) name:@"composeMessageOnly" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(anyAction:) name:@"likeButtonDepressed" object:nil];
+    NSLog(@"The view did load");
+    
+    
 
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    NSLog(@"viewWillAppear");
+    //Set up Listener pattern    
+    //conversation tableview is in view
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(anyAction:) name:@"likeButtonDepressed" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(anyAction:) name:@"composeMessageOnly" object:nil];  //after hitting submit button we can to reload from database
+    // We're going to pull our data from the database
+    [self loadFromDatabase];
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    NSLog(@"The view didDisappear");
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"likeButtonDepressed" object:nil]; //will not respond if like button is pushed on the cell, when the cell is from another viewcontroller
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"composeMessageOnly" object:nil];
 }
 
 - (void)viewDidUnload
@@ -75,18 +95,10 @@
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
     
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    //[[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    //refresh the data on view loading
-    
-    //[self refresh];
-    // We're going to pull our data from the database
-    [self loadFromDatabase];
-}
+
 
 -(void)loadFromDatabase
 {
@@ -107,10 +119,20 @@
     NSLog(@"The number of messages that were found were: %i", [fetchedObjects count]);
     
     self.messages = fetchedObjects;
+    
+    /* attempting to scroll to the bottom but im always running into excpetions
+    //create NSIndexPath
+    NSIndexPath * tempIndexPath = [NSIndexPath indexPathForRow:([messages count]-1) inSection:0];
+    NSLog(@"Upon view did load, number of messages-1 is: %d",tempIndexPath.row);
+    //SCROLL to the bottom
+    [self.tableView scrollToRowAtIndexPath:tempIndexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+    
+    */
+    
     [self.tableView reloadData];
 }
 
-//0 The submit button on composeMessageOnly was hit
+//0 The submit button on composeMessageOnly was hit or like button
 -(void)anyAction:(NSNotification *)anote
 {
     NSLog(@"anyAction method fired. presumably from composeMessageOnly submit button or likeButtonDepressed  being hit");
@@ -157,7 +179,7 @@
                                       }];
     
 }
-//3 Save Content to Database NOTE: THIS WILL NOT UPDATE LIKE COUNTER LABEL OR THE LIKESCOUNTER ATTRIBUTE IN CORE DATA
+//3 Save Content to Database 
 -(void) saveToDatabase  //3
 {
     NSLog(@"You have called databaseDownloadFInish");
@@ -258,10 +280,6 @@
     [super viewWillDisappear:animated];
 }
 
-- (void)viewDidDisappear:(BOOL)animated
-{
-    [super viewDidDisappear:animated];
-}
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
@@ -313,7 +331,7 @@
             myLabel.font =[UIFont systemFontOfSize:13];
             myLabel.lineBreakMode = NSLineBreakByWordWrapping;
             myLabel.numberOfLines = 0;
-            [myLabel setBackgroundColor:[UIColor grayColor]];
+            [myLabel setBackgroundColor:[UIColor whiteColor]];
             myLabel.tag = 1;
             //Create Label Size
             NSString *cellText = myMessage.messageContent; //[tweet objectForKey:@"message_content"];   //grab the message
@@ -346,7 +364,7 @@
         CGRect temp2 = cell.cumulativeLikes.frame;
         int messageUserHeight = temp.size.height; //makes use of labelSize calcluates above (temp.frame)
         temp2.origin.y = 30 + messageUserHeight;
-        temp2.origin.x = temp2.origin.x - 3;
+        temp2.origin.x = 279;
         cell.cumulativeLikes.frame = temp2;
     
         //like button: position it on the cell

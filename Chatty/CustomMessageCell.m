@@ -71,6 +71,7 @@
     
     //MAKE THE CALLS TO RAILS
     
+    //LIKE IT (CREATES A RECORD IN LIKES TABLE)
     if(stateOfCell == YES)
     {
     [[AFChattyAPIClient sharedClient] postPath:@"/does_like/" parameters:params
@@ -88,17 +89,28 @@
     
    //Change the image
     [likeButton setImage:[UIImage imageNamed:@"likedMe.png"] forState:UIControlStateNormal];
-    //[likeButton setTitle:@"Doe" forState:UIControlStateNormal];
-    //and disable the action of the button
-    self.likeButton.userInteractionEnabled = NO;
+   
+    
     }
+    //UNLIKE IT (DELETES A RECORD IN LIKES TABLE)
     else // stateOfCell == NO
     {
         NSLog(@"The stateOfCell is unliked");
         //send message to Rails to destory recrod that i like the message and to decrement the cumulativeLikes attribute of the message
         
+        [[AFChattyAPIClient sharedClient] getPath:@"/does_like/" parameters:params
+         //if login works, log a message to the console
+                                           success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                                               //self.messages = responseObject;
+                                               NSLog(@"This is the response I recieved in the message view: %@", responseObject);
+                                               //tell the parent tableview controller to refresh
+                                               [[NSNotificationCenter defaultCenter] postNotificationName:@"likeButtonDepressed" object:nil userInfo:nil];
+                                               
+                                           }
+                                           failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                               NSLog(@"Error from postPath: %@",[error localizedDescription]);
+                                           }];
         
-        //send NSNotification to reload the tableView
         
         //change the image of the cell
         [likeButton setImage:[UIImage imageNamed:@"likeMe.png"] forState:UIControlStateNormal];

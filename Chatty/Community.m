@@ -28,6 +28,7 @@
 @synthesize innerCircleConversations, allConversations;
 @synthesize variableCellHeight;
 
+
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -72,7 +73,6 @@
     
     self.tableView.backgroundView = tempImageView;
     
-//    [[UINavigationBar appearance] setTintColor:[UIColor colorWithRed:53.0/256.0 green:231.0/256.0 blue:132.0/256.0 alpha:1.0]];
 
     //setting currentView to 1 here because I removed the toggling of AllConvo's and FavoriteConvo's
     self.currentView = 1;
@@ -81,33 +81,11 @@
     //[self performSegueWithIdentifier:@"composeAConvo" sender:self];
     //[self.tabBarController setSelectedIndex:1];
     
-    /*
-    if ([self.tabBarController.tabBarItem respondsToSelector:@selector(setTitleTextAttributes:)]) {
-        NSLog(@"*** Support method(iOS 5): setTitleTextAttributes:");
-        [self.tabBarController.tabBarItem setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
-                                                 [UIFont fontWithName:@"AmericanTypewriter" size:20.0f], UITextAttributeFont,
-                                                 [UIColor blackColor], UITextAttributeTextColor,
-                                                 [UIColor grayColor], UITextAttributeTextShadowColor,
-                                                 [NSValue valueWithUIOffset:UIOffsetMake(0.0f, 1.0f)], UITextAttributeTextShadowOffset,
-                                                 nil]];
-    }
-    
-     */
-    
-    //change navcontroller font
-    /*
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 400, 44)];
-    label.backgroundColor = [UIColor clearColor];
-    [label setFont:[UIFont fontWithName:@"Century Gothic-Bold" size:46]];
-    label.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
-    label.textAlignment = UITextAlignmentCenter;
-    label.textColor =[UIColor blackColor];
-    label.text=self.title;
-    self.navigationController.navigationItem.titleView = label;
-    */
-    
     //set tableView font
     [self.tableView setSeparatorColor: [UIColor colorWithRed:224.0/256.0 green:224.0/256.0 blue:224.0/256.0 alpha:1.0]];
+    
+    //set up listener pattern
+    //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(anyAction:) name:@"likeButtonDepressed" object:nil];
     
     [self refresh];
    
@@ -123,8 +101,24 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    NSLog(@"viewWillAppear");
+    //Set up Listener pattern
+    //community tableview is in view
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(anyAction:) name:@"likeButtonDepressed" object:nil];
     
-    
+}
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"likeButtonDepressed" object:nil]; //will not respond if like button is pushed on the cell, when the cell is from another viewcontroller
+
+}
+
+//when the like button is hit this method will fire
+-(void)anyAction:(NSNotification *)anote
+{
+    NSLog(@"anyAction method fired. LIKE button was hit in community tab, community.m view");
+    [self refresh];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -132,14 +126,12 @@
     [super viewDidAppear:animated];
 }
 
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-}
+
 
 - (void)viewDidDisappear:(BOOL)animated
 {
     [super viewDidDisappear:animated];
+    
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -239,8 +231,9 @@
             }
     
     
-        
-        
+        //set the messageID on the cell
+        cell.messageID = tweet[@"message_id"];
+    
         //SenderUser Label
         cell.SenderUser.text = [tweet objectForKey:@"full_name"];
         
@@ -256,19 +249,22 @@
         //userName label
         cell.userName.text = [tweet objectForKey:@"userName"];
     
-        //set numberOfLikes on cell
-        cell.cumulativeLikes.text = @"87";
+        //Number of Likes: on cell and position it 
+        cell.cumulativeLikes.text = [NSString stringWithFormat:@"%@",[tweet objectForKey:@"likes"]];
         CGRect temp5 = cell.cumulativeLikes.frame;
         int messageUserHeight = temp.size.height; //makes use of labelSize calcluates above (temp.frame)
         temp5.origin.y = 30 + messageUserHeight;
         temp5.origin.x = 279; //temp5.origin.x - 3;
         cell.cumulativeLikes.frame = temp5;
     
-        //like button: position it on the cell
+        //Like Button: position it on the cell
         CGRect temp3 = cell.likeButton.frame;
         temp3.origin.y = 32 + messageUserHeight;
         cell.likeButton.frame = temp3;
     
+        //tell the cell if the user has liked this message before
+        NSNumber * myNumber = tweet[@"hasBeenLiked"];
+        [cell isLike:myNumber];
     
        // UIImageView * profPic2 = [self.listOfImages objectAtIndex:indexPath.row];
        // UIImage *profPicImage = profPic2.image;
