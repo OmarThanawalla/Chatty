@@ -46,9 +46,20 @@
 	<string>MainStoryboard</string>
 	<key>UIPrerenderedIcon</key>
 	<true/>
+	<key>FacebookAppID</key>
+	<string>500199070031878</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
+	</array>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>fb500199070031878</string>
+			</array>
+		</dict>
 	</array>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
