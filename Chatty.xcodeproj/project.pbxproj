@@ -64,9 +64,9 @@
 		A768946316B667C90083507A /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A768946216B667C90083507A /* FacebookSDK.framework */; };
 		A768946616B668580083507A /* FacebookSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A768946516B668580083507A /* FacebookSDKResources.bundle */; };
 		A768946816B6686B0083507A /* FBUserSettingsViewResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A768946716B6686B0083507A /* FBUserSettingsViewResources.bundle */; };
-		A768946B16B6688B0083507A /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A768946916B6688B0083507A /* Accounts.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		A768946C16B6688B0083507A /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A768946A16B6688B0083507A /* AdSupport.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		A768946E16B668A20083507A /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A768946D16B668A20083507A /* Social.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		A768946B16B6688B0083507A /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A768946916B6688B0083507A /* Accounts.framework */; settings = {ATTRIBUTES = (Required, ); }; };
+		A768946C16B6688B0083507A /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A768946A16B6688B0083507A /* AdSupport.framework */; settings = {ATTRIBUTES = (Required, ); }; };
+		A768946E16B668A20083507A /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A768946D16B668A20083507A /* Social.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		A76DDED0158537C100F8D65D /* AFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = A76DDEBC158537C100F8D65D /* AFHTTPClient.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		A76DDED1158537C100F8D65D /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = A76DDEBE158537C100F8D65D /* AFHTTPRequestOperation.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		A76DDED2158537C100F8D65D /* AFImageRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = A76DDEC0158537C100F8D65D /* AFImageRequestOperation.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
