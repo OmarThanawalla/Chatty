@@ -13,7 +13,7 @@
 #import "Message.h"
 #import <FacebookSDK/FacebookSDK.h>
 
-@interface BIDAppDelegate() <FBFriendPickerDelegate>
+@interface BIDAppDelegate() 
 
 
 @end
@@ -37,11 +37,7 @@
     
     
     [[UITabBar appearance] setSelectedImageTintColor:[UIColor colorWithRed:113.0/256.0 green:230.0/256.0 blue:216.0/256.0 alpha:1.0]];
-    
-    //NSString * theToken= FBSession.activeSession.accessToken;
-    
-    [self openSession];
-    
+        
     /*
     //TEST CODE FROM RAYWENDERLICH: Saving Data
     
@@ -77,98 +73,8 @@
     return YES;
 }
 
-- (void)openSession
-{
-    //[FBSettings setLoggingBehavior:[NSSet setWithObjects: FBLoggingBehaviorFBRequests, nil]];
-    //get permissions
-    NSArray *permissions = [[NSArray alloc] initWithObjects:
-                            @"user_location",
-                            @"user_birthday",
-                            @"email",
-                            //@"user_about_me",
-                            //@"updated_time",
-                            //@"access_token",
-                            nil];
-    
-    
-    [FBSession openActiveSessionWithReadPermissions:permissions
-                                       allowLoginUI:YES
-                                  completionHandler:
-     ^(FBSession *session,
-       FBSessionState state, NSError *error) {
-         //call this method in the code block when openActiveSession... method is successful
-         [self sessionStateChanged:session state:state error:error];
-     }];
-}
 
-- (void)sessionStateChanged:(FBSession *)session
-                      state:(FBSessionState) state
-                      error:(NSError *)error
-{
-    switch (state) {
-        case FBSessionStateOpen: {
-            //if the top view controller is the login viewcontroller dismiss that view controller
-            NSLog(@"I think you are logged in");
-//            UIViewController *topViewController =
-//            [self.navController topViewController];
-//            if ([[topViewController modalViewController]
-//                 isKindOfClass:[SCLoginViewController class]]) {
-//                [topViewController dismissModalViewControllerAnimated:YES];
-//            }
-            //lets experiment
-            [self callSomeShit];
-        }
-            break;
-        case FBSessionStateClosed:
-        case FBSessionStateClosedLoginFailed:
-            // Once the user has logged in, we want them to
-            // be looking at the root view.
-            //[self.navController popToRootViewControllerAnimated:NO];
-            
-            [FBSession.activeSession closeAndClearTokenInformation];
-            
-            //[self showLoginView];   //shows login view
-            break;
-        default:
-            break;
-    }
-    
-    if (error) {
-        UIAlertView *alertView = [[UIAlertView alloc]
-                                  initWithTitle:@"Error"
-                                  message:error.localizedDescription
-                                  delegate:nil
-                                  cancelButtonTitle:@"OK"
-                                  otherButtonTitles:nil];
-        [alertView show];
-    }
-}
-
--(void) callSomeShit
-{
-    
-    NSLog(@"You made it to the callSomeShit method");
-//    [FBRequestConnection startWithGraphPath:@"me/friends?fields=installed" completionHandler:^(FBRequestConnection *connection, id data, NSError *error) {
-//        if(error) {
-//            
-//            return;
-//        }
-//        NSArray* friends = (NSArray*) data[@"data"];
-//        NSLog(@"You have %d friends", [friends count]);
-//        for(int i = 0; i < [friends count]; i++)
-//        {
-//            NSDictionary * person = (NSDictionary*) [friends objectAtIndex:i];
-//            BOOL  installed = (BOOL) person[@"installed"];
-//            // NSLog(@"%c",installed);
-//            
-//        }
-        
-        
-    }
-
-
-
-- (BOOL)application:(UIApplication *)application
+- (BOOL)application:(UIApplication *)application //5 i think you have to leave this here? maybe ill just set up another copy elsewhere too
             openURL:(NSURL *)url
   sourceApplication:(NSString *)sourceApplication
          annotation:(id)annotation

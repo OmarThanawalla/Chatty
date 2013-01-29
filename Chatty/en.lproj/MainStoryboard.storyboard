@@ -759,7 +759,14 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="gda-ls-aBK"/>
+                    <navigationItem key="navigationItem" id="gda-ls-aBK">
+                        <barButtonItem key="rightBarButtonItem" title="Use Facebook" id="4lq-eq-L6V">
+                            <connections>
+                                <action selector="fbFriendSearch:" destination="qSr-4J-3fa" id="WdX-QZ-Qc2"/>
+                                <segue destination="Eh0-95-zWg" kind="modal" id="BWw-Bd-1AC"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="searchDisplayController" destination="e4K-LW-AzY" id="IZ1-Z5-KAj"/>
                     </connections>
@@ -776,6 +783,62 @@
                 </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="1055" y="857"/>
+        </scene>
+        <!--Facebook Friend List-->
+        <scene sceneID="T8y-QH-zie">
+            <objects>
+                <tableViewController id="dI1-av-Sgb" customClass="facebookFriendList" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="abc-He-cIK">
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="Mmq-Br-DaJ">
+                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="dI1-av-Sgb" id="foZ-g4-GCW"/>
+                            <outlet property="delegate" destination="dI1-av-Sgb" id="dk6-Tz-r4G"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="7zk-G3-4Wp">
+                        <barButtonItem key="leftBarButtonItem" title="Dismiss" id="MRz-Ck-tWI">
+                            <connections>
+                                <action selector="dismiss:" destination="dI1-av-Sgb" id="PEj-sF-aIg"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Follow All" id="Chm-O7-KgV">
+                            <connections>
+                                <action selector="followAll:" destination="dI1-av-Sgb" id="GcG-23-yBU"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="quh-72-acx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1988" y="857"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="g4p-1O-0tp">
+            <objects>
+                <navigationController definesPresentationContext="YES" id="Eh0-95-zWg" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="grh-fQ-m3q">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="dI1-av-Sgb" kind="relationship" relationship="rootViewController" id="M9J-w2-I35"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0ne-Or-Rq6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1521" y="857"/>
         </scene>
     </scenes>
     <resources>

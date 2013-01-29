@@ -11,6 +11,7 @@
 #import "AFNetworking.h"
 #import "KeychainItemWrapper.h"
 #import "AFChattyAPIClient.h"
+#import "facebookFriendList.h"
 
 @interface SearchFriends ()
 
@@ -182,6 +183,16 @@
     
     
 }
+
+//- (IBAction)fbFriendSearch:(id)sender
+//{
+//    NSLog(@"You hit the faceBookFriendSearch method");
+//    //initialze a tableView controller and send to screen
+//    facebookFriendList * myFBTableView = [[facebookFriendList alloc] init];
+//    
+//    [self presentViewController:myFBTableView animated:YES completion:nil];
+//    
+//}
 
 
 

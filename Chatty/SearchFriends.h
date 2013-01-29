@@ -15,5 +15,6 @@
 @property (nonatomic, strong) NSMutableArray *listOfUsers;
 
 -(void) refresh;
+- (IBAction)fbFriendSearch:(id)sender;
 
 @end
