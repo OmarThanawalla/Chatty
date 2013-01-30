@@ -8,6 +8,8 @@
 
 #import "facebookFriendList.h"
 #import <FacebookSDK/FacebookSDK.h>
+#import "KeychainItemWrapper.h"
+#import "AFChattyAPIClient.h"
 
 @interface facebookFriendList ()
 
@@ -33,6 +35,7 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
     
     //Begin call to facebook
     [self openSession]; //1
@@ -143,6 +146,31 @@
     
     NSString * theToken = FBSession.activeSession.accessToken;
     NSLog(@"the access token is: %@", theToken );
+    
+    //send rails the access token
+    KeychainItemWrapper *keychain = [[KeychainItemWrapper alloc] initWithIdentifier:@"ChattyAppLoginData" accessGroup:nil];
+    NSString * email = [keychain objectForKey:(__bridge id)kSecAttrAccount];
+    NSString * password = [keychain objectForKey:(__bridge id)kSecValueData];
+    
+    //set up params
+    NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
+                            email, @"email",
+                            password, @"password",
+                            theToken, @"fbToken",
+                            nil];
+    
+    //make the call
+    [[AFChattyAPIClient sharedClient] getPath:@"/friend_list_fb/" parameters:params
+     //if login works, log a message to the console
+                                      success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                                          NSLog(@"This is the response I recieved: %@", responseObject);
+                                          
+                                          
+                                          
+                                      }
+                                      failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                          NSLog(@"Error from postPath: %@",[error localizedDescription]);
+                                      }];
     //    [FBRequestConnection startWithGraphPath:@"me/friends?fields=installed" completionHandler:^(FBRequestConnection *connection, id data, NSError *error) {
     //        if(error) {
     //
