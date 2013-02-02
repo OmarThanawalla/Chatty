@@ -75,7 +75,7 @@
     NSLog(@"viewWillAppear");
     //Set up Listener pattern    
     //conversation tableview is in view
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(anyAction:) name:@"likeButtonDepressed" object:nil];
+    //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(anyAction:) name:@"likeButtonDepressed" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(anyAction:) name:@"composeMessageOnly" object:nil];  //after hitting submit button we can to reload from database
     // We're going to pull our data from the database
     [self loadFromDatabase];
@@ -158,7 +158,7 @@
     
     //NSLog(@"The value of conversationID is %i", conversationID);
     
-    
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
                             email, @"email",
                             password, @"password",
@@ -176,6 +176,7 @@
                                       }
                                       failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                                           NSLog(@"Error from postPath: %@",[error localizedDescription]);
+                                          [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
                                       }];
     
 }
@@ -261,6 +262,7 @@
             
         }
     }
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     //and then call loadFromDatabase
     [self loadFromDatabase]; //4
 }

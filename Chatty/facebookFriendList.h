@@ -9,8 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @interface facebookFriendList : UITableViewController
-- (IBAction)dismiss:(id)sender;
 
+@property (nonatomic, strong) NSMutableArray *listOfUsers;
+
+- (IBAction)dismiss:(id)sender;
 - (IBAction)followAll:(id)sender;
 
 

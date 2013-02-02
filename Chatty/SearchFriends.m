@@ -42,7 +42,10 @@
     self.tabBarController.tabBar.tintColor = [UIColor colorWithRed:48.0/256.0 green:49.0/256.0 blue:50.0/256.0 alpha:1.0];
     [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"tabbar.png"] forBarMetrics:UIBarMetricsDefault];
     
-    
+//    UIImageView *tempImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bg_4.png"]];
+//    [tempImageView setFrame:self.view.frame];
+//    
+//    self.view.backgroundView = tempImageView;
 }
 
 - (void)viewDidUnload

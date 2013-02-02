@@ -10,12 +10,12 @@
 
 @interface UserCell : UITableViewCell
 @property (nonatomic, strong) IBOutlet UIImageView *profilePic;
-@property (nonatomic, strong) IBOutlet UILabel *fullName;
+@property (nonatomic, strong) IBOutlet UILabel *fullName; //full name
 @property (nonatomic, strong) IBOutlet UILabel *bio;
 @property (nonatomic, strong) NSString *userID;
 @property (nonatomic, assign) int requestSent;
 @property (nonatomic, strong) IBOutlet UIButton *requestButton;
-@property (nonatomic, strong) IBOutlet UILabel *userName;
+@property (nonatomic, strong) IBOutlet UILabel *userName; //userName
 
 
 -(IBAction)follow;

@@ -80,7 +80,8 @@
                                           //self.messages = responseObject;
                                           NSLog(@"This is the response I recieved in the message view: %@", responseObject);
                                           //tell the parent tableview controller to refresh
-                                          [[NSNotificationCenter defaultCenter] postNotificationName:@"likeButtonDepressed" object:nil userInfo:nil];
+                                          //dont do the below code, too inefecient
+                                          //[[NSNotificationCenter defaultCenter] postNotificationName:@"likeButtonDepressed" object:nil userInfo:nil];
              
                                       }
                                       failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -89,8 +90,11 @@
     
    //Change the image
     [likeButton setImage:[UIImage imageNamed:@"likedMe.png"] forState:UIControlStateNormal];
-   
-    
+   //increment the like counter
+        NSString *value = self.cumulativeLikes.text;
+        int likesInInt = [value intValue];
+        likesInInt = likesInInt + 1;
+        self.cumulativeLikes.text = [NSString stringWithFormat:@"%i", likesInInt];
     }
     //UNLIKE IT (DELETES A RECORD IN LIKES TABLE)
     else // stateOfCell == NO
@@ -104,7 +108,8 @@
                                                //self.messages = responseObject;
                                                NSLog(@"This is the response I recieved in the message view: %@", responseObject);
                                                //tell the parent tableview controller to refresh
-                                               [[NSNotificationCenter defaultCenter] postNotificationName:@"likeButtonDepressed" object:nil userInfo:nil];
+                                               //dont do the below code, too inefficeient
+                                               //[[NSNotificationCenter defaultCenter] postNotificationName:@"likeButtonDepressed" object:nil userInfo:nil];
                                                
                                            }
                                            failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -114,6 +119,13 @@
         
         //change the image of the cell
         [likeButton setImage:[UIImage imageNamed:@"likeMe.png"] forState:UIControlStateNormal];
+        
+        //increment the like counter
+        NSString *value = self.cumulativeLikes.text;
+        int likesInInt = [value intValue];
+        likesInInt = likesInInt - 1 ;
+        self.cumulativeLikes.text = [NSString stringWithFormat:@"%i", likesInInt];
+        
     }
 }
 

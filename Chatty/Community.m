@@ -118,7 +118,8 @@
 -(void)anyAction:(NSNotification *)anote
 {
     NSLog(@"anyAction method fired. LIKE button was hit in community tab, community.m view");
-    [self refresh];
+    // disabled this because we ended up just updating the number on the box
+    //[self refresh];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -393,6 +394,13 @@
 
 -(IBAction) refresh
 {
+//    UIActivityIndicatorView *activity = [[UIActivityIndicatorView alloc]initWithFrame:CGRectMake(70, 85, 180, 180)];
+//    [activity setBackgroundColor:[UIColor lightGrayColor]];
+//    [activity setActivityIndicatorViewStyle:UIActivityIndicatorViewStyleGray];
+//    [self.view addSubview:activity];
+//    
+//    [activity startAnimating];
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     
     KeychainItemWrapper *keychain = [[KeychainItemWrapper alloc] initWithIdentifier:@"ChattyAppLoginData" accessGroup:nil];
     NSString * email = [keychain objectForKey:(__bridge id)kSecAttrAccount];
@@ -417,7 +425,7 @@
                                           failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                                               NSLog(@"Error from postPath: %@",[error localizedDescription]);
                                               //else you cant connect, therefore push modalview login onto the stack
-                                              
+                                              [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
                                           }];
     }
     else //you are in All Conversations view
@@ -431,6 +439,8 @@
                                               allConversations = responseObject;
                                               [self.tableView reloadData];
                                               //[self loadProfilePictures];
+                                              //[activity stopAnimating];
+                                              
                                               [self messagesDownloadStart]; //1 of 4 Begins background message downloads
                                               
                                           } 
@@ -595,7 +605,7 @@
                                           _convoMessages = responseObject;
                                           NSLog(@"This is the response I recieved: %@", responseObject);
                                           [self messagesDownloadFinish];
-                                          
+                                          [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
                                           
                                           
                                       }

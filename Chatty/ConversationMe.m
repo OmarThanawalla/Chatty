@@ -126,7 +126,7 @@
     
     //NSLog(@"The value of conversationID is %i", conversationID);
     
-    
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
                             email, @"email",
                             password, @"password",
@@ -144,6 +144,7 @@
                                       }
                                       failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                                           NSLog(@"Error from postPath: %@",[error localizedDescription]);
+                                          [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
                                       }];
     
 }
@@ -210,6 +211,7 @@
             }
         }
     }
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     //and then call loadFromDatabase
     [self loadFromDatabase]; //4
 }
@@ -331,10 +333,24 @@
                 cell.MessageUser = myLabel;
                 [cell.contentView addSubview:cell.MessageUser];
             }
-
+    //set the messageID on the cell
+    cell.messageID = [myMessage.messageID stringValue];
     
     //SenderUser Label
     cell.SenderUser.text = myMessage.fullName;
+    
+    //likesCounter: give it value and position it on the cell
+    cell.cumulativeLikes.text = [NSString stringWithFormat:@"%@", myMessage.likesCount];
+    CGRect temp2 = cell.cumulativeLikes.frame;
+    int messageUserHeight = temp.size.height; //makes use of labelSize calcluates above (temp.frame)
+    temp2.origin.y = 30 + messageUserHeight;
+    temp2.origin.x = 279;
+    cell.cumulativeLikes.frame = temp2;
+    
+    //like button: position it on the cell
+    CGRect temp3 = cell.likeButton.frame;
+    temp3.origin.y = 24 + messageUserHeight;
+    cell.likeButton.frame = temp3;
     
     //Remove recipients label
     [cell.Recipients removeFromSuperview];
@@ -413,6 +429,7 @@
                                       }
                                       failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                                           NSLog(@"Error from postPath: %@",[error localizedDescription]);
+                                          [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
                                       }];
     
 }

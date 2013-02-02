@@ -180,6 +180,8 @@
         [cell.contentView addSubview:cell.MessageUser];
     }
 
+    //set the messageID on the cell
+    cell.messageID = tweet[@"id"];
     
     cell.SenderUser.text = [tweet objectForKey:@"full_name"];
     
@@ -196,6 +198,18 @@
     cell.userName.text = [tweet objectForKey:@"userName"];
     //NSLog(@"actual cell height %lf",cell.frame.size.height);
    
+    //Number of Likes: on cell and position it 
+    cell.cumulativeLikes.text = [NSString stringWithFormat:@"%@",[tweet objectForKey:@"likes"]];
+    CGRect temp5 = cell.cumulativeLikes.frame;
+    int messageUserHeight = temp.size.height; //makes use of labelSize calcluates above (temp.frame)
+    temp5.origin.y = 30 + messageUserHeight;
+    temp5.origin.x = 279; //temp5.origin.x - 3;
+    cell.cumulativeLikes.frame = temp5;
+    
+    //Like Button: position it on the cell
+    CGRect temp3 = cell.likeButton.frame;
+    temp3.origin.y = 32 + messageUserHeight;
+    cell.likeButton.frame = temp3;
     
     cell.ProfilePicture.layer.cornerRadius = 9.0;
     cell.ProfilePicture.layer.masksToBounds = YES;
@@ -270,6 +284,7 @@
                             email, @"email", 
                             password, @"password",
                             nil];
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     
     [[AFChattyAPIClient sharedClient] getPath:@"/my_conversation/" parameters:params 
      //if login works, log a message to the console
@@ -285,6 +300,7 @@
                  failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                      //NSLog(@"Error from postPath: %@",[error localizedDescription]);
                      //else you cant connect, therefore push modalview login onto the stack
+                     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
                  }];
     
 
@@ -406,7 +422,7 @@
             }
         }
     }
-    
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 }
 
 

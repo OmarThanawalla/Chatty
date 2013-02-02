@@ -17,6 +17,8 @@
 #import "AFNetworking.h"
 #import "AFChattyAPIClient.h"
 
+#import <FacebookSDK/FacebookSDK.h>
+
 
 @implementation Profile
 
@@ -352,6 +354,7 @@
 
 -(IBAction) logout
 {
+    NSLog(@"The log out button was pushed");
     //i just had the modal view for login pop up, this way the only way to get back in is to successfully login instead of loggin out
     
 //    NSLog(@"logout function called");
@@ -365,8 +368,20 @@
     
 }
 
+//drill down into the conversation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    
+    if ([segue.identifier isEqualToString:@"logOut"])
+    {
+        NSLog(@"The log out segue was called");
+         [FBSession.activeSession closeAndClearTokenInformation];
+    }
+}
+
 -(IBAction)refresh
 {
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     [self downloadUserInfo];
     KeychainItemWrapper *keychain = [[KeychainItemWrapper alloc] initWithIdentifier:@"ChattyAppLoginData" accessGroup:nil];
     NSString * email = [keychain objectForKey:(__bridge id)kSecAttrAccount];
@@ -389,12 +404,13 @@
                                           //set up follows array
                                           follows = responseObject;
                                           [self.tableView reloadData];
-                                          
+                                          [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
                                           
                                       }
                                       failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                                           NSLog(@"Error from postPath: %@",[error localizedDescription]);
                                           //else you cant connect, therefore push modalview login onto the stack
+                                          [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
                                       }];
 
     }
@@ -414,12 +430,13 @@
                                               
                                               follows2 = responseObject;
                                               [self.tableView reloadData];
-                                              
+                                              [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
                                               
                                           }
                                           failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                                               NSLog(@"Error from postPath: %@",[error localizedDescription]);
                                               //else you cant connect, therefore push modalview login onto the stack
+                                              [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
                                           }];
     }
 }
