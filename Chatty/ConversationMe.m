@@ -202,6 +202,9 @@
             
             messageTable.userID = aMessage[@"user_id"];
             messageTable.userName = aMessage[@"userName"];
+            messageTable.hasBeenLiked = aMessage[@"hasBeenLiked"];
+            messageTable.likesCount = [NSString stringWithFormat:@"%@", aMessage[@"likes"]];
+            NSLog(@"The value of likesCount is: %@", [NSString stringWithFormat:@"%@", aMessage[@"likes"]]);
             
             //SAVE
             
@@ -209,6 +212,22 @@
             {
                 NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
             }
+        }
+        
+        //else you should update the found object sitting in results array and update the likes columns
+        else
+        {
+            //UPDATE RECORD: by grabbing the object and updating it
+            Message * myMessage =[results objectAtIndex:0];
+            myMessage.likesCount = [NSString stringWithFormat:@"%@", aMessage[@"likes"]];
+            myMessage.hasBeenLiked = aMessage[@"hasBeenLiked"];
+            NSLog(@"There has been an update");
+            if (![context save:&error])
+            {
+                NSLog(@"Whoops, couldn't save the updation of likesCount: %@", [error localizedDescription]);
+            }
+            
+            
         }
     }
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
@@ -357,6 +376,11 @@
     
     //userName label
     cell.userName.text = myMessage.userName;
+    
+    //tell the cell if the user has liked this message before
+    NSNumber * myNumber = myMessage.hasBeenLiked;
+    NSLog(@"The value for bool is: %@", myNumber);
+    [cell isLike:myNumber];
     
     //ProfilePicture: round corners
     cell.ProfilePicture.layer.cornerRadius = 9.0;

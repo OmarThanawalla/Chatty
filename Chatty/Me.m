@@ -211,6 +211,10 @@
     temp3.origin.y = 32 + messageUserHeight;
     cell.likeButton.frame = temp3;
     
+    //tell the cell if the user has liked this message before
+    NSNumber * myNumber = tweet[@"hasBeenLiked"];
+    [cell isLike:myNumber];
+    
     cell.ProfilePicture.layer.cornerRadius = 9.0;
     cell.ProfilePicture.layer.masksToBounds = YES;
     cell.ProfilePicture.layer.borderColor = [UIColor blackColor].CGColor;
@@ -413,13 +417,33 @@
             
             messageTable.userID = aMessage[@"user_id"];
             messageTable.userName = aMessage[@"userName"];
-            
+            messageTable.likesCount = [NSString stringWithFormat:@"%@", aMessage[@"likes"]];
+            NSLog(@"There is an update: %@",aMessage[@"hasBeenLiked"]);
+            messageTable.hasBeenLiked = aMessage[@"hasBeenLiked"];
             //SAVE
             
             if (![context save:&error])
             {
                 NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
             }
+        }
+        
+        //else you should update the found object sitting in results array and update the likes columns
+        
+        else
+        {
+            
+            //UPDATE RECORD: by grabbing the object and updating it
+            Message * myMessage =[results objectAtIndex:0];
+            myMessage.likesCount = [NSString stringWithFormat:@"%@", aMessage[@"likes"]];
+            myMessage.hasBeenLiked = aMessage[@"hasBeenLiked"];
+            NSLog(@"There is an update: %@",aMessage[@"hasBeenLiked"]);
+            if (![context save:&error])
+            {
+                NSLog(@"Whoops, couldn't save the updation of likesCount: %@", [error localizedDescription]);
+            }
+            
+            
         }
     }
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
