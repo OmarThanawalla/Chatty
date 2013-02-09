@@ -65,7 +65,8 @@
     
     NSLog(@"The view did load");
     
-    
+    //set tableView seperator colors
+    [self.tableView setSeparatorColor: [UIColor colorWithRed:224.0/256.0 green:224.0/256.0 blue:224.0/256.0 alpha:1.0]];
 
 }
 

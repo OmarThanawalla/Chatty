@@ -57,6 +57,9 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(anyAction:) name:@"composeMessageOnly" object:nil];
+    
+    //set tableView seperator colors
+    [self.tableView setSeparatorColor: [UIColor colorWithRed:224.0/256.0 green:224.0/256.0 blue:224.0/256.0 alpha:1.0]];
 }
 
 - (void)viewDidUnload
@@ -370,6 +373,7 @@
     CGRect temp3 = cell.likeButton.frame;
     temp3.origin.y = 24 + messageUserHeight;
     cell.likeButton.frame = temp3;
+    //[cell.contentView bringSubviewToFront:cell.likeButton.imageView];
     
     //Remove recipients label
     [cell.Recipients removeFromSuperview];

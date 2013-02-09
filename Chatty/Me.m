@@ -68,6 +68,9 @@
     [tempImageView setFrame:self.tableView.frame];
     
     self.tableView.backgroundView = tempImageView;
+    //change the outlining of cells font
+    [self.tableView setSeparatorColor: [UIColor colorWithRed:224.0/256.0 green:224.0/256.0 blue:224.0/256.0 alpha:1.0]];
+
 }
 
 - (void)viewDidUnload

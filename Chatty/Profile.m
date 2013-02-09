@@ -18,6 +18,7 @@
 #import "AFChattyAPIClient.h"
 
 #import <FacebookSDK/FacebookSDK.h>
+#import <QuartzCore/QuartzCore.h> //This is for accessing layer properties in ProfilePicture to curve the image
 
 
 @implementation Profile
@@ -72,7 +73,8 @@
     
     self.tableView.backgroundView = tempImageView;
 
-
+    //set tableView seperator colors
+    [self.tableView setSeparatorColor: [UIColor colorWithRed:224.0/256.0 green:224.0/256.0 blue:224.0/256.0 alpha:1.0]];
 }
 
 -(void)anyAction:(NSNotification *)anote
@@ -126,7 +128,8 @@
          self.userName = [userJSON objectForKey:@"userName"];
          self.Bio = [userJSON objectForKey:@"Bio"];
          self.profilePicLink =[userJSON objectForKey:@"profilePic"];
-        
+         //NSLog(@"The URL for the profile pic is: %@", [userJSON objectForKey:@"profilePic"]);
+
          
          [self.tableView reloadData];
      }
@@ -220,6 +223,16 @@
                         
                         
                         [cell.ProfilePic setImageWithURL:[NSURL URLWithString:self.profilePicLink]];
+                        NSLog(@"The URL for the profile pic is: %@", self.profilePicLink);
+                        
+                        cell.ProfilePic.layer.cornerRadius = 9.0;
+                        cell.ProfilePic.layer.masksToBounds = YES;
+                        cell.ProfilePic.layer.borderColor = [UIColor blackColor].CGColor;
+                        cell.ProfilePic.layer.borderWidth = 0.0;
+                        CGRect frame = cell.ProfilePic.frame;
+                        frame.size.height = 60;
+                        frame.size.width = 60;
+                        cell.ProfilePic.frame = frame;
                         
                         //this prevents the cell from being hightlighted but still lets me hit the edit profile UIButton
                         [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
@@ -296,7 +309,14 @@
         NSString *picURL = [user objectForKey: @"profilePic"];
         [cell.profilePic setImageWithURL:[NSURL URLWithString:picURL]];
         
-
+        cell.profilePic.layer.cornerRadius = 9.0;
+        cell.profilePic.layer.masksToBounds = YES;
+        cell.profilePic.layer.borderColor = [UIColor blackColor].CGColor;
+        cell.profilePic.layer.borderWidth = 0.0;
+        CGRect frame = cell.profilePic.frame;
+        frame.size.height = 50;
+        frame.size.width = 50;
+        cell.profilePic.frame = frame;
         
         //reset the labelFrame because the cell could be dequed
         CGRect labelFrame = CGRectMake(63.0f, 29.0f, 150.0f, 21.0f);

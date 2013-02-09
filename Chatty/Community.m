@@ -81,7 +81,7 @@
     //[self performSegueWithIdentifier:@"composeAConvo" sender:self];
     //[self.tabBarController setSelectedIndex:1];
     
-    //set tableView font
+    //set tableView seperator colors
     [self.tableView setSeparatorColor: [UIColor colorWithRed:224.0/256.0 green:224.0/256.0 blue:224.0/256.0 alpha:1.0]];
     
     //set up listener pattern
@@ -262,6 +262,7 @@
         CGRect temp3 = cell.likeButton.frame;
         temp3.origin.y = 32 + messageUserHeight;
         cell.likeButton.frame = temp3;
+        
     
         //tell the cell if the user has liked this message before
         NSNumber * myNumber = tweet[@"hasBeenLiked"];

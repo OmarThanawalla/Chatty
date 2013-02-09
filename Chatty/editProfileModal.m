@@ -42,7 +42,8 @@
 }
 
 -(void) downloadUserInfo
-{   
+{
+    NSLog(@"You called the downloadUserInfo method");
     KeychainItemWrapper *keychain = [[KeychainItemWrapper alloc] initWithIdentifier:@"ChattyAppLoginData" accessGroup:nil];
     NSString * email = [keychain objectForKey:(__bridge id)kSecAttrAccount];
     NSString * password = [keychain objectForKey:(__bridge id)kSecValueData];
@@ -142,7 +143,7 @@
     NSString *theLast = self.lastName.text;
     NSString * theBio = self.Bio.text;
     
-    
+    NSLog(@"save: %@", theFirst);
     
     KeychainItemWrapper *keychain = [[KeychainItemWrapper alloc] initWithIdentifier:@"ChattyAppLoginData" accessGroup:nil];
     NSString * email = [keychain objectForKey:(__bridge id)kSecAttrAccount];
