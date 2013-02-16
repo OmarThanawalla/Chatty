@@ -87,6 +87,7 @@
     //set up listener pattern
     //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(anyAction:) name:@"likeButtonDepressed" object:nil];
     
+    
     [self refresh];
     //[self deleteEverything];
    
@@ -424,6 +425,7 @@
 //    [self.view addSubview:activity];
 //    
 //    [activity startAnimating];
+    
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     
     KeychainItemWrapper *keychain = [[KeychainItemWrapper alloc] initWithIdentifier:@"ChattyAppLoginData" accessGroup:nil];

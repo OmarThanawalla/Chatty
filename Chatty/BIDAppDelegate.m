@@ -298,6 +298,8 @@
 -(void) application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
 {
     NSLog(@"I recieved a remote notification");
+    //[[self tabBarItem] setBadgeValue:@"42"];
+    
 }
 
 @end
