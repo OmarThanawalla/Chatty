@@ -217,9 +217,23 @@
                         
                         cell.NameText.text = self.firstName;
                         cell.userName.text = self.userName;
+                        
+                        //sizeToFit the Bio Text
                         cell.BioText.text = self.Bio;
                         [cell.BioText sizeThatFits:CGSizeMake(40, 196)];
-                        
+                        UILabel *myLabel = cell.BioText;
+                        myLabel.font =[UIFont systemFontOfSize:13];
+                        myLabel.lineBreakMode = NSLineBreakByWordWrapping; // "Wrap or clip the string only at word boundaries. This is the default wrapping option"
+                        myLabel.numberOfLines = 0;
+                        myLabel.tag = 1;
+                        //Create Label Size
+                        UIFont *cellFont = [UIFont systemFontOfSize:13];
+                        CGSize constraintSize = CGSizeMake(175.0f, MAXFLOAT);           //This sets how wide we can go
+                        CGSize labelSize = [self.Bio sizeWithFont:cellFont constrainedToSize:constraintSize lineBreakMode:NSLineBreakByWordWrapping];
+                        CGRect temp = myLabel.frame;
+                        temp.size = labelSize;
+                        myLabel.frame = temp;
+                        cell.BioText = myLabel;
                         
                         
                         [cell.ProfilePic setImageWithURL:[NSURL URLWithString:self.profilePicLink]];
@@ -274,7 +288,14 @@
                         [cell.cnfmButton setImage:btnImage forState:UIControlStateNormal];
                         
                         
-                        
+                        cell.profilePic.layer.cornerRadius = 9.0;
+                        cell.profilePic.layer.masksToBounds = YES;
+                        cell.profilePic.layer.borderColor = [UIColor blackColor].CGColor;
+                        cell.profilePic.layer.borderWidth = 0.0;
+                        CGRect frame = cell.profilePic.frame;
+                        frame.size.height = 60;
+                        frame.size.width = 60;
+                        cell.profilePic.frame = frame;
                         
                         
                         //this prevents the cell from being hightlighted but still lets me hit the edit profile UIButton
