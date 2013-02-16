@@ -88,7 +88,28 @@
     //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(anyAction:) name:@"likeButtonDepressed" object:nil];
     
     [self refresh];
+    //[self deleteEverything];
    
+}
+
+-(void) deleteEverything
+{
+    NSLog(@"You ran the deleteEverything method");
+    BIDAppDelegate * appDelegate = (BIDAppDelegate *)[[UIApplication sharedApplication] delegate];
+    NSManagedObjectContext *context = [appDelegate managedObjectContext];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Message" inManagedObjectContext:context];
+    [fetchRequest setEntity:entity];
+    NSError *error;
+    NSArray *items = [context executeFetchRequest:fetchRequest error:&error];
+    for (NSManagedObject *managedObject in items) {
+    	[context deleteObject:managedObject];
+    	NSLog(@"%@ object deleted",@"Message");
+    }
+    if (![context save:&error]) {
+    	NSLog(@"Error deleting %@ - error:%@",@"Message",error);
+    }
+    
 }
 
 - (void)viewDidUnload
@@ -356,6 +377,8 @@
         {
             messageView.currentView = 1;
             messageView.conversationID = sender[@"convoID"];
+            NSLog(@"The conversation set on thhe next view will be: %@",messageView.conversationID);
+            
             messageView.preAddressing = sender[@"preAddressing"];
         }
     }

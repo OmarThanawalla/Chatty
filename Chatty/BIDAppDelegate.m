@@ -69,10 +69,51 @@
     //}
     NSLog(@"The length of fetchedObjects array is: %i", [fetchedObjects count]);  
     */
+    //[self deleteEverything];
     
     return YES;
 }
 
+- (void) deleteAllObjects: (NSString *) entityDescription  {
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:entityDescription inManagedObjectContext: _managedObjectContext];
+    [fetchRequest setEntity:entity];
+    
+    NSError *error;
+    NSArray *items = [_managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    //[fetchRequest release];
+    
+    
+    for (NSManagedObject *managedObject in items) {
+    	[_managedObjectContext deleteObject:managedObject];
+    	NSLog(@"%@ object deleted",entityDescription);
+    }
+    if (![_managedObjectContext save:&error]) {
+    	NSLog(@"Error deleting %@ - error:%@",entityDescription,error);
+    }
+    
+    
+    
+    
+}
+
+
+-(void) deleteEverything
+{
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Message" inManagedObjectContext:_managedObjectContext];
+    [fetchRequest setEntity:entity];
+    NSError *error;
+    NSArray *items = [_managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    for (NSManagedObject *managedObject in items) {
+    	[_managedObjectContext deleteObject:managedObject];
+    	NSLog(@"%@ object deleted",@"Message");
+    }
+    if (![_managedObjectContext save:&error]) {
+    	NSLog(@"Error deleting %@ - error:%@",@"Message",error);
+    }
+
+}
 
 - (BOOL)application:(UIApplication *)application //5 i think you have to leave this here? maybe ill just set up another copy elsewhere too
             openURL:(NSURL *)url
@@ -158,6 +199,7 @@
     
     return _persistentStoreCoordinator;
 }
+
 
 
 // Returns the URL to the application's Documents directory.
