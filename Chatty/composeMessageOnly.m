@@ -198,6 +198,7 @@
                 //Change the viewControlers frame
                 CGRect temp = autoCompleteObject.view.frame;
                 temp.origin.y = 85;
+                temp.size.height = 120;
                 autoCompleteObject.view.frame = temp;
                 
                 [self.view addSubview:autoCompleteObject.view];

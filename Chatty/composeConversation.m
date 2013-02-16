@@ -203,6 +203,10 @@
                             //Change the viewControlers frame
                             CGRect temp = autoCompleteObject.view.frame;
                             temp.origin.y = 85;
+                            temp.size.height = 120;
+                            //int aCOHeight = temp.size.height;
+                            //NSLog(@"The height of the autocomplete object view is: %i", aCOHeight);
+                            
                             autoCompleteObject.view.frame = temp;
                             
                             [self.view addSubview:autoCompleteObject.view];
