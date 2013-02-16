@@ -122,7 +122,7 @@
                                             <action selector="editPicture" destination="QQd-xa-CRm" eventType="touchUpInside" id="rUL-gO-Qs9"/>
                                         </connections>
                                     </button>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="dirk_nowitzki_027.jpg" id="vEw-Qa-ARU">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="Chat.png" id="vEw-Qa-ARU">
                                         <rect key="frame" x="20" y="134" width="55" height="55"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
@@ -837,8 +837,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Chat.png" width="114" height="114"/>
         <image name="community.png" width="30" height="30"/>
-        <image name="dirk_nowitzki_027.jpg" width="240" height="240"/>
         <image name="find.png" width="30" height="30"/>
         <image name="me.png" width="30" height="30"/>
         <image name="new.png" width="20" height="20"/>

@@ -11,6 +11,8 @@
 #import "AFNetworking.h"
 #import "AFChattyAPIClient.h"
 #import "KeychainItemWrapper.h"
+#import <QuartzCore/QuartzCore.h> //This is for accessing layer properties in ProfilePicture to curve the image
+
 @interface editProfileModal ()
 
 @end
@@ -85,12 +87,23 @@
     NSString *firstNameData = [resultsDict objectForKey:@"first_name"];
     NSString *lastNameData = [resultsDict objectForKey:@"last_name"];
     NSString *BioData = [resultsDict objectForKey:@"Bio"];
+    //NSString *pic = [resultsDict objectForKey:@"profilePic"];
     
     // assign data to labels
     firstName.text = firstNameData;
     lastName.text = lastNameData;
     Bio.text = BioData;
+    //[self.profilePic setImageWithURL:[NSURL URLWithString:pic]];
     
+    //curve the profile pic
+    self.profilePic.layer.cornerRadius = 9.0;
+    self.profilePic.layer.masksToBounds = YES;
+    self.profilePic.layer.borderColor = [UIColor blackColor].CGColor;
+    self.profilePic.layer.borderWidth = 0.0;
+    CGRect frame = self.profilePic.frame;
+    frame.size.height = 50;
+    frame.size.width = 50;
+    self.profilePic.frame = frame;
 }
 
 
