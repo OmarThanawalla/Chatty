@@ -71,8 +71,9 @@
     //change the outlining of cells font
     [self.tableView setSeparatorColor: [UIColor colorWithRed:224.0/256.0 green:224.0/256.0 blue:224.0/256.0 alpha:1.0]];
     
-    
 }
+
+
 
 - (void)viewDidUnload
 {
@@ -279,11 +280,14 @@
     }
 }
 
+-(IBAction)callToRefresh
+{
+    [self refresh];
+}
 //pull a list of the 20ish most recent conversations for the user
 -(IBAction)refresh
 {
-    [[[[[self tabBarController] tabBar] items]
-      objectAtIndex:1] setBadgeValue:@"refreshed"];
+    //[[[[[self tabBarController] tabBar] items] objectAtIndex:1] setBadgeValue:@"refreshed"];
     NSLog(@"you hit the refresh button////////////////////////////////////");
     KeychainItemWrapper *keychain = [[KeychainItemWrapper alloc] initWithIdentifier:@"ChattyAppLoginData" accessGroup:nil];
     NSString * email = [keychain objectForKey:(__bridge id)kSecAttrAccount];

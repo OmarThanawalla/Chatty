@@ -22,6 +22,6 @@
 
 
 -(IBAction)refresh;
-
+-(IBAction)callToRefresh;
 
 @end

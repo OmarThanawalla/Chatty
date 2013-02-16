@@ -298,8 +298,13 @@
 -(void) application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
 {
     NSLog(@"I recieved a remote notification");
-    //[[self tabBarItem] setBadgeValue:@"42"];
     
+    //grab the tab bar
+    NSLog(@"Root: %@", self.window.rootViewController);
+    UITabBarController *tabController = (UITabBarController *)self.window.rootViewController;
+    
+    //set the tab icon on new message
+    [[[[tabController tabBar] items]objectAtIndex:1] setBadgeValue:@"+"];
 }
 
 @end
