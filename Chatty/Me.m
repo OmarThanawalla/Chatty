@@ -282,6 +282,9 @@
 
 -(IBAction)callToRefresh
 {
+    //clear the icon because user hit the refresh button
+    [[[[self.tabBarController tabBar] items]objectAtIndex:1] setBadgeValue:@"0"];
+    //self.tabBarController.tabBarItem.badgeValue = nil;
     [self refresh];
 }
 //pull a list of the 20ish most recent conversations for the user

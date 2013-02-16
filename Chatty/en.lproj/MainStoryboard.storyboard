@@ -704,7 +704,7 @@
                     <navigationItem key="navigationItem" title="My Conversations" id="mPH-Ba-zIs">
                         <barButtonItem key="leftBarButtonItem" image="refresh.png" id="ZfU-sw-jPV">
                             <connections>
-                                <action selector="refresh" destination="ycM-Fd-tHT" id="BAU-SX-ySL"/>
+                                <action selector="callToRefresh" destination="ycM-Fd-tHT" id="lO3-vb-ob6"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="new.png" id="c17-Di-wqn">
@@ -852,7 +852,7 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="t4A-HM-QIE"/>
+        <segue reference="7yl-nr-Xmv"/>
         <segue reference="8La-9C-anb"/>
-        <segue reference="uJa-SE-dA2"/>
     </inferredMetricsTieBreakers>
 </document>

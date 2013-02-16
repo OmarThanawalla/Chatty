@@ -265,7 +265,7 @@
      //if login works, log a message to the console
                                       success:^(AFHTTPRequestOperation *operation, id responseObject) {
                                           //NSString *text = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-                                          NSLog(@"Response: %@", responseObject);
+                                          NSLog(@"Did update token: %@", responseObject);
                                           //rmr: responseObject is an array where each element is a diciontary                                          
                                       }
                                       failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -304,7 +304,7 @@
     UITabBarController *tabController = (UITabBarController *)self.window.rootViewController;
     
     //set the tab icon on new message
-    [[[[tabController tabBar] items]objectAtIndex:1] setBadgeValue:@"+"];
+    [[[[tabController tabBar] items]objectAtIndex:1] setBadgeValue:@"new"];
 }
 
 @end
