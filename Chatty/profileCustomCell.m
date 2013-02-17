@@ -23,6 +23,13 @@
     return self;
 }
 
+-(IBAction)launchFeedBack
+{
+    NSLog(@"User hit launch feedback");
+    [TestFlight openFeedbackView];
+}
+
+
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     [super setSelected:selected animated:animated];

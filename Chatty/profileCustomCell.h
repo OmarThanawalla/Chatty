@@ -15,5 +15,6 @@
 @property (strong, nonatomic) IBOutlet UILabel *userName;
 
 -(IBAction) editProfile;
+-(IBAction) launchFeedBack;
 
 @end

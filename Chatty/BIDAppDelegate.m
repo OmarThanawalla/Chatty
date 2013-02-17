@@ -224,6 +224,7 @@
 
 - (void)application:(UIApplication*)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData*)deviceToken
 {
+    [TestFlight passCheckpoint:@"iPhone Did Register for Remote Notification method called"];
 	NSLog(@"My token is: %@", deviceToken);
 
     
@@ -241,11 +242,12 @@
                                       success:^(AFHTTPRequestOperation *operation, id responseObject) {
                                           //NSString *text = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
                                           NSLog(@"Did update token: %@", responseObject);
-                                          [TestFlight passCheckpoint:@"Registered for Remote Notification"];
+                                          [TestFlight passCheckpoint:@"AppDelegate: Successfuly sent rails deviceToken"];
                                           //rmr: responseObject is an array where each element is a diciontary                                          
                                       }
                                       failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                                           NSLog(@"Error from postPath: %@",[error localizedDescription]);
+                                          [TestFlight passCheckpoint:@"AppDelegate: Failed in sending rails deviceToken"];
                                       }];
 }
 
