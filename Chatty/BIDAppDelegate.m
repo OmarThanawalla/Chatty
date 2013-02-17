@@ -46,9 +46,11 @@
     #endif
     [TestFlight takeOff:@"f81db16ac77c463a729db6f6d7799c74_MTc4MzQ2MjAxMy0wMS0yMyAwMTo0NDo0NC4yMjM5ODk"];
     [TestFlight passCheckpoint:@"Application Launched"];
+    
     return YES;
 }
 
+/*
 - (void) deleteAllObjects: (NSString *) entityDescription  {
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:entityDescription inManagedObjectContext: _managedObjectContext];
@@ -71,7 +73,7 @@
     
     
 }
-
+*/
 
 -(void) deleteEverything
 {
