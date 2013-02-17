@@ -224,7 +224,7 @@
 
 - (void)application:(UIApplication*)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData*)deviceToken
 {
-    [TestFlight passCheckpoint:@"iPhone Did Register for Remote Notification method called"];
+    [TestFlight passCheckpoint:@"iPhone Did Register for Remote Notification method called: %@"];
 	NSLog(@"My token is: %@", deviceToken);
 
     
