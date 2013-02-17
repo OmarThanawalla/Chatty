@@ -88,12 +88,14 @@
                      //if successfully logged in, dismiss the modal view, looks like i store email and password
                      [keychain setObject:email forKey:(__bridge id) kSecAttrAccount];
                      [keychain setObject:password forKey:(__bridge id)kSecValueData];
+                     [TestFlight passCheckpoint:@"Successfully logged in the app"];
                      [self dismissModalViewControllerAnimated:YES];
 
                  } 
                 //else flash a notice on the modal view
                  failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                      NSLog(@"Error from postPath: %@",[error localizedDescription]);
+                     [TestFlight passCheckpoint:@"Did not successfully log into the app"];
                      notice.text = @"Incorrect Password";
                  }];
 

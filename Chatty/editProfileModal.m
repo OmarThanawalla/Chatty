@@ -35,6 +35,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [TestFlight passCheckpoint:@"User is viewing editing their profile"];
     //[self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"tabbar.png"] forBarMetrics:UIBarMetricsDefault];
     //self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:68.0/256.0 green:71.0/256.0 blue:72.0/256.0 alpha:1.0];
     self.view.backgroundColor = [UIColor whiteColor];
@@ -111,6 +112,7 @@
 -(IBAction)editPicture
 {
     NSLog(@"You hit the editPicture button");
+    [TestFlight passCheckpoint:@"User hit the edit picture button"];
     //initialize imagePicker, imagePicker is a navigationController, which is a viewController as well
     imagePicker = [[UIImagePickerController alloc]init];
     
@@ -136,6 +138,7 @@
 
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
+    [TestFlight passCheckpoint:@"editProfileModal Class: User selected a profile picture with which to save"];
     //image property is a UIImage
     NSLog(@"imagePicker did select image");
     profilePic.image = [info objectForKey:UIImagePickerControllerOriginalImage];
@@ -145,6 +148,7 @@
 
 -(void) imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
+    [TestFlight passCheckpoint:@"editProfileModal Class: User cancled out of selecting a picture"];
     NSLog(@"imagePicker did NOT select an image");
     [self dismissModalViewControllerAnimated:YES];
 }
@@ -153,6 +157,7 @@
 
 -(IBAction)save
 {
+    [TestFlight passCheckpoint:@"editProfileModal: User hit the save button, save changes"];
     //Grab the fields 
     NSString *theFirst = self.firstName.text;
     NSString *theLast = self.lastName.text;
@@ -196,6 +201,7 @@
 
 -(IBAction)cancel
 {
+    [TestFlight passCheckpoint:@"editprofileModal Class: User cancled out of saving changes to profile"];
     NSLog(@"You hit the cancel button");
     [self.presentingViewController dismissModalViewControllerAnimated:YES];
 }

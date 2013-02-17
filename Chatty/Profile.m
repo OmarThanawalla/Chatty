@@ -51,6 +51,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [TestFlight passCheckpoint:@"Profile: User is viewing the Profile Tab"];
+
     //[self refresh];
       // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -107,6 +109,7 @@
 
 -(void) downloadUserInfo
 {
+    
     KeychainItemWrapper *keychain = [[KeychainItemWrapper alloc] initWithIdentifier:@"ChattyAppLoginData" accessGroup:nil];
     NSString * email = [keychain objectForKey:(__bridge id)kSecAttrAccount];
     NSString * password = [keychain objectForKey:(__bridge id)kSecValueData];
@@ -366,9 +369,11 @@
     
     if([sender selectedSegmentIndex] == 1)
     {
+        [TestFlight passCheckpoint:@"User is viewing people they are following"];
         self.currentView = 1;
         [self.tableView reloadData]; 
     } else {
+        [TestFlight passCheckpoint:@"User is viewing their profile and pending requests"];
         self.currentView = 0;
         [self.tableView reloadData]; 
     }
@@ -396,6 +401,8 @@
 -(IBAction) logout
 {
     NSLog(@"The log out button was pushed");
+    [TestFlight passCheckpoint:@"User hit the log out button"];
+
     //i just had the modal view for login pop up, this way the only way to get back in is to successfully login instead of loggin out
     
 //    NSLog(@"logout function called");
@@ -422,6 +429,7 @@
 
 -(IBAction)refresh
 {
+    [TestFlight passCheckpoint:@"User hit the refresh button in profile tab"];
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     [self downloadUserInfo];
     KeychainItemWrapper *keychain = [[KeychainItemWrapper alloc] initWithIdentifier:@"ChattyAppLoginData" accessGroup:nil];

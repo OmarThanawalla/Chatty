@@ -37,40 +37,15 @@
     
     
     [[UITabBar appearance] setSelectedImageTintColor:[UIColor colorWithRed:113.0/256.0 green:230.0/256.0 blue:216.0/256.0 alpha:1.0]];
-        
-    /*
-    //TEST CODE FROM RAYWENDERLICH: Saving Data
     
-    NSManagedObjectContext *context = [self managedObjectContext];
-    Message *messageTable = [NSEntityDescription insertNewObjectForEntityForName:@"Message" inManagedObjectContext:context];
-    messageTable.fullName = @"Samir Rabby";    
-    NSError *error;
-    if (![context save:&error]) {
-        NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
-    }
-     
-     
-    //SOME MORE RAYWENDERLICH CODE: Retrieiving Data
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Message" inManagedObjectContext:context];
-    [fetchRequest setEntity:entity];
-    
-    NSLog(@"//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////");
-    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
-    if([fetchedObjects count] != 0)
-    {
-    for (Message *info in fetchedObjects) {
-        NSLog(@"fullName is: %@", info.fullName);
-        //[context deleteObject:info];
-    }
-    }
-    //if (![context save:&error]) {
-    //    NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
-    //}
-    NSLog(@"The length of fetchedObjects array is: %i", [fetchedObjects count]);  
-    */
-    //[self deleteEverything];
-    
+    //TestFlight debug purposes
+    //DONT FORGET TO COMMENT OUT THE NEXT 3 LINES BEFORE PRODUCTION
+    #define TESTING 1
+    #ifdef TESTING
+        [TestFlight setDeviceIdentifier:[[UIDevice currentDevice] uniqueIdentifier]];
+    #endif
+    [TestFlight takeOff:@"f81db16ac77c463a729db6f6d7799c74_MTc4MzQ2MjAxMy0wMS0yMyAwMTo0NDo0NC4yMjM5ODk"];
+    [TestFlight passCheckpoint:@"Application Launched"];
     return YES;
 }
 
@@ -266,6 +241,7 @@
                                       success:^(AFHTTPRequestOperation *operation, id responseObject) {
                                           //NSString *text = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
                                           NSLog(@"Did update token: %@", responseObject);
+                                          [TestFlight passCheckpoint:@"Registered for Remote Notification"];
                                           //rmr: responseObject is an array where each element is a diciontary                                          
                                       }
                                       failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -293,6 +269,7 @@
 - (void)application:(UIApplication*)application didFailToRegisterForRemoteNotificationsWithError:(NSError*)error
 {
 	NSLog(@"Failed to get token, error: %@", error);
+    [TestFlight passCheckpoint:@"Failed to register for remote notification "];
 }
 
 -(void) application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
@@ -305,6 +282,8 @@
     
     //set the tab icon on new message
     [[[[tabController tabBar] items]objectAtIndex:1] setBadgeValue:@"new"];
+    
+    [TestFlight passCheckpoint:@"Recieved push notification when inside the app"];
 }
 
 @end

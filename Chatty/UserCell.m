@@ -45,7 +45,7 @@
 
 -(IBAction)follow
 {
-    
+    [TestFlight passCheckpoint:@"User hit request to follow button on a cell"];
     /* GET THE PROFILE TAB DONE BEFORE YOU WRITE THE NETWORKNG CODE BECAUSE THE RELATIONSHIPS ARE SO CLOSELY LINKED */
     if(requestSent == 0)
     {

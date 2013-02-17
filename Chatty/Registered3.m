@@ -102,6 +102,7 @@
                                               //dismiss modal view
                                               [keychain setObject:self.email forKey:(__bridge id) kSecAttrAccount];
                                               [keychain setObject:self.password forKey:(__bridge id)kSecValueData];
+                                              [TestFlight passCheckpoint:@"Successfully created a new account"];
                                               [self dismissModalViewControllerAnimated:YES];
                                           }
                                           if([responseString isEqualToString:@"NO"])
@@ -115,6 +116,7 @@
                                                                                    cancelButtonTitle:@"OK"
                                                                                    otherButtonTitles:nil];
                                              [alert show];
+                                             [TestFlight passCheckpoint:@"Did not successfully create a new account"];
                                         }
                                           
                                           

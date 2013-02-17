@@ -43,6 +43,7 @@
     
     //set the background color on the table view
     self.tableView.backgroundColor = [UIColor colorWithRed:255.0/256.0 green:250.0/256.0 blue:240.0/256.0 alpha:1.0];
+    [TestFlight passCheckpoint:@"autoCompleteEngine: ViewWasLoaded"];
 }
 
 - (void)didReceiveMemoryWarning
@@ -105,7 +106,7 @@
 
 -(void) searchKickOff: (NSString *) query
 {
-    
+    [TestFlight passCheckpoint:@"autoCompleteEngine: begin searching for data by connecting to server"];
     self.currentQuery = query;
     NSLog(@"The value of query is: %@", self.currentQuery);
     //call search method
@@ -188,6 +189,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [TestFlight passCheckpoint:@"autoCompleteEngine: User selected one of the suggested entries"];
     //Grab the userName from the cell
     autoCompleteCell *cell = (autoCompleteCell*)[tableView cellForRowAtIndexPath:indexPath];
     NSString *userName = cell.userName.text;

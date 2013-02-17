@@ -56,6 +56,7 @@
 
 - (void)viewDidLoad
 {
+    [TestFlight passCheckpoint:@"Community View Successfully shown"];
     [super viewDidLoad];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackTranslucent animated:NO];
     
@@ -425,7 +426,7 @@
 //    [self.view addSubview:activity];
 //    
 //    [activity startAnimating];
-    
+    [TestFlight passCheckpoint:@"Community Class: Refresh Button Called"];
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     
     KeychainItemWrapper *keychain = [[KeychainItemWrapper alloc] initWithIdentifier:@"ChattyAppLoginData" accessGroup:nil];
@@ -468,12 +469,12 @@
                                               //[activity stopAnimating];
                                               
                                               [self messagesDownloadStart]; //1 of 4 Begins background message downloads
-                                              
+                                              [TestFlight passCheckpoint:@"Community Class: Successful call for new data"];
                                           } 
                                           failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                                               NSLog(@"Error from postPath: %@",[error localizedDescription]);
                                               //else you cant connect, therefore push modalview login onto the stack
-                                              
+                                              [TestFlight passCheckpoint:@"Community class: Non successful call for data"];
                                           }];
     }
 
@@ -502,6 +503,7 @@
 //this method will start downloading messages for each conversation displayed in community
 -(void) messagesDownloadStart //2 of 4
 {
+    [TestFlight passCheckpoint:@"Begin downloading background messages for Community Tab"];
     NSLog(@"You have called the databaseDownload method in the Community.m class");
     
     //for each conversation go call getMessages Method which will start downloading data (messages)

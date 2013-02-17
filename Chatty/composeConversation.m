@@ -49,6 +49,7 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad
 {
+    [TestFlight passCheckpoint:@"composeConversation View Loaded"];
     [super viewDidLoad];
     //force the keyboard to open
     [self.myTextView becomeFirstResponder];
@@ -97,6 +98,7 @@
 
 -(IBAction)cancelButton
 {
+    [TestFlight passCheckpoint:@"Cancel button on composeConversation view was hit"];
     [self.presentingViewController dismissModalViewControllerAnimated:YES];   
 }
 
@@ -111,6 +113,7 @@
 
 -(void)textViewDidChange:(UITextView *)textView //calls this method when you put text in it
 {
+    [TestFlight passCheckpoint:@"User started editing text in the composeConversation class"];
     //Clear placeholder
     if(myTextView.textColor == [UIColor lightGrayColor])
        {
@@ -279,7 +282,7 @@
 
 -(IBAction)sendButton
 {
-
+    [TestFlight passCheckpoint:@"Send button on composeConversation View was hit"];
     //grab the text from textView
     NSString * messageContent = myTextView.text;
     

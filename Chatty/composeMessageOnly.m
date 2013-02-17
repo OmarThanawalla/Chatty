@@ -68,6 +68,7 @@
     self.navBar.tintColor = [UIColor colorWithRed:68.0/256.0 green:71.0/256.0 blue:72.0/256.0 alpha:1.0];
     self.statusBar.tintColor = [UIColor colorWithRed:68.0/256.0 green:71.0/256.0 blue:72.0/256.0 alpha:1.0];
 
+    [TestFlight passCheckpoint:@"composeMessageOnly view was loaded"];
 }
 
 -(void)viewDidDisappear:(BOOL)animated
@@ -93,7 +94,7 @@
 }
 -(IBAction)cancel
 {
-    
+    [TestFlight passCheckpoint:@"ComposeMessageOnly cancel button was hit"];
     [self.presentingViewController dismissModalViewControllerAnimated:YES];   
    
 }
@@ -109,6 +110,7 @@
 
 -(void)textViewDidChange:(UITextView *)textView
 {
+    [TestFlight passCheckpoint:@"ComposeMessageOnly: User begin editing text in"];
     //Clear placeholder
     if(messageBody.textColor == [UIColor lightGrayColor])
     {
@@ -269,6 +271,7 @@
 
 -(IBAction)submit
 {
+    [TestFlight passCheckpoint:@"composeMessageOnly: User hit the submit button"];
     //grab the contents of message body
     NSString *messageContent = self.messageBody.text;
     NSString *convoID = self.conversationID;

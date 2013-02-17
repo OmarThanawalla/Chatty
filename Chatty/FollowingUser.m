@@ -35,7 +35,7 @@
 {
     NSLog(@"You pushed the unfollow button");
     NSLog(@"the user id is %@", userID);
-    
+    [TestFlight passCheckpoint:@"User unfollowed someone"];
     KeychainItemWrapper *keychain = [[KeychainItemWrapper alloc] initWithIdentifier:@"ChattyAppLoginData" accessGroup:nil];
     NSString * email = [keychain objectForKey:(__bridge id)kSecAttrAccount];
     NSString * password = [keychain objectForKey:(__bridge id)kSecValueData];

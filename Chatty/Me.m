@@ -50,7 +50,7 @@
     [self refresh];
     //refresh the data when the view loads
     //[self refresh];
-    
+    [TestFlight passCheckpoint:@"Me Class: User loaded the Me conversations view"];
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -282,6 +282,7 @@
 
 -(IBAction)callToRefresh
 {
+    [TestFlight passCheckpoint:@"Me Class: User hit the refresh button"];
     //clear the icon because user hit the refresh button
     [[[[self.tabBarController tabBar] items]objectAtIndex:1] setBadgeValue:@"0"];
     //self.tabBarController.tabBarItem.badgeValue = nil;

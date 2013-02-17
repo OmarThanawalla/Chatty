@@ -43,6 +43,7 @@
 //This is called when the like button has been pressed
 -(IBAction)likeAction
 {
+    [TestFlight passCheckpoint:@"User hit the like button on a customMessage cell"];
     NSLog(@"Like action depressed");
     NSLog(@"Also my messageId value is: %@", self.messageID);
     NSString * myID = self.messageID;

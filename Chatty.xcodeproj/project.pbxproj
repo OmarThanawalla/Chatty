@@ -83,6 +83,10 @@
 		A778622F167DBE700016290A /* autoCompleteCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A778622E167DBE700016290A /* autoCompleteCell.m */; };
 		A7786231167DBE9A0016290A /* autoComplete.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7786230167DBE9A0016290A /* autoComplete.xib */; };
 		A7786237167E5A3C0016290A /* 14643521-thumb-up-icon.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A7786236167E5A3C0016290A /* 14643521-thumb-up-icon.jpg */; };
+		A78AF92016D0900F000E5021 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A78AF91C16D0900F000E5021 /* libTestFlight.a */; };
+		A78AF92116D0900F000E5021 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = A78AF91D16D0900F000E5021 /* README.md */; };
+		A78AF92216D0900F000E5021 /* release_notes.md in Resources */ = {isa = PBXBuildFile; fileRef = A78AF91E16D0900F000E5021 /* release_notes.md */; };
+		A78AF92516D090C7000E5021 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A78AF92416D090C7000E5021 /* libz.dylib */; };
 		A7954A5915911D63008C0E69 /* JasonTerry.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7954A5815911D63008C0E69 /* JasonTerry.xib */; };
 		A7954A5C15911E35008C0E69 /* jasonT.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = A7954A5B15911E35008C0E69 /* jasonT.jpeg */; };
 		A7B35B3D1598C47900330B11 /* Registered3.m in Sources */ = {isa = PBXBuildFile; fileRef = A7B35B3C1598C47900330B11 /* Registered3.m */; };
@@ -228,6 +232,11 @@
 		A778622E167DBE700016290A /* autoCompleteCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = autoCompleteCell.m; sourceTree = "<group>"; };
 		A7786230167DBE9A0016290A /* autoComplete.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = autoComplete.xib; sourceTree = "<group>"; };
 		A7786236167E5A3C0016290A /* 14643521-thumb-up-icon.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "14643521-thumb-up-icon.jpg"; sourceTree = "<group>"; };
+		A78AF91C16D0900F000E5021 /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTestFlight.a; sourceTree = "<group>"; };
+		A78AF91D16D0900F000E5021 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		A78AF91E16D0900F000E5021 /* release_notes.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = release_notes.md; sourceTree = "<group>"; };
+		A78AF91F16D0900F000E5021 /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
+		A78AF92416D090C7000E5021 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		A7954A5815911D63008C0E69 /* JasonTerry.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JasonTerry.xib; sourceTree = "<group>"; };
 		A7954A5B15911E35008C0E69 /* jasonT.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = jasonT.jpeg; sourceTree = "<group>"; };
 		A7B35B3B1598C47900330B11 /* Registered3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Registered3.h; sourceTree = "<group>"; };
@@ -277,6 +286,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A78AF92516D090C7000E5021 /* libz.dylib in Frameworks */,
 				A768947616B7B58F0083507A /* CoreGraphics.framework in Frameworks */,
 				A768946E16B668A20083507A /* Social.framework in Frameworks */,
 				A768946B16B6688B0083507A /* Accounts.framework in Frameworks */,
@@ -286,6 +296,7 @@
 				A736D045152BBA620049AB22 /* UIKit.framework in Frameworks */,
 				A736D047152BBA620049AB22 /* Foundation.framework in Frameworks */,
 				A768947016B7B0BB0083507A /* FacebookSDK.framework in Frameworks */,
+				A78AF92016D0900F000E5021 /* libTestFlight.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -430,9 +441,11 @@
 		A736D035152BBA620049AB22 = {
 			isa = PBXGroup;
 			children = (
+				A78AF92416D090C7000E5021 /* libz.dylib */,
 				A765BEC916977CB500FB2DD6 /* Icon@2x (1).png */,
 				A765BEC316977B2D00FB2DD6 /* Icon@2x.png */,
 				A7C17B1C166B4AAD00186336 /* Default-568h@2x.png */,
+				A78AF91B16D0900F000E5021 /* TestFlightSDK1.1 */,
 				A76DDEBA158537C100F8D65D /* AFNetworking */,
 				A736D04A152BBA620049AB22 /* Chatty */,
 				A736D043152BBA620049AB22 /* Frameworks */,
@@ -529,6 +542,18 @@
 				A76DDECF158537C100F8D65D /* UIImageView+AFNetworking.m */,
 			);
 			path = AFNetworking;
+			sourceTree = "<group>";
+		};
+		A78AF91B16D0900F000E5021 /* TestFlightSDK1.1 */ = {
+			isa = PBXGroup;
+			children = (
+				A78AF91C16D0900F000E5021 /* libTestFlight.a */,
+				A78AF91D16D0900F000E5021 /* README.md */,
+				A78AF91E16D0900F000E5021 /* release_notes.md */,
+				A78AF91F16D0900F000E5021 /* TestFlight.h */,
+			);
+			name = TestFlightSDK1.1;
+			path = Chatty/TestFlightSDK1.1;
 			sourceTree = "<group>";
 		};
 		A7954A27158FE318008C0E69 /* Misc */ = {
@@ -655,6 +680,8 @@
 				A7F61BE616A21C0700F51B04 /* pending@2x.png in Resources */,
 				A768947216B7B1140083507A /* FacebookSDKResources.bundle in Resources */,
 				A768947416B7B1210083507A /* FBUserSettingsViewResources.bundle in Resources */,
+				A78AF92116D0900F000E5021 /* README.md in Resources */,
+				A78AF92216D0900F000E5021 /* release_notes.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -787,6 +814,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Chatty/Chatty-Prefix.pch";
 				INFOPLIST_FILE = "Chatty/Chatty-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Chatty/TestFlightSDK1.1\"",
+				);
 				OTHER_LDFLAGS = "-lsqlite3.0";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -799,6 +830,7 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Chatty\"",
@@ -807,6 +839,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Chatty/Chatty-Prefix.pch";
 				INFOPLIST_FILE = "Chatty/Chatty-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Chatty/TestFlightSDK1.1\"",
+				);
 				OTHER_LDFLAGS = "-lsqlite3.0";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";

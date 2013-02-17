@@ -49,6 +49,7 @@
 
 - (void)viewDidLoad
 {
+    [TestFlight passCheckpoint:@"Community Tab: Viewing messages of the conversations successfuly viewed"];
     [super viewDidLoad];
    
     //change tableview Image
@@ -103,6 +104,7 @@
 
 -(void)loadFromDatabase
 {
+    
     BIDAppDelegate * appDelegate = (BIDAppDelegate *)[[UIApplication sharedApplication] delegate];
     NSManagedObjectContext *context = [appDelegate managedObjectContext];
     
@@ -423,6 +425,7 @@
 
 -(void) refresh
 {
+    [TestFlight passCheckpoint:@"Conversation Class: Called refresh method"];
     KeychainItemWrapper *keychain = [[KeychainItemWrapper alloc] initWithIdentifier:@"ChattyAppLoginData" accessGroup:nil];
     NSString * email = [keychain objectForKey:(__bridge id)kSecAttrAccount];
     NSString * password = [keychain objectForKey:(__bridge id)kSecValueData];

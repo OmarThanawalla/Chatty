@@ -35,7 +35,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     self.title = @"Find Friends";
-    
+    [TestFlight passCheckpoint:@"Search Friends Class: User is viewing the search users tab"];
     //Set up colors
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackTranslucent animated:NO];
     self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:68.0/256.0 green:71.0/256.0 blue:72.0/256.0 alpha:1.0];
@@ -150,6 +150,7 @@
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
+    [TestFlight passCheckpoint:@"The user hit search on the searchBar"];
     NSLog(@"The search button has been clicked. here is the query %@", searchQuery);
     //get search results using afnetworking, it will also handle reloading the search table
     [self refresh];

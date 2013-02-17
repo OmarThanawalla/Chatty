@@ -43,7 +43,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    [TestFlight passCheckpoint:@"ConversationMe Class: View was loaded"];
     //change tableview Image
     UIImageView *tempImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bg_4.png"]];
     [tempImageView setFrame:self.tableView.frame];

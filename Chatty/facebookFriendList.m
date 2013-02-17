@@ -33,7 +33,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    [TestFlight passCheckpoint:@"facebookFriendList class has been presented to the user"];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -164,6 +164,7 @@
 
 - (void)openSession //2
 {
+    [TestFlight passCheckpoint:@"facebookFriendList: Attemping to open session"];
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     //[FBSettings setLoggingBehavior:[NSSet setWithObjects: FBLoggingBehaviorFBRequests, nil]];
     //get permissions
@@ -195,7 +196,7 @@
         case FBSessionStateOpen: {
             //if the top view controller is the login viewcontroller dismiss that view controller
             NSLog(@"I think you are logged in");
-            
+            [TestFlight passCheckpoint:@"facebookFriendList Class: Successfully logged into facebook"];
             //method intends to ask facebook for a list of friends
             [self callFriendList];
         }
@@ -227,7 +228,7 @@
 
 -(void) callFriendList //4
 {
-    
+    [TestFlight passCheckpoint:@"facebookFriendList: CallFriendList method called"];
     NSLog(@"You made it to the callFriendList method");
     
     
@@ -256,11 +257,12 @@
                                           //refresh the table
                                           [self.tableView reloadData];
                                           [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-                                          
+                                          [TestFlight passCheckpoint:@"facebookFriendList: Successfully connected to rails API to retrieve list of user"];
                                       }
                                       failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                                           NSLog(@"Error from postPath: %@",[error localizedDescription]);
                                           [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+                                          [TestFlight passCheckpoint:@"facebookFriendList: Did not successfully connect to rails API"];
                                       }];
     
     //IF YOU DESIRE TO CALL A LIST OF FB FRIENDS FROM THE IPHONE APP ITSELF
@@ -287,6 +289,7 @@
   sourceApplication:(NSString *)sourceApplication
          annotation:(id)annotation
 {
+    [TestFlight passCheckpoint:@"facebookFriendList: User just came back from facebook fast app switching"];
     return [FBSession.activeSession handleOpenURL:url];
 }
 
@@ -294,6 +297,7 @@
 - (IBAction)dismiss:(id)sender
 {
     NSLog(@"dimiss the view");
+    [TestFlight passCheckpoint:@"facebookFriendList: User dismissed the view"];
     [self.navigationController dismissModalViewControllerAnimated:YES];
 }
 

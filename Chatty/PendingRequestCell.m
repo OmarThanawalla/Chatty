@@ -33,6 +33,7 @@
 
 -(IBAction) confirmButton
 {
+    [TestFlight passCheckpoint:@"User confirmed the allowing of someone to follow him"];
     NSLog(@"You pushed the confirmButton on the PendingRequestCell");
     //send userID of the person we want to confirm
     NSLog(@"The user ID of the cell is %@",userID);
