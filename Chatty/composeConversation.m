@@ -113,7 +113,7 @@
 
 -(void)textViewDidChange:(UITextView *)textView //calls this method when you put text in it
 {
-    [TestFlight passCheckpoint:@"User started editing text in the composeConversation class"];
+    //[TestFlight passCheckpoint:@"User started editing text in the composeConversation class"];
     //Clear placeholder
     if(myTextView.textColor == [UIColor lightGrayColor])
        {

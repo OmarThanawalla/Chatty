@@ -110,7 +110,7 @@
 
 -(void)textViewDidChange:(UITextView *)textView
 {
-    [TestFlight passCheckpoint:@"ComposeMessageOnly: User begin editing text in"];
+    //[TestFlight passCheckpoint:@"ComposeMessageOnly: User begin editing text in"];
     //Clear placeholder
     if(messageBody.textColor == [UIColor lightGrayColor])
     {
