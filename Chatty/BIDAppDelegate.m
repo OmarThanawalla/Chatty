@@ -30,6 +30,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    NSLog(@"I laucnhed");
+    
     
     //register for push notification
     [[UIApplication sharedApplication] registerForRemoteNotificationTypes:
@@ -224,11 +226,21 @@
      */
 }
 
+
+
 - (void)application:(UIApplication*)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData*)deviceToken
 {
     [TestFlight passCheckpoint:@"iPhone Did Register for Remote Notification method called: %@"];
 	NSLog(@"My token is: %@", deviceToken);
-
+    
+    //store deviceToken
+    NSUserDefaults * standardUserDefaults = [NSUserDefaults standardUserDefaults];
+    [standardUserDefaults setObject:deviceToken forKey:@"keyToLookupString"];
+    [standardUserDefaults synchronize];
+    
+    //retrieve deviceToken
+    NSString *SavedDeviceToken = [standardUserDefaults objectForKey:@"keyToLookupString"];
+                                                                                            //NSLog(@"The deviceToken saved is: %@",SavedDeviceToken);
     
     //send device token to rails
     KeychainItemWrapper *keychain = [[KeychainItemWrapper alloc] initWithIdentifier:@"ChattyAppLoginData" accessGroup:nil];
@@ -237,7 +249,7 @@
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
                             email, @"email",
                             password, @"password",
-                            deviceToken, @"token",
+                            SavedDeviceToken, @"token",
                             nil];   
     [[AFChattyAPIClient sharedClient] postPath:@"/update_token/" parameters:params
      //if login works, log a message to the console

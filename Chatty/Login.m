@@ -90,7 +90,9 @@
                      [keychain setObject:password forKey:(__bridge id)kSecValueData];
                      [TestFlight passCheckpoint:@"Successfully logged in the app"];
                      [self dismissModalViewControllerAnimated:YES];
-
+                     
+                     //update deviceToken in rails -- call method
+                     [self updateDeviceToken];
                  } 
                 //else flash a notice on the modal view
                  failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -98,6 +100,36 @@
                      [TestFlight passCheckpoint:@"Did not successfully log into the app"];
                      notice.text = @"Incorrect Password";
                  }];
+
+}
+-(void) updateDeviceToken
+{
+    [TestFlight passCheckpoint:@"Login: calling updateDeviceToken"];
+    //retrieve deviceToken
+    NSUserDefaults * standardUserDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *SavedDeviceToken = [standardUserDefaults objectForKey:@"keyToLookupString"];
+    
+    //send device token to rails
+    KeychainItemWrapper *keychain = [[KeychainItemWrapper alloc] initWithIdentifier:@"ChattyAppLoginData" accessGroup:nil];
+    NSString * email = [keychain objectForKey:(__bridge id)kSecAttrAccount];
+    NSString * password = [keychain objectForKey:(__bridge id)kSecValueData];
+    NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
+                            email, @"email",
+                            password, @"password",
+                            SavedDeviceToken, @"token",
+                            nil];
+    [[AFChattyAPIClient sharedClient] postPath:@"/update_token/" parameters:params
+     //if login works, log a message to the console
+                                       success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                                           //NSString *text = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+                                           NSLog(@"Did update token: %@", responseObject);
+                                           [TestFlight passCheckpoint:@"AppDelegate: Successfuly sent rails deviceToken"];
+                                           //rmr: responseObject is an array where each element is a diciontary
+                                       }
+                                       failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                           NSLog(@"Error from postPath: %@",[error localizedDescription]);
+                                           [TestFlight passCheckpoint:@"AppDelegate: Failed in sending rails deviceToken"];
+                                       }];
 
 }
 
