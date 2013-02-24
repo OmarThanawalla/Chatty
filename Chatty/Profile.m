@@ -323,7 +323,7 @@
         FollowingUser * cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         
         //reset the picture on the unfollow button because the cell could be dequeued
-        UIImage *btnImage = [UIImage imageNamed:@"unfollow.jpeg"];
+        UIImage *btnImage = [UIImage imageNamed:@"unfollow.png"];
         [cell.unfollowButton setImage:btnImage forState:UIControlStateNormal];
         
         NSDictionary *user = [follows2 objectAtIndex:indexPath.row];

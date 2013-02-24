@@ -371,7 +371,7 @@
     
     //like button: position it on the cell
     CGRect temp3 = cell.likeButton.frame;
-    temp3.origin.y = 24 + messageUserHeight;
+    temp3.origin.y = 32 + messageUserHeight;
     cell.likeButton.frame = temp3;
     //[cell.contentView bringSubviewToFront:cell.likeButton.imageView];
     
@@ -403,7 +403,7 @@
 {
     
     int topSectionHeight = 27; //height of SenderUser Label and top border
-    int bottomSectionHeight = 25; //height of Recipients Label and bottom border
+    int bottomSectionHeight = 30; //height of Recipients Label and bottom border
     
     Message * myMessage = [self.messages objectAtIndex:indexPath.row];
     NSString *cellText = myMessage.messageContent;

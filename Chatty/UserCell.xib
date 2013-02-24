@@ -125,7 +125,7 @@
 							<object class="IBUIButton" id="739957148">
 								<reference key="NSNextResponder" ref="370665424"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{265, 10}, {32, 30}}</string>
+								<string key="NSFrame">{{276, 17}, {32, 32}}</string>
 								<reference key="NSSuperview" ref="370665424"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="998411647"/>
@@ -231,14 +231,6 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">requestButton</string>
-						<reference key="source" ref="64963973"/>
-						<reference key="destination" ref="739957148"/>
-					</object>
-					<int key="connectionID">14</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">fullName</string>
 						<reference key="source" ref="64963973"/>
 						<reference key="destination" ref="764087294"/>
@@ -252,6 +244,14 @@
 						<reference key="destination" ref="998411647"/>
 					</object>
 					<int key="connectionID">17</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">requestButton</string>
+						<reference key="source" ref="64963973"/>
+						<reference key="destination" ref="739957148"/>
+					</object>
+					<int key="connectionID">18</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
@@ -337,7 +337,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">17</int>
+			<int key="maxID">18</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -396,7 +396,7 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="add.png">{40, 44}</string>
+			<string key="add.png">{30, 33}</string>
 			<string key="dirk_nowitzki_027.jpg">{240, 240}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">1930</string>

@@ -54,7 +54,7 @@
                                       success:^(AFHTTPRequestOperation *operation, id responseObject) {
                                           //NSString *text = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
                                           NSLog(@"Response: %@", responseObject);
-                                          UIImage *btnImage = [UIImage imageNamed:@"green-checkmark.png"];
+                                          UIImage *btnImage = [UIImage imageNamed:@"friends.png"];
                                           [cnfmButton setImage:btnImage forState:UIControlStateNormal];
                                           
                                           

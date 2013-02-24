@@ -78,7 +78,7 @@
         
         self.requestSent = 1; 
         //change the image of the button
-        UIImage *btnImage = [UIImage imageNamed:@"green-checkmark.png"];
+        UIImage *btnImage = [UIImage imageNamed:@"friends.png"];
         [requestButton setImage:btnImage forState:UIControlStateNormal];
     }
 }
