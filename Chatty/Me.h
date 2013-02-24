@@ -16,6 +16,7 @@
 
 //This is for CoreData
 @property (nonatomic,strong) NSManagedObjectContext* managedObjectContext;
+@property (nonatomic, assign) BOOL lock;    //this is to lock the refresh method until data comes back from the server
 
 
 

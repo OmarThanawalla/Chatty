@@ -90,7 +90,10 @@
     
     cell.requestButton.tintColor = [UIColor colorWithRed: 255.0/256.0 green:255.0/256.0 blue:255.0/256.0 alpha:0.1];
     cell.requestButton.layer.borderWidth = 0.0;
-    //cell.requestButton.highlighted = YES;
+    CGRect requestBtnFrame = cell.requestButton.frame;
+    requestBtnFrame.origin.x = 250;
+    cell.requestButton.frame = requestBtnFrame;
+    
     
     // Configure the cell...
     //configure cell here

@@ -24,6 +24,8 @@
 
 @synthesize conversations;
 @synthesize convoMessages;
+@synthesize lock;
+
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -47,6 +49,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    //allow the refresh button to be hit
+    self.lock = NO;
+    
     [self refresh];
     //refresh the data when the view loads
     //[self refresh];
@@ -291,37 +297,48 @@
 //pull a list of the 20ish most recent conversations for the user
 -(IBAction)refresh
 {
-    //[[[[[self tabBarController] tabBar] items] objectAtIndex:1] setBadgeValue:@"refreshed"];
-    NSLog(@"you hit the refresh button////////////////////////////////////");
-    KeychainItemWrapper *keychain = [[KeychainItemWrapper alloc] initWithIdentifier:@"ChattyAppLoginData" accessGroup:nil];
-    NSString * email = [keychain objectForKey:(__bridge id)kSecAttrAccount];
-    NSString * password = [keychain objectForKey:(__bridge id)kSecValueData];
-    
-    
-    NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
-                            email, @"email", 
-                            password, @"password",
-                            nil];
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-    
-    [[AFChattyAPIClient sharedClient] getPath:@"/my_conversation/" parameters:params 
-     //if login works, log a message to the console
-                 success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                     //NSString *text = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-                     NSLog(@"Response: %@", responseObject);
-                     //rmr: responseObject is an array where each element is a diciontary
-                     conversations = responseObject;
-                     [self.tableView reloadData];
-                     [self messagesDownloadStart]; //1 of 4 Begins background message downloads
-                     
-                 } 
-                 failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                     //NSLog(@"Error from postPath: %@",[error localizedDescription]);
-                     //else you cant connect, therefore push modalview login onto the stack
-                     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-                 }];
-    
-
+    NSLog(@"Called refresh method");
+    if(!lock)
+    {
+        self.lock = YES;
+        NSLog(@"Refresh buttong was allowed to be called (no lock)");
+        //[[[[[self tabBarController] tabBar] items] objectAtIndex:1] setBadgeValue:@"refreshed"];
+        NSLog(@"you hit the refresh button");
+        KeychainItemWrapper *keychain = [[KeychainItemWrapper alloc] initWithIdentifier:@"ChattyAppLoginData" accessGroup:nil];
+        NSString * email = [keychain objectForKey:(__bridge id)kSecAttrAccount];
+        NSString * password = [keychain objectForKey:(__bridge id)kSecValueData];
+        
+        
+        NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
+                                email, @"email", 
+                                password, @"password",
+                                nil];
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+        
+        [[AFChattyAPIClient sharedClient] getPath:@"/my_conversation/" parameters:params 
+         //if login works, log a message to the console
+                     success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                         //NSString *text = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+                         NSLog(@"Response: %@", responseObject);
+                         //rmr: responseObject is an array where each element is a diciontary
+                         conversations = responseObject;
+                         [self.tableView reloadData];
+                         [self messagesDownloadStart]; //1 of 4 Begins background message downloads
+                         //unlock lock
+                         self.lock = NO;
+                     }
+                     failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                         //NSLog(@"Error from postPath: %@",[error localizedDescription]);
+                         //else you cant connect, therefore push modalview login onto the stack
+                         [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+                         //unlock lock
+                         self.lock = NO;
+                     }];
+    }
+    else
+    {
+        NSLog(@"I'm sorry this method is locked. You must wait for refresh to be done, then it will unlock");
+    }
 }
 
 -(void) messagesDownloadStart //2 of 4

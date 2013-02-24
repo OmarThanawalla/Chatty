@@ -27,7 +27,7 @@
 @synthesize currentView;
 @synthesize innerCircleConversations, allConversations;
 @synthesize variableCellHeight;
-
+@synthesize lock;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -88,6 +88,8 @@
     //set up listener pattern
     //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(anyAction:) name:@"likeButtonDepressed" object:nil];
     
+    //allow the refresh button to be hit
+    self.lock = NO;
     
     [self refresh];
     //[self deleteEverything];
@@ -420,67 +422,73 @@
 
 -(IBAction) refresh
 {
-//    UIActivityIndicatorView *activity = [[UIActivityIndicatorView alloc]initWithFrame:CGRectMake(70, 85, 180, 180)];
-//    [activity setBackgroundColor:[UIColor lightGrayColor]];
-//    [activity setActivityIndicatorViewStyle:UIActivityIndicatorViewStyleGray];
-//    [self.view addSubview:activity];
-//    
-//    [activity startAnimating];
-    [TestFlight passCheckpoint:@"Community Class: Refresh Button Called"];
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-    
-    KeychainItemWrapper *keychain = [[KeychainItemWrapper alloc] initWithIdentifier:@"ChattyAppLoginData" accessGroup:nil];
-    NSString * email = [keychain objectForKey:(__bridge id)kSecAttrAccount];
-    NSString * password = [keychain objectForKey:(__bridge id)kSecValueData];
-
-    NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
-                            email, @"email", 
-                            password, @"password",
-                            nil];
-    if(currentView == 0)
+    NSLog(@"Called refresh method");
+    if(!lock)
     {
-        [[AFChattyAPIClient sharedClient] getPath:@"/inner_conversation/" parameters:params 
-         //if login works, log a message to the console
-                                          success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                                              //NSString *text = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-                                              NSLog(@"Response: %@", responseObject);
-                                              //rmr: responseObject is an array where each element is a diciontary
-                                              innerCircleConversations = responseObject;
-                                              [self.tableView reloadData];
-                                              
-                                          } 
-                                          failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                                              NSLog(@"Error from postPath: %@",[error localizedDescription]);
-                                              //else you cant connect, therefore push modalview login onto the stack
-                                              [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-                                          }];
-    }
-    else //you are in All Conversations view
-    {
-        [[AFChattyAPIClient sharedClient] getPath:@"/conversation/" parameters:params 
-         //if login works, log a message to the console
-                                          success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                                              //NSString *text = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-                                              NSLog(@"Response: %@", responseObject);
-                                              //rmr: responseObject is an array where each element is a diciontary
-                                              allConversations = responseObject;
-                                              [self.tableView reloadData];
-                                              //[self loadProfilePictures];
-                                              //[activity stopAnimating];
-                                              
-                                              [self messagesDownloadStart]; //1 of 4 Begins background message downloads
-                                              [TestFlight passCheckpoint:@"Community Class: Successful call for new data"];
-                                          } 
-                                          failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                                              NSLog(@"Error from postPath: %@",[error localizedDescription]);
-                                              //else you cant connect, therefore push modalview login onto the stack
-                                              [self performSegueWithIdentifier:@"loggedIn" sender:self];
-                                              [TestFlight passCheckpoint:@"Community class: Non successful call for data"];
-                                          }];
-    }
+        self.lock = YES;
+        NSLog(@"Refresh buttong was allowed to be called (no lock)");
+        [TestFlight passCheckpoint:@"Community Class: Refresh Button Called"];
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+        
+        KeychainItemWrapper *keychain = [[KeychainItemWrapper alloc] initWithIdentifier:@"ChattyAppLoginData" accessGroup:nil];
+        NSString * email = [keychain objectForKey:(__bridge id)kSecAttrAccount];
+        NSString * password = [keychain objectForKey:(__bridge id)kSecValueData];
 
-    
-    
+        NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
+                                email, @"email", 
+                                password, @"password",
+                                nil];
+        if(currentView == 0)
+        {
+            [[AFChattyAPIClient sharedClient] getPath:@"/inner_conversation/" parameters:params 
+             //if login works, log a message to the console
+                                              success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                                                  //NSString *text = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+                                                  NSLog(@"Response: %@", responseObject);
+                                                  //rmr: responseObject is an array where each element is a diciontary
+                                                  innerCircleConversations = responseObject;
+                                                  [self.tableView reloadData];
+                                                  
+                                              } 
+                                              failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                                  NSLog(@"Error from postPath: %@",[error localizedDescription]);
+                                                  //else you cant connect, therefore push modalview login onto the stack
+                                                  [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+                                              }];
+        }
+        else //you are in All Conversations view
+        {
+            [[AFChattyAPIClient sharedClient] getPath:@"/conversation/" parameters:params 
+             //if login works, log a message to the console
+                                              success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                                                  //NSString *text = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+                                                  NSLog(@"Response: %@", responseObject);
+                                                  //rmr: responseObject is an array where each element is a diciontary
+                                                  allConversations = responseObject;
+                                                  [self.tableView reloadData];
+                                                  //[self loadProfilePictures];
+                                                  //[activity stopAnimating];
+                                                  
+                                                  [self messagesDownloadStart]; //1 of 4 Begins background message downloads
+                                                  [TestFlight passCheckpoint:@"Community Class: Successful call for new data"];
+                                                  //unlock lock
+                                                  self.lock = NO;
+                                              } 
+                                              failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                                  NSLog(@"Error from postPath: %@",[error localizedDescription]);
+                                                  //else you cant connect, therefore push modalview login onto the stack
+                                                  [self performSegueWithIdentifier:@"loggedIn" sender:self];
+                                                  [TestFlight passCheckpoint:@"Community class: Non successful call for data"];
+                                                  //unlock lock
+                                                  self.lock = NO;
+                                              }];
+        }
+
+    }
+    else
+    {
+        NSLog(@"I'm sorry this method is locked. You must wait for refresh to be done, then it will unlock");
+    }
 }
 
 //this method has been skipped
