@@ -280,6 +280,23 @@
     }
 }
 
+//gets called when user hits the '@ Sign' Bar button item 
+- (IBAction)insertAtSign:(id)sender
+{
+    //NSLog(@"You hit the @sign button");
+    //corner case: user could be hitting '@ Sign' when nothin is in the box
+    if(myTextView.textColor == [UIColor lightGrayColor])
+    {
+        myTextView.textColor= [UIColor blackColor];
+        NSRange clearMe = NSMakeRange(0, myTextView.text.length);     //grab the front rest of the string
+        myTextView.text = [myTextView.text stringByReplacingCharactersInRange: clearMe withString:@""]; //clear that front rest
+    }
+    NSMutableString *messageContent = [NSMutableString stringWithString:myTextView.text];
+    [messageContent appendString:@"@"];
+    myTextView.text = messageContent;
+    [self textViewDidChange: self.myTextView];
+}
+
 -(IBAction)sendButton
 {
     [TestFlight passCheckpoint:@"Send button on composeConversation View was hit"];

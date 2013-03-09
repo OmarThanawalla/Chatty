@@ -25,5 +25,6 @@
 -(IBAction)cancel;
 -(IBAction)submit;
 -(void)autoCompleteFinish:(NSString *) userName;
+- (IBAction)insertAtSign:(id)sender;
 
 @end

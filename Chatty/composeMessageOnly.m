@@ -268,6 +268,21 @@
     }
 }
 
+- (IBAction)insertAtSign:(id)sender {
+    //NSLog(@"You hit the @sign button");
+    //corner case: user could be hitting '@ Sign' when nothin is in the box
+    if(messageBody.textColor == [UIColor lightGrayColor])
+    {
+        messageBody.textColor= [UIColor blackColor];
+        NSRange clearMe = NSMakeRange(0, messageBody.text.length);     //grab the front rest of the string
+        messageBody.text = [messageBody.text stringByReplacingCharactersInRange: clearMe withString:@""]; //clear that front rest
+    }
+    NSMutableString *messageContent = [NSMutableString stringWithString:messageBody.text];
+    [messageContent appendString:@"@"];
+    messageBody.text = messageContent;
+    [self textViewDidChange: self.messageBody];
+}
+
 
 -(IBAction)submit
 {

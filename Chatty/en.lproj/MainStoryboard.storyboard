@@ -543,6 +543,11 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
                                     <barButtonItem title="140" id="doM-my-eNP"/>
+                                    <barButtonItem title="@ Sign" id="yNS-4b-1Yf">
+                                        <connections>
+                                            <action selector="insertAtSign:" destination="BzI-Jm-Axy" id="0Al-aE-Bue"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                         </subviews>
@@ -652,6 +657,11 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
                                     <barButtonItem title="140" id="PDJ-Uv-AsE"/>
+                                    <barButtonItem title="@ Sign" id="Oba-D4-43A">
+                                        <connections>
+                                            <action selector="insertAtSign:" destination="ykX-gt-6pe" id="gqO-yq-YzY"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                         </subviews>

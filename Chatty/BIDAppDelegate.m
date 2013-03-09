@@ -288,9 +288,14 @@
     [TestFlight passCheckpoint:@"Failed to register for remote notification "];
 }
 
+
+
 -(void) application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
 {
     NSLog(@"I recieved a remote notification");
+    
+    NSString *alertMessage = userInfo[@"alert"];
+    NSLog(@"The value of the alertMessage is: %@",alertMessage);
     
     //grab the tab bar
     NSLog(@"Root: %@", self.window.rootViewController);

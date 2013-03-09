@@ -35,4 +35,5 @@
 
 //inserts the userName into the textbox
 -(void)autoCompleteFinish:(NSString *) userName;
+- (IBAction)insertAtSign:(id)sender;
 @end
