@@ -44,6 +44,10 @@
 {
     [super viewDidLoad];
     self.title = @"Registration: Step 1 of 2";
+    UIImageView *backgroundImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bg_4.png"]];
+    
+    [self.view addSubview:backgroundImage];
+    [self.view sendSubviewToBack:backgroundImage];
 }
 
 

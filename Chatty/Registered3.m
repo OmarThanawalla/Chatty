@@ -10,6 +10,7 @@
 #import "AFNetworking.h"
 #import "KeychainItemWrapper.h"
 #import "AFChattyAPIClient.h"
+#import <QuartzCore/QuartzCore.h> //This is for accessing layer properties in ProfilePicture to curve the image
 
 @interface Registered3 ()
 
@@ -19,6 +20,9 @@
 @synthesize userName, bio,firstName,lastName;
 @synthesize email, password;
 @synthesize notice;
+@synthesize imagePicker;
+@synthesize displayedProfilePic;
+@synthesize profilePic;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -33,6 +37,10 @@
 {
     [super viewDidLoad];
     self.title = @"Registration: Step 2 of 2";
+    UIImageView *backgroundImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bg_4.png"]];
+    
+    [self.view addSubview:backgroundImage];
+    [self.view sendSubviewToBack:backgroundImage];
 	// Do any additional setup after loading the view.
     NSLog(@"Email and password: %@, %@",email, password);
 }
@@ -44,6 +52,7 @@
 
 - (void)viewDidUnload
 {
+    [self setDisplayedProfilePic:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
@@ -88,7 +97,7 @@
                             self.lastName.text, @"lastName",
                             self.bio.text, @"Bio",
                             nil];
-    
+    //
     
     [[AFChattyAPIClient sharedClient] postPath:@"/user/create" parameters:params 
      //if login works, log a message to the console
@@ -104,9 +113,10 @@
                                               [keychain setObject:self.password forKey:(__bridge id)kSecValueData];
                                               [TestFlight passCheckpoint:@"Successfully created a new account"];
                                               [self dismissModalViewControllerAnimated:YES];
-                                              
+                                              //if user registered, then update profile picture
+                                              [self uploadProfilePicture];
                                               //update deviceToken in rails --call method
-                                              [self updateDeviceToken];
+                                              //3[self updateDeviceToken];
                                           }
                                           if([responseString isEqualToString:@"NO"])
                                            {
@@ -129,7 +139,70 @@
                                           NSLog(@"Error from postPath: %@",[error localizedDescription]);
                                           //else you cant connect, therefore push modalview login onto the stack
                                       }];
+    
+    //
 
+    
+}
+
+//if successful registration then upload profile picture
+-(void) uploadProfilePicture
+{
+    NSLog(@"uploadProfilePicture method is called");
+    KeychainItemWrapper *keychain = [[KeychainItemWrapper alloc] initWithIdentifier:@"ChattyAppLoginData" accessGroup:nil];
+    NSString * email2 = [keychain objectForKey:(__bridge id)kSecAttrAccount];
+    NSString * password2 = [keychain objectForKey:(__bridge id)kSecValueData];
+    
+    //NOTE: params will be part of NSMutableURLRequest
+    NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
+                            email2, @"email",
+                            password2, @"password",
+                            nil];
+    //Grab Image
+    UIImage *pic = self.profilePic.image;
+    
+    //Create NSData // reduce image quality to speed upload, decrease storage size on amazon, and speed download
+    NSData *imageData = UIImageJPEGRepresentation(pic,0.1);
+    
+    //create the NSMUtableURLRequest
+    NSMutableURLRequest *request = [[AFChattyAPIClient sharedClient] multipartFormRequestWithMethod:@"POST" path:@"/updateUserInfo/updatePicture" parameters:params constructingBodyWithBlock: ^(id <AFMultipartFormData>formData) {
+        [formData appendPartWithFileData:imageData name:@"profilePicture" fileName:@"avatar.png" mimeType:@"image/png"];
+    }];
+    
+    //create the AFHTTPRequestOperation object
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    
+    //start operation
+    [operation start];
+
+}
+
+- (IBAction)addPicture:(id)sender
+{
+    NSLog(@"did hit addPicture button");
+    imagePicker = [[UIImagePickerController alloc]init];
+    imagePicker.delegate = self;
+    [self presentModalViewController:imagePicker animated:YES];
+}
+
+-(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    NSLog(@"imagePicker did select image");
+    //profilePic shall be unadulterated copy of profile pic
+    self.profilePic.image = [info objectForKey:UIImagePickerControllerOriginalImage];
+    self.displayedProfilePic.image = [info objectForKey:UIImagePickerControllerOriginalImage];
+    self.displayedProfilePic.layer.cornerRadius = 9.0;
+    self.displayedProfilePic.layer.masksToBounds = YES;
+    self.displayedProfilePic.layer.borderColor = [UIColor blackColor].CGColor;
+    self.displayedProfilePic.layer.borderWidth = 0.0;
+    
+    [self dismissModalViewControllerAnimated:YES];
+}
+-(void) imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
+    [TestFlight passCheckpoint:@"register3 Class: User cancled out of selecting a picture"];
+    NSLog(@"imagePicker did NOT select an image");
+    [self dismissModalViewControllerAnimated:YES];
 }
 
 -(void) updateDeviceToken

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface Registered3 : UIViewController
+@interface Registered3 : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 @property (nonatomic, strong) IBOutlet UITextField *firstName;
 @property (nonatomic, strong) IBOutlet UITextField *lastName;
@@ -17,11 +17,14 @@
 @property (nonatomic, strong) IBOutlet UILabel *notice;
 @property (nonatomic, strong) NSString * email;
 @property (nonatomic, strong) NSString *password;
-
+@property (nonatomic, strong) UIImagePickerController *imagePicker;
+@property (nonatomic, strong) UIImageView *profilePic;
+@property (strong, nonatomic) IBOutlet UIImageView *displayedProfilePic;
 
 
 
 -(IBAction)register;
 -(void) submit;
+- (IBAction)addPicture:(id)sender;
 
 @end
