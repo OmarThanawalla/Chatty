@@ -31,5 +31,7 @@
 
 - (IBAction)toggleView:(UISegmentedControl *)sender;
 -(IBAction)refresh;
+-(IBAction)test;
+
 
 @end

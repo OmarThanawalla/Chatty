@@ -372,6 +372,25 @@
                                 <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="4IG-D8-l3Z">
+                                <rect key="frame" x="6" y="158" width="117" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Add picture">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="addPicture:" destination="d9G-Pv-ggZ" eventType="touchUpInside" id="Fyd-4D-YEy"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="g7Q-K4-Qu3">
+                                <rect key="frame" x="129" y="159" width="49" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -380,6 +399,7 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="bio" destination="5Pt-1X-bso" id="9jR-bn-K5r"/>
+                        <outlet property="displayedProfilePic" destination="g7Q-K4-Qu3" id="Zvq-qc-W8z"/>
                         <outlet property="firstName" destination="Prt-zF-hFz" id="XRe-i8-kis"/>
                         <outlet property="lastName" destination="WtA-K6-DuC" id="Kbe-eY-Grw"/>
                         <outlet property="notice" destination="evm-je-NfF" id="dUP-5p-cY7"/>
@@ -446,7 +466,7 @@
             </objects>
             <point key="canvasLocation" x="401" y="-586"/>
         </scene>
-        <!--Community - All Conversations-->
+        <!--Community-->
         <scene sceneID="2I8-2f-UfR">
             <objects>
                 <tableViewController id="aKU-2L-QCI" customClass="Community" sceneMemberID="viewController">
@@ -459,12 +479,28 @@
                             <outlet property="delegate" destination="aKU-2L-QCI" id="jKc-sW-SMG"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="All Conversations" id="q5Y-C7-y7U">
+                    <navigationItem key="navigationItem" id="q5Y-C7-y7U">
+                        <nil key="title"/>
                         <barButtonItem key="leftBarButtonItem" image="refresh.png" id="22o-Bu-Dev">
                             <connections>
                                 <action selector="refresh" destination="aKU-2L-QCI" id="sRn-Ye-fFW"/>
                             </connections>
                         </barButtonItem>
+                        <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="839-i8-UE6">
+                            <rect key="frame" x="96" y="6" width="128" height="33"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                            <state key="normal" title="Scaffolding">
+                                <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="highlighted">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="test" destination="aKU-2L-QCI" eventType="touchUpInside" id="QSN-ce-14H"/>
+                            </connections>
+                        </button>
                         <barButtonItem key="rightBarButtonItem" image="new.png" id="eVu-9x-87n">
                             <connections>
                                 <segue destination="ykX-gt-6pe" kind="modal" identifier="composeAConvo" id="uJa-SE-dA2"/>
@@ -855,14 +891,129 @@
         <image name="profile.png" width="30" height="30"/>
         <image name="refresh.png" width="20" height="20"/>
     </resources>
+    <classes>
+        <class className="Community" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/Community.h"/>
+            <relationships>
+                <relationship kind="action" name="refresh"/>
+                <relationship kind="action" name="test"/>
+                <relationship kind="action" name="toggleView:" candidateClass="UISegmentedControl"/>
+            </relationships>
+        </class>
+        <class className="Conversation" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/Conversation.h"/>
+        </class>
+        <class className="ConversationMe" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ConversationMe.h"/>
+        </class>
+        <class className="Login" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/Login.h"/>
+            <relationships>
+                <relationship kind="action" name="login"/>
+                <relationship kind="outlet" name="emailBox" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="notice" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="passwordBox" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="Me" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/Me.h"/>
+            <relationships>
+                <relationship kind="action" name="callToRefresh"/>
+                <relationship kind="action" name="refresh"/>
+            </relationships>
+        </class>
+        <class className="Profile" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/Profile.h"/>
+            <relationships>
+                <relationship kind="action" name="logout"/>
+                <relationship kind="action" name="refresh"/>
+                <relationship kind="action" name="toggleView:"/>
+            </relationships>
+        </class>
+        <class className="Registered" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/Registered.h"/>
+            <relationships>
+                <relationship kind="action" name="continue"/>
+                <relationship kind="outlet" name="confirmEmail" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="confirmPassword" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="email" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="password" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="Registered3" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/Registered3.h"/>
+            <relationships>
+                <relationship kind="action" name="addPicture:"/>
+                <relationship kind="action" name="register"/>
+                <relationship kind="outlet" name="bio" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="displayedProfilePic" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="firstName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="lastName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="notice" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="userName" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="SearchFriends" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SearchFriends.h"/>
+            <relationships>
+                <relationship kind="action" name="fbFriendSearch:"/>
+            </relationships>
+        </class>
+        <class className="autoCompleteEngine" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/autoCompleteEngine.h"/>
+        </class>
+        <class className="composeConversation" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/composeConversation.h"/>
+            <relationships>
+                <relationship kind="action" name="cancelButton"/>
+                <relationship kind="action" name="insertAtSign:"/>
+                <relationship kind="action" name="sendButton"/>
+                <relationship kind="outlet" name="characterCount" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="myTextView" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="navBar" candidateClass="UINavigationBar"/>
+                <relationship kind="outlet" name="statusBar" candidateClass="UIToolbar"/>
+            </relationships>
+        </class>
+        <class className="composeMessageOnly" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/composeMessageOnly.h"/>
+            <relationships>
+                <relationship kind="action" name="cancel"/>
+                <relationship kind="action" name="insertAtSign:"/>
+                <relationship kind="action" name="submit"/>
+                <relationship kind="outlet" name="characterCount" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="messageBody" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="navBar" candidateClass="UINavigationBar"/>
+                <relationship kind="outlet" name="statusBar" candidateClass="UIToolbar"/>
+            </relationships>
+        </class>
+        <class className="editProfileModal" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/editProfileModal.h"/>
+            <relationships>
+                <relationship kind="action" name="cancel"/>
+                <relationship kind="action" name="editPicture"/>
+                <relationship kind="action" name="save"/>
+                <relationship kind="outlet" name="Bio" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="firstName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="lastName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="profilePic" candidateClass="UIImageView"/>
+            </relationships>
+        </class>
+        <class className="facebookFriendList" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/facebookFriendList.h"/>
+            <relationships>
+                <relationship kind="action" name="dismiss:"/>
+                <relationship kind="action" name="followAll:"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="7yl-nr-Xmv"/>
-        <segue reference="8La-9C-anb"/>
         <segue reference="sEP-E2-vGj"/>
+        <segue reference="uJa-SE-dA2"/>
+        <segue reference="8La-9C-anb"/>
     </inferredMetricsTieBreakers>
 </document>

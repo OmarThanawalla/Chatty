@@ -114,7 +114,7 @@
                                               [TestFlight passCheckpoint:@"Successfully created a new account"];
                                               [self dismissModalViewControllerAnimated:YES];
                                               //if user registered, then update profile picture
-                                              //[self uploadProfilePicture];
+                                              [self uploadProfilePicture];
                                               //update deviceToken in rails --call method
                                               [self updateDeviceToken];
                                           }
@@ -159,7 +159,8 @@
                             password2, @"password",
                             nil];
     //Grab Image
-    UIImage *pic = self.profilePic.image;
+    //UIImage *pic = self.profilePic.image;
+    UIImage *pic = [UIImage imageNamed:@"friends.png"];
     
     //Create NSData // reduce image quality to speed upload, decrease storage size on amazon, and speed download
     NSData *imageData = UIImageJPEGRepresentation(pic,0.1);

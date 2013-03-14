@@ -668,6 +668,42 @@
         
 }
 
+-(IBAction)test
+{
+    NSLog(@"test");
+    [self uploadProfilePicture];
+}
 
+-(void) uploadProfilePicture
+{
+    NSLog(@"uploadProfilePicture method is called");
+    KeychainItemWrapper *keychain = [[KeychainItemWrapper alloc] initWithIdentifier:@"ChattyAppLoginData" accessGroup:nil];
+    NSString * email2 = [keychain objectForKey:(__bridge id)kSecAttrAccount];
+    NSString * password2 = [keychain objectForKey:(__bridge id)kSecValueData];
+    
+    //NOTE: params will be part of NSMutableURLRequest
+    NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
+                            email2, @"email",
+                            password2, @"password",
+                            nil];
+    //Grab Image
+    //UIImage *pic = self.profilePic.image;
+    UIImage *pic = [UIImage imageNamed:@"friends.png"];
+    
+    //Create NSData // reduce image quality to speed upload, decrease storage size on amazon, and speed download
+    NSData *imageData = UIImageJPEGRepresentation(pic,0.1);
+    
+    //create the NSMUtableURLRequest
+    NSMutableURLRequest *request = [[AFChattyAPIClient sharedClient] multipartFormRequestWithMethod:@"POST" path:@"/updateUserInfo/updatePicture" parameters:params constructingBodyWithBlock: ^(id <AFMultipartFormData>formData) {
+        [formData appendPartWithFileData:imageData name:@"profilePicture" fileName:@"avatar.png" mimeType:@"image/png"];
+    }];
+    
+    //create the AFHTTPRequestOperation object
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    
+    //start operation
+    [operation start];
+    
+}
 
 @end
