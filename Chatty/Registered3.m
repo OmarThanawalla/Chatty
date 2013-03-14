@@ -190,6 +190,7 @@
     NSLog(@"imagePicker did select image");
     //profilePic shall be unadulterated copy of profile pic
     self.profilePic.image = [info objectForKey:UIImagePickerControllerOriginalImage];
+    
     self.displayedProfilePic.image = [info objectForKey:UIImagePickerControllerOriginalImage];
     self.displayedProfilePic.layer.cornerRadius = 9.0;
     self.displayedProfilePic.layer.masksToBounds = YES;
