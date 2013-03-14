@@ -114,9 +114,9 @@
                                               [TestFlight passCheckpoint:@"Successfully created a new account"];
                                               [self dismissModalViewControllerAnimated:YES];
                                               //if user registered, then update profile picture
-                                              [self uploadProfilePicture];
+                                              //[self uploadProfilePicture];
                                               //update deviceToken in rails --call method
-                                              //3[self updateDeviceToken];
+                                              [self updateDeviceToken];
                                           }
                                           if([responseString isEqualToString:@"NO"])
                                            {
