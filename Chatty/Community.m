@@ -28,6 +28,7 @@
 @synthesize innerCircleConversations, allConversations;
 @synthesize variableCellHeight;
 @synthesize lock;
+@synthesize preloadedPictures;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -216,7 +217,10 @@
         //load Profile Picture
         NSString *picURL = [tweet objectForKey: @"profilePic"];
         NSLog(@"The url for the pic is: %@", picURL);
+        //UIImage *profPix = self.preloadedPictures[indexPath.row];
+       // [cell.ProfilePicture setImage:profPix];
         [cell.ProfilePicture setImageWithURL:[NSURL URLWithString:picURL]];
+    
     
     
             //MessageUser Label: Calculate Dimensions
@@ -417,8 +421,35 @@
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
-
-
+//i'm going to have to stop this because I don't know threading yet, this locks up the functionality otherwise
+-(void) loadProfilePictureArray
+{
+    NSLog(@"You called loadProfilePictureArray");
+    /*
+     for element in allConversations
+        grab the element
+        grab the url inside that element
+        UIImage something = load the image for that url
+        append something into preloaded pictures
+     call reload table
+     dont forget to access the right image from cellforRowAtindex...
+     */
+    self.preloadedPictures = [NSMutableArray array];
+    
+    for(int i = 0; i < [allConversations count]; i++)
+    {
+        NSDictionary *message = allConversations[i];
+        NSString *picURL = [message objectForKey: @"profilePic"];
+        NSLog(@"The url for the pic is: %@", picURL);
+        //NSURL *myUrl = [NSURL URLWithString:picURL];
+        UIImage *profPix = [UIImage imageWithData: [NSData dataWithContentsOfURL:[NSURL URLWithString:picURL]]];
+        self.preloadedPictures[i] = profPix;
+    }
+    NSLog(@"The size of preloadedPicture is: %i",[preloadedPictures count]);
+    //assert([self.preloadedPictures count] >= 0);
+    [self.tableView reloadData];
+    
+}
 
 -(IBAction) refresh
 {
@@ -466,7 +497,8 @@
                                                   //rmr: responseObject is an array where each element is a diciontary
                                                   allConversations = responseObject;
                                                   [self.tableView reloadData];
-                                                  //[self loadProfilePictures];
+                                                  //i cannot call loadPictureArray because I have to thread it
+                                                  //[self loadProfilePictureArray];
                                                   //[activity stopAnimating];
                                                   
                                                   [self messagesDownloadStart]; //1 of 4 Begins background message downloads
@@ -491,23 +523,7 @@
     }
 }
 
-//this method has been skipped
--(void)loadProfilePictures
-{
-    for(int i =0; i < [allConversations count]; i++)
-    {
-        //load images
-        NSDictionary *tweet = [self.allConversations objectAtIndex:i];
-        NSString *picURL = [tweet objectForKey: @"profilePic"];
-        UIImageView *profPic2 = [[UIImageView alloc]init];
-        [profPic2 setImageWithURL:[NSURL URLWithString:picURL]];
-        NSLog(@"///////////////////////////////////////////////////////////////////////////////////////////////////");
-        NSLog(@"picurl is %@", picURL);
-        //append the image to the array
-        [self.listOfImages addObject:profPic2];
-    }
-    [self.tableView reloadData];
-}
+
 
 //this method will start downloading messages for each conversation displayed in community
 -(void) messagesDownloadStart //2 of 4
