@@ -387,7 +387,7 @@
                                     <action selector="addPicture:" destination="d9G-Pv-ggZ" eventType="touchUpInside" id="JGc-WE-W3T"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="Chat.png" id="vni-SG-pNt">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="Icon (1).png" id="vni-SG-pNt">
                                 <rect key="frame" x="103" y="160" width="44" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -868,6 +868,7 @@
     </scenes>
     <resources>
         <image name="Chat.png" width="114" height="114"/>
+        <image name="Icon (1).png" width="57" height="57"/>
         <image name="community.png" width="30" height="30"/>
         <image name="find.png" width="30" height="30"/>
         <image name="me.png" width="30" height="30"/>
