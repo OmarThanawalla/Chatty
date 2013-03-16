@@ -29,6 +29,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        
     }
     return self;
 }
@@ -195,12 +196,17 @@
     UIImage *myImage = [info objectForKey:UIImagePickerControllerOriginalImage];
     UIImageView *backgroundImageView = [[UIImageView alloc] initWithImage:myImage];
     self.profilePic = backgroundImageView;
+   // self.displayedProfilePic = backgroundImageView;
     
-//    self.displayedProfilePic.image = [info objectForKey:UIImagePickerControllerOriginalImage];
-//    self.displayedProfilePic.layer.cornerRadius = 9.0;
-//    self.displayedProfilePic.layer.masksToBounds = YES;
-//    self.displayedProfilePic.layer.borderColor = [UIColor blackColor].CGColor;
-//    self.displayedProfilePic.layer.borderWidth = 0.0;
+    [self.displayedProfilePic setImage:myImage];
+    NSLog(@"The above line shoulda ran");
+    self.displayedProfilePic.image = [info objectForKey:UIImagePickerControllerOriginalImage];
+    self.displayedProfilePic.layer.cornerRadius = 9.0;
+    self.displayedProfilePic.layer.masksToBounds = YES;
+    self.displayedProfilePic.layer.borderColor = [UIColor blackColor].CGColor;
+    self.displayedProfilePic.layer.borderWidth = 0.0;
+    
+    
     
     [self dismissModalViewControllerAnimated:YES];
 }
