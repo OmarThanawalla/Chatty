@@ -29,6 +29,8 @@
 @synthesize variableCellHeight;
 @synthesize lock;
 @synthesize preloadedPictures;
+@synthesize profilePicture;
+@synthesize imagePicker;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -671,7 +673,31 @@
 -(IBAction)test
 {
     NSLog(@"test");
+    //[self uploadProfilePicture];
+    imagePicker = [[UIImagePickerController alloc]init];
+    imagePicker.delegate = self;
+    [self presentModalViewController:imagePicker animated:YES];
+}
+-(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    NSLog(@"imagePicker did select image");
+    //profilePic shall be unadulterated copy of profile pic
+    UIImage *myImage = [info objectForKey:UIImagePickerControllerOriginalImage];
+    UIImageView *backgroundImageView = [[UIImageView alloc] initWithImage:myImage];
+    self.profilePicture = backgroundImageView;
+    if(NULL == self.profilePicture)
+    {
+        NSLog(@"Myimage is null");
+    }
+    [self dismissModalViewControllerAnimated:YES];
     [self uploadProfilePicture];
+}
+
+-(void) imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
+    [TestFlight passCheckpoint:@"register3 Class: User cancled out of selecting a picture"];
+    NSLog(@"imagePicker did NOT select an image");
+    [self dismissModalViewControllerAnimated:YES];
 }
 
 -(void) uploadProfilePicture
@@ -687,8 +713,13 @@
                             password2, @"password",
                             nil];
     //Grab Image
-    //UIImage *pic = self.profilePic.image;
-    UIImage *pic = [UIImage imageNamed:@"friends.png"];
+    UIImage *pic = self.profilePicture.image;
+    if (pic == NULL)
+    {
+        NSLog(@"Pic is null");
+    }
+    
+    //UIImage *pic = [UIImage imageNamed:@"friends.png"];
     
     //Create NSData // reduce image quality to speed upload, decrease storage size on amazon, and speed download
     NSData *imageData = UIImageJPEGRepresentation(pic,0.1);
@@ -703,7 +734,7 @@
     
     //start operation
     [operation start];
-    
+    NSLog(@"Operation did start");
 }
 
 @end

@@ -14,7 +14,7 @@
 #import <UIKit/UIKit.h>
 #import "ConversationCell.h"
 
-@interface Community : UITableViewController 
+@interface Community : UITableViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 
 @property (assign, nonatomic) int currentView; //this was for when i had segmented view, which is not part of version 1.0 anymore
@@ -27,7 +27,8 @@
 @property (nonatomic, strong) NSMutableArray *preloadedPictures;
 //This is for CoreData
 @property (nonatomic,strong) NSManagedObjectContext* managedObjectContext;
-
+@property (nonatomic, strong) UIImageView *profilePicture;
+@property (nonatomic, strong) UIImagePickerController *imagePicker;
 
 - (IBAction)toggleView:(UISegmentedControl *)sender;
 -(IBAction)refresh;

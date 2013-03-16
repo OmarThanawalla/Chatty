@@ -159,8 +159,10 @@
                             password2, @"password",
                             nil];
     //Grab Image
-    //UIImage *pic = self.profilePic.image;
-    UIImage *pic = [UIImage imageNamed:@"friends.png"];
+    UIImage *pic = self.profilePic.image;
+    //assert(pic1 != NULL);
+    
+    //UIImage *pic = [UIImage imageNamed:@"friends.png"];
     
     //Create NSData // reduce image quality to speed upload, decrease storage size on amazon, and speed download
     NSData *imageData = UIImageJPEGRepresentation(pic,0.1);
@@ -190,13 +192,15 @@
 {
     NSLog(@"imagePicker did select image");
     //profilePic shall be unadulterated copy of profile pic
-    self.profilePic.image = [info objectForKey:UIImagePickerControllerOriginalImage];
+    UIImage *myImage = [info objectForKey:UIImagePickerControllerOriginalImage];
+    UIImageView *backgroundImageView = [[UIImageView alloc] initWithImage:myImage];
+    self.profilePic = backgroundImageView;
     
-    self.displayedProfilePic.image = [info objectForKey:UIImagePickerControllerOriginalImage];
-    self.displayedProfilePic.layer.cornerRadius = 9.0;
-    self.displayedProfilePic.layer.masksToBounds = YES;
-    self.displayedProfilePic.layer.borderColor = [UIColor blackColor].CGColor;
-    self.displayedProfilePic.layer.borderWidth = 0.0;
+//    self.displayedProfilePic.image = [info objectForKey:UIImagePickerControllerOriginalImage];
+//    self.displayedProfilePic.layer.cornerRadius = 9.0;
+//    self.displayedProfilePic.layer.masksToBounds = YES;
+//    self.displayedProfilePic.layer.borderColor = [UIColor blackColor].CGColor;
+//    self.displayedProfilePic.layer.borderWidth = 0.0;
     
     [self dismissModalViewControllerAnimated:YES];
 }
