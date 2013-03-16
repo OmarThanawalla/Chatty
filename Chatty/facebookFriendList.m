@@ -119,6 +119,7 @@
     
     //Setting Profile Picture
     NSString *picURL = [tweet objectForKey: @"profilePic"];
+    NSLog(@"the picUrl is: %@",picURL);
     [cell.profilePic setImageWithURL:[NSURL URLWithString:picURL]];
     cell.profilePic.layer.cornerRadius = 9.0;
     cell.profilePic.layer.masksToBounds = YES;

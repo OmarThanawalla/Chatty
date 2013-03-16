@@ -12,5 +12,6 @@
 @interface AFChattyAPIClient : AFHTTPClient
 
 + (AFChattyAPIClient *)sharedClient;
-
+//will hash the password before sending it
++(NSString*) digest:(NSString*)input;
 @end

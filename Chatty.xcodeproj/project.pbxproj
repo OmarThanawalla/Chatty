@@ -63,6 +63,7 @@
 		A7486A0115E2D4C9004E770D /* PendingRequestCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A7486A0015E2D4C9004E770D /* PendingRequestCell.m */; };
 		A7486A0315E2D537004E770D /* PendingRequestCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7486A0215E2D537004E770D /* PendingRequestCell.xib */; };
 		A7486A0515E34F0F004E770D /* question-mark.gif in Resources */ = {isa = PBXBuildFile; fileRef = A7486A0415E34F0F004E770D /* question-mark.gif */; };
+		A75403AB16F51D2900402780 /* ResetPassword.m in Sources */ = {isa = PBXBuildFile; fileRef = A75403AA16F51D2900402780 /* ResetPassword.m */; };
 		A765BEB116976C0A00FB2DD6 /* mychats.png in Resources */ = {isa = PBXBuildFile; fileRef = A765BEAF16976C0A00FB2DD6 /* mychats.png */; };
 		A765BEB6169770B200FB2DD6 /* bg_4.png in Resources */ = {isa = PBXBuildFile; fileRef = A765BEB5169770B200FB2DD6 /* bg_4.png */; };
 		A765BEBE1697774400FB2DD6 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A765BEBD1697774400FB2DD6 /* Default@2x.png */; };
@@ -199,6 +200,8 @@
 		A7486A0015E2D4C9004E770D /* PendingRequestCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PendingRequestCell.m; sourceTree = "<group>"; };
 		A7486A0215E2D537004E770D /* PendingRequestCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PendingRequestCell.xib; sourceTree = "<group>"; };
 		A7486A0415E34F0F004E770D /* question-mark.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "question-mark.gif"; sourceTree = "<group>"; };
+		A75403A916F51D2900402780 /* ResetPassword.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResetPassword.h; sourceTree = "<group>"; };
+		A75403AA16F51D2900402780 /* ResetPassword.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResetPassword.m; sourceTree = "<group>"; };
 		A765BEAF16976C0A00FB2DD6 /* mychats.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mychats.png; sourceTree = "<group>"; };
 		A765BEB5169770B200FB2DD6 /* bg_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_4.png; sourceTree = "<group>"; };
 		A765BEBD1697774400FB2DD6 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
@@ -499,6 +502,8 @@
 				A7B35B3B1598C47900330B11 /* Registered3.h */,
 				A7B35B3C1598C47900330B11 /* Registered3.m */,
 				A736D056152BBA620049AB22 /* MainStoryboard.storyboard */,
+				A75403A916F51D2900402780 /* ResetPassword.h */,
+				A75403AA16F51D2900402780 /* ResetPassword.m */,
 				A765BF191699444200FB2DD6 /* Messages.xcdatamodeld */,
 				A7C6F3D6169EE78C0009636A /* Message.h */,
 				A7C6F3D7169EE78D0009636A /* Message.m */,
@@ -738,6 +743,7 @@
 				A765BF1B1699444300FB2DD6 /* Messages.xcdatamodeld in Sources */,
 				A7C6F3D8169EE78D0009636A /* Message.m in Sources */,
 				A768947A16B7BB970083507A /* facebookFriendList.m in Sources */,
+				A75403AB16F51D2900402780 /* ResetPassword.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

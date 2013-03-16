@@ -90,6 +90,9 @@
     self.userName.text = [self.userName.text lowercaseString];
     self.email = [self.email lowercaseString];
     
+    //hash the password
+    self.password = [AFChattyAPIClient digest:self.password];
+    
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
                             self.email, @"email", 
                             self.password, @"password",

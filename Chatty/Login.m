@@ -11,6 +11,7 @@
 #import "KeychainItemWrapper.h"
 #import "AFChattyAPIClient.h"
 
+
 @implementation Login
 @synthesize emailBox, passwordBox;
 @synthesize notice;
@@ -58,6 +59,7 @@
 }
 
 
+
 -(IBAction)login
 {
     //when the login button is pushed
@@ -73,7 +75,8 @@
     //store the email and password in the KeyChain or NSUserDefaults. NOTE: I imported the KeychainItemWrapper and linked Secuirty.framework
     KeychainItemWrapper *keychain = [[KeychainItemWrapper alloc] initWithIdentifier:@"ChattyAppLoginData" accessGroup:nil];
     
-    
+    //hash the password
+    password = [AFChattyAPIClient digest:password];
     
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
                             email, @"email", 
