@@ -21,40 +21,7 @@
 @synthesize searchQuery;
 @synthesize listOfUsers;
 
-//this was that intern code---delete
-//-(IBAction)send
-//{
-//    NSLog(@"You hit the send button");
-//    BOOL flag = TRUE;
-//    if(flag)
-//    {
-//        
-//    NSDictionary *dict = @{ @"github" : @"https://github.com/TeamAlpha/RailsBackend.git", @"github2" : @"https://github.com/TeamAlpha/iPhoneFrontEnd.git", @"linkedin" : @"http://www.linkedin.com/pub/omar-thanawalla/17/9a0/4b7" };
-//        
-//    NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
-//                            self.searchQuery, @"searchQuery",
-//                            @"Omar Thanawalla", @"name",
-//                            @"omar.thanawalla@gmail.com",@"email",
-//                            @"https://s3.amazonaws.com/ChattyOmizzle/OmarThanawallaComputerScienceResume2+(2).pdf",@"resume",
-//                            dict, @"other",
-//                            nil];
-//    
-//    [[AFChattyAPIClient sharedClient] postPath:@"/jobs/intern/" parameters:params
-//     //if login works, log a message to the console
-//                                      success:^(AFHTTPRequestOperation *operation, id responseObject) {
-//                                          //NSString *text = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-//                                          NSLog(@"Response from Plaid is: %@", responseObject);
-//                                          //set the list of users here
-//                                          //refresh the table
-//                                          //[self.searchDisplayController.searchResultsTableView reloadData];
-//                                          
-//                                          
-//                                      }
-//                                      failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//                                          NSLog(@"Error from SearchFriends: %@",[error localizedDescription]);
-//                                      }];
-//    }
-//}
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

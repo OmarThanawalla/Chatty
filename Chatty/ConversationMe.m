@@ -76,7 +76,10 @@
     //refresh the data on view loading
     NSLog(@"////////////////////////////////////////////////////////////////////////");
     NSLog(@"refresh method called");
+    //load messages from the database
     [self loadFromDatabase];
+    //check for new messages too
+    [self refreshTheDatabase];
     
     
 }

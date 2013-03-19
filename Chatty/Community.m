@@ -129,7 +129,8 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    NSLog(@"viewWillAppear");
+    NSLog(@"viewWillAppear: Community");
+    //[self refresh];
     //Set up Listener pattern
     //community tableview is in view
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(anyAction:) name:@"likeButtonDepressed" object:nil];

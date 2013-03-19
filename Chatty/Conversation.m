@@ -81,6 +81,8 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(anyAction:) name:@"composeMessageOnly" object:nil];  //after hitting submit button we can to reload from database
     // We're going to pull our data from the database
     [self loadFromDatabase];
+    //also check for new content
+    [self refreshTheDatabase];
 }
 
 - (void)viewDidDisappear:(BOOL)animated

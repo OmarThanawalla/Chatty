@@ -17,8 +17,6 @@
 -(void) refresh;
 - (IBAction)fbFriendSearch:(id)sender;
 
-//intern submission code
-//-(IBAction)send;
 
 
 @end

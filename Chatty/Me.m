@@ -53,7 +53,9 @@
     //allow the refresh button to be hit
     self.lock = NO;
     
+    //refresh the data on first download
     [self refresh];
+    
     //refresh the data when the view loads
     //[self refresh];
     [TestFlight passCheckpoint:@"Me Class: User loaded the Me conversations view"];
@@ -91,6 +93,8 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    NSLog(@"viewWillAppear: Me Class");
+    //[self callToRefresh];
 }
 
 - (void)viewDidAppear:(BOOL)animated
