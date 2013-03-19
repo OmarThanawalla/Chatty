@@ -790,6 +790,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="gda-ls-aBK">
+                        <nil key="title"/>
                         <barButtonItem key="rightBarButtonItem" title="Use Facebook" id="4lq-eq-L6V">
                             <connections>
                                 <action selector="fbFriendSearch:" destination="qSr-4J-3fa" id="WdX-QZ-Qc2"/>
