@@ -294,7 +294,8 @@
 {
     [TestFlight passCheckpoint:@"Me Class: User hit the refresh button"];
     //clear the icon because user hit the refresh button
-    [[[[self.tabBarController tabBar] items]objectAtIndex:1] setBadgeValue:@"0"];
+    [[[[self.tabBarController tabBar] items]objectAtIndex:1] setBadgeValue:nil];
+    
     //self.tabBarController.tabBarItem.badgeValue = nil;
     [self refresh];
 }

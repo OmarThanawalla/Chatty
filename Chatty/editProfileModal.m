@@ -36,9 +36,12 @@
 {
     [super viewDidLoad];
     [TestFlight passCheckpoint:@"User is viewing editing their profile"];
-    //[self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"bg_4.png"] forBarMetrics:UIBarMetricsDefault];
-    //self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:68.0/256.0 green:71.0/256.0 blue:72.0/256.0 alpha:1.0];
-    self.view.backgroundColor = [UIColor whiteColor];
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"bg_4.png"] forBarMetrics:UIBarMetricsDefault];
+    self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:68.0/256.0 green:71.0/256.0 blue:72.0/256.0 alpha:1.0];
+
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg_4.png"] ];
+    [self.Bio setClipsToBounds:YES];
+    self.Bio.layer.cornerRadius = 10.0f;
 }
 -(void)viewWillAppear:(BOOL)animated
 {

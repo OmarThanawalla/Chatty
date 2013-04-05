@@ -463,6 +463,9 @@
         NSLog(@"Refresh buttong was allowed to be called (no lock)");
         [TestFlight passCheckpoint:@"Community Class: Refresh Button Called"];
         [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+        //clear the community tab badge
+        [[[[self.tabBarController tabBar] items]objectAtIndex:0] setBadgeValue:nil];
+        
         
         KeychainItemWrapper *keychain = [[KeychainItemWrapper alloc] initWithIdentifier:@"ChattyAppLoginData" accessGroup:nil];
         NSString * email = [keychain objectForKey:(__bridge id)kSecAttrAccount];

@@ -215,6 +215,7 @@
     /*
      Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
      */
+    
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
@@ -302,7 +303,7 @@
     UITabBarController *tabController = (UITabBarController *)self.window.rootViewController;
     
     //set the tab icon on new message
-    [[[[tabController tabBar] items]objectAtIndex:1] setBadgeValue:@"new"];
+    [[[[tabController tabBar] items]objectAtIndex:0] setBadgeValue:@"new"];
     
     [TestFlight passCheckpoint:@"Recieved push notification when inside the app"];
 }
