@@ -22,6 +22,7 @@
 @synthesize profilePic;
 @synthesize imagePicker;
 @synthesize  resultsDict;
+@synthesize myNavBar;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -36,10 +37,10 @@
 {
     [super viewDidLoad];
     [TestFlight passCheckpoint:@"User is viewing editing their profile"];
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"bg_4.png"] forBarMetrics:UIBarMetricsDefault];
-    self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:68.0/256.0 green:71.0/256.0 blue:72.0/256.0 alpha:1.0];
-
+    
+    //set background color and navigation bar tint color
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg_4.png"] ];
+    myNavBar.tintColor = [UIColor colorWithRed:68.0/256.0 green:71.0/256.0 blue:72.0/256.0 alpha:1.0];
     [self.Bio setClipsToBounds:YES];
     self.Bio.layer.cornerRadius = 10.0f;
 }

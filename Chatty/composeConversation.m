@@ -340,34 +340,22 @@
                                 messageContent, @"message",
                                 nil];
         
-        // NSURL *url = [NSURL URLWithString:@"http://localhost:3000"];
-        // AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:url];
-        //
-        //    [httpClient getPath:@"/my_conversation" parameters:nil
-        //     //if login works, log a message to the console
-        //                success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        //                    NSLog(@"Response: %@", responseObject);
-        //                    [self.presentingViewController dismissModalViewControllerAnimated:YES];
-        //
-        //                }
-        //                failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        //                    NSLog(@"Error from postPath: %@",[error localizedDescription]);
-        //                    self.dialogue.text = @"Error in sending. Try again later beautiful.";
-        //                    //else you cant connect, therefore push modalview login onto the stack
-        //                    //[self performSegueWithIdentifier:@"loggedIn" sender:self];
-        //                }];
-        //
-        //
+
         [[AFChattyAPIClient sharedClient] postPath:@"/message" parameters:params
          //if login works, log a message to the console
                                            success:^(AFHTTPRequestOperation *operation, id responseObject) {
                                                NSLog(@"Response was good, here it is: %@", responseObject);
+                                               //hit the refresh method on community tab
+                                               [[NSNotificationCenter defaultCenter] postNotificationName:@"submitMessage" object:nil userInfo:nil];
                                                
                                            } 
                                            failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                                                NSLog(@"Error from postPath: %@",[error localizedDescription]);
                                                //else you cant connect, therefore push modalview login onto the stack
                                            }];
+    
+    
+        //dimiss modal view
     [self.presentingViewController dismissModalViewControllerAnimated:YES];
     }
 }

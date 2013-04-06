@@ -91,6 +91,9 @@
     //set up listener pattern
     //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(anyAction:) name:@"likeButtonDepressed" object:nil];
     
+    //set up listener to refresh the community tab after submit is hit in the composeMessage Modal view
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refresh) name:@"submitMessage" object:nil];
+    
     //allow the refresh button to be hit
     self.lock = NO;
     
@@ -515,7 +518,7 @@
                                               failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                                                   NSLog(@"Error from postPath: %@",[error localizedDescription]);
                                                   //else you cant connect, therefore push modalview login onto the stack
-                                                  //[self performSegueWithIdentifier:@"loggedIn" sender:self];
+                                                  [self performSegueWithIdentifier:@"loggedIn" sender:self];
                                                   [TestFlight passCheckpoint:@"Community class: Non successful call for data"];
                                                   //unlock lock
                                                   self.lock = NO;

@@ -225,12 +225,12 @@
                         cell.BioText.text = self.Bio;
                         [cell.BioText sizeThatFits:CGSizeMake(40, 196)];
                         UILabel *myLabel = cell.BioText;
-                        myLabel.font =[UIFont systemFontOfSize:13];
+                        myLabel.font =[UIFont systemFontOfSize:17];
                         myLabel.lineBreakMode = NSLineBreakByWordWrapping; // "Wrap or clip the string only at word boundaries. This is the default wrapping option"
                         myLabel.numberOfLines = 0;
                         myLabel.tag = 1;
                         //Create Label Size
-                        UIFont *cellFont = [UIFont systemFontOfSize:13];
+                        UIFont *cellFont = [UIFont systemFontOfSize:17];
                         CGSize constraintSize = CGSizeMake(175.0f, MAXFLOAT);           //This sets how wide we can go
                         CGSize labelSize = [self.Bio sizeWithFont:cellFont constrainedToSize:constraintSize lineBreakMode:NSLineBreakByWordWrapping];
                         CGRect temp = myLabel.frame;
