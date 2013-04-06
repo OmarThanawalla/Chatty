@@ -19,6 +19,7 @@
 @property (nonatomic, strong) IBOutlet UIImageView *profilePic;
 @property (nonatomic, strong) UIImagePickerController *imagePicker;
 @property (nonatomic, strong) NSMutableDictionary *resultsDict;
+@property (nonatomic, strong) IBOutlet UINavigationBar *myNavBar;
 
 
 -(IBAction)cancel;

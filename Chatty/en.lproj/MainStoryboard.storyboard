@@ -164,6 +164,7 @@
                         <outlet property="Bio" destination="sr9-c0-Agw" id="GH0-W8-jY6"/>
                         <outlet property="firstName" destination="80O-FW-pyq" id="YYF-hc-sRt"/>
                         <outlet property="lastName" destination="ocV-Cp-4JU" id="3BA-24-WfP"/>
+                        <outlet property="myNavBar" destination="7JB-hF-Mz4" id="45P-Hm-ctH"/>
                         <outlet property="profilePic" destination="vEw-Qa-ARU" id="YKc-n1-ymy"/>
                     </connections>
                 </viewController>
@@ -665,7 +666,7 @@
                                                 <action selector="cancelButton" destination="ykX-gt-6pe" id="eWX-FH-gab"/>
                                             </connections>
                                         </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" title="Send" id="Jhb-Tc-68S">
+                                        <barButtonItem key="rightBarButtonItem" title="Chat!" id="Jhb-Tc-68S">
                                             <connections>
                                                 <action selector="sendButton" destination="ykX-gt-6pe" id="HcT-Zb-20Z"/>
                                             </connections>
@@ -980,6 +981,7 @@
                 <relationship kind="outlet" name="Bio" candidateClass="UITextView"/>
                 <relationship kind="outlet" name="firstName" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="lastName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="myNavBar" candidateClass="UINavigationBar"/>
                 <relationship kind="outlet" name="profilePic" candidateClass="UIImageView"/>
             </relationships>
         </class>
@@ -997,8 +999,12 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="8La-9C-anb"/>
+        <segue reference="sEP-E2-vGj"/>
         <segue reference="uJa-SE-dA2"/>
+<<<<<<< HEAD
         <segue reference="eSz-SZ-c7y"/>
+=======
+        <segue reference="inV-Xe-UeF"/>
+>>>>>>> 7a2d1e392cf70d4e1af0f3a08c6dbbfb970168f7
     </inferredMetricsTieBreakers>
 </document>

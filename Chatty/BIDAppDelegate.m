@@ -304,6 +304,7 @@
     
     //set the tab icon on new message
     [[[[tabController tabBar] items]objectAtIndex:0] setBadgeValue:@"new"];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"composeMessageOnly" object:nil userInfo:nil];
     
     [TestFlight passCheckpoint:@"Recieved push notification when inside the app"];
 }
