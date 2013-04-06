@@ -77,6 +77,7 @@
 
     //set tableView seperator colors
     [self.tableView setSeparatorColor: [UIColor colorWithRed:224.0/256.0 green:224.0/256.0 blue:224.0/256.0 alpha:1.0]];
+
 }
 
 -(void)anyAction:(NSNotification *)anote
@@ -376,8 +377,7 @@
         [TestFlight passCheckpoint:@"User is viewing their profile and pending requests"];
         self.currentView = 0;
         [self.tableView reloadData]; 
-    }
-}
+    }}
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -402,7 +402,9 @@
 {
     NSLog(@"The log out button was pushed");
     [TestFlight passCheckpoint:@"User hit the log out button"];
-
+    [self performSegueWithIdentifier:@"logOut" sender:self];
+    NSLog(@"The log out segue was called");
+    [FBSession.activeSession closeAndClearTokenInformation];
     //i just had the modal view for login pop up, this way the only way to get back in is to successfully login instead of loggin out
     
 //    NSLog(@"logout function called");
@@ -422,6 +424,7 @@
     
     if ([segue.identifier isEqualToString:@"logOut"])
     {
+        
         NSLog(@"The log out segue was called");
          [FBSession.activeSession closeAndClearTokenInformation];
     }
@@ -480,7 +483,7 @@
                                               follows2 = responseObject;
                                               [self.tableView reloadData];
                                               [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-                                              
+                            
                                           }
                                           failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                                               NSLog(@"Error from postPath: %@",[error localizedDescription]);
