@@ -138,6 +138,11 @@
     //community tableview is in view
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(anyAction:) name:@"likeButtonDepressed" object:nil];
     
+//    //put texas logo on the screen                                      //x,   y,  width,height
+//    UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(294, 340, 24, 24)];
+//    imgView.image = [UIImage imageNamed:@"austinlove.png"];
+//    [self.view addSubview: imgView];
+    
 }
 - (void)viewWillDisappear:(BOOL)animated
 {

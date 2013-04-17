@@ -63,10 +63,12 @@
 		A7486A0115E2D4C9004E770D /* PendingRequestCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A7486A0015E2D4C9004E770D /* PendingRequestCell.m */; };
 		A7486A0315E2D537004E770D /* PendingRequestCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7486A0215E2D537004E770D /* PendingRequestCell.xib */; };
 		A7486A0515E34F0F004E770D /* question-mark.gif in Resources */ = {isa = PBXBuildFile; fileRef = A7486A0415E34F0F004E770D /* question-mark.gif */; };
+		A75254C3171BEB890068F4DC /* austinlove.png in Resources */ = {isa = PBXBuildFile; fileRef = A75254C2171BEB890068F4DC /* austinlove.png */; };
+		A75254C5171E59EA0068F4DC /* default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A75254C4171E59EA0068F4DC /* default@2x.png */; };
+		A75254C7171E59F40068F4DC /* default-568@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A75254C6171E59F40068F4DC /* default-568@2x.png */; };
 		A75403AB16F51D2900402780 /* ResetPassword.m in Sources */ = {isa = PBXBuildFile; fileRef = A75403AA16F51D2900402780 /* ResetPassword.m */; };
 		A765BEB116976C0A00FB2DD6 /* mychats.png in Resources */ = {isa = PBXBuildFile; fileRef = A765BEAF16976C0A00FB2DD6 /* mychats.png */; };
 		A765BEB6169770B200FB2DD6 /* bg_4.png in Resources */ = {isa = PBXBuildFile; fileRef = A765BEB5169770B200FB2DD6 /* bg_4.png */; };
-		A765BEBE1697774400FB2DD6 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A765BEBD1697774400FB2DD6 /* Default@2x.png */; };
 		A765BEC416977B2D00FB2DD6 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A765BEC316977B2D00FB2DD6 /* Icon@2x.png */; };
 		A765BEC716977C9300FB2DD6 /* Icon@2x (1).png in Resources */ = {isa = PBXBuildFile; fileRef = A765BEC516977C9300FB2DD6 /* Icon@2x (1).png */; };
 		A765BEC816977C9300FB2DD6 /* Icon (1).png in Resources */ = {isa = PBXBuildFile; fileRef = A765BEC616977C9300FB2DD6 /* Icon (1).png */; };
@@ -201,11 +203,14 @@
 		A7486A0015E2D4C9004E770D /* PendingRequestCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PendingRequestCell.m; sourceTree = "<group>"; };
 		A7486A0215E2D537004E770D /* PendingRequestCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PendingRequestCell.xib; sourceTree = "<group>"; };
 		A7486A0415E34F0F004E770D /* question-mark.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "question-mark.gif"; sourceTree = "<group>"; };
+		A75254C2171BEB890068F4DC /* austinlove.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = austinlove.png; sourceTree = "<group>"; };
+		A75254C4171E59EA0068F4DC /* default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default@2x.png"; sourceTree = "<group>"; };
+		A75254C6171E59F40068F4DC /* default-568@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-568@2x.png"; sourceTree = "<group>"; };
+		A75254C8171E5B490068F4DC /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		A75403A916F51D2900402780 /* ResetPassword.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResetPassword.h; sourceTree = "<group>"; };
 		A75403AA16F51D2900402780 /* ResetPassword.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResetPassword.m; sourceTree = "<group>"; };
 		A765BEAF16976C0A00FB2DD6 /* mychats.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mychats.png; sourceTree = "<group>"; };
 		A765BEB5169770B200FB2DD6 /* bg_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_4.png; sourceTree = "<group>"; };
-		A765BEBD1697774400FB2DD6 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		A765BEC316977B2D00FB2DD6 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		A765BEC516977C9300FB2DD6 /* Icon@2x (1).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x (1).png"; sourceTree = "<group>"; };
 		A765BEC616977C9300FB2DD6 /* Icon (1).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon (1).png"; sourceTree = "<group>"; };
@@ -384,42 +389,42 @@
 		083A8B2415420C9E0078989E /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				A7786236167E5A3C0016290A /* 14643521-thumb-up-icon.jpg */,
 				A70B6DB616D96397007D0CCF /* add.png */,
 				A70B6DB716D96397007D0CCF /* add@2x.png */,
-				A70B6DC216D96A5A007D0CCF /* friends.png */,
-				A70B6DC316D96A5A007D0CCF /* friends@2x.png */,
-				A7F61BE316A21C0700F51B04 /* pending.png */,
-				A7F61BE416A21C0700F51B04 /* pending@2x.png */,
-				A7F61BD716A2116800F51B04 /* tabbar.png */,
-				A7F61BD816A2116800F51B04 /* tabbar@2x.png */,
-				A7786236167E5A3C0016290A /* 14643521-thumb-up-icon.jpg */,
 				A7E7FB75166B0ED600BC29CB /* approved.png */,
+				A75254C2171BEB890068F4DC /* austinlove.png */,
 				A765BEB5169770B200FB2DD6 /* bg_4.png */,
 				A72708221592D5B60010E7D2 /* bluePlusSign.jpeg */,
 				A7BA8CD7159FE698003AAC24 /* Chat.png */,
 				A7270C7F16A1FE3700268B0E /* community.png */,
 				A7270C7D16A1FE0400268B0E /* community@2x.png */,
-				A765BEBD1697774400FB2DD6 /* Default@2x.png */,
+				A75254C4171E59EA0068F4DC /* default@2x.png */,
+				A75254C6171E59F40068F4DC /* default-568@2x.png */,
 				A7BF80FB15E441C5005E53AC /* delete-icon_tiny.png */,
 				A7FE1635158ED00A00AB5876 /* dirk_nowitzki_027.jpg */,
 				A7270C8416A2030E00268B0E /* find.png */,
 				A7270C8516A2030E00268B0E /* find@2x.png */,
 				A736D05C152BBA620049AB22 /* first.png */,
 				A736D05E152BBA620049AB22 /* first@2x.png */,
+				A70B6DC216D96A5A007D0CCF /* friends.png */,
+				A70B6DC316D96A5A007D0CCF /* friends@2x.png */,
 				A72708241593F25D0010E7D2 /* green-checkmark.png */,
 				A765BEC616977C9300FB2DD6 /* Icon (1).png */,
 				A765BEC516977C9300FB2DD6 /* Icon@2x (1).png */,
+				A7954A5B15911E35008C0E69 /* jasonT.jpeg */,
 				A70B6DCA16D972D6007D0CCF /* likedMe.png */,
 				A70B6DCB16D972D6007D0CCF /* likedMe@2x.png */,
 				A70B6DCC16D972D6007D0CCF /* likeMe.png */,
 				A70B6DCD16D972D6007D0CCF /* likeMe@2x.png */,
-				A7954A5B15911E35008C0E69 /* jasonT.jpeg */,
 				A7270C8616A2030E00268B0E /* me.png */,
 				A7270C8716A2030E00268B0E /* me@2x.png */,
 				A765BEAF16976C0A00FB2DD6 /* mychats.png */,
 				A7270C8816A2030E00268B0E /* new.png */,
 				A7270C8916A2030E00268B0E /* new@2x.png */,
 				A7B35B47159A640F00330B11 /* OnMyWay.jpg */,
+				A7F61BE316A21C0700F51B04 /* pending.png */,
+				A7F61BE416A21C0700F51B04 /* pending@2x.png */,
 				A7E7FB78166B0F8600BC29CB /* PENDING_Stamp1.png */,
 				A7270C8A16A2030E00268B0E /* profile.png */,
 				A7270C8116A2030E00268B0E /* profile@2x.png */,
@@ -428,6 +433,8 @@
 				A7270C8316A2030E00268B0E /* refresh@2x.png */,
 				A736D063152BBA620049AB22 /* second.png */,
 				A736D065152BBA620049AB22 /* second@2x.png */,
+				A7F61BD716A2116800F51B04 /* tabbar.png */,
+				A7F61BD816A2116800F51B04 /* tabbar@2x.png */,
 				A7FE1631158A939200AB5876 /* UIButtonBarRefresh.jpg */,
 				A70B6DC616D96BB7007D0CCF /* unfollow.png */,
 				A70B6DC716D96BB7007D0CCF /* unfollow@2x.png */,
@@ -450,6 +457,7 @@
 		A736D035152BBA620049AB22 = {
 			isa = PBXGroup;
 			children = (
+				A75254C8171E5B490068F4DC /* Default.png */,
 				A7F5DE5B16F851F8003B8EBC /* Default@2x.png */,
 				A78AF92416D090C7000E5021 /* libz.dylib */,
 				A765BEC916977CB500FB2DD6 /* Icon@2x (1).png */,
@@ -611,7 +619,7 @@
 			attributes = {
 				LastUpgradeCheck = 0450;
 			};
-			buildConfigurationList = A736D03A152BBA620049AB22 /* Build configuration list for PBXProject "Chatty" */;
+			buildConfigurationList = A736D03A152BBA620049AB22 /* Build configuration list for PBXProject "Chatsy" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -660,7 +668,6 @@
 				A7786237167E5A3C0016290A /* 14643521-thumb-up-icon.jpg in Resources */,
 				A765BEB116976C0A00FB2DD6 /* mychats.png in Resources */,
 				A765BEB6169770B200FB2DD6 /* bg_4.png in Resources */,
-				A765BEBE1697774400FB2DD6 /* Default@2x.png in Resources */,
 				A765BEC416977B2D00FB2DD6 /* Icon@2x.png in Resources */,
 				A765BEC716977C9300FB2DD6 /* Icon@2x (1).png in Resources */,
 				A765BEC816977C9300FB2DD6 /* Icon (1).png in Resources */,
@@ -697,6 +704,9 @@
 				A70B6DD116D972D7007D0CCF /* likeMe@2x.png in Resources */,
 				A70B6DD216D9C0D7007D0CCF /* Default-568h@2x.png in Resources */,
 				A7F5DE5C16F851F8003B8EBC /* Default@2x.png in Resources */,
+				A75254C3171BEB890068F4DC /* austinlove.png in Resources */,
+				A75254C5171E59EA0068F4DC /* default@2x.png in Resources */,
+				A75254C7171E59F40068F4DC /* default-568@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -870,7 +880,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		A736D03A152BBA620049AB22 /* Build configuration list for PBXProject "Chatty" */ = {
+		A736D03A152BBA620049AB22 /* Build configuration list for PBXProject "Chatsy" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A736D067152BBA620049AB22 /* Debug */,
