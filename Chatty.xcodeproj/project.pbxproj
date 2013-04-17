@@ -619,7 +619,7 @@
 			attributes = {
 				LastUpgradeCheck = 0450;
 			};
-			buildConfigurationList = A736D03A152BBA620049AB22 /* Build configuration list for PBXProject "Chatsy" */;
+			buildConfigurationList = A736D03A152BBA620049AB22 /* Build configuration list for PBXProject "Chatty" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -880,7 +880,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		A736D03A152BBA620049AB22 /* Build configuration list for PBXProject "Chatsy" */ = {
+		A736D03A152BBA620049AB22 /* Build configuration list for PBXProject "Chatty" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A736D067152BBA620049AB22 /* Debug */,
