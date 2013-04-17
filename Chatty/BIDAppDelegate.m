@@ -42,12 +42,14 @@
     
     //TestFlight debug purposes
     //DONT FORGET TO COMMENT OUT THE NEXT 3 LINES BEFORE PRODUCTION
-    #define TESTING 1
-    #ifdef TESTING
-        [TestFlight setDeviceIdentifier:[[UIDevice currentDevice] uniqueIdentifier]];
-    #endif
+//    #define TESTING 1
+//    #ifdef TESTING
+//        [TestFlight setDeviceIdentifier:[[UIDevice currentDevice] uniqueIdentifier]];
+//    #endif
+    
     [TestFlight takeOff:@"f81db16ac77c463a729db6f6d7799c74_MTc4MzQ2MjAxMy0wMS0yMyAwMTo0NDo0NC4yMjM5ODk"];
     [TestFlight passCheckpoint:@"Application Launched"];
+    sleep(2);
     
     return YES;
 }
