@@ -44,7 +44,7 @@
 							<object class="IBUILabel" id="310908270">
 								<reference key="NSNextResponder" ref="1050068450"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{54, 2}, {95, 21}}</string>
+								<string key="NSFrame">{{54, 2}, {259, 21}}</string>
 								<reference key="NSSuperview" ref="1050068450"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="112919425"/>
@@ -296,7 +296,7 @@
 						<int key="objectID">24</int>
 						<reference key="object" ref="310908270"/>
 						<array class="NSMutableArray" key="children">
-							<object class="IBNSLayoutConstraint" id="885233413">
+							<object class="IBNSLayoutConstraint" id="347498541">
 								<reference key="firstItem" ref="310908270"/>
 								<int key="firstAttribute">7</int>
 								<int key="relation">0</int>
@@ -304,7 +304,7 @@
 								<int key="secondAttribute">0</int>
 								<float key="multiplier">1</float>
 								<object class="IBLayoutConstant" key="constant">
-									<double key="value">95</double>
+									<double key="value">259</double>
 								</object>
 								<float key="priority">1000</float>
 								<reference key="containingView" ref="310908270"/>
@@ -380,11 +380,6 @@
 						<reference key="parent" ref="642102575"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">55</int>
-						<reference key="object" ref="885233413"/>
-						<reference key="parent" ref="310908270"/>
-					</object>
-					<object class="IBObjectRecord">
 						<int key="objectID">56</int>
 						<reference key="object" ref="112919425"/>
 						<array class="NSMutableArray" key="children">
@@ -448,6 +443,11 @@
 						<reference key="object" ref="760918939"/>
 						<reference key="parent" ref="112919425"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">76</int>
+						<reference key="object" ref="347498541"/>
+						<reference key="parent" ref="310908270"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -465,8 +465,8 @@
 					<reference ref="502424276"/>
 				</array>
 				<string key="24.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<array key="24.IBViewMetadataConstraints">
-					<reference ref="885233413"/>
+				<array class="NSMutableArray" key="24.IBViewMetadataConstraints">
+					<reference ref="347498541"/>
 				</array>
 				<boolean value="NO" key="24.IBViewMetadataTranslatesAutoresizingMaskIntoConstraints"/>
 				<string key="30.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -480,7 +480,6 @@
 				<string key="50.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="53.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="54.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="55.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="56.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<array class="NSMutableArray" key="56.IBViewMetadataConstraints">
 					<reference ref="490063874"/>
@@ -492,12 +491,13 @@
 				<string key="70.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="74.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="75.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="76.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			</dictionary>
 			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">75</int>
+			<int key="maxID">76</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">

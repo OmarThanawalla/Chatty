@@ -54,12 +54,12 @@
                         <barButtonItem key="rightBarButtonItem" title="Log out" id="fcR-zc-0Im">
                             <connections>
                                 <action selector="logout" destination="Dhr-Ev-Sc6" id="s9o-ee-Sud"/>
+                                <segue destination="soC-xs-l7S" kind="modal" identifier="logOut" id="ahc-Ga-sQ6"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <segue destination="QQd-xa-CRm" kind="modal" identifier="editProfileModal" id="DIN-MB-R6L"/>
-                        <segue destination="NX4-l2-cxl" kind="modal" identifier="logOut" id="eSz-SZ-c7y"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wT8-72-QRQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -170,14 +170,14 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="295-zA-ZXX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1554" y="1442"/>
+            <point key="canvasLocation" x="2046" y="1462"/>
         </scene>
         <!--Login - Root View Controller-->
         <scene sceneID="ctF-Sr-rVn">
             <objects>
                 <viewController id="NX4-l2-cxl" customClass="Login" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kmO-L5-QDP">
-                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="tailTruncation" minimumFontSize="10" id="LT7-Rj-hAg">
@@ -262,7 +262,7 @@
             <objects>
                 <viewController id="BRB-Iy-OJi" customClass="Registered" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xiJ-Lt-uLb">
-                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Eg5-bh-fD7">
@@ -325,7 +325,7 @@
             <objects>
                 <viewController id="d9G-Pv-ggZ" customClass="Registered3" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="TQq-l4-nne">
-                        <rect key="frame" x="0.0" y="20" width="320" height="416"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="372"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Please Enter a Username" minimumFontSize="17" id="vxI-R0-ls2">
@@ -425,7 +425,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zry-yI-Lel" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="536" y="-1227"/>
+            <point key="canvasLocation" x="454" y="-1227"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="15">
@@ -999,7 +999,7 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="eSz-SZ-c7y"/>
+        <segue reference="ahc-Ga-sQ6"/>
         <segue reference="uJa-SE-dA2"/>
         <segue reference="inV-Xe-UeF"/>
     </inferredMetricsTieBreakers>
