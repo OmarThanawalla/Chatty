@@ -205,8 +205,24 @@
                             autoCompleteObject.view.tag = 1;
                             //Change the viewControlers frame
                             CGRect temp = autoCompleteObject.view.frame;
-                            temp.origin.y = 85;
-                            temp.size.height = 120;
+                            if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+                            {
+                                CGSize result = [[UIScreen mainScreen] bounds].size;
+                                if(result.height == 480)
+                                {
+                                    // iPhone Classic
+                                    temp.origin.y = 85;
+                                    temp.size.height = 120;
+                                }
+                                if(result.height == 568)
+                                {
+                                    // iPhone 5
+                                    temp.origin.y = 85;
+                                    temp.size.height = 206;
+                                }
+                            }
+                            //temp.origin.y = 85;
+                            //temp.size.height = 120;
                             //int aCOHeight = temp.size.height;
                             //NSLog(@"The height of the autocomplete object view is: %i", aCOHeight);
                             

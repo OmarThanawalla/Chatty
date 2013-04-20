@@ -45,6 +45,7 @@
 		A7270C9216A2030E00268B0E /* new.png in Resources */ = {isa = PBXBuildFile; fileRef = A7270C8816A2030E00268B0E /* new.png */; };
 		A7270C9316A2030E00268B0E /* new@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A7270C8916A2030E00268B0E /* new@2x.png */; };
 		A7270C9416A2030E00268B0E /* profile.png in Resources */ = {isa = PBXBuildFile; fileRef = A7270C8A16A2030E00268B0E /* profile.png */; };
+		A733F7A517227508003D320F /* Icon (1).png in Resources */ = {isa = PBXBuildFile; fileRef = A733F7A417227508003D320F /* Icon (1).png */; };
 		A736D045152BBA620049AB22 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A736D044152BBA620049AB22 /* UIKit.framework */; };
 		A736D047152BBA620049AB22 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A736D046152BBA620049AB22 /* Foundation.framework */; };
 		A736D04F152BBA620049AB22 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A736D04D152BBA620049AB22 /* InfoPlist.strings */; };
@@ -175,6 +176,7 @@
 		A7270C8816A2030E00268B0E /* new.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = new.png; sourceTree = "<group>"; };
 		A7270C8916A2030E00268B0E /* new@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "new@2x.png"; sourceTree = "<group>"; };
 		A7270C8A16A2030E00268B0E /* profile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profile.png; sourceTree = "<group>"; };
+		A733F7A417227508003D320F /* Icon (1).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon (1).png"; sourceTree = "<group>"; };
 		A736D040152BBA620049AB22 /* Chatty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chatty.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A736D044152BBA620049AB22 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		A736D046152BBA620049AB22 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -457,6 +459,7 @@
 		A736D035152BBA620049AB22 = {
 			isa = PBXGroup;
 			children = (
+				A733F7A417227508003D320F /* Icon (1).png */,
 				A75254C8171E5B490068F4DC /* Default.png */,
 				A7F5DE5B16F851F8003B8EBC /* Default@2x.png */,
 				A78AF92416D090C7000E5021 /* libz.dylib */,
@@ -707,6 +710,7 @@
 				A75254C3171BEB890068F4DC /* austinlove.png in Resources */,
 				A75254C5171E59EA0068F4DC /* default@2x.png in Resources */,
 				A75254C7171E59F40068F4DC /* default-568@2x.png in Resources */,
+				A733F7A517227508003D320F /* Icon (1).png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -789,6 +793,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Omar THANAWALLA";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -804,6 +809,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				PROVISIONING_PROFILE = "28750205-FF8E-4B4C-ADD0-7A07737EB5F4";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -814,6 +820,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Omar THANAWALLA";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -823,6 +830,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PROVISIONING_PROFILE = "28750205-FF8E-4B4C-ADD0-7A07737EB5F4";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -831,7 +839,7 @@
 		A736D06A152BBA620049AB22 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Omar THANAWALLA";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Chatty\"",
@@ -846,7 +854,7 @@
 				);
 				OTHER_LDFLAGS = "-lsqlite3.0";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "28750205-FF8E-4B4C-ADD0-7A07737EB5F4";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -854,7 +862,7 @@
 		A736D06B152BBA620049AB22 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Omar THANAWALLA";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -871,7 +879,7 @@
 				);
 				OTHER_LDFLAGS = "-lsqlite3.0";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "28750205-FF8E-4B4C-ADD0-7A07737EB5F4";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				WRAPPER_EXTENSION = app;
 			};
