@@ -12,7 +12,6 @@
 
 //static NSString * const kAFChattyAPIBaseURLString = @"http://localhost:3000";
 
-pwd
 static NSString * const kAFChattyAPIBaseURLString = @"http://stark-night-7250.herokuapp.com";
 
 
