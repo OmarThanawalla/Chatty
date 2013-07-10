@@ -101,7 +101,10 @@
     self.lock = NO;
     
     [self refresh];
-    //[self deleteEverything];
+    
+    //set the badge indicator
+//    UIApplication *application = [UIApplication sharedApplication];
+//    application.applicationIconBadgeNumber = 0;
    
 }
 
@@ -349,11 +352,6 @@
 
 
 
-
-
-
-
-
 #pragma mark - Table view delegate
 //drill down into the conversation
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -405,9 +403,6 @@
         }
     }
 }
-
-
-
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
@@ -474,6 +469,7 @@
         NSLog(@"Refresh buttong was allowed to be called (no lock)");
         [TestFlight passCheckpoint:@"Community Class: Refresh Button Called"];
         [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+        
         //clear the community tab badge
         [[[[self.tabBarController tabBar] items]objectAtIndex:0] setBadgeValue:nil];
         
