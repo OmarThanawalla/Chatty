@@ -522,7 +522,7 @@
                                               failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                                                   NSLog(@"Error from postPath: %@",[error localizedDescription]);
                                                   //else you cant connect, therefore push modalview login onto the stack
-                                                  [self performSegueWithIdentifier:@"loggedIn" sender:self];
+                                                  //[self performSegueWithIdentifier:@"loggedIn" sender:self];
                                                   [TestFlight passCheckpoint:@"Community class: Non successful call for data"];
                                                   //unlock lock
                                                   self.lock = NO;

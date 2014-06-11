@@ -80,7 +80,6 @@
 		A768946C16B6688B0083507A /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A768946A16B6688B0083507A /* AdSupport.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		A768946E16B668A20083507A /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A768946D16B668A20083507A /* Social.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		A768947016B7B0BB0083507A /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A768946F16B7B0BB0083507A /* FacebookSDK.framework */; };
-		A768947216B7B1140083507A /* FacebookSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A768947116B7B1140083507A /* FacebookSDKResources.bundle */; };
 		A768947416B7B1210083507A /* FBUserSettingsViewResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A768947316B7B1210083507A /* FBUserSettingsViewResources.bundle */; };
 		A768947616B7B58F0083507A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A768947516B7B58F0083507A /* CoreGraphics.framework */; };
 		A768947A16B7BB970083507A /* facebookFriendList.m in Sources */ = {isa = PBXBuildFile; fileRef = A768947816B7BB970083507A /* facebookFriendList.m */; };
@@ -223,7 +222,6 @@
 		A768946A16B6688B0083507A /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		A768946D16B668A20083507A /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		A768946F16B7B0BB0083507A /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../../Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
-		A768947116B7B1140083507A /* FacebookSDKResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = FacebookSDKResources.bundle; path = ../../../Documents/FacebookSDK/FacebookSDK.framework/Versions/A/Resources/FacebookSDKResources.bundle; sourceTree = "<group>"; };
 		A768947316B7B1210083507A /* FBUserSettingsViewResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = FBUserSettingsViewResources.bundle; path = ../../../Documents/FacebookSDK/FacebookSDK.framework/Versions/A/Resources/FBUserSettingsViewResources.bundle; sourceTree = "<group>"; };
 		A768947516B7B58F0083507A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		A768947716B7BB970083507A /* facebookFriendList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = facebookFriendList.h; sourceTree = "<group>"; };
@@ -488,7 +486,6 @@
 				A768947516B7B58F0083507A /* CoreGraphics.framework */,
 				A768946F16B7B0BB0083507A /* FacebookSDK.framework */,
 				A768947316B7B1210083507A /* FBUserSettingsViewResources.bundle */,
-				A768947116B7B1140083507A /* FacebookSDKResources.bundle */,
 				A768946D16B668A20083507A /* Social.framework */,
 				A768946916B6688B0083507A /* Accounts.framework */,
 				A768946A16B6688B0083507A /* AdSupport.framework */,
@@ -691,7 +688,6 @@
 				A7F61BDA16A2116800F51B04 /* tabbar@2x.png in Resources */,
 				A7F61BE516A21C0700F51B04 /* pending.png in Resources */,
 				A7F61BE616A21C0700F51B04 /* pending@2x.png in Resources */,
-				A768947216B7B1140083507A /* FacebookSDKResources.bundle in Resources */,
 				A768947416B7B1210083507A /* FBUserSettingsViewResources.bundle in Resources */,
 				A78AF92116D0900F000E5021 /* README.md in Resources */,
 				A78AF92216D0900F000E5021 /* release_notes.md in Resources */,
